@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class Item {
     protected String description;
-    protected String amount;
+    protected double amount;
 
-    public Item(String description, String amount) {
+    public Item(String description, double amount) {
         this.description = description;
         this.amount = amount;
     }
