@@ -1,6 +1,7 @@
 package seedu.duke;
 
-import java.util.Scanner;
+import seedu.duke.exceptions.InvalidStorageFilePathException;
+import seedu.duke.exceptions.StorageOperationException;
 
 public class Main {
     /**
