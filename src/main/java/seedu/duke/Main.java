@@ -8,7 +8,7 @@ public class Main {
      */
     private static Ui ui;
     private static Storage storage;
-    private static TaskList tasklist;
+    private static SpendingList spendingList;
 
     /**
      * Runs the program until termination.
@@ -26,27 +26,27 @@ public class Main {
         ui = new Ui();
         try {
             storage = initializeStorage(args);
-            tasklist = storage.load();
+            spendingList = storage.load();
         } catch(Exception e) {
-            ui.showError(e.getMessage());
+            ui.printErrorMessage(e.getMessage());
             System.exit(0);
         }
     }
 
     /**
-     * Reads the user command and executes it, until the user issues the 'bye' command.
+     * Reads the user command and executes it, until the user issues the 'logout' command.
      */
     private static void runCommandLoopUntilExitCommand() {
-        ui.showWelcomeMessage(storage.filepath);
+        ui.printWelcomeMessage(storage.filepath);
         boolean isExit = false;
         do {
             try {
-                String fullCommand = ui.readCommand();
+                String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                c.execute(tasklist, ui, storage);
+                c.execute(spendingList, ui, storage);
                 isExit = c.isExit();
             } catch (Exception e) {
-                ui.showError(e.getMessage());
+                ui.printErrorMessage(e.getMessage());
             }
         } while(!isExit);
     }
