@@ -24,6 +24,10 @@ public class Item {
         this.amount = amount;
     }
 
+    public double getAmount() {
+        return amount;
+    }
+
     public String toString() {
         return currentDate() + " " + description + " $" + amount;
     }
