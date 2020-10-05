@@ -16,6 +16,14 @@ public class Item {
         return date.toString();
     }
 
+    public void editDescription(String description) {
+        this.description = description;
+    }
+
+    public void editAmount(double amount) {
+        this.amount = amount;
+    }
+
     public String toString() {
         return currentDate() + " " + description + " $" + amount;
     }
