@@ -7,7 +7,7 @@ public class ConvertCommand {
     private final String description;
     private String currencies;
     private double exchangeRate;
-    public static ArrayList<String> newSpendingList = new ArrayList<>();
+    public static ArrayList<Item> newSpendingList = new ArrayList<>();
     
     /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD */
     private final String[][] exchangeRates = {{"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
@@ -15,10 +15,6 @@ public class ConvertCommand {
     
     public ConvertCommand(String description) {
         this.description = description;
-    }
-    
-    private void retrieveSpendingList(SpendingList spendingList) {
-        newSpendingList = spendingList.getSpendingList();
     }
     
     private void identifyCurrency(String description) {
@@ -39,55 +35,43 @@ public class ConvertCommand {
         }
     }
     
-    public void execute(String spendingList) {
-        retrieveSpendingList();
+    public void execute(SpendingList spendingList) {
+        newSpendingList = spendingList.getSpendingList();
         identifyCurrency(description);
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
-            String currentString = newSpendingList.get(i);
+            Item currentString = newSpendingList.get(i);
             newSpendingList.remove(i);
-            int amountPosition = getAmountPosition(amountPosition, currentString);
-            updateNewAmount(amountPosition, currentString);
+            updateNewAmount(currentString);
             updateCurrency(currentString);
             newSpendingList.add(currentString);
         }
     }
     
-    private void updateNewAmount(int amountPosition, String currentString) {
-        int length = currentString.length();
-        String amount = currentString.substring(amountPosition,length);
-        double newAmount = Double.parseDouble(amount);
-        newAmount = newAmount * exchangeRate;
-        currentString.replace(amount, Double.toString(newAmount));
+    private void updateNewAmount(Item currentString) {
+        double amount = currentString.getAmount();
+        amount = amount * exchangeRate;
+        currentString.editAmount(amount);
     }
     
-    private void updateCurrency(String currentString) {
+    private void updateCurrency(Item currentString) {
         switch (currencies) {
         case "SGDUSD":
-            currentString.replace("S$", "$");
+            currentString.editSymbol("$");
             break;
         case "USDSGD":
-            currentString.replace("$", "S$");
+            currentString.editSymbol("S$");
             break;
         case "SGDYuan":
-            currentString.replace("S$", "￥");
+            currentString.editSymbol("￥");
             break;
         case "YuanSGD":
-            currentString.replace("￥", "S$");
+            currentString.editSymbol("S$");
             break;
         }
     }
     
-    private int getAmountPosition(int amountPosition, String currentString) {
-        if (currentString.contains("$")) {
-            amountPosition = currentString.indexOf("$") + 1;
-        } else if (currentString.contains("￥")) {
-            amountPosition = currentString.indexOf("￥") + 1;
-        }
-        return amountPosition;
-    }
-    
-    public ArrayList<String> returnSpendingList() {
+    public ArrayList<Item> updateSpendingList() {
         return newSpendingList;
     }
 }
