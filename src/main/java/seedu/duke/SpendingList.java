@@ -23,6 +23,10 @@ public class SpendingList {
         spendingList.remove(index);
     }
 
+    public void clearAllItems() {
+        spendingList.clear();
+    }
+
     public Item getItem(int index) {
         return spendingList.get(index);
     }
@@ -31,4 +35,7 @@ public class SpendingList {
         return spendingList.size();
     }
 
+    public List<Item> getSpendingList() {
+        return spendingList;
+    }
 }
