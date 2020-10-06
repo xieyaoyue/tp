@@ -19,8 +19,8 @@ public class ConvertCommand {
         this.description = description;
     }
     
-    public ConvertCommand(ArrayList<String> spendingList) {
-        this.newSpendingList = spendingList;
+    private void retrieveSpendingList(SpendingList spendingList) {
+        newSpendingList = spendingList.getSpendingList();
     }
     
     private void identifyCurrency(String description) {
@@ -42,6 +42,7 @@ public class ConvertCommand {
     }
     
     public void execute(String spendingList) {
+        retrieveSpendingList();
         identifyCurrency(description);
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
