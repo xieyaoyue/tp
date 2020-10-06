@@ -11,6 +11,7 @@ public class ClearCommand {
             this.clearIndex = clearIndex;
         }
     }
+    
     public void execute(SpendingList spendingList, Ui ui) {
         if(!isClearAll) {
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));
