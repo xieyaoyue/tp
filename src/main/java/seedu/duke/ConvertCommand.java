@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 public class ConvertCommand {
     
-    private String description;
+    private final String description;
     private String currencies;
-    private String inputCurrency;
-    private String outputCurrency;
     private double exchangeRate;
     public static ArrayList<String> newSpendingList = new ArrayList<>();
     
     /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD */
-    private String[][] exchangeRates = {{"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
+    private final String[][] exchangeRates = {{"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
             {"0.74", "1.36", "4.99", "0.20"}};
     
     public ConvertCommand(String description) {
@@ -27,14 +25,14 @@ public class ConvertCommand {
         int firstBlankSpacePosition = description.indexOf(" ") + 1;
         int secondBlankSpacePosition = description.indexOf(" ", firstBlankSpacePosition) + 1;
         int length = description.length();
-        inputCurrency = description.substring(firstBlankSpacePosition, secondBlankSpacePosition);
-        outputCurrency = description.substring(secondBlankSpacePosition, length);
+        String inputCurrency = description.substring(firstBlankSpacePosition, secondBlankSpacePosition);
+        String outputCurrency = description.substring(secondBlankSpacePosition, length);
         currencies = inputCurrency + outputCurrency;
     }
     
     private void findExchangeRate() {
         for (int i = 0; i < 4; i++) {
-            if (exchangeRates[0][i] == currencies) {
+            if (exchangeRates[0][i].equals(currencies)) {
                 exchangeRate = Double.parseDouble(exchangeRates[1][i]);
                 break;
             }
@@ -48,14 +46,45 @@ public class ConvertCommand {
         for (int i = 0; i < newSpendingList.size(); i++) {
             String currentString = newSpendingList.get(i);
             newSpendingList.remove(i);
-            int amountPosition = currentString.indexOf(inputCurrency) + inputCurrency.length() + 1;
-            int length = currentString.length();
-            String amount = currentString.substring(amountPosition,length);
-            double newAmount = Double.parseDouble(amount);
-            newAmount = newAmount * exchangeRate;
-            currentString.replace(amount, Double.toString(newAmount));
+            int amountPosition = getAmountPosition(amountPosition, currentString);
+            updateNewAmount(amountPosition, currentString);
+            updateCurrency(currentString);
             newSpendingList.add(currentString);
         }
+    }
+    
+    private void updateNewAmount(int amountPosition, String currentString) {
+        int length = currentString.length();
+        String amount = currentString.substring(amountPosition,length);
+        double newAmount = Double.parseDouble(amount);
+        newAmount = newAmount * exchangeRate;
+        currentString.replace(amount, Double.toString(newAmount));
+    }
+    
+    private void updateCurrency(String currentString) {
+        switch (currencies) {
+        case "SGDUSD":
+            currentString.replace("S$", "$");
+            break;
+        case "USDSGD":
+            currentString.replace("$", "S$");
+            break;
+        case "SGDYuan":
+            currentString.replace("S$", "￥");
+            break;
+        case "YuanSGD":
+            currentString.replace("￥", "S$");
+            break;
+        }
+    }
+    
+    private int getAmountPosition(int amountPosition, String currentString) {
+        if (currentString.contains("$")) {
+            amountPosition = currentString.indexOf("$") + 1;
+        } else if (currentString.contains("￥")) {
+            amountPosition = currentString.indexOf("￥") + 1;
+        }
+        return amountPosition;
     }
     
     public ArrayList<String> returnSpendingList() {
