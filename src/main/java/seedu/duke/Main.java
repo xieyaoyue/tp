@@ -65,10 +65,5 @@ public class Main {
     public static void main(String[] Args) {
 //        run(Args);
         System.out.println("Hello World!");
-        Item i = new Item("rice",2);
-        System.out.println(i.toString());
-        i.editAmount(9.0);
-        System.out.println(i.toString());
-        System.out.println(i.getYearMonth());
     }
 }
