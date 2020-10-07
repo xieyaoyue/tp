@@ -1,21 +1,21 @@
 package seedu.duke;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SpendingList {
-    private List<Item> spendingList;
+    private ArrayList<Item> spendingList;
+    private String description;
 
-    public SpendingList() {
-        spendingList = new ArrayList<>();
-    }
-
-    public SpendingList(List<Item> spendingList) {
+    public SpendingList(ArrayList<Item> spendingList) {
         this.spendingList = spendingList;
     }
-
-    public void addItem(String description, double amount) {
-        Item item = new Item(description, amount);
+    
+    public SpendingList(String description) {
+        this.description = description;
+    }
+    
+    public void addItem(String description, String symbol, double amount) {
+        Item item = new Item(description, symbol, amount);
         spendingList.add(item);
     }
 
@@ -35,12 +35,22 @@ public class SpendingList {
         return spendingList.size();
     }
 
-    public List<Item> getSpendingList() {
+    public ArrayList<Item> getSpendingList() {
         return spendingList;
     }
 
-//    public void updateSpendingList() {
-//        convertCommand convertCommand = new ConvertCommand(description);
-//        spendingList = convertCommand.updateSpendingList();
-//    }
+    public double getSpendingAmount(String period) {
+        double totalAmount = 0;
+        for (Item i: spendingList) {
+            if (i.getYearMonth().contains(period)) {
+                totalAmount += i.getAmount();
+            }
+        }
+        return totalAmount;
+    }
+
+    public void updateSpendingList() {
+        ConvertCommand convertCommand = new ConvertCommand(description);
+        spendingList = convertCommand.updateSpendingList();
+    }
 }
