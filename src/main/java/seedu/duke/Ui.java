@@ -72,6 +72,11 @@ public class Ui {
         drawSeparateLine();
     }
 
+    public void printGoodbyeMessage() {
+        out.println(MESSAGE_GOODBYE);
+        drawSeparateLine();
+    }
+
     private void drawSeparateLine() {
         out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
