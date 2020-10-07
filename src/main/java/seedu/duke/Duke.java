@@ -67,8 +67,8 @@ public class Duke {
     //       return isStorageFileSpecifiedByUser? new Storage(Args[0]) : new Storage();
     //   }
 
-    public static void main(String[] Args) {
-    //        run(Args);
+    public static void main(String[] args) {
+    //        run(args);
         System.out.println("hello world");
     }
 }
