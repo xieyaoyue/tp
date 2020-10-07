@@ -39,8 +39,11 @@ public class Parser {
     }
 
     private Command getHelpCommand(String commandParameters) throws InvalidCommandException {
-        if (commandParameters.isEmpty()) return new HelpCommand();
-        else throw new InvalidCommandException();
+        if (commandParameters.isEmpty()) {
+            return new HelpCommand();
+        } else {
+            throw new InvalidCommandException();
+        }
     }
 
     public Command getCommand(String userInput) throws InvalidCommandException {
