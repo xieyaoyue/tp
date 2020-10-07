@@ -1,7 +1,7 @@
 package seedu.duke;
 
-import seedu.duke.Command.Command;
-import seedu.duke.Command.HelpCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.HelpCommand;
 
 public class Parser {
     public static Command parseCommand(String fullCommand) {

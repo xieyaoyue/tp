@@ -1,6 +1,5 @@
-package seedu.duke.Command;
+package seedu.duke.command;
 
-import seedu.duke.Command.Command;
 import seedu.duke.Item;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
@@ -14,9 +13,11 @@ public class ConvertCommand extends Command {
     private double exchangeRate;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
     
-    /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD */
-    private final String[][] exchangeRates = {{"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
-            {"0.74", "1.36", "4.99", "0.20"}};
+    /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD. */
+    private final String[][] exchangeRates = {
+            {"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
+            {"0.74", "1.36", "4.99", "0.20"},
+    };
     
     public ConvertCommand(String description) {
         this.description = description;
@@ -73,6 +74,7 @@ public class ConvertCommand extends Command {
         case "YuanSGD":
             currentString.editSymbol("S$");
             break;
+        default:
         }
     }
     

@@ -37,9 +37,4 @@ public class SpendingList {
     public ArrayList<Item> getSpendingList() {
         return spendingList;
     }
-
-//    public void updateSpendingList() {
-//        ConvertCommand convertCommand = new ConvertCommand(description);
-//        spendingList = convertCommand.updateSpendingList();
-//    }
 }
