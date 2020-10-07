@@ -1,4 +1,5 @@
 chcp 65001
+set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
 @ECHO OFF
 
@@ -9,7 +10,7 @@ REM delete output from previous run
 del ACTUAL.TXT
 
 REM compile the code into the bin folder
-javac  -cp ..\src -Xlint:none -d ..\bin ..\src\main\java\seedu\duke\Duke.java
+javac -encoding utf-8 -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\seedu\duke\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
