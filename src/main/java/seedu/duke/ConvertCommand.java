@@ -10,8 +10,10 @@ public class ConvertCommand {
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
     
     /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD */
-    private final String[][] exchangeRates = {{"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
-            {"0.74", "1.36", "4.99", "0.20"}};
+    private final String[][] exchangeRates = {
+            {"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
+            {"0.74", "1.36", "4.99", "0.20"},
+    };
     
     public ConvertCommand(String description) {
         this.description = description;
@@ -68,6 +70,7 @@ public class ConvertCommand {
         case "YuanSGD":
             currentString.editSymbol("S$");
             break;
+        default:
         }
     }
     
