@@ -2,12 +2,12 @@ package seedu.duke;
 
 public class ClearCommand {
 
-    private boolean isClearAll = false;
+    private boolean isClearAll;
     private int clearIndex;
 
     public ClearCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
-        if(isClearAll == false) {
+        if(!isClearAll) {
             this.clearIndex = clearIndex;
         }
     }
@@ -17,11 +17,7 @@ public class ClearCommand {
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));
             spendingList.deleteItem(clearIndex - 1);
         } else {
-            int totalItems = spendingList.getTotalItems();
-            while(totalItems > 0) {
-                spendingList.deleteItem(totalItems - 1);
-                totalItems -= 1;
-            }
+            spendingList.clearAllItems();
             ui.printClearAll();
         }
     }
