@@ -65,7 +65,7 @@ public class ConvertCommand {
             currentString.editSymbol("S$");
             break;
         case "SGDYuan":
-            currentString.editSymbol("￥");
+            currentString.editSymbol("¥");
             break;
         case "YuanSGD":
             currentString.editSymbol("S$");
