@@ -1,10 +1,13 @@
 package seedu.duke;
 
-import seedu.duke.command.ClearCommand;
-import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.command.Command;
 import seedu.duke.command.AddCommand;
+import seedu.duke.command.ClearCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.ConvertCommand;
+import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
+import seedu.duke.command.SummaryCommand;
+import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
 
@@ -37,8 +40,7 @@ public class Parser {
         } catch (Exception e) {
             throw new InvalidCommandException();
         }
-        AddCommand newAddCommand = new AddCommand(description, symbol, amount);
-        return newAddCommand;
+        return new AddCommand(description, symbol, amount);
     }
 
     private Command getHelpCommand(String commandParameters) throws InvalidCommandException {
@@ -63,6 +65,52 @@ public class Parser {
         }
     }
 
+    private Command getConvertCommand(String commandParameters) {
+        return new ConvertCommand(commandParameters);
+    }
+
+    private Command getLogoutCommand(String commandParameters) throws InvalidCommandException {
+        if (commandParameters.isEmpty()) {
+            return new ExitCommand();
+        } else {
+            throw new InvalidCommandException();
+        }
+    }
+
+    private boolean isNumeric(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            if (!Character.isDigit(string.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Command getSummaryCommand(String commandParameters) throws InvalidCommandException {
+        if (commandParameters.isEmpty()) {
+            return new SummaryCommand();
+        } else {
+            int dividerIndex = commandParameters.indexOf(" ");
+            if (dividerIndex == -1) {
+                String year = commandParameters;
+                if (isNumeric(year)) {
+                    return new SummaryCommand(year);
+                } else {
+                    throw new InvalidCommandException();
+                }
+            } else {
+                String year = commandParameters.substring(0, dividerIndex);
+                String month = commandParameters.substring(dividerIndex + 1);
+                if (isNumeric(year) && isNumeric(month)) {
+                    return new SummaryCommand(year, month);
+                } else {
+                    throw new InvalidCommandException();
+                }
+            }
+        }
+    }
+
+
     public Command getCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action;
@@ -71,6 +119,10 @@ public class Parser {
         switch (action) {
         case "add": return getAddCommand(commandParameters);
         case "help": return getHelpCommand(commandParameters);
+        case "clear": return getClearCommand(commandParameters);
+        case "convert": return getConvertCommand(commandParameters);
+        case "summary": return getSummaryCommand(commandParameters);
+        case "logout": return getLogoutCommand(commandParameters);
         default: return null;
         }
     }
