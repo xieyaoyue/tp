@@ -15,7 +15,7 @@ public class Parser {
         return action;
     }
 
-    private AddCommand getAddCommand(String commandParameters) throws InvalidCommandException {
+    private Command getAddCommand(String commandParameters) throws InvalidCommandException {
         commandParameters += '-';
         if (!((commandParameters.contains("-d")) && (commandParameters.contains("-s")))) {
             throw new InvalidCommandException();
@@ -38,13 +38,19 @@ public class Parser {
         return newAddCommand;
     }
 
+    private Command getHelpCommand(String commandParameters) throws InvalidCommandException {
+        if (commandParameters.isEmpty()) return new HelpCommand();
+        else throw new InvalidCommandException();
+    }
+
     public Command getCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action;
         action = getAction(userInput);
         String commandParameters = userInput.substring(action.length());
         switch (action) {
-        case "add": return (Command)getAddCommand(commandParameters);
+        case "add": return getAddCommand(commandParameters);
+        case "help": return getHelpCommand(commandParameters);
         default: return null;
         }
     }
