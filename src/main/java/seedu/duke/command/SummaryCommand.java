@@ -1,5 +1,7 @@
-package seedu.duke;
+package seedu.duke.command;
 
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 import seedu.duke.command.Command;
 
 import java.time.LocalDate;
