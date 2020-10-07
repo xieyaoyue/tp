@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.command.ClearCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.command.Command;
 import seedu.duke.command.AddCommand;
@@ -48,11 +49,25 @@ public class Parser {
         }
     }
 
+    private Command getClearCommand(String commandParameters) throws InvalidCommandException {
+        if (commandParameters.toLowerCase().equals("all")) {
+            return new ClearCommand(true, 0);
+        } else {
+            int clearIndex;
+            try {
+                clearIndex = Integer.parseInt(commandParameters);
+            } catch (NumberFormatException e) {
+                throw new InvalidCommandException();
+            }
+            return new ClearCommand(false, clearIndex);
+        }
+    }
+
     public Command getCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action;
         action = getAction(userInput);
-        String commandParameters = userInput.substring(action.length());
+        String commandParameters = userInput.substring(action.length()).strip();
         switch (action) {
         case "add": return getAddCommand(commandParameters);
         case "help": return getHelpCommand(commandParameters);
