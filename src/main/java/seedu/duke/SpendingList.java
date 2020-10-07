@@ -50,6 +50,13 @@ public class SpendingList {
         }
         return totalAmount;
     }
+    
+    public void editItem(int number, String description, String symbol, double amount) {
+        Item item = getItem(number);
+        item.editDescription(description);
+        item.editSymbol(symbol);
+        item.editAmount(amount);
+    }
 
     public void updateSpendingList() {
         ConvertCommand convertCommand = new ConvertCommand(description);
