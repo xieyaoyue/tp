@@ -1,8 +1,13 @@
-package seedu.duke;
+package seedu.duke.Command;
+
+import seedu.duke.Command.Command;
+import seedu.duke.Item;
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 
 import java.util.ArrayList;
 
-public class ConvertCommand {
+public class ConvertCommand extends Command {
     
     private final String description;
     private String currencies;
@@ -35,7 +40,7 @@ public class ConvertCommand {
         }
     }
     
-    public void execute(SpendingList spendingList) {
+    public void execute(SpendingList spendingList, Ui ui) {
         newSpendingList = spendingList.getSpendingList();
         identifyCurrency(description);
         findExchangeRate();

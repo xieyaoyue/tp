@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.Command.Command;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 import seedu.duke.exceptions.StorageOperationException;
 
@@ -29,7 +30,7 @@ public class Main {
         ui = new Ui();
         try {
             storage = initializeStorage(args);
-            spendingList = storage.load();
+            //spendingList = storage.load();
         } catch(Exception e) {
             ui.printErrorMessage(e.getMessage());
             System.exit(0);
@@ -47,7 +48,7 @@ public class Main {
             try {
                 String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                c.execute(spendingList, ui, storage);
+                c.execute(spendingList, ui);
                 isExit = c.isExit();
             } catch (Exception e) {
                 ui.printErrorMessage(e.getMessage());

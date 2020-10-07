@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 public class SpendingList {
     private ArrayList<Item> spendingList;
-    private String description;
 
     public SpendingList(ArrayList<Item> spendingList) {
         this.spendingList = spendingList;
     }
     
-    public SpendingList(String description) {
-        this.description = description;
+    public SpendingList() {
+        spendingList = new ArrayList<>();
     }
     
     public void addItem(String description, String symbol, double amount) {
@@ -39,8 +38,8 @@ public class SpendingList {
         return spendingList;
     }
 
-    public void updateSpendingList() {
-        ConvertCommand convertCommand = new ConvertCommand(description);
-        spendingList = convertCommand.updateSpendingList();
-    }
+//    public void updateSpendingList() {
+//        ConvertCommand convertCommand = new ConvertCommand(description);
+//        spendingList = convertCommand.updateSpendingList();
+//    }
 }

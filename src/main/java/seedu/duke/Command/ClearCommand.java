@@ -1,13 +1,16 @@
-package seedu.duke;
+package seedu.duke.Command;
 
-public class ClearCommand {
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 
-    private boolean isClearAll = false;
+public class ClearCommand extends Command {
+
+    private boolean isClearAll;
     private int clearIndex;
 
     public ClearCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
-        if(isClearAll == false) {
+        if(!isClearAll) {
             this.clearIndex = clearIndex;
         }
     }

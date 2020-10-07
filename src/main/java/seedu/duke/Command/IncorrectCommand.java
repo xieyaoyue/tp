@@ -1,15 +1,18 @@
-package seedu.duke;
+package seedu.duke.Command;
 
+import seedu.duke.Command.Command;
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 import seedu.duke.exceptions.InvalidCommandException;
 
-public class IncorrectCommand {
+public class IncorrectCommand extends Command {
     private String description;
     
     public IncorrectCommand(String description) {
         this.description = description;
     }
     
-    public void execute() throws InvalidCommandException {
+    public void execute(SpendingList spendingList, Ui ui) throws InvalidCommandException {
         if (!checkValidCommand()) {
             throw new InvalidCommandException();
         }
