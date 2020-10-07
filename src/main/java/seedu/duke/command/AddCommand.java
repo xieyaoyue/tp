@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.duke.command;
 
-public class AddCommand {
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
+
+public class AddCommand extends Command {
 
     private String description;
     private double amount;

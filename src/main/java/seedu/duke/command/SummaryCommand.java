@@ -1,4 +1,7 @@
-package seedu.duke;
+package seedu.duke.command;
+
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 
 import java.time.LocalDate;
 import java.util.HashMap;
