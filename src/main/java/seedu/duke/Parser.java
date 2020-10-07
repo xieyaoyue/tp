@@ -21,9 +21,11 @@ public class Parser {
             throw new InvalidCommandException();
         }
         int descriptionBeginIndex = commandParameters.indexOf("-d") + "-d".length();
-        String description = commandParameters.substring(descriptionBeginIndex, commandParameters.indexOf('-', descriptionBeginIndex)).strip();
+        String description = commandParameters.substring(descriptionBeginIndex,
+                commandParameters.indexOf('-', descriptionBeginIndex)).strip();
         int spendingBeginIndex = commandParameters.indexOf("-s") + "-s".length();
-        String spending = commandParameters.substring(spendingBeginIndex, commandParameters.indexOf('-', spendingBeginIndex)).strip();
+        String spending = commandParameters.substring(spendingBeginIndex,
+                commandParameters.indexOf('-', spendingBeginIndex)).strip();
         String symbol;
         double amount;
         try {
