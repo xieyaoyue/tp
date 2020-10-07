@@ -1,27 +1,27 @@
-package seedu.duke;
+package seedu.duke.command;
 
-public class ClearCommand {
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 
-    private boolean isClearAll = false;
+public class ClearCommand extends Command {
+
+    private boolean isClearAll;
     private int clearIndex;
 
     public ClearCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
-        if(isClearAll == false) {
+        if (!isClearAll) {
             this.clearIndex = clearIndex;
         }
     }
-    
+
+    @Override
     public void execute(SpendingList spendingList, Ui ui) {
-        if(!isClearAll) {
+        if (!isClearAll) {
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));
             spendingList.deleteItem(clearIndex - 1);
         } else {
-            int totalItems = spendingList.getTotalItems();
-            while(totalItems > 0) {
-                spendingList.deleteItem(totalItems - 1);
-                totalItems -= 1;
-            }
+            spendingList.clearAllItems();
             ui.printClearAll();
         }
     }
