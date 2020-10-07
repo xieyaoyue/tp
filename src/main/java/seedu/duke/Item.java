@@ -25,15 +25,15 @@ public class Item {
     public void editAmount(double amount) {
         this.amount = amount;
     }
-    
+
     public void editSymbol(String symbol) {
         this.symbol = symbol;
     }
-    
+
     public String getSymbol() {
         return symbol;
     }
-    
+
     public String getDescription() {
         return description;
     }
