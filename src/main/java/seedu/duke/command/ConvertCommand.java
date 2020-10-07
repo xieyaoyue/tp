@@ -1,9 +1,13 @@
-package seedu.duke;
+package seedu.duke.command;
+
+import seedu.duke.Item;
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 
 import java.util.ArrayList;
 
-public class ConvertCommand {
-    
+public class ConvertCommand extends Command {
+
     private final String description;
     private String currencies;
     private double exchangeRate;
@@ -14,11 +18,11 @@ public class ConvertCommand {
             {"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
-    
+
     public ConvertCommand(String description) {
         this.description = description;
     }
-    
+
     private void identifyCurrency(String description) {
         int firstBlankSpacePosition = description.indexOf(" ") + 1;
         int secondBlankSpacePosition = description.indexOf(" ", firstBlankSpacePosition) + 1;
@@ -27,7 +31,7 @@ public class ConvertCommand {
         String outputCurrency = description.substring(secondBlankSpacePosition, length);
         currencies = inputCurrency + outputCurrency;
     }
-    
+
     private void findExchangeRate() {
         for (int i = 0; i < 4; i++) {
             if (exchangeRates[0][i].equals(currencies)) {
@@ -36,8 +40,9 @@ public class ConvertCommand {
             }
         }
     }
-    
-    public void execute(SpendingList spendingList) {
+
+    @Override
+    public void execute(SpendingList spendingList, Ui ui) {
         newSpendingList = spendingList.getSpendingList();
         identifyCurrency(description);
         findExchangeRate();
@@ -49,13 +54,13 @@ public class ConvertCommand {
             newSpendingList.add(currentString);
         }
     }
-    
+
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
         amount = amount * exchangeRate;
         currentString.editAmount(amount);
     }
-    
+
     private void updateCurrency(Item currentString) {
         switch (currencies) {
         case "SGDUSD":
@@ -73,7 +78,7 @@ public class ConvertCommand {
         default:
         }
     }
-    
+
     public ArrayList<Item> updateSpendingList() {
         return newSpendingList;
     }
