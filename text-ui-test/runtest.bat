@@ -1,5 +1,3 @@
-chcp 65001
-
 @ECHO OFF
 
 REM create bin directory if it doesn't exist
@@ -10,6 +8,10 @@ del ACTUAL.TXT
 
 REM compile the code into the bin folder
 javac  -cp ..\src -Xlint:none -d ..\bin ..\src\main\java\seedu\duke\Duke.java
+..\src\main\java\seedu\duke\command\*.java ..\src\main\java\seedu\duke\exceptions\*.java
+..\src\main\java\seedu\duke\Item.java ..\src\main\java\seedu\duke\Parser.java
+..\src\main\java\seedu\duke\SpendingList.java ..\src\main\java\seedu\duke\Storage.java
+..\src\main\java\seedu\duke\Ui.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1

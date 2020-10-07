@@ -4,7 +4,7 @@ import seedu.duke.command.Command;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 import seedu.duke.exceptions.StorageOperationException;
 
-public class Main {
+public class Duke {
 
     private static Ui ui;
     private static Storage storage;
