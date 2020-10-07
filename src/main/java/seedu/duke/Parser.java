@@ -7,6 +7,7 @@ import seedu.duke.command.ConvertCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.SummaryCommand;
+import seedu.duke.command.EditCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -109,6 +110,31 @@ public class Parser {
             }
         }
     }
+    
+    private Command getEditCommand(String commandParameters) throws InvalidCommandException {
+        commandParameters += '-';
+        if (!((commandParameters.contains("-d")) && (commandParameters.contains("-s")))) {
+            throw new InvalidCommandException();
+        }
+        int numberBeginIndex = commandParameters.indexOf("edit") + "edit ".length();
+        int numberEndIndex = commandParameters.indexOf("-d") - " ".length();
+        int number = Integer.parseInt(commandParameters.substring(numberBeginIndex, numberEndIndex));
+        int descriptionBeginIndex = commandParameters.indexOf("-d") + "-d".length();
+        String description = commandParameters.substring(descriptionBeginIndex,
+                commandParameters.indexOf('-', descriptionBeginIndex)).strip();
+        int spendingBeginIndex = commandParameters.indexOf("-s") + "-s".length();
+        String spending = commandParameters.substring(spendingBeginIndex,
+                commandParameters.indexOf('-', spendingBeginIndex)).strip();
+        String symbol;
+        double amount;
+        try {
+            symbol = spending.substring(0, 1);
+            amount = Double.parseDouble(spending.substring(1));
+        } catch (Exception e) {
+            throw new InvalidCommandException();
+        }
+        return new EditCommand(number, description, symbol, amount);
+    }
 
 
     public Command getCommand(String userInput) throws InvalidCommandException {
@@ -123,6 +149,7 @@ public class Parser {
         case "convert": return getConvertCommand(commandParameters);
         case "summary": return getSummaryCommand(commandParameters);
         case "logout": return getLogoutCommand(commandParameters);
+        case "edit": return getEditCommand(commandParameters);
         default: return null;
         }
     }
