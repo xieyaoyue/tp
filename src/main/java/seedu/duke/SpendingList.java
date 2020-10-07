@@ -39,6 +39,16 @@ public class SpendingList {
         return spendingList;
     }
 
+    public double getSpendingAmount(String period) {
+        double totalAmount = 0;
+        for (Item i: spendingList) {
+            if (i.getYearMonth().contains(period)) {
+                totalAmount += i.getAmount();
+            }
+        }
+        return totalAmount;
+    }
+
     public void updateSpendingList() {
         ConvertCommand convertCommand = new ConvertCommand(description);
         spendingList = convertCommand.updateSpendingList();
