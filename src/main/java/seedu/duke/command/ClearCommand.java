@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.duke.command;
 
-public class ClearCommand {
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
+
+public class ClearCommand extends Command {
 
     private boolean isClearAll;
     private int clearIndex;
@@ -11,7 +14,8 @@ public class ClearCommand {
             this.clearIndex = clearIndex;
         }
     }
-    
+
+    @Override
     public void execute(SpendingList spendingList, Ui ui) {
         if (!isClearAll) {
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));

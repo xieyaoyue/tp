@@ -1,7 +1,9 @@
 package seedu.duke;
 
 import seedu.duke.exceptions.InvalidCommandException;
-
+import seedu.duke.command.Command;
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.HelpCommand;
 
 public class Parser {
 
