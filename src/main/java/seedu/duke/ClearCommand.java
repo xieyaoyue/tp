@@ -7,13 +7,13 @@ public class ClearCommand {
 
     public ClearCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
-        if(!isClearAll) {
+        if (!isClearAll) {
             this.clearIndex = clearIndex;
         }
     }
     
     public void execute(SpendingList spendingList, Ui ui) {
-        if(!isClearAll) {
+        if (!isClearAll) {
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));
             spendingList.deleteItem(clearIndex - 1);
         } else {
