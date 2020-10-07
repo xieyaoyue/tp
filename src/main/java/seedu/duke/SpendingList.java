@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.command.ConvertCommand;
+
 import java.util.ArrayList;
 
 public class SpendingList {
@@ -10,8 +12,8 @@ public class SpendingList {
         this.spendingList = spendingList;
     }
     
-    public SpendingList(String description) {
-        this.description = description;
+    public SpendingList() {
+        spendingList = new ArrayList<>();
     }
     
     public void addItem(String description, String symbol, double amount) {
