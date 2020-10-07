@@ -22,7 +22,8 @@ public class Ui {
     private static final int TABLE_SIZE = 104;
     private static final String MESSAGE_HELP = "Here is a summary of the commands you can use:\n";
     private static final String MESSAGE_GOODBYE = "Goodbye!";
-    private static final String[][] TABLE_OF_COMMANDS = {{"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
+    private static final String[][] TABLE_OF_COMMANDS = {
+            {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
             {"add", "add -d DESCRIPTION -s SPENDING [-f SKIP CONFIRMATION]", "add -d chicken rice -s $3.00 -f"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear -all", ""},
