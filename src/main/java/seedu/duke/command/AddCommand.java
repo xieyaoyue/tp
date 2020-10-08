@@ -1,6 +1,9 @@
-package seedu.duke;
+package seedu.duke.command;
 
-public class AddCommand {
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
+
+public class AddCommand extends Command {
 
     private String description;
     private double amount;
@@ -12,6 +15,7 @@ public class AddCommand {
         this.symbol = symbol;
     }
 
+    @Override
     public void execute(SpendingList spendingList, Ui ui) {
         spendingList.addItem(description, symbol, amount);
         ui.printAdd(spendingList);
