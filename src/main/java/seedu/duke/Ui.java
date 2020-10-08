@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.command.ConvertCommand;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -124,6 +126,17 @@ public class Ui {
     public void printAdd(SpendingList spendingList) {
         out.println("You've added the record:");
         out.println(spendingList.getItem(spendingList.getListSize() - 1));
+        drawSeparateLine();
+    }
+    
+    public void printConvertCurrency(String outputCurrency) {
+        out.println("The currency has been changed to " + outputCurrency + " .");
+        drawSeparateLine();
+    }
+    
+    public void printEdit(SpendingList spendingList, int index) {
+        out.println("You've update the record:");
+        out.println(spendingList.getItem(index));
         drawSeparateLine();
     }
 }
