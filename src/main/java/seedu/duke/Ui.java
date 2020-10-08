@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.command.ConvertCommand;
-
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -16,14 +14,11 @@ public class Ui {
             + "\\___/\\__/_//_/\\__/|__/|__/_/___/\\__/       \n"
             + "  / _ \\___  / / /__ ____| | /| / (_)__ ___ \n"
             + " / // / _ \\/ / / _ `/ __/ |/ |/ / (_-</ -_)\n"
-            + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n"
-            + "                                          ";
+            + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
     private static final String BORDER_CORNER = "+";
     private static final String BORDER_HORIZONTAL = "-";
     private static final String BORDER_VERTICAL = "|";
     private static final int TABLE_SIZE = 104;
-    private static final String MESSAGE_HELP = "Here is a summary of the commands you can use:\n";
-    private static final String MESSAGE_GOODBYE = "Goodbye!";
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
             {"add", "add -d DESCRIPTION -s SPENDING [-f SKIP CONFIRMATION]", "add -d chicken rice -s $3.00 -f"},
@@ -75,7 +70,7 @@ public class Ui {
     }
 
     public void printGoodbyeMessage() {
-        out.println(MESSAGE_GOODBYE);
+        out.println("Goodbye!");
         drawSeparateLine();
     }
 
@@ -99,7 +94,7 @@ public class Ui {
     }
 
     public void printHelp() {
-        out.println(MESSAGE_HELP);
+        out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
         for (int i = 0; i < 16; i++) {
             System.out.format("%1s%-10s%1s%-55s%1s%-35s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
