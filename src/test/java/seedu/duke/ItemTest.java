@@ -18,8 +18,8 @@ public class ItemTest {
 
     @Test
     public void editAmount() {
-        String expectedString = date.toString() + " rice S$4.0";
-        rice.editAmount(4);
+        String expectedString = date.toString() + " rice S$5.0";
+        rice.editAmount(5);
         assertEquals(expectedString, rice.toString());
     }
 
