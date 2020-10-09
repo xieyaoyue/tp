@@ -47,6 +47,6 @@ public class Item {
     }
 
     public String toString() {
-        return currentDate() + " " + description + " " + symbol + " " + amount;
+        return currentDate() + " " + description + " " + symbol + amount;
     }
 }
