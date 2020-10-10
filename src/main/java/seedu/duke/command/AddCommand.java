@@ -15,6 +15,7 @@ public class AddCommand extends Command {
         this.symbol = symbol;
     }
 
+    @Override
     public void execute(SpendingList spendingList, Ui ui) {
         spendingList.addItem(description, symbol, amount);
         ui.printAdd(spendingList);

@@ -38,11 +38,6 @@ public class SummaryCommand extends Command {
         // ui.showSummary(amountSpent);
     }
 
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
     private String currentDate() {
         LocalDate date = LocalDate.now();
         return date.toString();
