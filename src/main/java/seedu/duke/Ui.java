@@ -14,14 +14,11 @@ public class Ui {
             + "\\___/\\__/_//_/\\__/|__/|__/_/___/\\__/       \n"
             + "  / _ \\___  / / /__ ____| | /| / (_)__ ___ \n"
             + " / // / _ \\/ / / _ `/ __/ |/ |/ / (_-</ -_)\n"
-            + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n"
-            + "                                          ";
+            + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
     private static final String BORDER_CORNER = "+";
     private static final String BORDER_HORIZONTAL = "-";
     private static final String BORDER_VERTICAL = "|";
     private static final int TABLE_SIZE = 104;
-    private static final String MESSAGE_HELP = "Here is a summary of the commands you can use:\n";
-    private static final String MESSAGE_GOODBYE = "Goodbye!";
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
             {"add", "add -d DESCRIPTION -s SPENDING [-f SKIP CONFIRMATION]", "add -d chicken rice -s $3.00 -f"},
@@ -38,7 +35,7 @@ public class Ui {
             {"summary", "summary", ""},
             {"", "OR summary [YEAR]", "summary 2020"},
             {"", "OR summary [YEAR] [MONTH]", "summary 2020 July"},
-            {"", "OR list -all", ""}
+            {"", "OR summary -all", ""}
     };
 
     public Ui() {
@@ -73,7 +70,7 @@ public class Ui {
     }
 
     public void printGoodbyeMessage() {
-        out.println(MESSAGE_GOODBYE);
+        out.println("Goodbye!");
         drawSeparateLine();
     }
 
@@ -97,7 +94,7 @@ public class Ui {
     }
 
     public void printHelp() {
-        out.println(MESSAGE_HELP);
+        out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
         for (int i = 0; i < 16; i++) {
             System.out.format("%1s%-10s%1s%-55s%1s%-35s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
@@ -124,6 +121,17 @@ public class Ui {
     public void printAdd(SpendingList spendingList) {
         out.println("You've added the record:");
         out.println(spendingList.getItem(spendingList.getListSize() - 1));
+        drawSeparateLine();
+    }
+    
+    public void printConvertCurrency(String outputCurrency) {
+        out.println("The currency has been changed to " + outputCurrency + " .");
+        drawSeparateLine();
+    }
+    
+    public void printEdit(SpendingList spendingList, int index) {
+        out.println("You've update the record:");
+        out.println(spendingList.getItem(index));
         drawSeparateLine();
     }
 }

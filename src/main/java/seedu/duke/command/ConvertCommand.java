@@ -10,6 +10,7 @@ public class ConvertCommand extends Command {
 
     private final String description;
     private String currencies;
+    private String outputCurrency;
     private double exchangeRate;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class ConvertCommand extends Command {
         int secondBlankSpacePosition = description.indexOf(" ", firstBlankSpacePosition) + 1;
         int length = description.length();
         String inputCurrency = description.substring(firstBlankSpacePosition, secondBlankSpacePosition);
-        String outputCurrency = description.substring(secondBlankSpacePosition, length);
+        outputCurrency = description.substring(secondBlankSpacePosition, length);
         currencies = inputCurrency + outputCurrency;
     }
 
@@ -53,6 +54,7 @@ public class ConvertCommand extends Command {
             updateCurrency(currentString);
             newSpendingList.add(currentString);
         }
+        ui.printConvertCurrency(outputCurrency);
     }
 
     private void updateNewAmount(Item currentString) {
