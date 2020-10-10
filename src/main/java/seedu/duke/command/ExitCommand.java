@@ -12,6 +12,7 @@ public class ExitCommand extends Command {
     public void execute(SpendingList spendingList, Ui ui) {
     }
 
+    @Override
     public boolean isExit() {
         return true;
     }
