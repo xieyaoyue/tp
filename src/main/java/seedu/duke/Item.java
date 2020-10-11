@@ -6,11 +6,13 @@ public class Item {
     protected String description;
     protected double amount;
     protected String symbol;
+    protected String date;
 
     public Item(String description, String symbol, double amount) {
         this.description = description;
         this.symbol = symbol;
         this.amount = amount;
+        this.date = currentDate();
     }
 
     protected String currentDate() {
@@ -43,10 +45,10 @@ public class Item {
     }
 
     public String getYearMonth() {
-        return currentDate().substring(0, 7);
+        return date.substring(0, 7);
     }
 
     public String toString() {
-        return currentDate() + " " + description + " " + symbol + amount;
+        return date + " " + description + " " + symbol + amount;
     }
 }
