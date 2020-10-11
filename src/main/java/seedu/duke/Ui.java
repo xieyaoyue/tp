@@ -66,8 +66,7 @@ public class Ui {
 
     public void printWelcomeMessage(String filePath) {
         printWelcomeMessage();
-        out.println("Local file path:");
-        out.println(filePath);
+        out.println("Local file path: " + filePath);
         drawSeparateLine();
     }
 
@@ -142,5 +141,9 @@ public class Ui {
         out.println("You've update the record:");
         out.println(spendingList.getItem(index));
         drawSeparateLine();
+    }
+
+    public void printErrorMessage(String message) {
+        out.println(message);
     }
 }
