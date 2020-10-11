@@ -52,5 +52,32 @@ public class Storage {
         }
     }
 
+    /**
+     * Exposes location of storage for Duke applications
+     * @return file path
+     */
+    public static String getFilePath() {
+        return file.getPath();
+    }
+
+    public SpendingList load() {
+        SpendingList sl;
+        try {
+            Scanner s = new Scanner(file);
+            String jsonContent = s
+                    .useDelimiter("\\Z")
+                    .next();
+            sl = gson.fromJson(jsonContent, SpendingList.class);
+        } catch (Exception e) {
+            sl = new SpendingList(this);
+        }
+        return sl;
+    }
+
+    public void save(SpendingList spendingList) throws IOException {
+        String jsonContent = gson.toJson(spendingList);
+        FileWriter fw = new FileWriter(file, false);
+        fw.write(jsonContent);
+        fw.close();
     }
 }
