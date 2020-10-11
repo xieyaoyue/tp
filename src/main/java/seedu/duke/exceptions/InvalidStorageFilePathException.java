@@ -1,7 +1,10 @@
 package seedu.duke.exceptions;
 
-public class InvalidStorageFilePathException extends Exception {
-    public InvalidStorageFilePathException() {
-        System.out.println("Sorry, the file path is invalid.");
+import seedu.duke.Duke;
+
+public class InvalidStorageFilePathException extends DukeException {
+    @Override
+    public String toString() {
+        return "Sorry, the file path is invalid.";
     }
 }
