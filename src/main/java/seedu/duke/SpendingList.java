@@ -8,6 +8,10 @@ public class SpendingList {
     private ArrayList<Item> spendingList;
     private String description;
 
+    public SpendingList() {
+        spendingList = new ArrayList<>();
+    }
+
     public SpendingList(ArrayList<Item> spendingList) {
         this.spendingList = spendingList;
     }
