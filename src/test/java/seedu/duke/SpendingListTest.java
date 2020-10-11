@@ -36,8 +36,6 @@ class SpendingListTest {
                         new Item("fish", "S$", 10),
                         new Item("books", "S$", 8.9))));
 
-        assert itemList.getListSize() == 4 : "list is wrong";
-
         itemList.deleteItem(0);
 
         assert itemList.getListSize() == 3 : "item is not deleted";
