@@ -8,16 +8,16 @@ public class SpendingList {
     private ArrayList<Item> spendingList;
     private String description;
 
+    public SpendingList() {
+        spendingList = new ArrayList<>();
+    }
+
     public SpendingList(ArrayList<Item> spendingList) {
         this.spendingList = spendingList;
     }
 
     public SpendingList(String description) {
         this.description = description;
-    }
-
-    public SpendingList() {
-        spendingList = new ArrayList<>();
     }
 
     public void addItem(String description, String symbol, double amount) {
