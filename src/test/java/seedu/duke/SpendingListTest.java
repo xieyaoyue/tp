@@ -1,15 +1,25 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exceptions.InvalidStorageFileExtensionException;
+import seedu.duke.exceptions.InvalidStorageFilePathException;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SpendingListTest {
 
-    private SpendingList spendingList = new SpendingList();
+    private Storage storage;
+    private SpendingList spendingList;
+
+    SpendingListTest() throws InvalidStorageFileExtensionException, InvalidStorageFilePathException {
+        storage = new Storage();
+        spendingList = storage.load();
+    }
 
     @Test
-    void getItem() {
+    void getItem() throws IOException {
         spendingList.addItem("buy book", "S$", 10);
         assertEquals(spendingList.getItem(0).description, "buy book");
         assertEquals(spendingList.getItem(0).symbol, "S$");
@@ -17,7 +27,7 @@ class SpendingListTest {
     }
 
     @Test
-    void getListSize() {
+    void getListSize() throws IOException {
         spendingList.addItem("buy book", "S$", 10);
         assertEquals(spendingList.getListSize(), 1);
         spendingList.addItem("buy stationary", "S$", 5);
@@ -29,7 +39,7 @@ class SpendingListTest {
     }
 
     @Test
-    void clearAllItems() {
+    void clearAllItems() throws IOException {
         spendingList.addItem("buy book", "S$", 10);
         spendingList.addItem("buy stationary", "S$", 5);
         spendingList.clearAllItems();
@@ -37,7 +47,7 @@ class SpendingListTest {
     }
 
     @Test
-    void editItem() {
+    void editItem() throws IOException {
         spendingList.addItem("buy book", "S$", 10);
         spendingList.editItem(0, "buy book", "S$", 12);
         assertEquals(spendingList.getItem(0).amount, 12);
