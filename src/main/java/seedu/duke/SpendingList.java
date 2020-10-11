@@ -29,6 +29,9 @@ public class SpendingList {
     }
 
     private void save() throws IOException {
+        if (storage == null) {
+            return;
+        }
         storage.save(this);
     }
 
