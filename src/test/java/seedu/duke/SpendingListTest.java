@@ -22,13 +22,13 @@ class SpendingListTest {
         SpendingList expectedList = new SpendingList(new ArrayList<>(
                 List.of(expectedItem)));
 
-        assert spendingList.getListSize() == 0: "list is not empty";
+        assert spendingList.getListSize() == 0 : "list is not empty";
 
         spendingList.addItem("buy book", "S$", 10);
 
-        assert spendingList.getListSize() == 1: "item not added";
+        assert spendingList.getListSize() == 1 : "item not added";
         assert Arrays.toString(spendingList.getSpendingList().toArray())
-                .equals(Arrays.toString(expectedList.getSpendingList().toArray())): "different";
+                .equals(Arrays.toString(expectedList.getSpendingList().toArray())) : "different";
     }
 
     @Test
@@ -38,13 +38,13 @@ class SpendingListTest {
                         new Item("fish", "S$", 10),
                         new Item("books", "S$", 8.9))));
 
-        assert itemList.getListSize() == 4: "list is wrong";
+        assert itemList.getListSize() == 4 : "list is wrong";
 
         itemList.deleteItem(0);
 
-        assert itemList.getListSize() == 3: "item is not deleted";
+        assert itemList.getListSize() == 3 : "item is not deleted";
         assert Arrays.toString(itemList.getSpendingList().toArray())
-                .equals(Arrays.toString(expectedList.getSpendingList().toArray())): "different";
+                .equals(Arrays.toString(expectedList.getSpendingList().toArray())) : "different";
     }
 
     @Test
