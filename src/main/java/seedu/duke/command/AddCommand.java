@@ -3,6 +3,8 @@ package seedu.duke.command;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
+import java.io.IOException;
+
 public class AddCommand extends Command {
 
     private String description;
@@ -16,7 +18,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
+    public void execute(SpendingList spendingList, Ui ui) throws IOException {
         spendingList.addItem(description, symbol, amount);
         ui.printAdd(spendingList);
     }
