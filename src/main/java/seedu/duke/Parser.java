@@ -4,10 +4,11 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.ClearCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ConvertCommand;
+import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
+import seedu.duke.command.ListCommand;
 import seedu.duke.command.SummaryCommand;
-import seedu.duke.command.EditCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -17,6 +18,7 @@ public class Parser {
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-d.+-s\\s*.\\d+(.\\d*)$", "add"),
         EDIT("^edit\\s*\\d+\\s*-d.+\\S*-s\\s*\\d+$", ""),
+        LIST("^list$","list"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
@@ -31,7 +33,7 @@ public class Parser {
         }
     }
 
-    private String getAction(String userInput) throws InvalidCommandException {
+    private static String getAction(String userInput) throws InvalidCommandException {
         for (CommandPattern command: CommandPattern.values()) {
             if (userInput.matches(command.pattern)) {
                 return command.action;
@@ -40,7 +42,7 @@ public class Parser {
         throw new InvalidCommandException();
     }
 
-    private Command getAddCommand(String commandParameters) {
+    private static Command getAddCommand(String commandParameters) {
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
@@ -51,7 +53,7 @@ public class Parser {
         return new AddCommand(description, symbol, amount);
     }
     
-    private Command getEditCommand(String commandParameters) {
+    private static Command getEditCommand(String commandParameters) {
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
         int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip());
@@ -64,10 +66,9 @@ public class Parser {
     }
 
 
-    public Command getCommand(String userInput) throws InvalidCommandException {
+    public static Command parseCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
-        String action;
-        action = getAction(userInput);
+        String action = getAction(userInput);
         String commandParameters = userInput.substring(action.length()).strip();
         switch (action) {
         case "add": return getAddCommand(commandParameters);
@@ -81,6 +82,7 @@ public class Parser {
                 commandParameters.substring(4).strip());
         case "logout": return new ExitCommand();
         case "edit": return getEditCommand(commandParameters);
+        case "list": return new ListCommand();
         default: throw new InvalidCommandException();
         }
     }
