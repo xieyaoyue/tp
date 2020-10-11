@@ -17,16 +17,18 @@ public class Storage {
 
     /**
      * Creates the Storage object based on the the default storage path.
-     * @throws InvalidStorageFilePathException
+     * @throws InvalidStorageFilePathException for empty or blank file path
+     * @throws InvalidStorageFileExtensionException for non-json file path
      */
     public Storage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException {
         this(defaultPath);
     }
 
     /**
-     * Creates the Storage object based on the user-specified file path
-     * @param path json file path to store SpendingList
-     * @throws InvalidStorageFilePathException
+     * Creates the Storage object based on the user-specified file path.
+     * @param path relative path to json file
+     * @throws InvalidStorageFilePathException for empty or blank file path
+     * @throws InvalidStorageFileExtensionException for non-json file path
      */
     public Storage(String path) throws InvalidStorageFilePathException, InvalidStorageFileExtensionException {
         // Validate path
@@ -34,7 +36,7 @@ public class Storage {
         if (path.isBlank() || parts.length == 0) {
             throw new InvalidStorageFilePathException();
         }
-        String extension = parts[parts.length-1];
+        String extension = parts[parts.length - 1];
         if (!extension.equals("json")) {
             throw new InvalidStorageFileExtensionException();
         }
@@ -53,7 +55,7 @@ public class Storage {
     }
 
     /**
-     * Exposes location of storage for Duke applications
+     * Exposes location of storage for Duke applications.
      * @return file path
      */
     public static String getFilePath() {
