@@ -33,7 +33,18 @@ class SpendingListTest {
 
     @Test
     public void deleteItem() {
+        SpendingList expectedList = new SpendingList(new ArrayList<>(
+                List.of(new Item("noodle", "S$", 1.5),
+                        new Item("fish", "S$", 10),
+                        new Item("books", "S$", 8.9))));
 
+        assert itemList.getListSize() == 4: "list is wrong";
+
+        itemList.deleteItem(0);
+
+        assert itemList.getListSize() == 3: "item is not deleted";
+        assert Arrays.toString(itemList.getSpendingList().toArray())
+                .equals(Arrays.toString(expectedList.getSpendingList().toArray())): "different";
     }
 
     @Test
@@ -62,6 +73,11 @@ class SpendingListTest {
         spendingList.addItem("buy stationary", "S$", 5);
         spendingList.clearAllItems();
         assertEquals(spendingList.getListSize(), 0);
+
+        itemList.clearAllItems();
+        assert itemList.getListSize() == 0: "list is not cleared";
+        assert Arrays.toString(itemList.getSpendingList().toArray())
+                .equals(Arrays.toString(spendingList.getSpendingList().toArray())): "different";
     }
 
     @Test
@@ -69,5 +85,11 @@ class SpendingListTest {
         spendingList.addItem("buy book", "S$", 10);
         spendingList.editItem(0, "buy book", "S$", 12);
         assertEquals(spendingList.getItem(0).amount, 12);
+    }
+
+    @Test
+    public void getSpendingAmount() {
+        double expectedAmount = 22.4;
+        assertEquals(itemList.getSpendingAmount("2020"), expectedAmount);
     }
 }
