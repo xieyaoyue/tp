@@ -22,8 +22,6 @@ class SpendingListTest {
         SpendingList expectedList = new SpendingList(new ArrayList<>(
                 List.of(expectedItem)));
 
-        assert spendingList.getListSize() == 0 : "list is not empty";
-
         spendingList.addItem("buy book", "S$", 10);
 
         assert spendingList.getListSize() == 1 : "item not added";
@@ -75,9 +73,9 @@ class SpendingListTest {
         assertEquals(spendingList.getListSize(), 0);
 
         itemList.clearAllItems();
-        assert itemList.getListSize() == 0: "list is not cleared";
+        assert itemList.getListSize() == 0 : "list is not cleared";
         assert Arrays.toString(itemList.getSpendingList().toArray())
-                .equals(Arrays.toString(spendingList.getSpendingList().toArray())): "different";
+                .equals(Arrays.toString(spendingList.getSpendingList().toArray())) : "different";
     }
 
     @Test
