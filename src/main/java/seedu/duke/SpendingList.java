@@ -24,6 +24,10 @@ public class SpendingList {
         this("", storage);
     }
 
+    public SpendingList(ArrayList<Item> spendingList) {
+        this("", spendingList, null);
+    }
+
     private void save() throws IOException {
         storage.save(this);
     }
