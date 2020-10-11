@@ -16,6 +16,10 @@ public class SpendingList {
         this.description = description;
     }
 
+    public SpendingList() {
+        spendingList = new ArrayList<>();
+    }
+
     public void addItem(String description, String symbol, double amount) {
         Item item = new Item(description, symbol, amount);
         spendingList.add(item);

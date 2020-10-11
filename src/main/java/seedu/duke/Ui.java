@@ -35,7 +35,7 @@ public class Ui {
             {"summary", "summary", ""},
             {"", "OR summary [YEAR]", "summary 2020"},
             {"", "OR summary [YEAR] [MONTH]", "summary 2020 July"},
-            {"", "OR list -all", ""}
+            {"", "OR summary -all", ""}
     };
 
     public Ui() {
