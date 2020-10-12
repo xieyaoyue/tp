@@ -2,31 +2,53 @@ package seedu.duke;
 
 import seedu.duke.command.ConvertCommand;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SpendingList {
     private ArrayList<Item> spendingList;
     private String description;
+    private Storage storage;
+
+    public SpendingList(String description, ArrayList<Item> spendingList, Storage storage) {
+        this.description = description;
+        this.spendingList = spendingList;
+        this.storage = storage;
+    }
+
+    public SpendingList(String description, Storage storage) {
+        this(description, new ArrayList<>(), storage);
+    }
+
+    public SpendingList(Storage storage) {
+        this("", storage);
+    }
 
     public SpendingList(ArrayList<Item> spendingList) {
-        this.spendingList = spendingList;
+        this("", spendingList, null);
     }
 
-    public SpendingList(String description) {
-        this.description = description;
+    private void save() throws IOException {
+        if (storage == null) {
+            return;
+        }
+        storage.save(this);
     }
 
-    public void addItem(String description, String symbol, double amount) {
+    public void addItem(String description, String symbol, double amount) throws IOException {
         Item item = new Item(description, symbol, amount);
         spendingList.add(item);
+        save();
     }
 
-    public void deleteItem(int index) {
+    public void deleteItem(int index) throws IOException {
         spendingList.remove(index);
+        save();
     }
 
-    public void clearAllItems() {
+    public void clearAllItems() throws IOException {
         spendingList.clear();
+        save();
     }
 
     public Item getItem(int index) {
@@ -51,15 +73,17 @@ public class SpendingList {
         return totalAmount;
     }
     
-    public void editItem(int number, String description, String symbol, double amount) {
+    public void editItem(int number, String description, String symbol, double amount) throws IOException {
         Item item = getItem(number);
         item.editDescription(description);
         item.editSymbol(symbol);
         item.editAmount(amount);
+        save();
     }
 
-    public void updateSpendingList() {
+    public void updateSpendingList() throws IOException {
         ConvertCommand convertCommand = new ConvertCommand(description);
         spendingList = convertCommand.updateSpendingList();
+        save();
     }
 }
