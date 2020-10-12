@@ -3,6 +3,8 @@ package seedu.duke.command;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
+import java.io.IOException;
+
 public class ClearCommand extends Command {
 
     private boolean isClearAll;
@@ -16,7 +18,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
+    public void execute(SpendingList spendingList, Ui ui) throws IOException {
         if (!isClearAll) {
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));
             spendingList.deleteItem(clearIndex - 1);
