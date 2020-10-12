@@ -1,6 +1,8 @@
 package seedu.duke;
 
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Ui {
@@ -64,8 +66,7 @@ public class Ui {
 
     public void printWelcomeMessage(String filePath) {
         printWelcomeMessage();
-        out.println("Local file path:");
-        out.println(filePath);
+        out.println("Local file path: " + filePath);
         drawSeparateLine();
     }
 
@@ -78,10 +79,17 @@ public class Ui {
         out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
 
+    public String getSpendingList(SpendingList spendingList) {
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(os);
+        spendingList.getSpendingList()
+                .forEach(ps::println);
+        return os.toString(StandardCharsets.UTF_8);
+    }
+
     public void printSpendingList(SpendingList spendingList) {
-        for (int i = 0; i < spendingList.getListSize(); i++) {
-            out.println(spendingList.getItem(i));
-        }
+        String spendingString = getSpendingList(spendingList);
+        out.print(spendingString);
         drawSeparateLine();
     }
 
@@ -133,5 +141,9 @@ public class Ui {
         out.println("You've update the record:");
         out.println(spendingList.getItem(index));
         drawSeparateLine();
+    }
+
+    public void printErrorMessage(String message) {
+        out.println(message);
     }
 }
