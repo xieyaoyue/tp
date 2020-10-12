@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConvertCommandTest {
     @Test
     public void identifyCurrencySgdUsd() {
-        String expectedCurrency = "SGDUSD";
+        String expectedCurrency = "SGD USD";
         String description = "convert SGD USD";
         ConvertCommand convertCommand = new ConvertCommand(description);
         assertEquals(expectedCurrency, convertCommand.identifyCurrency(description));
