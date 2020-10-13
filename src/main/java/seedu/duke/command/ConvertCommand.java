@@ -24,13 +24,13 @@ public class ConvertCommand extends Command {
         this.description = description;
     }
 
-    private void identifyCurrency(String description) {
+    public String identifyCurrency(String description) {
         int firstBlankSpacePosition = description.indexOf(" ") + 1;
         int secondBlankSpacePosition = description.indexOf(" ", firstBlankSpacePosition) + 1;
         int length = description.length();
         String inputCurrency = description.substring(firstBlankSpacePosition, secondBlankSpacePosition);
         outputCurrency = description.substring(secondBlankSpacePosition, length);
-        currencies = inputCurrency + outputCurrency;
+        return inputCurrency + outputCurrency;
     }
 
     private void findExchangeRate() {
@@ -45,7 +45,7 @@ public class ConvertCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) {
         newSpendingList = spendingList.getSpendingList();
-        identifyCurrency(description);
+        currencies = identifyCurrency(description);
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
             Item currentString = newSpendingList.get(i);
