@@ -93,11 +93,11 @@ public class Ui {
         drawSeparateLine();
     }
 
-    private static void printTopBottomBorder() {
-        System.out.println(BORDER_CORNER + BORDER_HORIZONTAL.repeat(TABLE_SIZE - 2) + BORDER_CORNER);
+    private void printTopBottomBorder() {
+        out.println(BORDER_CORNER + BORDER_HORIZONTAL.repeat(TABLE_SIZE - 2) + BORDER_CORNER);
     }
 
-    private static void printWithinTableBorder() {
+    private void printWithinTableBorder() {
         System.out.println(BORDER_HORIZONTAL.repeat(TABLE_SIZE));
     }
 
@@ -105,7 +105,7 @@ public class Ui {
         out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
         for (int i = 0; i < 16; i++) {
-            System.out.format("%1s%-10s%1s%-55s%1s%-35s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
+            out.format("%1s%-10s%1s%-55s%1s%-35s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
                     BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
                     BORDER_VERTICAL);
             if (i == 0 || i == 1 || i == 3 || i == 4 || i == 5 || i == 6 || i == 10 || i == 11) {
@@ -140,6 +140,11 @@ public class Ui {
     public void printEdit(SpendingList spendingList, int index) {
         out.println("You've update the record:");
         out.println(spendingList.getItem(index));
+        drawSeparateLine();
+    }
+
+    public void printSummaryMessage(double amount) {
+        out.println(String.format("You've spent %f.", amount));
         drawSeparateLine();
     }
 
