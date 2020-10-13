@@ -17,7 +17,7 @@ public class SummaryCommand extends Command {
             this.month = changeMonthFormat(month);
             period = year + "-" + month;
         } catch (Exception e) {
-            // ui.showError("No such month.");
+            // e.printStackTrace();
         }
     }
 
@@ -35,7 +35,7 @@ public class SummaryCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) {
         double amountSpent = spendingList.getSpendingAmount(period);
-        // ui.showSummary(amountSpent);
+        ui.printSummaryMessage(amountSpent);
     }
 
     private String currentDate() {
