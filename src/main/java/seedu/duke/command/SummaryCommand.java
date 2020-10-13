@@ -15,7 +15,7 @@ public class SummaryCommand extends Command {
         try {
             this.year = year;
             this.month = changeMonthFormat(month);
-            period = year + "-" + month;
+            period = this.year + "-" + this.month;
         } catch (Exception e) {
             // e.printStackTrace();
         }
@@ -44,11 +44,11 @@ public class SummaryCommand extends Command {
     }
 
     private String getCurrentMonth() {
-        return currentDate().substring(6, 7);
+        return currentDate().substring(5, 7);
     }
 
     private String getCurrentYear() {
-        return currentDate().substring(0, 3);
+        return currentDate().substring(0, 4);
     }
 
     private String changeMonthFormat(String month) throws Exception {
