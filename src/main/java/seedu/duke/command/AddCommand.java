@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class AddCommand extends Command {
 
-    private String description;
-    private double amount;
-    private String symbol;
+    public String description;
+    public double amount;
+    public String symbol;
 
     public AddCommand(String description, String symbol, double amount) {
         this.description = description;
