@@ -5,10 +5,14 @@ import java.time.LocalDate;
 public class Item {
     protected String description;
     protected double amount;
+    protected String symbol;
+    protected String date;
 
-    public Item(String description, double amount) {
+    public Item(String description, String symbol, double amount) {
         this.description = description;
+        this.symbol = symbol;
         this.amount = amount;
+        this.date = currentDate();
     }
 
     protected String currentDate() {
@@ -24,15 +28,27 @@ public class Item {
         this.amount = amount;
     }
 
+    public void editSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public double getAmount() {
         return amount;
     }
 
     public String getYearMonth() {
-        return currentDate().substring(0, 7);
+        return date.substring(0, 7);
     }
 
     public String toString() {
-        return currentDate() + " " + description + " $" + amount;
+        return date + " " + description + " " + symbol + amount;
     }
 }
