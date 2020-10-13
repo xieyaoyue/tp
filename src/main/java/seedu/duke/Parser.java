@@ -69,7 +69,13 @@ public class Parser {
     public static Command parseCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action = getAction(userInput);
-        String commandParameters = userInput.substring(action.length()).strip();
+        int parameterStartIndex;
+        for (parameterStartIndex = 0; parameterStartIndex < action.length(); parameterStartIndex++) {
+            if (Character.isUpperCase(action.charAt(parameterStartIndex))) {
+                break;
+            }
+        }
+        String commandParameters = userInput.substring(parameterStartIndex).strip();
         switch (action) {
         case "add": return getAddCommand(commandParameters);
         case "help": return new HelpCommand();
