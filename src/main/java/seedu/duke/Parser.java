@@ -17,7 +17,7 @@ public class Parser {
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-d.+-s\\s*.\\d+(.\\d*)$", "add"),
-        EDIT("^edit\\s*\\d+\\s*-d.+\\S*-s\\s*\\d+$", "edit"),
+        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+(.\\d*)$", "edit"),
         LIST("^list$","list"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
