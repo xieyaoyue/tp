@@ -64,8 +64,7 @@ public class Parser {
         double amount = Double.parseDouble(spending.substring(1));
         return new EditCommand(number, description, symbol, amount);
     }
-
-
+    
     public static Command parseCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action = getAction(userInput);
