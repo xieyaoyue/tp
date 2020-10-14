@@ -9,7 +9,7 @@ public class Ui {
     private Scanner in;
     private PrintStream out;
     private static final String SEPARATE_LINE_CHAR = "-";
-    private static final int SEPARATE_LINE_LENGTH = 40;
+    private static final int SEPARATE_LINE_LENGTH = 104;
     private static final String LOGO = "  _____         __ _      ___              \n"
             + " / ___/__ ___  / /| | /| / (_)__ ___       \n"
             + "/ /__/ -_) _ \\/ __/ |/ |/ / (_-</ -_)      \n"
@@ -71,7 +71,7 @@ public class Ui {
     }
 
     public void printGoodbyeMessage() {
-        out.println("Goodbye!");
+        out.println("See you next time!");
         drawSeparateLine();
     }
 
@@ -89,7 +89,11 @@ public class Ui {
 
     public void printSpendingList(SpendingList spendingList) {
         String spendingString = getSpendingList(spendingList);
-        out.print(spendingString);
+        if (!spendingString.isEmpty()) {
+            out.print(spendingString);
+        } else {
+            out.println("Nothing in the list.");
+        }
         drawSeparateLine();
     }
 
@@ -117,7 +121,7 @@ public class Ui {
 
     public void printClearIndex(Item item) {
         out.println("You've deleted the record:");
-        out.print(item);
+        out.println(item);
         drawSeparateLine();
     }
 
@@ -138,7 +142,7 @@ public class Ui {
     }
     
     public void printEdit(SpendingList spendingList, int index) {
-        out.println("You've update the record:");
+        out.println("You've updated the record:");
         out.println(spendingList.getItem(index));
         drawSeparateLine();
     }
@@ -150,5 +154,6 @@ public class Ui {
 
     public void printErrorMessage(String message) {
         out.println(message);
+        drawSeparateLine();
     }
 }
