@@ -144,7 +144,7 @@ public class Ui {
     }
 
     public void printSummaryMessage(double amount) {
-        out.println(String.format("You've spent %f.", amount));
+        out.println(String.format("You've spent $%f.", amount));
         drawSeparateLine();
     }
 

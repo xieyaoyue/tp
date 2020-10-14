@@ -2,6 +2,8 @@ package seedu.duke.command;
 
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
+import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.InvalidMonthException;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -10,15 +12,12 @@ public class SummaryCommand extends Command {
     private String year;
     private String month;
     private String period;
+    private boolean isValidMonth = true;
 
     public SummaryCommand(String year, String month) {
-        try {
-            this.year = year;
-            this.month = changeMonthFormat(month);
-            period = year + "-" + month;
-        } catch (Exception e) {
-            // ui.showError("No such month.");
-        }
+        this.year = year;
+        this.month = changeMonthFormat(month);
+        period = this.year + "-" + this.month;
     }
 
     public SummaryCommand(String year) {
@@ -33,9 +32,13 @@ public class SummaryCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
-        double amountSpent = spendingList.getSpendingAmount(period);
-        // ui.showSummary(amountSpent);
+    public void execute(SpendingList spendingList, Ui ui) throws InvalidMonthException {
+        if (isValidMonth) {
+            double amountSpent = spendingList.getSpendingAmount(period);
+            ui.printSummaryMessage(amountSpent);
+        } else {
+            throw new InvalidMonthException();
+        }
     }
 
     private String currentDate() {
@@ -44,14 +47,14 @@ public class SummaryCommand extends Command {
     }
 
     private String getCurrentMonth() {
-        return currentDate().substring(6, 7);
+        return currentDate().substring(5, 7);
     }
 
     private String getCurrentYear() {
-        return currentDate().substring(0, 3);
+        return currentDate().substring(0, 4);
     }
 
-    private String changeMonthFormat(String month) throws Exception {
+    private String changeMonthFormat(String month) {
         String newFormat;
         HashMap<String, String> months = new HashMap<>();
         months.put("Jan", "01");
@@ -70,7 +73,8 @@ public class SummaryCommand extends Command {
         if (months.containsKey(month)) {
             newFormat = months.get(month);
         } else {
-            throw new Exception();
+            newFormat = null;
+            isValidMonth = false;
         }
 
         return newFormat;
