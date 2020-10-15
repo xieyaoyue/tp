@@ -17,7 +17,7 @@ public class Parser {
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-d.+-s\\s*.\\d+(.\\d*)$", "add"),
-        EDIT("^edit\\s*\\d+\\s*-d.+\\S*-s\\s*\\d+$", "edit"),
+        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+(.\\d*)$", "edit"),
         LIST("^list$","list"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
@@ -56,7 +56,7 @@ public class Parser {
     private static Command getEditCommand(String commandParameters) {
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
-        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip());
+        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip()) - 1;
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
                 spendingBeginIndex).strip();
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
