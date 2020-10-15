@@ -12,7 +12,7 @@ public class AddCommand extends Command {
     public String description;
     public double amount;
     public String symbol;
-    private static Logger logger = Logger.getLogger("ConvertCommand");
+    private static Logger logger = Logger.getLogger("AddCommand");
 
     public AddCommand(String description, String symbol, double amount) {
         this.description = description;
