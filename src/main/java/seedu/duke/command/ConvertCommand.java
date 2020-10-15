@@ -27,11 +27,16 @@ public class ConvertCommand extends Command {
 
     public String identifyCurrency(String description) {
         int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
+        assert firstCurrencyStartingPosition == 3 : "The value of firstCurrencyStartingPosition should be 3";
         int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
         int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
         int length = description.length();
         String inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
+        assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
+                "Incorrect input currency";
         outputCurrency = description.substring(secondCurrencyStartingPosition, length);
+        assert outputCurrency.equals(description.substring(secondCurrencyStartingPosition, length)) :
+                "Incorrect output currency";
         return inputCurrency + outputCurrency;
     }
 
@@ -39,6 +44,7 @@ public class ConvertCommand extends Command {
         for (int i = 0; i < 4; i++) {
             if (exchangeRates[0][i].equals(currencies)) {
                 exchangeRate = Double.parseDouble(exchangeRates[1][i]);
+                assert exchangeRate == Double.parseDouble(exchangeRates[1][i]) : "Incorrect exchange rate";
                 break;
             }
         }
@@ -62,6 +68,7 @@ public class ConvertCommand extends Command {
 
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
+        assert amount == amount * exchangeRate : "Incorrect new amount";
         amount = amount * exchangeRate;
         currentString.editAmount(amount);
     }
