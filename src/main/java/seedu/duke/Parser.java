@@ -56,7 +56,7 @@ public class Parser {
     private static Command getEditCommand(String commandParameters) {
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
-        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip());
+        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip()) - 1;
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
                 spendingBeginIndex).strip();
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
