@@ -20,10 +20,12 @@ public class ClearCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         if (!isClearAll) {
+            assert (clearIndex > 0 && clearIndex <= spendingList.getListSize()) : "Wrong index";
             ui.printClearIndex(spendingList.getItem(clearIndex - 1));
             spendingList.deleteItem(clearIndex - 1);
         } else {
             spendingList.clearAllItems();
+            assert spendingList.getListSize() == 0 : "List size should be 0";
             ui.printClearAll();
         }
     }
