@@ -58,7 +58,7 @@ public class Storage {
      * Exposes location of storage for Duke applications.
      * @return file path
      */
-    public static String getFilePath() {
+    public String getFilePath() {
         return file.getPath();
     }
 
