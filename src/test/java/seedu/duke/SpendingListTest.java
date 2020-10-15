@@ -105,7 +105,7 @@ class SpendingListTest {
 
     @Test
     void clearAllItems() throws IOException {
-        SpendingList expectedList = new SpendingList((Storage) null);
+        final SpendingList expectedList = new SpendingList((Storage) null);
 
         SpendingList realList = initSpendingList(
                 new Item("buy book", "S$", 10),
