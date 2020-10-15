@@ -6,6 +6,8 @@ import seedu.duke.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class ConvertCommand extends Command {
 
@@ -14,6 +16,7 @@ public class ConvertCommand extends Command {
     private String outputCurrency;
     private double exchangeRate;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
+    private static Logger logger = Logger.getLogger("ConvertCommand");
 
     /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD. */
     private final String[][] exchangeRates = {
@@ -52,6 +55,7 @@ public class ConvertCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
+        logger.log(Level.FINE, "going to start processing");
         newSpendingList = spendingList.getSpendingList();
         currencies = identifyCurrency(description);
         findExchangeRate();
@@ -64,11 +68,11 @@ public class ConvertCommand extends Command {
         }
         ui.printConvertCurrency(outputCurrency);
         spendingList.updateSpendingList();
+        logger.log(Level.FINE, "end of processing");
     }
 
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
-        assert amount == amount * exchangeRate : "Incorrect new amount";
         amount = amount * exchangeRate;
         currentString.editAmount(amount);
     }
