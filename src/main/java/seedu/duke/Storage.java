@@ -37,7 +37,7 @@ public class Storage {
             throw new InvalidStorageFilePathException();
         }
         String extension = parts[parts.length - 1];
-        if (!extension.equals("json")) {
+        if (parts.length == 1 || !extension.equals("json")) {
             throw new InvalidStorageFileExtensionException();
         }
         // Create or Initialise object
