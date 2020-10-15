@@ -48,6 +48,7 @@ public class SpendingList {
 
     public void clearAllItems() throws IOException {
         spendingList.clear();
+        assert getListSize() == 0 : "list size should be 0";
         save();
     }
 
