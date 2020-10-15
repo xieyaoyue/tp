@@ -25,13 +25,13 @@ class SpendingListTest {
         assertEqualList(expectedList, realList);
     }
 
-    private void assertEqualList(SpendingList expectedList, SpendingList realList) {
+    public static void assertEqualList(SpendingList expectedList, SpendingList realList) {
         String expectedString = Arrays.toString(expectedList.getSpendingList().toArray());
         String realString = Arrays.toString(realList.getSpendingList().toArray());
-        assert expectedString.equals(realString) : "different";
+        assertEquals(expectedString, realString);
     }
 
-    private SpendingList initList(Item... items) {
+    public static SpendingList initList(Item... items) {
         return new SpendingList(new ArrayList<>(Arrays.asList(items)));
     }
 
