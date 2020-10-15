@@ -17,7 +17,7 @@ public class Parser {
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-d.+-s\\s*.\\d+(.\\d*)$", "add"),
-        EDIT("^edit\\s*\\d+\\s*-d.+\\S*-s\\s*\\d+$", "edit"),
+        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+(.\\d*)$", "edit"),
         LIST("^list$","list"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
@@ -56,7 +56,7 @@ public class Parser {
     private static Command getEditCommand(String commandParameters) {
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
-        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip());
+        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip()) - 1;
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
                 spendingBeginIndex).strip();
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
@@ -64,12 +64,17 @@ public class Parser {
         double amount = Double.parseDouble(spending.substring(1));
         return new EditCommand(number, description, symbol, amount);
     }
-
-
+    
     public static Command parseCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action = getAction(userInput);
-        String commandParameters = userInput.substring(action.length()).strip();
+        int parameterStartIndex;
+        for (parameterStartIndex = 0; parameterStartIndex < action.length(); parameterStartIndex++) {
+            if (Character.isUpperCase(action.charAt(parameterStartIndex))) {
+                break;
+            }
+        }
+        String commandParameters = userInput.substring(parameterStartIndex).strip();
         switch (action) {
         case "add": return getAddCommand(commandParameters);
         case "help": return new HelpCommand();

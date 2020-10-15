@@ -4,7 +4,10 @@ import seedu.duke.Item;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class ConvertCommand extends Command {
 
@@ -13,10 +16,11 @@ public class ConvertCommand extends Command {
     private String outputCurrency;
     private double exchangeRate;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
+    private static Logger logger = Logger.getLogger("ConvertCommand");
 
     /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD. */
     private final String[][] exchangeRates = {
-            {"SGDUSD", "USDSGD", "SGDYuan", "YuanSGD"},
+            {"SGD USD", "USD SGD", "SGD Yuan", "Yuan SGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
@@ -25,11 +29,17 @@ public class ConvertCommand extends Command {
     }
 
     public String identifyCurrency(String description) {
-        int firstBlankSpacePosition = description.indexOf(" ") + 1;
-        int secondBlankSpacePosition = description.indexOf(" ", firstBlankSpacePosition) + 1;
+        int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
+        assert firstCurrencyStartingPosition == 3 : "The value of firstCurrencyStartingPosition should be 3";
+        int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
+        int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
         int length = description.length();
-        String inputCurrency = description.substring(firstBlankSpacePosition, secondBlankSpacePosition);
-        outputCurrency = description.substring(secondBlankSpacePosition, length);
+        String inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
+        assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
+                "Incorrect input currency";
+        outputCurrency = description.substring(secondCurrencyStartingPosition, length);
+        assert outputCurrency.equals(description.substring(secondCurrencyStartingPosition, length)) :
+                "Incorrect output currency";
         return inputCurrency + outputCurrency;
     }
 
@@ -37,24 +47,28 @@ public class ConvertCommand extends Command {
         for (int i = 0; i < 4; i++) {
             if (exchangeRates[0][i].equals(currencies)) {
                 exchangeRate = Double.parseDouble(exchangeRates[1][i]);
+                assert exchangeRate == Double.parseDouble(exchangeRates[1][i]) : "Incorrect exchange rate";
                 break;
             }
         }
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
+    public void execute(SpendingList spendingList, Ui ui) throws IOException {
+        logger.log(Level.FINE, "going to start processing");
         newSpendingList = spendingList.getSpendingList();
         currencies = identifyCurrency(description);
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
-            Item currentString = newSpendingList.get(i);
-            newSpendingList.remove(i);
+            Item currentString = newSpendingList.get(0);
+            newSpendingList.remove(0);
             updateNewAmount(currentString);
             updateCurrency(currentString);
             newSpendingList.add(currentString);
         }
         ui.printConvertCurrency(outputCurrency);
+        spendingList.updateSpendingList();
+        logger.log(Level.FINE, "end of processing");
     }
 
     private void updateNewAmount(Item currentString) {
@@ -65,16 +79,16 @@ public class ConvertCommand extends Command {
 
     private void updateCurrency(Item currentString) {
         switch (currencies) {
-        case "SGDUSD":
+        case "SGD USD":
             currentString.editSymbol("$");
             break;
-        case "USDSGD":
+        case "USD SGD":
             currentString.editSymbol("S$");
             break;
-        case "SGDYuan":
+        case "SGD Yuan":
             currentString.editSymbol("¥");
             break;
-        case "YuanSGD":
+        case "Yuan SGD":
             currentString.editSymbol("S$");
             break;
         default:
