@@ -14,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ClearCommandTest {
 
     @Test
-    void execute_clearIndex() throws InvalidStorageFileExtensionException, InvalidStorageFilePathException, IOException {
+    void execute_clearIndex() throws InvalidStorageFileExtensionException,
+            InvalidStorageFilePathException, IOException {
         ClearCommand clearCommand = new ClearCommand(false, 1);
         Storage storage = new Storage();
         SpendingList spendingList = new SpendingList(storage);
