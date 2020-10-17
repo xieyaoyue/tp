@@ -16,7 +16,7 @@ public class Duke {
      * Runs the program until termination.
      */
     private static void run() {
-        String filePath = Storage.getFilePath();
+        String filePath = storage.getFilePath();
         ui.printWelcomeMessage(filePath);
         boolean isExit = false;
         do {
