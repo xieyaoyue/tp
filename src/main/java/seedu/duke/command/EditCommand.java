@@ -7,10 +7,10 @@ import java.io.IOException;
 
 public class EditCommand extends Command {
     
-    public String description;
-    public double amount;
-    public String symbol;
-    public int index;
+    private String description;
+    private double amount;
+    private String symbol;
+    private int index;
     
     public EditCommand(int index, String description, String symbol, double amount) {
         this.index = index;
