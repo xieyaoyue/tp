@@ -16,8 +16,8 @@ public class Parser {
         HELP("^help$", "help"),
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
-        ADD("^add\\s*-d.+-s\\s*.\\d+(.\\d*)$", "add"),
-        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+(.\\d*)$", "edit"),
+        ADD("^add\\s*-d.+-s\\s*.\\d+([.]\\d*)?$", "add"),
+        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
         LIST("^list$","list"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
@@ -76,7 +76,10 @@ public class Parser {
         }
         String commandParameters = userInput.substring(parameterStartIndex).strip();
         switch (action) {
-        case "add": return getAddCommand(commandParameters);
+        case "add":
+            Command newAddCommand = getAddCommand(commandParameters);
+            assert newAddCommand instanceof AddCommand : "Getting new add command failed.";
+            return newAddCommand;
         case "help": return new HelpCommand();
         case "clear": return new ClearCommand(false, Integer.parseInt(commandParameters));
         case "clearAll": return new ClearCommand(true, 0);
@@ -86,7 +89,10 @@ public class Parser {
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());
         case "logout": return new ExitCommand();
-        case "edit": return getEditCommand(commandParameters);
+        case "edit":
+            Command newEditCommand = getEditCommand(commandParameters);
+            assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
+            return newEditCommand;
         case "list": return new ListCommand();
         default: throw new InvalidCommandException();
         }
