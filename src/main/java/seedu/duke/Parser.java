@@ -76,7 +76,10 @@ public class Parser {
         }
         String commandParameters = userInput.substring(parameterStartIndex).strip();
         switch (action) {
-        case "add": return getAddCommand(commandParameters);
+        case "add":
+            Command newAddCommand = getAddCommand(commandParameters);
+            assert newAddCommand instanceof AddCommand : "Getting new add command failed.";
+            return newAddCommand;
         case "help": return new HelpCommand();
         case "clear": return new ClearCommand(false, Integer.parseInt(commandParameters));
         case "clearAll": return new ClearCommand(true, 0);
@@ -86,7 +89,10 @@ public class Parser {
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());
         case "logout": return new ExitCommand();
-        case "edit": return getEditCommand(commandParameters);
+        case "edit":
+            Command newEditCommand = getEditCommand(commandParameters);
+            assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
+            return newEditCommand;
         case "list": return new ListCommand();
         default: throw new InvalidCommandException();
         }
