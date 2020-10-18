@@ -11,22 +11,24 @@ import java.util.logging.Level;
 
 public class ConvertCommand extends Command {
 
-    private final String description;
+    private String description;
     private String currencies;
     private String outputCurrency;
-    private double exchangeRate;
+    private double exchangeRate = 1.0;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
     private static Logger logger = Logger.getLogger("ConvertCommand");
 
-    /** SGD to USD; USD to SGD; SGD to Yuan; Yuan to SGD. */
+    /** SGD to USD; USD to SGD; SGD to CNY; CNY to SGD. */
     private final String[][] exchangeRates = {
-            {"SGD USD", "USD SGD", "SGD Yuan", "Yuan SGD"},
+            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
     public ConvertCommand(String description) {
         this.description = description;
     }
+    
+    public ConvertCommand() {}
 
     public String identifyCurrency(String description) {
         int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
@@ -85,7 +87,7 @@ public class ConvertCommand extends Command {
         case "USD SGD":
             currentString.editSymbol("S$");
             break;
-        case "SGD Yuan":
+        case "SGD CNY":
             currentString.editSymbol("¥");
             break;
         case "Yuan SGD":
@@ -93,6 +95,17 @@ public class ConvertCommand extends Command {
             break;
         default:
         }
+    }
+    
+    public double updateBudgetLimit() {
+        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
+        double budgetLimit = setBudgetCommand.getBudgetLimit();
+        double newBudgetLimit = budgetLimit * exchangeRate;
+        return newBudgetLimit;
+    }
+    
+    public String getOutputCurrency() {
+        return outputCurrency;
     }
 
     public ArrayList<Item> updateSpendingList() {
