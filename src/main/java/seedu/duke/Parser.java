@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.ClearCommand;
+import seedu.duke.command.ClearListCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ConvertCommand;
 import seedu.duke.command.EditCommand;
@@ -81,8 +81,8 @@ public class Parser {
             assert newAddCommand instanceof AddCommand : "Getting new add command failed.";
             return newAddCommand;
         case "help": return new HelpCommand();
-        case "clear": return new ClearCommand(false, Integer.parseInt(commandParameters));
-        case "clearAll": return new ClearCommand(true, 0);
+        case "clear": return new ClearListCommand(false, Integer.parseInt(commandParameters));
+        case "clearAll": return new ClearListCommand(true, 0);
         case "convert": return new ConvertCommand(commandParameters);
         case "summary": return new SummaryCommand();
         case "summaryYear": return new SummaryCommand(commandParameters);
