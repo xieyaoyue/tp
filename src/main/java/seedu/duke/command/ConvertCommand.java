@@ -1,6 +1,6 @@
 package seedu.duke.command;
 
-import seedu.duke.Item;
+import seedu.duke.category.Item;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
