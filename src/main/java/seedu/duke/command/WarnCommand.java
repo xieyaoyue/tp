@@ -13,17 +13,15 @@ public class WarnCommand extends Command {
     public WarnCommand() {
     }
     
-    @Override
     public void execute(SpendingList spendingList, Ui ui) {
-        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
         ConvertCommand convertCommand = new ConvertCommand();
+        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
         outputCurrency = convertCommand.getOutputCurrency();
         budgetLimit = setBudgetCommand.getBudgetLimit();
-        budgetLimit = convertCommand.updateBudgetLimit();
         budgetThreshold = budgetLimit * threshold;
         double currentAmount = spendingList.getCurrentAmount();
         if (currentAmount >= budgetThreshold && currentAmount < budgetLimit) {
-            double amountRemaining = currentAmount - budgetThreshold;
+            double amountRemaining = budgetLimit - currentAmount;
             ui.printApproachingWarningMessage(outputCurrency, amountRemaining);
         } else if (currentAmount >= budgetLimit) {
             ui.printExceedingWarningMessage();

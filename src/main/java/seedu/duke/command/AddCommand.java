@@ -19,7 +19,7 @@ public class AddCommand extends Command {
         this.amount = amount;
         this.symbol = symbol;
     }
-
+    
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         WarnCommand warnCommand = new WarnCommand();

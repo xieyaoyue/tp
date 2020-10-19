@@ -70,6 +70,7 @@ public class ConvertCommand extends Command {
         }
         ui.printConvertCurrency(outputCurrency);
         spendingList.updateSpendingList();
+        updateBudgetLimit();
         logger.log(Level.FINE, "end of processing");
     }
 
@@ -97,11 +98,11 @@ public class ConvertCommand extends Command {
         }
     }
     
-    public double updateBudgetLimit() {
+    public void updateBudgetLimit() {
         SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
         double budgetLimit = setBudgetCommand.getBudgetLimit();
         double newBudgetLimit = budgetLimit * exchangeRate;
-        return newBudgetLimit;
+        setBudgetCommand.updateList(newBudgetLimit);
     }
     
     public String getOutputCurrency() {
