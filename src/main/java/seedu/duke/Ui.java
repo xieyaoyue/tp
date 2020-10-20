@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.category.Item;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -45,14 +47,14 @@ public class Ui {
             {"set", "set [-s AMOUNT]", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
             {"list", "OR spending list YEAR", "list 2020"},
-            {"", "OR spending list YEAR MONTH", "list 2020 July"},
+            {"", "OR spending list YEAR MONTH", "list 2020 Jul"},
             {"", "OR spending list -c CATEGORY", "spending list -c food"},
             {"", "OR spending list YEAR -c CATEGORY", "spending list 2020 -c food"},
             {"", "OR spending list YEAR MONTH -c CATEGORY", "spending list 2020 Jul -c food"},
             {"", "OR spending list -a", ""},
             {"summary", "summary", ""},
             {"", "OR summary YEAR", "summary 2020"},
-            {"", "OR summary YEAR MONTH", "summary 2020 July"},
+            {"", "OR summary YEAR MONTH", "summary 2020 Jul"},
             {"", "OR summary -c CATEGORY", "summary -c food"},
             {"", "OR summary YEAR -c CATEGORY", "summary 2020 -c food"},
             {"", "OR summary YEAR MONTH -c CATEGORY", "summary 2020 Jul -c food"},
@@ -183,6 +185,23 @@ public class Ui {
 
     public void printErrorMessage(String message) {
         out.println(message);
+        drawSeparateLine();
+    }
+    
+    public void printBudgetLimit(String currency, double budgetLimit) {
+        out.println("The budget limit has been set to " + currency + " " + budgetLimit);
+        drawSeparateLine();
+    }
+    
+    public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
+        out.println("Warning! Your spending is approaching your budget limit.");
+        out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining)
+                            + " remained for spending.");
+        drawSeparateLine();
+    }
+    
+    public void printExceedingWarningMessage() {
+        out.println("Warning! Your spending has exceeded your budget limit.");
         drawSeparateLine();
     }
 }

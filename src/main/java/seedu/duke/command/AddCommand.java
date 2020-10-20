@@ -19,11 +19,18 @@ public class AddCommand extends Command {
         this.amount = amount;
         this.symbol = symbol;
     }
-
+    
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to add item");
         spendingList.addItem(description, symbol, amount);
         ui.printAdd(spendingList);
+        
+        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
+        int size = setBudgetCommand.getListSize();
+        if (size > 0) {
+            WarnCommand warnCommand = new WarnCommand();
+            warnCommand.execute(spendingList, ui);
+        }
     }
 }
