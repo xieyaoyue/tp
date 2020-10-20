@@ -1,15 +1,6 @@
 package seedu.duke;
 
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.SetBudgetCommand;
-import seedu.duke.command.ConvertCommand;
-import seedu.duke.command.EditCommand;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.ClearCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.HelpCommand;
-import seedu.duke.command.SummaryCommand;
+import seedu.duke.command.*;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -18,6 +9,7 @@ public class Parser {
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-d.+-s\\s*.\\d+([.]\\d*)?$", "add"),
+        REPAY("^repay\\s*-d.+-s.+-t\\s*.\\d+([.]\\d*)?\\s*.$", "repay"),
         EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
         LIST("^spending list$","spending list"),
         SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
@@ -68,15 +60,6 @@ public class Parser {
         return new EditCommand(number, description, symbol, amount);
     }
     
-    private static Command getSetBudgetCommand(String commandParameters) {
-        int currencyBeginIndex = commandParameters.indexOf("-s") + "-s".length() + 1;
-        int currencyEndIndex = currencyBeginIndex + 3;
-        int length = commandParameters.length();
-        String currency = commandParameters.substring(currencyBeginIndex, currencyEndIndex);
-        double amount = Double.parseDouble(commandParameters.substring(currencyEndIndex + 1, length));
-        return new SetBudgetCommand(currency, amount);
-    }
-    
     public static Command parseCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action = getAction(userInput);
@@ -106,7 +89,8 @@ public class Parser {
             assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
             return newEditCommand;
         case "spending list": return new ListCommand();
-        case"set": return getSetBudgetCommand(commandParameters);
+        case "set": return new SetBudgetCommand(commandParameters);
+        case "repay": return new RepayCommand(commandParameters);
         default: throw new InvalidCommandException();
         }
     }

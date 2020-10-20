@@ -3,8 +3,8 @@ package seedu.duke.command;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
-public class WarnCommand extends Command {
-    
+//@@author killingbear999
+public class WarnCommand {
     private double budgetLimit;
     private double budgetThreshold;
     private String outputCurrency;
@@ -25,5 +25,14 @@ public class WarnCommand extends Command {
         } else if (currentAmount >= budgetLimit) {
             ui.printExceedingWarningMessage();
         }
+    }
+    
+    public double findRemainingAmount() {
+        SpendingList spendingList = new SpendingList();
+        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
+        budgetLimit = setBudgetCommand.getBudgetLimit();
+        double currentAmount = spendingList.getCurrentAmount();
+        double amountRemained = budgetLimit - currentAmount;
+        return amountRemained;
     }
 }
