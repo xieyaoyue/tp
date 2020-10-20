@@ -57,8 +57,8 @@ public class ItemTest {
     }
 
     @Test
-    public void getYearMonth() {
-        String expectedString = date.toString().substring(0, 7);
-        assertEquals(expectedString, rice.getYearMonth());
+    public void getDate() {
+        String expectedString = date.toString();
+        assertEquals(expectedString, rice.getDate());
     }
 }
