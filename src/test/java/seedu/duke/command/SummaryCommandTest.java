@@ -1,9 +1,10 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Item;
+
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
+import seedu.duke.category.Item;
 import seedu.duke.exceptions.InvalidMonthException;
 
 import java.util.ArrayList;
