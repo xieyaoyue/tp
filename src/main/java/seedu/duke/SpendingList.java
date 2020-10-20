@@ -88,4 +88,12 @@ public class SpendingList {
         spendingList = convertCommand.updateSpendingList();
         save();
     }
+    
+    public double getCurrentAmount() {
+        double currentAmount = 0;
+        for (Item i: spendingList) {
+            currentAmount += i.getAmount();
+        }
+        return currentAmount;
+    }
 }
