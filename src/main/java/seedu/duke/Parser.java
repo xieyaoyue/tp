@@ -1,13 +1,14 @@
 package seedu.duke;
 
+import seedu.duke.command.ListCommand;
+import seedu.duke.command.SetBudgetCommand;
+import seedu.duke.command.ConvertCommand;
+import seedu.duke.command.EditCommand;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.ClearCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.ConvertCommand;
-import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.ListCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
@@ -16,14 +17,16 @@ public class Parser {
         HELP("^help$", "help"),
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
-        ADD("^add\\s*-d.+-s\\s*.\\d+(.\\d*)$", "add"),
-        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+(.\\d*)$", "edit"),
+        ADD("^add\\s*-d.+-s\\s*.\\d+([.]\\d*)?$", "add"),
+        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
         LIST("^list$","list"),
+        SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
         SUMMARY_YEAR("^summary\\s*\\d{4}$", "summaryYear"),
         SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth");
+        
 
         private final String pattern;
         private final String action;
@@ -65,6 +68,15 @@ public class Parser {
         return new EditCommand(number, description, symbol, amount);
     }
     
+    private static Command getSetBudgetCommand(String commandParameters) {
+        int currencyBeginIndex = commandParameters.indexOf("-s") + "-s".length() + 1;
+        int currencyEndIndex = currencyBeginIndex + 3;
+        int length = commandParameters.length();
+        String currency = commandParameters.substring(currencyBeginIndex, currencyEndIndex);
+        double amount = Double.parseDouble(commandParameters.substring(currencyEndIndex + 1, length));
+        return new SetBudgetCommand(currency, amount);
+    }
+    
     public static Command parseCommand(String userInput) throws InvalidCommandException {
         userInput = userInput.strip();
         String action = getAction(userInput);
@@ -76,7 +88,10 @@ public class Parser {
         }
         String commandParameters = userInput.substring(parameterStartIndex).strip();
         switch (action) {
-        case "add": return getAddCommand(commandParameters);
+        case "add":
+            Command newAddCommand = getAddCommand(commandParameters);
+            assert newAddCommand instanceof AddCommand : "Getting new add command failed.";
+            return newAddCommand;
         case "help": return new HelpCommand();
         case "clear": return new ClearCommand(false, Integer.parseInt(commandParameters));
         case "clearAll": return new ClearCommand(true, 0);
@@ -86,8 +101,12 @@ public class Parser {
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());
         case "logout": return new ExitCommand();
-        case "edit": return getEditCommand(commandParameters);
+        case "edit":
+            Command newEditCommand = getEditCommand(commandParameters);
+            assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
+            return newEditCommand;
         case "list": return new ListCommand();
+        case"set": return getSetBudgetCommand(commandParameters);
         default: throw new InvalidCommandException();
         }
     }

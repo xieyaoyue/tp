@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.category.Item;
 import seedu.duke.command.ConvertCommand;
 
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class SpendingList {
     public double getSpendingAmount(String period) {
         double totalAmount = 0;
         for (Item i: spendingList) {
-            if (i.getYearMonth().contains(period)) {
+            if (i.getDate().contains(period)) {
                 totalAmount += i.getAmount();
             }
         }
@@ -86,5 +87,13 @@ public class SpendingList {
         ConvertCommand convertCommand = new ConvertCommand(description);
         spendingList = convertCommand.updateSpendingList();
         save();
+    }
+    
+    public double getCurrentAmount() {
+        double currentAmount = 0;
+        for (Item i: spendingList) {
+            currentAmount += i.getAmount();
+        }
+        return currentAmount;
     }
 }

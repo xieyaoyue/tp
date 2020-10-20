@@ -1,8 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.Item;
+import seedu.duke.category.Item;
 import seedu.duke.SpendingList;
-import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.exceptions.InvalidCommandException;
 
