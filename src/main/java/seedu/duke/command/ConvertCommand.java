@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.Budget;
 import seedu.duke.category.Item;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
@@ -98,10 +99,9 @@ public class ConvertCommand extends Command {
     }
     
     public void updateBudgetList() {
-        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
-        double budgetLimit = setBudgetCommand.getBudgetLimit();
+        double budgetLimit = Budget.getBudgetLimit();
         double newBudgetLimit = budgetLimit * exchangeRate;
-        setBudgetCommand.updateList(outputCurrency, newBudgetLimit);
+        Budget.updateBudget(outputCurrency, newBudgetLimit);
     }
 
     public ArrayList<Item> updateSpendingList() {
