@@ -16,7 +16,8 @@ public class SetBudgetCommand extends Command {
         this.budgetLimit = budgetLimit;
     }
     
-    public SetBudgetCommand() {}
+    public SetBudgetCommand() {
+    }
     
     @Override
     public void execute(SpendingList spendingList, Ui ui) {
