@@ -11,7 +11,7 @@ public class Parser {
         ADD("^add\\s*-d.+-s\\s*.\\d+([.]\\d*)?$", "add"),
         EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
         LIST("^list$","list"),
-        SET("^set$", "set"),
+        SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
@@ -60,13 +60,12 @@ public class Parser {
     }
     
     private static Command getSetBudgetCommand(String commandParameters) {
-        /*int currencyBeginIndex = commandParameters.indexOf("-s") + "-s".length() + 1;
+        int currencyBeginIndex = commandParameters.indexOf("-s") + "-s".length() + 1;
         int currencyEndIndex = currencyBeginIndex + 3;
         int length = commandParameters.length();
         String currency = commandParameters.substring(currencyBeginIndex, currencyEndIndex);
         double amount = Double.parseDouble(commandParameters.substring(currencyEndIndex + 1, length));
-        System.out.println(currency + " " + amount);*/
-        return new SetBudgetCommand("USD", 5.0);
+        return new SetBudgetCommand(currency, amount);
     }
     
     public static Command parseCommand(String userInput) throws InvalidCommandException {

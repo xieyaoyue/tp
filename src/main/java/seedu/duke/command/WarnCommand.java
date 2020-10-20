@@ -14,9 +14,8 @@ public class WarnCommand extends Command {
     }
     
     public void execute(SpendingList spendingList, Ui ui) {
-        ConvertCommand convertCommand = new ConvertCommand();
         SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
-        outputCurrency = convertCommand.getOutputCurrency();
+        outputCurrency = setBudgetCommand.getBudgetCurrency();
         budgetLimit = setBudgetCommand.getBudgetLimit();
         budgetThreshold = budgetLimit * threshold;
         double currentAmount = spendingList.getCurrentAmount();

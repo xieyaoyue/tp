@@ -70,7 +70,7 @@ public class ConvertCommand extends Command {
         }
         ui.printConvertCurrency(outputCurrency);
         spendingList.updateSpendingList();
-        updateBudgetLimit();
+        updateBudgetList();
         logger.log(Level.FINE, "end of processing");
     }
 
@@ -91,18 +91,18 @@ public class ConvertCommand extends Command {
         case "SGD CNY":
             currentString.editSymbol("¥");
             break;
-        case "Yuan SGD":
+        case "CNY SGD":
             currentString.editSymbol("S$");
             break;
         default:
         }
     }
     
-    public void updateBudgetLimit() {
+    public void updateBudgetList() {
         SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
         double budgetLimit = setBudgetCommand.getBudgetLimit();
         double newBudgetLimit = budgetLimit * exchangeRate;
-        setBudgetCommand.updateList(newBudgetLimit);
+        setBudgetCommand.updateList(outputCurrency, newBudgetLimit);
     }
     
     public String getOutputCurrency() {

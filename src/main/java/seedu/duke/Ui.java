@@ -164,7 +164,8 @@ public class Ui {
     
     public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
         out.println("Warning! Your spending is approaching your budget limit.");
-        out.println("You still have " + outputCurrency + " " + amountRemaining + "remained for spending.");
+        out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining) +
+                            " remained for spending.");
         drawSeparateLine();
     }
     
