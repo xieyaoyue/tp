@@ -68,7 +68,7 @@ public class SpendingList {
     public double getSpendingAmount(String period) {
         double totalAmount = 0;
         for (Item i: spendingList) {
-            if (i.getYearMonth().contains(period)) {
+            if (i.getDate().contains(period)) {
                 totalAmount += i.getAmount();
             }
         }
