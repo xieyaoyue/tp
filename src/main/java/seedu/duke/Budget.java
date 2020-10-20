@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import java.util.ArrayList;
-
 public class Budget {
     private static double budgetLimit;
     private static String currency;
