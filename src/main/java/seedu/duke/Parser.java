@@ -19,7 +19,7 @@ public class Parser {
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-d.+-s\\s*.\\d+([.]\\d*)?$", "add"),
         EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
-        LIST("^list$","list"),
+        LIST("^spending list$","spending list"),
         SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
@@ -105,7 +105,7 @@ public class Parser {
             Command newEditCommand = getEditCommand(commandParameters);
             assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
             return newEditCommand;
-        case "list": return new ListCommand();
+        case "spending list": return new ListCommand();
         case"set": return getSetBudgetCommand(commandParameters);
         default: throw new InvalidCommandException();
         }
