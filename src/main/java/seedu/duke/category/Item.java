@@ -44,8 +44,8 @@ public class Item {
         return amount;
     }
 
-    public String getYearMonth() {
-        return date.substring(0, 7);
+    public String getDate() {
+        return date;
     }
 
     public String toString() {

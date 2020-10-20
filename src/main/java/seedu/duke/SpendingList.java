@@ -16,6 +16,9 @@ public class SpendingList {
         this.spendingList = spendingList;
         this.storage = storage;
     }
+    
+    public SpendingList() {
+    }
 
     public SpendingList(String description, Storage storage) {
         this(description, new ArrayList<>(), storage);
@@ -68,13 +71,14 @@ public class SpendingList {
     public double getSpendingAmount(String period) {
         double totalAmount = 0;
         for (Item i: spendingList) {
-            if (i.getYearMonth().contains(period)) {
+            if (i.getDate().contains(period)) {
                 totalAmount += i.getAmount();
             }
         }
         return totalAmount;
     }
     
+    //@@author killingbear999
     public void editItem(int number, String description, String symbol, double amount) throws IOException {
         Item item = getItem(number);
         item.editDescription(description);
@@ -83,12 +87,14 @@ public class SpendingList {
         save();
     }
 
+    //@@author killingbear999
     public void updateSpendingList() throws IOException {
         ConvertCommand convertCommand = new ConvertCommand(description);
         spendingList = convertCommand.updateSpendingList();
         save();
     }
     
+    //@@author killingbear999
     public double getCurrentAmount() {
         double currentAmount = 0;
         for (Item i: spendingList) {
