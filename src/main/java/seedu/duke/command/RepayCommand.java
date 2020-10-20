@@ -20,15 +20,18 @@ public class RepayCommand extends Command {
     private void identifyRepaymentInformation(String description) {
         int nameBeginIndex = description.indexOf("-d") + "-d".length() + 1;
         int nameEndIndex = description.indexOf("-s") - 1;
+        name = description.substring(nameBeginIndex, nameEndIndex);
+        
         int currencyBeginIndex = description.indexOf("-s") + "-s".length() + 1;
         int currencyEndIndex = currencyBeginIndex + 3;
+        currency = description.substring(currencyBeginIndex, currencyEndIndex);
+        
         int repaymentBeginIndex = currencyEndIndex + 1;
         int repaymentEndIndex = description.indexOf("-t") - 1;
+        repayment = Double.parseDouble(description.substring(repaymentBeginIndex, repaymentEndIndex));
+        
         int deadlineBeginIndex = description.indexOf("-t") + "-t".length() + 1;
         int deadlineEndIndex = description.length();
-        name = description.substring(nameBeginIndex, nameEndIndex);
-        currency = description.substring(currencyBeginIndex, currencyEndIndex);
-        repayment = Double.parseDouble(description.substring(repaymentBeginIndex, repaymentEndIndex));
         deadline = description.substring(deadlineBeginIndex, deadlineEndIndex);
     }
     
