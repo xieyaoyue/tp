@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.category.Item;
 
 import java.io.IOException;
 
@@ -65,9 +66,9 @@ class SpendingListTest {
         );
 
         Item firstItem = realList.getItem(0);
-        assertEquals(firstItem.description, "buy book");
-        assertEquals(firstItem.symbol, "S$");
-        assertEquals(firstItem.amount, 10);
+        assertEquals(firstItem.getDescription(), "buy book");
+        assertEquals(firstItem.getSymbol(), "S$");
+        assertEquals(firstItem.getAmount(), 10);
     }
 
     @Test
@@ -124,7 +125,7 @@ class SpendingListTest {
         );
         realList.editItem(0, "buy book", "S$", 12);
 
-        assertEquals(realList.getItem(0).amount, 12);
+        assertEquals(realList.getItem(0).getAmount(), 12);
     }
 
     @Test

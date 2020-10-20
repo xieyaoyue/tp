@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.exceptions.InvalidStorageFilePathException;
-import seedu.duke.exceptions.StorageOperationException;
 import seedu.duke.command.Command;
 
 public class Duke {
