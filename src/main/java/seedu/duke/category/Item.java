@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.category;
 
 import java.time.LocalDate;
 
