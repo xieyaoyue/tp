@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author killingbear999
 public class ConvertCommandTest {
     @Test
     public void identifyCurrencySgdUsd() {
