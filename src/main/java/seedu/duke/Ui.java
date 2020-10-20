@@ -168,5 +168,22 @@ public class Ui {
         out.println(message);
         drawSeparateLine();
     }
+    
+    public void printBudgetLimit(String currency, double budgetLimit) {
+        out.println("The budget limit has been set to " + currency + " " + budgetLimit);
+        drawSeparateLine();
+    }
+    
+    public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
+        out.println("Warning! Your spending is approaching your budget limit.");
+        out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining)
+                            + " remained for spending.");
+        drawSeparateLine();
+    }
+    
+    public void printExceedingWarningMessage() {
+        out.println("Warning! Your spending has exceeded your budget limit.");
+        drawSeparateLine();
+    }
 }
 
