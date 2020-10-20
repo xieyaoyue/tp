@@ -1,15 +1,6 @@
 package seedu.duke;
 
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.SetBudgetCommand;
-import seedu.duke.command.ConvertCommand;
-import seedu.duke.command.EditCommand;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.ClearListCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.HelpCommand;
-import seedu.duke.command.SummaryCommand;
+import seedu.duke.command.*;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {

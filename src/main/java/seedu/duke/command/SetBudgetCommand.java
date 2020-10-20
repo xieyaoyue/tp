@@ -4,8 +4,6 @@ import seedu.duke.Budget;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
-import java.util.ArrayList;
-
 //@@author killingbear999
 public class SetBudgetCommand extends Command {
     
