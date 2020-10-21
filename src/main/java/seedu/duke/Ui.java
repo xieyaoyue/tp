@@ -211,7 +211,11 @@ public class Ui {
         out.println("Warning! Your spending has exceeded your budget limit.");
         drawSeparateLine();
     }
-    
+
+    public void printPurgeData() {
+        out.println("All data are deleted.");
+    }
+
     //@@author
     public void printReminderMessage(double amountSpent, double amountRemained, String toString) {
     }
