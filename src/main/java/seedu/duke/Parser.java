@@ -11,6 +11,7 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.RepayCommand;
+import seedu.duke.command.ExportCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -27,8 +28,9 @@ public class Parser {
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
         SUMMARY_YEAR("^summary\\s*\\d{4}$", "summaryYear"),
-        SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth");
-        
+        SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth"),
+
+        EXPORT("^export.*$", "export");
 
         private final String pattern;
         private final String action;
@@ -104,6 +106,7 @@ public class Parser {
         case "spending list": return new ListCommand();
         case "set": return new SetBudgetCommand(commandParameters);
         case "repay": return new RepayCommand(commandParameters);
+        case "export": return new ExportCommand(commandParameters);
         default: throw new InvalidCommandException();
         }
     }
