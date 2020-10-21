@@ -83,16 +83,16 @@ public class ConvertCommand extends Command {
     private void updateCurrency(Item currentString) {
         switch (currencies) {
         case "SGD USD":
-            currentString.editSymbol("$");
+            currentString.editSymbol("USD");
             break;
         case "USD SGD":
-            currentString.editSymbol("S$");
+            currentString.editSymbol("SGD");
             break;
         case "SGD CNY":
-            currentString.editSymbol("¥");
+            currentString.editSymbol("CNY");
             break;
         case "CNY SGD":
-            currentString.editSymbol("S$");
+            currentString.editSymbol("SGD");
             break;
         default:
         }

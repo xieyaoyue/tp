@@ -11,6 +11,7 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.RepayCommand;
+import seedu.duke.command.ExportCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -27,8 +28,9 @@ public class Parser {
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
         SUMMARY_YEAR("^summary\\s*\\d{4}$", "summaryYear"),
-        SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth");
-        
+        SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth"),
+
+        EXPORT("^export.*$", "export");
 
         private final String pattern;
         private final String action;
@@ -59,15 +61,18 @@ public class Parser {
     }
     
     private static Command getEditCommand(String commandParameters) {
+        int categoryBeginIndex = commandParameters.indexOf("-c");
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
-        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip()) - 1;
+        int number = Integer.parseInt(commandParameters.substring(0, categoryBeginIndex).strip()) - 1;
+        String category = commandParameters.substring(categoryBeginIndex + "-c".length(),
+                descriptionBeginIndex).strip();
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
                 spendingBeginIndex).strip();
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
         String symbol = spending.substring(0, 1);
         double amount = Double.parseDouble(spending.substring(1));
-        return new EditCommand(number, description, symbol, amount);
+        return new EditCommand(number, description, symbol, amount, category);
     }
     
     public static Command parseCommand(String userInput) throws InvalidCommandException {
@@ -101,6 +106,7 @@ public class Parser {
         case "spending list": return new ListCommand();
         case "set": return new SetBudgetCommand(commandParameters);
         case "repay": return new RepayCommand(commandParameters);
+        case "export": return new ExportCommand(commandParameters);
         default: throw new InvalidCommandException();
         }
     }
