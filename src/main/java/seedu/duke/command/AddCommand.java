@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
+import seedu.duke.Budget;
 import seedu.duke.SpendingList;
+import seedu.duke.SpendingListCategoriser;
 import seedu.duke.Ui;
 
 import java.io.IOException;
@@ -25,10 +27,9 @@ public class AddCommand extends Command {
         logger.log(Level.FINE, "going to add item");
         spendingList.addItem(description, symbol, amount);
         ui.printAdd(spendingList);
-        
-        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
-        int size = setBudgetCommand.getListSize();
-        if (size > 0) {
+        SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
+        //spendingListCategoriser.execute();
+        if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, ui);
         }

@@ -1,10 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.Budget;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
-public class WarnCommand extends Command {
-    
+//@@author killingbear999
+public class WarnCommand {
     private double budgetLimit;
     private double budgetThreshold;
     private String outputCurrency;
@@ -14,9 +15,8 @@ public class WarnCommand extends Command {
     }
     
     public void execute(SpendingList spendingList, Ui ui) {
-        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
-        outputCurrency = setBudgetCommand.getBudgetCurrency();
-        budgetLimit = setBudgetCommand.getBudgetLimit();
+        outputCurrency = Budget.getCurrency();
+        budgetLimit = Budget.getBudgetLimit();
         budgetThreshold = budgetLimit * threshold;
         double currentAmount = spendingList.getCurrentAmount();
         if (currentAmount >= budgetThreshold && currentAmount < budgetLimit) {
@@ -25,5 +25,14 @@ public class WarnCommand extends Command {
         } else if (currentAmount >= budgetLimit) {
             ui.printExceedingWarningMessage();
         }
+    }
+    
+    public double findRemainingAmount() {
+        SpendingList spendingList = new SpendingList();
+        Budget budget = new Budget();
+        budgetLimit = budget.getBudgetLimit();
+        double currentAmount = spendingList.getCurrentAmount();
+        double amountRemained = budgetLimit - currentAmount;
+        return amountRemained;
     }
 }

@@ -142,4 +142,16 @@ class SpendingListTest {
 
         assertEquals(realList.getSpendingAmount(expectedYear), expectedAmount);
     }
+    
+    //@@author killingbear999
+    @Test
+    public void getCurrentAmountTest() {
+        double expectedAmount = 20.0;
+        SpendingList realList = initSpendingList(
+                new Item("sushi", "S$", 11.0),
+                new Item("bubble tea", "S$", 4.0),
+                new Item("medicine", "S$", 5.0)
+        );
+        assertEquals(realList.getCurrentAmount(), expectedAmount);
+    }
 }
