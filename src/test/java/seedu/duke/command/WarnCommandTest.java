@@ -31,8 +31,7 @@ public class WarnCommandTest {
     @Test
     public void approachLimit() {
         Ui ui = new Ui();
-        Budget budget = new Budget();
-        budget.addBudget("SGD", 20.0);
+        Budget.addBudget("SGD", 20.0);
         WarnCommand approachingLimit = new WarnCommand();
         approachingLimit.execute(realList, ui);
     }
@@ -40,8 +39,7 @@ public class WarnCommandTest {
     @Test
     public void exceedLimit() {
         Ui ui = new Ui();
-        Budget budget = new Budget();
-        budget.addBudget("SGD", 10.0);
+        Budget.addBudget("SGD", 10.0);
         WarnCommand exceedingLimit = new WarnCommand();
         exceedingLimit.execute(realList, ui);
     }
