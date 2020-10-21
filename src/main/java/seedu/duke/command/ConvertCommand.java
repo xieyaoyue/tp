@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
+//@@author killingbear999
 public class ConvertCommand extends Command {
 
     private String description;
@@ -101,10 +102,6 @@ public class ConvertCommand extends Command {
         double budgetLimit = Budget.getBudgetLimit();
         double newBudgetLimit = budgetLimit * exchangeRate;
         Budget.updateBudget(outputCurrency, newBudgetLimit);
-    }
-    
-    public String getOutputCurrency() {
-        return outputCurrency;
     }
 
     public ArrayList<Item> updateSpendingList() {
