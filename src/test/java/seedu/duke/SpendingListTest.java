@@ -121,9 +121,9 @@ class SpendingListTest {
     @Test
     void editItem() throws IOException {
         SpendingList realList = initSpendingList(
-                new Item("buy book", "S$", 10, "")
+                new Item("buy book", "S$", 10, "Education")
         );
-        realList.editItem(0, "buy book", "S$", 12);
+        realList.editItem(0, "buy book", "S$", 12,"Education");
 
         assertEquals(realList.getItem(0).getAmount(), 12);
     }
