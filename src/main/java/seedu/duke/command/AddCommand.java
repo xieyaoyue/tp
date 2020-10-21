@@ -17,12 +17,6 @@ public class AddCommand extends Command {
     public String category;
     private static Logger logger = Logger.getLogger("AddCommand");
 
-    public AddCommand(String description, String symbol, double amount) {
-        this.description = description;
-        this.amount = amount;
-        this.symbol = symbol;
-    }
-
     public AddCommand(String description, String symbol, double amount, String category) {
         this.description = description;
         this.amount = amount;
