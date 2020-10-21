@@ -39,6 +39,12 @@ public class SpendingList {
         storage.save(this);
     }
 
+    public void addItem(String description, String symbol, double amount, String category) throws IOException {
+        Item item = new Item(description, symbol, amount, category);
+        spendingList.add(item);
+        save();
+    }
+
     public void addItem(String description, String symbol, double amount) throws IOException {
         Item item = new Item(description, symbol, amount);
         spendingList.add(item);
@@ -79,11 +85,13 @@ public class SpendingList {
     }
     
     //@@author killingbear999
-    public void editItem(int number, String description, String symbol, double amount) throws IOException {
+    public void editItem(int number, String description, String symbol, double amount, String category)
+            throws IOException {
         Item item = getItem(number);
         item.editDescription(description);
         item.editSymbol(symbol);
         item.editAmount(amount);
+        item.editCategory(category);
         save();
     }
 
@@ -103,14 +111,13 @@ public class SpendingList {
         return currentAmount;
     }
     
-    /*
     //@@author killingbear999
     private void swapItem(Item item1, Item item2) {
-        String tempCategory = item1.getCategory();
-        String tempDescription = item1.getDescription();
-        String tempSymbol = item1.getSymbol();
-        String tempDate = item1.getDate();
-        double tempAmount = item1.getAmount();
+        final String tempCategory = item1.getCategory();
+        final String tempDescription = item1.getDescription();
+        final String tempSymbol = item1.getSymbol();
+        final String tempDate = item1.getDate();
+        final double tempAmount = item1.getAmount();
         
         item1.editCategory(item2.getCategory());
         item1.editDescription(item2.getDescription());
@@ -131,36 +138,36 @@ public class SpendingList {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < spendingList.size(); j++) {
                 Item currentItem = getItem(j);
-                if (i == 0 && currentItem.getCategory().equals("education")) {
+                if (i == 0 && currentItem.getCategory().equals("Education")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
-                } else if (i == 1 && currentItem.getCategory().equals("entertainment")) {
+                } else if (i == 1 && currentItem.getCategory().equals("Entertainment")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
-                } else if (i == 2 && currentItem.getCategory().equals("food")) {
+                } else if (i == 2 && currentItem.getCategory().equals("Food")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
-                } else if (i == 3 && currentItem.getCategory().equals("health")) {
+                } else if (i == 3 && currentItem.getCategory().equals("Health")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
-                } else if (i == 4 && currentItem.getCategory().equals("transportation")) {
+                } else if (i == 4 && currentItem.getCategory().equals("Transportation")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
-                } else if (i == 5 && currentItem.getCategory().equals("utilities")) {
+                } else if (i == 5 && currentItem.getCategory().equals("Utilities")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
-                } else if (i == 6 && currentItem.getCategory().equals("other")) {
+                } else if (i == 6 && currentItem.getCategory().equals("Other")) {
                     Item lastItem = getItem(count);
                     swapItem(currentItem, lastItem);
                     count = count - 1;
                 }
             }
         }
-    }*/
+    }
 }
