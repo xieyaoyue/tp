@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.Budget;
 import seedu.duke.SpendingList;
 import seedu.duke.Storage;
 import seedu.duke.Ui;
@@ -10,18 +11,21 @@ import seedu.duke.exceptions.InvalidStorageFilePathException;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class AddCommandTest {
+class PurgeDataCommandTest {
 
     @Test
     void execute() throws IOException, InvalidStorageFileExtensionException, InvalidStorageFilePathException {
-        AddCommand addCommand = new AddCommand("buy sushi", "$", 3.0, "");
         Storage storage = new Storage();
         SpendingList spendingList = new SpendingList(storage);
+        spendingList.addItem("buy chicken rice", "$", 3.0);
+        spendingList.addItem("buy sushi", "$", 5.1);
+        Budget.addBudget("SGD", 100);
+        PurgeDataCommand purgeDataCommand = new PurgeDataCommand();
         Ui ui = new Ui();
-        addCommand.execute(spendingList, ui);
-        assertEquals("buy sushi", spendingList.getItem(0).getDescription());
-        assertEquals("$", spendingList.getItem(0).getSymbol());
-        assertEquals(3.0, spendingList.getItem(0).getAmount());
+        purgeDataCommand.execute(spendingList, ui);
+        assertFalse(Budget.hasBudget);
+        assertEquals(0, spendingList.getListSize());
     }
 }

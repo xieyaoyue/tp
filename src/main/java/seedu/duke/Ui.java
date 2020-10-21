@@ -167,32 +167,38 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printConvertCurrency(String outputCurrency) {
         out.println("The currency has been changed to " + outputCurrency + " .");
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printEdit(SpendingList spendingList, int index) {
         out.println("You've updated the record:");
         out.println(spendingList.getItem(index));
         drawSeparateLine();
     }
 
+    //@@author
     public void printSummaryMessage(double amount) {
         out.printf("You've spent $%f.%n", amount);
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printErrorMessage(String message) {
         out.println(message);
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printBudgetLimit(String currency, double budgetLimit) {
         out.println("The budget limit has been set to " + currency + " " + budgetLimit);
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
         out.println("Warning! Your spending is approaching your budget limit.");
         out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining)
@@ -200,6 +206,7 @@ public class Ui {
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printExceedingWarningMessage() {
         out.println("Warning! Your spending has exceeded your budget limit.");
         drawSeparateLine();
