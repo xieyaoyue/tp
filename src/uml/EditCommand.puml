@@ -1,11 +1,11 @@
 @startuml
-->EditCommand:execute
+->EditCommand:execute(spendingList, ui)
 activate EditCommand
-EditCommand->SpendingList:editItem
+EditCommand->SpendingList:editItem(index, description, symbol, amount, category)
 activate SpendingList
 SpendingList-->EditCommand:
 deactivate SpendingList
-EditCommand->Ui:printEdit
+EditCommand->Ui:printEdit(spendingList, index)
 activate Ui
 Ui-->EditCommand
 deactivate Ui
