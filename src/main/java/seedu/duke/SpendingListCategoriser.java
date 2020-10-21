@@ -6,9 +6,8 @@ public class SpendingListCategoriser {
     public SpendingListCategoriser() {
     }
     
-    /*
     public void execute(SpendingList spendingList) {
         spendingList.categoriseSpendingList();
-    }*/
+    }
     
 }

@@ -59,15 +59,18 @@ public class Parser {
     }
     
     private static Command getEditCommand(String commandParameters) {
+        int categoryBeginIndex = commandParameters.indexOf("-c");
         int descriptionBeginIndex = commandParameters.indexOf("-d");
         int spendingBeginIndex = commandParameters.indexOf("-s");
-        int number = Integer.parseInt(commandParameters.substring(0, descriptionBeginIndex).strip()) - 1;
+        int number = Integer.parseInt(commandParameters.substring(0, categoryBeginIndex).strip()) - 1;
+        String category = commandParameters.substring(categoryBeginIndex + "-c".length(),
+                descriptionBeginIndex).strip();
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
                 spendingBeginIndex).strip();
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
         String symbol = spending.substring(0, 1);
         double amount = Double.parseDouble(spending.substring(1));
-        return new EditCommand(number, description, symbol, amount);
+        return new EditCommand(number, description, symbol, amount, category);
     }
     
     public static Command parseCommand(String userInput) throws InvalidCommandException {
