@@ -7,6 +7,6 @@ public class Utilities extends Item {
 
     @Override
     public String toString() {
-        return "health: " + super.toString();
+        return "utilities: " + super.toString();
     }
 }

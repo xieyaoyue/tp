@@ -102,4 +102,65 @@ public class SpendingList {
         }
         return currentAmount;
     }
+    
+    /*
+    //@@author killingbear999
+    private void swapItem(Item item1, Item item2) {
+        String tempCategory = item1.getCategory();
+        String tempDescription = item1.getDescription();
+        String tempSymbol = item1.getSymbol();
+        String tempDate = item1.getDate();
+        double tempAmount = item1.getAmount();
+        
+        item1.editCategory(item2.getCategory());
+        item1.editDescription(item2.getDescription());
+        item1.editSymbol(item2.getSymbol());
+        item1.editAmount(item2.getAmount());
+        item1.editDate(item2.getDate());
+    
+        item2.editCategory(tempCategory);
+        item2.editDescription(tempDescription);
+        item2.editSymbol(tempSymbol);
+        item2.editAmount(tempAmount);
+        item2.editDate(tempDate);
+    }
+    
+    //@@author killingbear999
+    public void categoriseSpendingList() {
+        int count = spendingList.size();
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < spendingList.size(); j++) {
+                Item currentItem = getItem(j);
+                if (i == 0 && currentItem.getCategory().equals("education")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 1 && currentItem.getCategory().equals("entertainment")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 2 && currentItem.getCategory().equals("food")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 3 && currentItem.getCategory().equals("health")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 4 && currentItem.getCategory().equals("transportation")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 5 && currentItem.getCategory().equals("utilities")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 6 && currentItem.getCategory().equals("other")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                }
+            }
+        }
+    }*/
 }

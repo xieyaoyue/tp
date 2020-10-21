@@ -47,6 +47,10 @@ public class Item {
     public String getDate() {
         return date;
     }
+    
+    public void editDate(String specificDate) {
+        this.date = specificDate;
+    }
 
     public String toString() {
         return date + " " + description + " " + symbol + amount;
