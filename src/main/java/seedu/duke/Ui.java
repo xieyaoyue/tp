@@ -86,7 +86,7 @@ public class Ui {
         Random rand = new Random();
         int randInt = rand.nextInt(4);
         out.println(BUDGET_QUOTES[randInt][0]);
-        out.println(" ".repeat(60) + "―" + BUDGET_QUOTES[randInt][1]);
+        out.println(" ".repeat(60) + "--" + BUDGET_QUOTES[randInt][1]);
     }
 
     public void printWelcomeMessage() {
@@ -207,6 +207,16 @@ public class Ui {
 
     public void printPurgeData() {
         out.println("All data are deleted.");
+    }
+
+    //@@author
+    public void printReminderMessage(double amountSpent, double amountRemained, String toString) {
+    }
+
+    //@@author Wu-Haitao
+    public void printExportMessage() {
+        out.println("The records have been exported to an Excel file successfully.");
+        drawSeparateLine();
     }
 }
 
