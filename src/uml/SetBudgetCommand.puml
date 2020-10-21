@@ -1,0 +1,18 @@
+@startuml
+->SetBudgetCommand:execute(spendingList, ui)
+activate SetBudgetCommand
+SetBudgetCommand->SetBudgetCommand:identifyBudgetLimit(description)
+activate SetBudgetCommand
+SetBudgetCommand-->SetBudgetCommand:
+deactivate SetBudgetCommand
+SetBudgetCommand->Budget:addBudget(currency, budgetLimit)
+activate Budget
+Budget-->SetBudgetCommand:
+deactivate Budget
+SetBudgetCommand->Ui:printBudgetLimit(currency, budgetLimit)
+activate Ui
+Ui-->SetBudgetCommand:
+deactivate Ui
+<--SetBudgetCommand
+deactivate SetBudgetCommand
+@enduml
