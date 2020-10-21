@@ -1,11 +1,12 @@
 package seedu.duke.command;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 import seedu.duke.category.Item;
@@ -27,12 +28,13 @@ public class ExportCommand extends Command {
     }
 
     private void exportToExcel(SpendingList list) throws InvalidCommandException {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet("sheet0");
-        HSSFRow row = sheet.createRow(0);
-        HSSFCell[] cells = new HSSFCell[5];
-        HSSFCellStyle cellStyle = workbook.createCellStyle();
-        HSSFFont font = workbook.createFont();
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("sheet0");
+        sheet.setDefaultColumnWidth(15);
+        Row row = sheet.createRow(0);
+        Cell[] cells = new Cell[5];
+        CellStyle cellStyle = workbook.createCellStyle();
+        Font font = workbook.createFont();
         font.setBold(true);
         cellStyle.setFont(font);
         for (int i = 0; i < 5; i++) {
@@ -54,9 +56,10 @@ public class ExportCommand extends Command {
             row.createCell(4).setCellValue(item.getCategory());
         }
         try {
-            FileOutputStream output = new FileOutputStream("records.xls");
+            FileOutputStream output = new FileOutputStream(filePath + "records.xlsx");
             workbook.write(output);
             output.flush();
+            output.close();
         } catch (Exception e) {
             throw new InvalidCommandException();
         }
