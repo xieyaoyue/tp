@@ -223,7 +223,7 @@ public class Ui {
     }
     
     //@@author killingbear999
-    public static void printBudgetLimit() {
+    public static void printCurrentBudgetLimit() {
         System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
     }
     

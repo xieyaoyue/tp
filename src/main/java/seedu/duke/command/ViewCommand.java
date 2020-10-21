@@ -10,7 +10,7 @@ public class ViewCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) {
         if (Budget.hasBudget) {
-            Ui.printBudgetLimit();
+            Ui.printCurrentBudgetLimit();
         } else {
             Ui.printNoBudget();
         }
