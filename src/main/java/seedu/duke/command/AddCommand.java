@@ -29,8 +29,11 @@ public class AddCommand extends Command {
         logger.log(Level.FINE, "going to add item");
         spendingList.addItem(description, symbol, amount, category);
         ui.printAdd(spendingList);
-        SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
-        spendingListCategoriser.execute(spendingList);
+        int size = spendingList.getListSize();
+        if (size > 1) {
+            SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
+            spendingListCategoriser.execute(spendingList);
+        }
         if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, ui);
