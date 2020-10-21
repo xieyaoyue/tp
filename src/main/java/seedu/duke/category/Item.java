@@ -3,16 +3,27 @@ package seedu.duke.category;
 import java.time.LocalDate;
 
 public class Item {
-    protected String description;
-    protected double amount;
-    protected String symbol;
-    protected String date;
+    private String description;
+    private double amount;
+    private String symbol;
+    private String date;
+    private String category = "Other";
 
     public Item(String description, String symbol, double amount) {
         this.description = description;
         this.symbol = symbol;
         this.amount = amount;
         this.date = currentDate();
+    }
+
+    public Item(String description, String symbol, double amount, String category) {
+        this.description = description;
+        this.symbol = symbol;
+        this.amount = amount;
+        this.date = currentDate();
+        if (Category.hasCategory(category)) {
+            this.category = category;
+        }
     }
 
     protected String currentDate() {
@@ -32,6 +43,10 @@ public class Item {
         this.symbol = symbol;
     }
 
+    public void editCategory(String category) {
+        this.category = category;
+    }
+
     public String getSymbol() {
         return symbol;
     }
@@ -46,6 +61,10 @@ public class Item {
 
     public String getDate() {
         return date;
+    }
+
+    public String getCategory() {
+        return category;
     }
     
     public void editDate(String specificDate) {
