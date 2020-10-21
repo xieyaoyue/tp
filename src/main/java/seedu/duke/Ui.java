@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Ui {
     private Scanner in;
@@ -19,6 +20,13 @@ public class Ui {
             + "  / _ \\___  / / /__ ____| | /| / (_)__ ___ \n"
             + " / // / _ \\/ / / _ `/ __/ |/ |/ / (_-</ -_)\n"
             + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
+    private static final String[][] BUDGET_QUOTES = {
+            {"It takes as much energy to wish as it does to plan.", "Eleanor Roosevelt"},
+            {"Just because you can afford it doesn't mean you should buy it", "Suze Orman"},
+            {"Do not save what is left after spending; instead spend what is left after saving.", "Warren Buffett"},
+            {"Setting goals is the first step in turning the invisible into the visible.", "Tony Robbins"},
+            {"If there is no struggle, there is no progress.", "Frederick Douglass"}
+    };
     private static final String BORDER_CORNER = "+";
     private static final String BORDER_HORIZONTAL = "-";
     private static final String BORDER_VERTICAL = "|";
@@ -70,6 +78,15 @@ public class Ui {
     public void printMessage(String message) {
         out.println(message);
         drawSeparateLine();
+    }
+
+    public void printEncouragementMessage() {
+        out.println("Keep up budgeting! You can do it!");
+        out.println("Here is a quote to keep you going:");
+        Random rand = new Random();
+        int randInt = rand.nextInt(4);
+        out.println(BUDGET_QUOTES[randInt][0]);
+        out.println(" ".repeat(60) + "―" + BUDGET_QUOTES[randInt][1]);
     }
 
     public void printWelcomeMessage() {
@@ -150,32 +167,38 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printConvertCurrency(String outputCurrency) {
         out.println("The currency has been changed to " + outputCurrency + " .");
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printEdit(SpendingList spendingList, int index) {
         out.println("You've updated the record:");
         out.println(spendingList.getItem(index));
         drawSeparateLine();
     }
 
+    //@@author
     public void printSummaryMessage(double amount) {
         out.printf("You've spent $%f.%n", amount);
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printErrorMessage(String message) {
         out.println(message);
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printBudgetLimit(String currency, double budgetLimit) {
         out.println("The budget limit has been set to " + currency + " " + budgetLimit);
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
         out.println("Warning! Your spending is approaching your budget limit.");
         out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining)
@@ -183,9 +206,14 @@ public class Ui {
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printExceedingWarningMessage() {
         out.println("Warning! Your spending has exceeded your budget limit.");
         drawSeparateLine();
+    }
+    
+    //@@author
+    public void printReminderMessage(double amountSpent, double amountRemained, String toString) {
     }
 }
 

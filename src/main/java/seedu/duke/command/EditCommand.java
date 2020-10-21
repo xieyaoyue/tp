@@ -5,6 +5,7 @@ import seedu.duke.Ui;
 
 import java.io.IOException;
 
+//@@author killingbear999
 public class EditCommand extends Command {
     
     private String description;

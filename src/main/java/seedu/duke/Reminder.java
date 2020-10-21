@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.command.WarnCommand;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,12 +14,13 @@ public class Reminder {
         saveDatesToList();
     }
 
-    public void execute(SpendingList spendingList, Ui ui) {
+    public void execute(SpendingList spendingList, Ui ui, WarnCommand warnCommand) {
         double amountSpent = 0;
         for (String i: period) {
             amountSpent += spendingList.getSpendingAmount(i);
         }
-        // ui.printReminderMessage(amountSpent, startWeek.toString());
+        double amountRemained = warnCommand.findRemainingAmount();
+        ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
     }
 
     private LocalDate startOfWeek() {
