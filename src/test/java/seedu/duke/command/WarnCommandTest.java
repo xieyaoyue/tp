@@ -1,18 +1,19 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import seedu.duke.Budget;
 import seedu.duke.SpendingList;
 import seedu.duke.category.Item;
 import seedu.duke.Ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 //@@author killingbear999
-public class ConvertCommandTest {
+public class WarnCommandTest {
     public static ArrayList<Item> initList(Item... items) {
         return new ArrayList<>(Arrays.asList(items));
     }
@@ -28,18 +29,20 @@ public class ConvertCommandTest {
     );
     
     @Test
-    public void identifyCurrencySgdUsd() {
-        String expectedCurrency = "SGD USD";
-        String description = "-d SGD -d USD";
-        ConvertCommand convertCommand = new ConvertCommand(description);
-        assertEquals(expectedCurrency, convertCommand.identifyCurrency(description));
+    public void approachLimit() {
+        Ui ui = new Ui();
+        Budget budget = new Budget();
+        budget.addBudget("SGD", 20.0);
+        WarnCommand approachingLimit = new WarnCommand();
+        approachingLimit.execute(realList, ui);
     }
     
     @Test
-    public void execute() throws IOException {
+    public void exceedLimit() {
         Ui ui = new Ui();
-        String description = "-d SGD -d USD";
-        ConvertCommand convertCommand = new ConvertCommand(description);
-        convertCommand.execute(realList, ui);
+        Budget budget = new Budget();
+        budget.addBudget("SGD", 10.0);
+        WarnCommand exceedingLimit = new WarnCommand();
+        exceedingLimit.execute(realList, ui);
     }
 }

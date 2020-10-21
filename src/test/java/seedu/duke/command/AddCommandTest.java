@@ -15,7 +15,7 @@ class AddCommandTest {
 
     @Test
     void execute() throws IOException, InvalidStorageFileExtensionException, InvalidStorageFilePathException {
-        AddCommand addCommand = new AddCommand("buy sushi", "$", 3.0);
+        AddCommand addCommand = new AddCommand("buy sushi", "$", 3.0, "");
         Storage storage = new Storage();
         SpendingList spendingList = new SpendingList(storage);
         Ui ui = new Ui();
