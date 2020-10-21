@@ -50,8 +50,9 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|international student|convert local currency to foreign currency or the reverse way|trace my spending easily|
+|v1.0|careless user|view and reset the previous input|ensure the data input is correct|
+
 
 ## Non-Functional Requirements
 
