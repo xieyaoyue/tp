@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StorageTest {
@@ -27,9 +26,9 @@ class StorageTest {
     @Test
     public void saveAndLoad() throws IOException {
         SpendingList expectedList = new SpendingList(storage);
-        expectedList.addItem("noodle", "S$", 1.5);
-        expectedList.addItem("fish", "S$", 10);
-        expectedList.addItem("books", "S$", 8.9);
+        expectedList.addItem("noodle", "S$", 1.5, "");
+        expectedList.addItem("fish", "S$", 10, "");
+        expectedList.addItem("books", "S$", 8.9, "");
 
         SpendingList actualList = storage.load();
         SpendingListTest.assertEqualList(expectedList, actualList);

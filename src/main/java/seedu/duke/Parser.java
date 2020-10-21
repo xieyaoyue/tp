@@ -55,7 +55,7 @@ public class Parser {
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
         String symbol = spending.substring(0, 1);
         double amount = Double.parseDouble(spending.substring(1));
-        return new AddCommand(description, symbol, amount);
+        return new AddCommand(description, symbol, amount, ""); // need to modify
     }
     
     private static Command getEditCommand(String commandParameters) {
