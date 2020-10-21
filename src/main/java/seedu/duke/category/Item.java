@@ -9,6 +9,13 @@ public class Item {
     private String date;
     private String category = "Other";
 
+    public Item(String description, String symbol, double amount) {
+        this.description = description;
+        this.symbol = symbol;
+        this.amount = amount;
+        this.date = currentDate();
+    }
+
     public Item(String description, String symbol, double amount, String category) {
         this.description = description;
         this.symbol = symbol;
