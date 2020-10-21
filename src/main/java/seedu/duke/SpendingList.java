@@ -113,11 +113,11 @@ public class SpendingList {
     
     //@@author killingbear999
     private void swapItem(Item item1, Item item2) {
-        String tempCategory = item1.getCategory();
-        String tempDescription = item1.getDescription();
-        String tempSymbol = item1.getSymbol();
-        String tempDate = item1.getDate();
-        double tempAmount = item1.getAmount();
+        final String tempCategory = item1.getCategory();
+        final String tempDescription = item1.getDescription();
+        final String tempSymbol = item1.getSymbol();
+        final String tempDate = item1.getDate();
+        final double tempAmount = item1.getAmount();
         
         item1.editCategory(item2.getCategory());
         item1.editDescription(item2.getDescription());
