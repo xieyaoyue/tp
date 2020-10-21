@@ -70,7 +70,7 @@ public class Ui {
         this.in = in;
         this.out = out;
     }
-
+    
     public String getUserInput() {
         return in.nextLine();
     }
@@ -220,6 +220,17 @@ public class Ui {
     public void printExportMessage() {
         out.println("The records have been exported to an Excel file successfully.");
         drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public static void printBudgetLimit() {
+        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " "
+                                   + Budget.getBudgetLimit());
+    }
+    
+    //@@author killingbear999
+    public static void printNoBudget() {
+        System.out.println("No budget has been set yet.");
     }
 }
 
