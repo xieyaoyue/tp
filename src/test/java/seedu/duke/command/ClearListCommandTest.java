@@ -23,7 +23,7 @@ class ClearListCommandTest {
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
         clearListCommand.execute(spendingList, ui);
-        assertEquals(spendingList.getListSize(), 1);
+        assertEquals(1, spendingList.getListSize());
     }
 
     @Test
@@ -35,7 +35,7 @@ class ClearListCommandTest {
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
         clearListCommand.execute(spendingList, ui);
-        assertEquals(spendingList.getListSize(), 0);
+        assertEquals(0, spendingList.getListSize());
     }
 
 }

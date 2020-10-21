@@ -66,9 +66,9 @@ class SpendingListTest {
         );
 
         Item firstItem = realList.getItem(0);
-        assertEquals(firstItem.getDescription(), "buy book");
-        assertEquals(firstItem.getSymbol(), "S$");
-        assertEquals(firstItem.getAmount(), 10);
+        assertEquals("buy book", firstItem.getDescription());
+        assertEquals("S$", firstItem.getSymbol());
+        assertEquals(10, firstItem.getAmount());
     }
 
     @Test
@@ -76,16 +76,16 @@ class SpendingListTest {
         SpendingList realList = new SpendingList((Storage) null);
 
         realList.addItem("buy book", "S$", 10, "");
-        assertEquals(realList.getListSize(), 1);
+        assertEquals(1, realList.getListSize());
 
         realList.addItem("buy stationary", "S$", 5, "");
-        assertEquals(realList.getListSize(), 2);
+        assertEquals(2, realList.getListSize());
 
         realList.deleteItem(0);
-        assertEquals(realList.getListSize(), 1);
+        assertEquals(1, realList.getListSize());
 
         realList.addItem("buy grocery", "S$", 10, "");
-        assertEquals(realList.getListSize(), 2);
+        assertEquals(2, realList.getListSize());
     }
 
     @Test
@@ -125,7 +125,7 @@ class SpendingListTest {
         );
         realList.editItem(0, "buy book", "S$", 12);
 
-        assertEquals(realList.getItem(0).getAmount(), 12);
+        assertEquals(12, realList.getItem(0).getAmount());
     }
 
     @Test
@@ -140,7 +140,7 @@ class SpendingListTest {
                 new Item("books", "S$", 8.9, "")
         );
 
-        assertEquals(realList.getSpendingAmount(expectedYear), expectedAmount);
+        assertEquals(expectedAmount, realList.getSpendingAmount(expectedYear));
     }
     
     //@@author killingbear999
@@ -152,6 +152,6 @@ class SpendingListTest {
                 new Item("bubble tea", "S$", 4.0, ""),
                 new Item("medicine", "S$", 5.0, "")
         );
-        assertEquals(realList.getCurrentAmount(), expectedAmount);
+        assertEquals(expectedAmount, realList.getCurrentAmount());
     }
 }

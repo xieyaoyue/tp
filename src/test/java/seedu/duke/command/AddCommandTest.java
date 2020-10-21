@@ -20,8 +20,8 @@ class AddCommandTest {
         SpendingList spendingList = new SpendingList(storage);
         Ui ui = new Ui();
         addCommand.execute(spendingList, ui);
-        assertEquals(spendingList.getItem(0).getDescription(), "buy sushi");
-        assertEquals(spendingList.getItem(0).getSymbol(), "$");
-        assertEquals(spendingList.getItem(0).getAmount(), 3.0);
+        assertEquals("buy sushi", spendingList.getItem(0).getDescription());
+        assertEquals("$", spendingList.getItem(0).getSymbol());
+        assertEquals(3.0, spendingList.getItem(0).getAmount());
     }
 }
