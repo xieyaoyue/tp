@@ -1,0 +1,14 @@
+@startuml
+->EditCommand:execute
+activate EditCommand
+EditCommand->SpendingList:editItem
+activate SpendingList
+SpendingList-->EditCommand:
+deactivate SpendingList
+EditCommand->Ui:printEdit
+activate Ui
+Ui-->EditCommand
+deactivate Ui
+<--EditCommand
+deactivate EditCommand
+@enduml
