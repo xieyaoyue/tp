@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author pinfang
 public class SummaryCommand extends Command {
     private String year;
     private String month;
@@ -16,6 +17,7 @@ public class SummaryCommand extends Command {
     private boolean isValidMonth = true;
     private static final Logger logger = Logger.getLogger("SummaryCommand");
 
+    //@@author pinfang
     public SummaryCommand(String year, String month) {
         this.year = year;
         this.month = changeMonthFormat(month);
