@@ -82,7 +82,6 @@ public class SummaryCommand extends Command {
             newFormat = null;
             isValidMonth = false;
         }
-
         return newFormat;
     }
 }

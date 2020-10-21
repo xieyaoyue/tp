@@ -39,9 +39,10 @@ public class SpendingList {
         storage.save(this);
     }
 
-    public void addItem(String description, String symbol, double amount) throws IOException {
-        Item item = new Item(description, symbol, amount);
+    public void addItem(String description, String symbol, double amount, String category) throws IOException {
+        Item item = new Item(description, symbol, amount, category);
         spendingList.add(item);
+        System.out.println(item.getCategory());
         save();
     }
 
