@@ -9,5 +9,4 @@ user<-->(Ui)
 (Main)-->(Storage)
 (Storage)-left->(DukeException)
 (Parser)-->(DukeException)
-
 @enduml
