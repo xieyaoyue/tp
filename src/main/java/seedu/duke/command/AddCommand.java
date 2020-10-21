@@ -30,7 +30,7 @@ public class AddCommand extends Command {
         spendingList.addItem(description, symbol, amount, category);
         ui.printAdd(spendingList);
         SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
-        //spendingListCategoriser.execute();
+        spendingListCategoriser.execute(spendingList);
         if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, ui);
