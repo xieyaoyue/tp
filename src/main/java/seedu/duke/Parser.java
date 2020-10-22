@@ -1,5 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.command.SpendingListCommand;
+import seedu.duke.command.SetBudgetCommand;
+import seedu.duke.command.ConvertCommand;
+import seedu.duke.command.EditCommand;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.ClearListCommand;
 import seedu.duke.command.Command;
@@ -9,11 +13,11 @@ import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.ListCommand;
 import seedu.duke.command.RepayCommand;
 import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewCommand;
+import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -24,15 +28,15 @@ public class Parser {
         ADD("^add\\s*-d.+-s\\s*.\\d+([.]\\d*)?$", "add"),
         REPAY("^repay\\s*-d.+-s.+-t\\s*.\\d+([.]\\d*)?\\s*.$", "repay"),
         EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
-        LIST("^spending list$","spending list"),
+        SPENDINGLIST("^spending list$","spending list"),
+        REPAYMENTLIST("^repayment list$","repayment list"),
         SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
-        View("^view$", "view"),
+        VIEW("^view$", "view"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
         SUMMARY_YEAR("^summary\\s*\\d{4}$", "summaryYear"),
         SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth"),
-
         EXPORT("^export.*$", "export"),
         DRAW("^draw$", "draw"),
         DRAW_YEAR("^draw\\s*\\d{4}$", "drawYear"),
@@ -109,7 +113,8 @@ public class Parser {
             Command newEditCommand = getEditCommand(commandParameters);
             assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
             return newEditCommand;
-        case "spending list": return new ListCommand();
+        case "spending list": return new SpendingListCommand();
+        case "repayment list": return new RepaymentListCommand();
         case "set": return new SetBudgetCommand(commandParameters);
         case "repay": return new RepayCommand(commandParameters);
         case "export": return new ExportCommand(commandParameters);
