@@ -35,7 +35,7 @@ public class ClearListCommand extends Command {
     }
 
     public void execute(RepaymentList repaymentList, Ui ui) {
-        if(!isClearAll) {
+        if (!isClearAll) {
             assert (clearIndex > 0 && clearIndex <= repaymentList.getListSize()) : "Wrong index";
             ui.printClearIndex(repaymentList.getEntry(clearIndex - 1));
             repaymentList.deleteRepaymentEntry(clearIndex - 1);
