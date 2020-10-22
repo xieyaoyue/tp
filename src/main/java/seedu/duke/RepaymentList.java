@@ -25,6 +25,22 @@ public class RepaymentList {
     public ArrayList<String> getRepaymentList() {
         return repaymentList;
     }
+
+    public void deleteRepaymentEntry(int index) {
+        repaymentList.remove(index);
+    }
+
+    public void clearAllEntries() {
+        repaymentList.clear();
+    }
+
+    public int getListSize() {
+        return repaymentList.size();
+    }
+
+    public String getEntry(int index) {
+        return repaymentList.get(index);
+    }
     
     private void combine() {
         currentString = name + " " + currency + " " + repayment + " " + deadline;

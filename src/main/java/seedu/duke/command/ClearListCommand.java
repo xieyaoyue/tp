@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
@@ -17,6 +18,9 @@ public class ClearListCommand extends Command {
         }
     }
 
+    public ClearListCommand() {
+    }
+
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         if (!isClearAll) {
@@ -26,7 +30,27 @@ public class ClearListCommand extends Command {
         } else {
             spendingList.clearAllItems();
             assert spendingList.getListSize() == 0 : "List size should be 0";
-            ui.printClearAll();
+            ui.printClearAllSpendingList();
         }
+    }
+
+    public void execute(RepaymentList repaymentList, Ui ui) {
+        if (!isClearAll) {
+            assert (clearIndex > 0 && clearIndex <= repaymentList.getListSize()) : "Wrong index";
+            ui.printClearIndex(repaymentList.getEntry(clearIndex - 1));
+            repaymentList.deleteRepaymentEntry(clearIndex - 1);
+        } else {
+            repaymentList.clearAllEntries();
+            assert repaymentList.getListSize() == 0 : "List size should be 0";
+            ui.printClearAllRepaymentList();
+        }
+    }
+
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+        spendingList.clearAllItems();
+        repaymentList.clearAllEntries();
+        assert spendingList.getListSize() == 0 : "List size should be 0";
+        assert repaymentList.getListSize() == 0 : "List size should be 0";
+        ui.printClearAll();
     }
 }
