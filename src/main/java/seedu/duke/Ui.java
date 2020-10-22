@@ -157,8 +157,24 @@ public class Ui {
         drawSeparateLine();
     }
 
+    public void printClearIndex(String repaymentEntry) {
+        out.println("You've deleted this entry in the repayment list:");
+        out.println(repaymentEntry);
+        drawSeparateLine();
+    }
+
     public void printClearAll() {
         out.println("You've deleted all the records.");
+        drawSeparateLine();
+    }
+
+    public void printClearAllSpendingList() {
+        out.println("You've deleted all the records in the spending list.");
+        drawSeparateLine();
+    }
+
+    public void printClearAllRepaymentList() {
+        out.println("You've deleted all the entries in the repayment list.");
         drawSeparateLine();
     }
 
