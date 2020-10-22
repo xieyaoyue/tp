@@ -34,7 +34,7 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -d chicken rice -s SGD 3.00"},
+            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
             {"convert", "convert -d INPUT_CURRENCY -d OUTPUT_CURRENCY", "convert -d SGD -d USD"},
@@ -254,6 +254,18 @@ public class Ui {
     public void printRepay(String currentString) {
         out.println("You have added this record: ");
         out.println(currentString);
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
+    public void printDrawMessage(boolean isSuccessful) {
+        if (isSuccessful) {
+            out.println("The charts have been generated successfully!");
+            out.println("You can find the charts at this location:");
+            out.println(System.getProperty("user.dir") + "\\Charts.xlsx");
+        } else {
+            out.println("Sorry, generation failed.");
+        }
         drawSeparateLine();
     }
 }
