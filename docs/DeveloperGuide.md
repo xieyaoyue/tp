@@ -104,9 +104,11 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 |--------|----------|---------------|------------------|
 |v1.0|international student|convert local currency to foreign currency or the reverse way|trace my spending easily|
 |v1.0|careless user|view and reset the previous input|ensure the data input is correct|
+|v1.0|user|have a monthly/yearly summary|know how much I had spent|
 |v2.0|user|set a budget limit|be less likely to overspend my money|
 |v2.0|user|be warned when my spending approaches the budget limit or exceeds the budget limit|be less likely to overspend my money|
-
+|v2.0|big spender|tag purchases according to categories|for an easier overview|
+|v2.0|user|have weekly reminders on how much has spent|take note of future spending|
 
 ## Non-Functional Requirements
 
