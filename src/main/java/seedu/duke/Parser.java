@@ -12,6 +12,7 @@ import seedu.duke.command.HelpCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.RepayCommand;
 import seedu.duke.command.ExportCommand;
+import seedu.duke.command.ViewCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class Parser {
@@ -24,6 +25,7 @@ public class Parser {
         EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
         LIST("^spending list$","spending list"),
         SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
+        View("^view$", "view"),
         LOGOUT("^logout$", "logout"),
         CONVERT("^convert\\s*-d.+\\s*-d.+$", "convert"),
         SUMMARY("^summary$", "summary"),
@@ -107,6 +109,7 @@ public class Parser {
         case "set": return new SetBudgetCommand(commandParameters);
         case "repay": return new RepayCommand(commandParameters);
         case "export": return new ExportCommand(commandParameters);
+        case "view": return new ViewCommand();
         default: throw new InvalidCommandException();
         }
     }

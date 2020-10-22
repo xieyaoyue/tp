@@ -70,7 +70,7 @@ public class Ui {
         this.in = in;
         this.out = out;
     }
-
+    
     public String getUserInput() {
         return in.nextLine();
     }
@@ -211,7 +211,11 @@ public class Ui {
         out.println("Warning! Your spending has exceeded your budget limit.");
         drawSeparateLine();
     }
-    
+
+    public void printPurgeData() {
+        out.println("All data are deleted.");
+    }
+
     //@@author
     public void printReminderMessage(double amountSpent, double amountRemained, String toString) {
     }
@@ -220,6 +224,16 @@ public class Ui {
     public void printExportMessage() {
         out.println("The records have been exported to an Excel file successfully.");
         drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public static void printCurrentBudgetLimit() {
+        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+    }
+    
+    //@@author killingbear999
+    public static void printNoBudget() {
+        System.out.println("No budget has been set yet.");
     }
 }
 

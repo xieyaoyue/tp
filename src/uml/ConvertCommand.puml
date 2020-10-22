@@ -1,44 +1,44 @@
 @startuml
-->ConvertCommand:execute
-activate ConvertCommand
-ConvertCommand->SpendingList:getSpendingList
-activate SpendingList
-SpendingList-->ConvertCommand:spendingList
-deactivate SpendingList
-ConvertCommand->ConvertCommand:identifyCurrency
-activate ConvertCommand
-ConvertCommand-->ConvertCommand:currencies
-deactivate ConvertCommand
-ConvertCommand->ConvertCommand:findExchangeRate
-activate ConvertCommand
-ConvertCommand-->ConvertCommand:exchangeRate
-deactivate ConvertCommand
+->":ConvertCommand":execute(spendingList, ui)
+activate ":ConvertCommand"
+":ConvertCommand"->":SpendingList":getSpendingList()
+activate ":SpendingList"
+":SpendingList"-->":ConvertCommand":spendingList
+deactivate ":SpendingList"
+":ConvertCommand"->":ConvertCommand":identifyCurrency(description)
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":currencies
+deactivate ":ConvertCommand"
+":ConvertCommand"->":ConvertCommand":findExchangeRate()
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":exchangeRate
+deactivate ":ConvertCommand"
 loop spendingList.size times
-ConvertCommand->ConvertCommand:updateNewAmount
-activate ConvertCommand
-ConvertCommand->Item:editAmount
-activate Item
-Item-->ConvertCommand:
-deactivate Item
-ConvertCommand-->ConvertCommand:
-deactivate ConvertCommand
-ConvertCommand->ConvertCommand:updateCurrency
-activate ConvertCommand
-ConvertCommand->Item:editCurrency
-activate Item
-Item-->ConvertCommand:
-deactivate Item
-ConvertCommand-->ConvertCommand:
-deactivate ConvertCommand
+":ConvertCommand"->":ConvertCommand":updateNewAmount(currentString)
+activate ":ConvertCommand"
+":ConvertCommand"->":Item":editAmount(amount)
+activate ":Item"
+":Item"-->":ConvertCommand":
+deactivate ":Item"
+":ConvertCommand"-->":ConvertCommand":
+deactivate ":ConvertCommand"
+":ConvertCommand"->":ConvertCommand":updateCurrency(currentString)
+activate ":ConvertCommand"
+":ConvertCommand"->":Item":editSymbol(currency)
+activate ":Item"
+":Item"-->":ConvertCommand":
+deactivate ":Item"
+":ConvertCommand"-->":ConvertCommand":
+deactivate ":ConvertCommand"
 end
-ConvertCommand->Ui:printConvertCurrency
-activate Ui
-Ui-->ConvertCommand:
-deactivate Ui
-ConvertCommand->SpendingList:updateSpendingList
-activate SpendingList
-SpendingList-->ConvertCommand:
-deactivate SpendingList
-<--ConvertCommand
-deactivate ConvertCommand
+":ConvertCommand"->":Ui":printConvertCurrency(outputCurrecny)
+activate ":Ui"
+":Ui"-->":ConvertCommand":
+deactivate ":Ui"
+":ConvertCommand"->":SpendingList":updateSpendingList()
+activate ":SpendingList"
+":SpendingList"-->":ConvertCommand":
+deactivate ":SpendingList"
+<--":ConvertCommand"
+deactivate ":ConvertCommand"
 @enduml
