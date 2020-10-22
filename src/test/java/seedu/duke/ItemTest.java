@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ItemTest {
     private LocalDate date = LocalDate.now();
     private Item rice = new Item("rice", "S$", 2);
+    private Item food = new Item("food", "SGD", 2, "Food");
 
     @Test
     public void testStringConversion() {
@@ -60,5 +61,11 @@ public class ItemTest {
     public void getDate() {
         String expectedString = date.toString();
         assertEquals(expectedString, rice.getDate());
+    }
+
+    @Test
+    public void getCategory() {
+        String expectedString = "Food";
+        assertEquals(expectedString, food.getCategory());
     }
 }
