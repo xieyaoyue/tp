@@ -13,7 +13,6 @@ import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
-import seedu.duke.command.ListCommand;
 import seedu.duke.command.RepayCommand;
 import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.command.SummaryCommand;
