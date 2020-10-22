@@ -69,6 +69,23 @@ limit
 Figure below shows the sequence diagram of WarnCommand class.
 ![Sequence Diagram of WarnCommand class](images/WarnCommand.png)
 
+### Summary Feature
+`SpendingList` and `Item` facilitate this feature. The Summary feature is able to summarise the total amount spent 
+given a date. It implements the following operations:
+* `Item#getDate()` → gets the date when user spent on the item
+* `Item#getAmount()` → gets the amount spent on the item
+* `SpendinList#getSpendingAmount(period)` → gets the total amount spent during a period
+Below shows an example of usage:
+1. User executes the `summary 2020` command to get the amount spent during year 2020.
+2. The `summary` command calls the `SpendinList#getSpendingAmount(2020)` which checks the spending date of every items
+stored in the memory.
+3. If the item is spent during year 2020, the amount spent will be summed up.
+
+Figure below shows the sequence diagram of `SummaryCommand` class:
+![Sequence Diagram of SummaryCommand class](images/summary.png)
+
+
+
 ## Product scope
 ### Target user profile
 
@@ -87,9 +104,11 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 |--------|----------|---------------|------------------|
 |v1.0|international student|convert local currency to foreign currency or the reverse way|trace my spending easily|
 |v1.0|careless user|view and reset the previous input|ensure the data input is correct|
+|v1.0|user|have a monthly/yearly summary|know how much I had spent|
 |v2.0|user|set a budget limit|be less likely to overspend my money|
 |v2.0|user|be warned when my spending approaches the budget limit or exceeds the budget limit|be less likely to overspend my money|
-
+|v2.0|big spender|tag purchases according to categories|for an easier overview|
+|v2.0|user|have weekly reminders on how much has spent|take note of future spending|
 
 ## Non-Functional Requirements
 
