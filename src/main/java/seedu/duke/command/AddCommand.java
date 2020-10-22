@@ -34,6 +34,10 @@ public class AddCommand extends Command {
             SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
             spendingListCategoriser.execute(spendingList);
         }
+        if (size % 8 == 0) {
+            EncouragementCommand encouragementCommand = new EncouragementCommand();
+            encouragementCommand.execute(spendingList, ui);
+        }
         if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, ui);
