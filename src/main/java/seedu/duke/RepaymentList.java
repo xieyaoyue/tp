@@ -34,4 +34,8 @@ public class RepaymentList {
         combine();
         repaymentList.add(currentString);
     }
+    
+    public String returnCurrentString() {
+        return currentString;
+    }
 }

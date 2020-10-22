@@ -249,5 +249,12 @@ public class Ui {
         }
         drawSeparateLine();
     }
+    
+    //@@author killingbear999
+    public void printRepay(String currentString) {
+        out.println("You have added this record: ");
+        out.println(currentString);
+        drawSeparateLine();
+    }
 }
 
