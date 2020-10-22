@@ -85,6 +85,9 @@ public class DrawCommand extends Command {
             workbook.write(fileOut);
             fileOut.flush();
             fileOut.close();
+            ui.printDrawMessage(true);
+        } else {
+            ui.printDrawMessage(false);
         }
     }
 

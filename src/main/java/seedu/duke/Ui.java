@@ -256,5 +256,17 @@ public class Ui {
         out.println(currentString);
         drawSeparateLine();
     }
+
+    //@@author Wu-Haitao
+    public void printDrawMessage(boolean isSuccessful) {
+        if (isSuccessful) {
+            out.println("The charts have been generated successfully!");
+            out.println("You can find the charts at this location:");
+            out.println(System.getProperty("user.dir") + "\\Charts.xlsx");
+        } else {
+            out.println("Sorry, generation failed.");
+        }
+        drawSeparateLine();
+    }
 }
 
