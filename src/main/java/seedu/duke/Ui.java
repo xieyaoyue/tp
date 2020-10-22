@@ -216,8 +216,11 @@ public class Ui {
         out.println("All data are deleted.");
     }
 
-    //@@author
-    public void printReminderMessage(double amountSpent, double amountRemained, String toString) {
+    //@@author pinfang
+    public void printReminderMessage(double amountSpent, double amountRemained, String startWeek) {
+        out.printf("You have spent $%.2f since this Mon (%s).\n", amountSpent, startWeek);
+        out.printf("You have $%.2f left in your budget.\n", amountRemained);
+        drawSeparateLine();
     }
 
     //@@author Wu-Haitao
