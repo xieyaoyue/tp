@@ -1,0 +1,60 @@
+@startuml
+->":ExportCommand":execute(spendingList, ui)
+activate ":ExportCommand"
+":ExportCommand" -> ":ExportCommand" : exportToExcel()
+activate ":ExportCommand"
+":ExportCommand" -> ":Workbook"
+activate ":Workbook"
+":Workbook" -> ":Workbook" : createSheet()
+activate ":Workbook"
+":Workbook" --> ":Workbook"
+deactivate ":Workbook"
+":Workbook" --> ":ExportCommand" : workbook
+deactivate ":Workbook"
+
+loop spendingList.size times
+
+":ExportCommand" -> ":Workbook"
+activate ":Workbook"
+":ExportCommand" -> ":SpendingList"
+activate ":SpendingList"
+":SpendingList" -> ":SpendingList" : getItem()
+activate ":SpendingList"
+":SpendingList" --> ":SpendingList"
+deactivate ":SpendingList"
+":SpendingList" --> ":ExportCommand" : item
+deactivate ":SpendingList"
+
+":Workbook" -> ":Workbook": createCell()
+activate ":Workbook"
+":Workbook" --> ":Workbook"
+deactivate ":Workbook"
+":ExportCommand" -> ":Workbook" : item
+":Workbook" -> ":Workbook" : set cell value
+activate ":Workbook"
+":Workbook" --> ":Workbook"
+deactivate ":Workbook"
+":Workbook" --> ":ExportCommand" : modified workbook
+deactivate ":Workbook"
+end
+":ExportCommand" -> ":Workbook"
+activate ":Workbook"
+":Workbook" -> ":FileOutputStream"
+activate ":FileOutputStream"
+":FileOutputStream" --> ":Workbook" : output
+deactivate ":FileOutputStream"
+":Workbook" -> ":Workbook" : write(output)
+activate ":Workbook"
+":Workbook" --> ":Workbook"
+deactivate ":Workbook"
+":Workbook" --> ":ExportCommand"
+deactivate ":Workbook"
+":ExportCommand" --> ":ExportCommand" :
+deactivate ":ExportCommand"
+":ExportCommand" -> ":Ui": printExportMessage()
+activate ":Ui"
+":Ui"-->":ExportCommand":
+deactivate ":Ui"
+<--":ExportCommand"
+deactivate ":ExportCommand"
+@enduml
