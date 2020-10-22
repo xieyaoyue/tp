@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Ui {
     private Scanner in;
@@ -237,6 +238,16 @@ public class Ui {
     //@@author killingbear999
     public static void printNoBudget() {
         System.out.println("No budget has been set yet.");
+    }
+    
+    //@@author killingbear999
+    public void printRepaymentList(ArrayList<String> repaymentList) {
+        if (!repaymentList.isEmpty()) {
+            out.print(repaymentList);
+        } else {
+            out.println("Nothing in the list.");
+        }
+        drawSeparateLine();
     }
 }
 
