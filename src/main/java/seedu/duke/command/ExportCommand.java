@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class ExportCommand extends Command {
     private String filePath;
-    private final int COL_WIDTH = 15;
 
     public ExportCommand(String filePath) {
         this.filePath = filePath;
@@ -32,7 +31,7 @@ public class ExportCommand extends Command {
     private void exportToExcel(SpendingList list) throws IOException {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("sheet0");
-        sheet.setDefaultColumnWidth(COL_WIDTH);
+        sheet.setDefaultColumnWidth(15);
         Row row = sheet.createRow(0);
         Cell[] cells = new Cell[5];
         CellStyle cellStyle = workbook.createCellStyle();
