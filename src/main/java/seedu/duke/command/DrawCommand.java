@@ -103,7 +103,7 @@ public class DrawCommand extends Command {
 
     private TreeMap<Integer, Double> getYearMap(SpendingList spendingList) {
         TreeMap<Integer, Double> map = new TreeMap<>();
-        int minYear = Integer.parseInt(spendingList.getItem(0).getDate());
+        int minYear = Integer.parseInt(spendingList.getItem(0).getDate().substring(0, 4));
         int maxYear = minYear;
         for (int i = 0; i < spendingList.getListSize(); i++) {
             Item item = spendingList.getItem(i);
