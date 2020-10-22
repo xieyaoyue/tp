@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.category.Item;
 
 import java.time.LocalDate;
 
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ItemTest {
     private LocalDate date = LocalDate.now();
     private Item rice = new Item("rice", "S$", 2);
+    private Item food = new Item("food", "SGD", 2, "Food");
 
     @Test
     public void testStringConversion() {
@@ -56,8 +58,14 @@ public class ItemTest {
     }
 
     @Test
-    public void getYearMonth() {
-        String expectedString = date.toString().substring(0, 7);
-        assertEquals(expectedString, rice.getYearMonth());
+    public void getDate() {
+        String expectedString = date.toString();
+        assertEquals(expectedString, rice.getDate());
+    }
+
+    @Test
+    public void getCategory() {
+        String expectedString = "Food";
+        assertEquals(expectedString, food.getCategory());
     }
 }

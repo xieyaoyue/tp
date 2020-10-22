@@ -11,31 +11,31 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ClearCommandTest {
+class ClearSpendingListCommandTest {
 
     @Test
     void execute_clearIndex() throws InvalidStorageFileExtensionException,
             InvalidStorageFilePathException, IOException {
-        ClearCommand clearCommand = new ClearCommand(false, 1);
+        ClearListCommand clearListCommand = new ClearListCommand(false, 1);
         Storage storage = new Storage();
         SpendingList spendingList = new SpendingList(storage);
         Ui ui = new Ui();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
-        clearCommand.execute(spendingList, ui);
-        assertEquals(spendingList.getListSize(), 1);
+        clearListCommand.execute(spendingList, ui);
+        assertEquals(1, spendingList.getListSize());
     }
 
     @Test
     void execute_clearAll() throws InvalidStorageFileExtensionException, InvalidStorageFilePathException, IOException {
-        ClearCommand clearCommand = new ClearCommand(true, 0);
+        ClearListCommand clearListCommand = new ClearListCommand(true, 0);
         Storage storage = new Storage();
         SpendingList spendingList = new SpendingList(storage);
         Ui ui = new Ui();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
-        clearCommand.execute(spendingList, ui);
-        assertEquals(spendingList.getListSize(), 0);
+        clearListCommand.execute(spendingList, ui);
+        assertEquals(0, spendingList.getListSize());
     }
 
 }

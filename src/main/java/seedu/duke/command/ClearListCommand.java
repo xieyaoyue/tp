@@ -5,12 +5,12 @@ import seedu.duke.Ui;
 
 import java.io.IOException;
 
-public class ClearCommand extends Command {
+public class ClearListCommand extends Command {
 
     private boolean isClearAll;
     private int clearIndex;
 
-    public ClearCommand(boolean isClearAll, int clearIndex) {
+    public ClearListCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
         if (!isClearAll) {
             this.clearIndex = clearIndex;

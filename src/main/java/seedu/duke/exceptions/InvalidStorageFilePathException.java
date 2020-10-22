@@ -1,7 +1,6 @@
 package seedu.duke.exceptions;
 
-import seedu.duke.Duke;
-
+//@@author killingbear999
 public class InvalidStorageFilePathException extends DukeException {
     @Override
     public String toString() {

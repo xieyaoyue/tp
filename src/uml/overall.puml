@@ -1,0 +1,31 @@
+@startuml
+
+user -> ui: sends \ncommand
+activate ui
+
+ui -> parser: handles \ncommand
+activate parser
+
+parser -> command: processes \ncommand
+deactivate parser
+activate command
+
+command -> storage
+activate storage
+
+storage -> storage: saves \ndata
+activate storage
+
+storage --> storage
+deactivate storage
+
+storage --> command
+deactivate storage
+
+command --> ui:
+deactivate command
+
+ui --> user: return message
+deactivate ui
+
+@enduml

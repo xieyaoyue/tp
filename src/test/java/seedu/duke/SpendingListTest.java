@@ -1,13 +1,13 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.category.Item;
 
 import java.io.IOException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,11 +15,11 @@ class SpendingListTest {
     @Test
     public void addItem() throws IOException {
         SpendingList expectedList = initSpendingList(
-                new Item("buy book", "S$", 10)
+                new Item("buy book", "S$", 10, "")
         );
 
         SpendingList realList = new SpendingList((Storage) null);
-        realList.addItem("buy book", "S$", 10);
+        realList.addItem("buy book", "S$", 10, "");
 
         assert realList.getListSize() == 1 : "item not added";
         assertEqualList(expectedList, realList);
@@ -42,16 +42,16 @@ class SpendingListTest {
     @Test
     public void deleteItem() throws IOException {
         SpendingList expectedList = initSpendingList(
-                new Item("noodle", "S$", 1.5),
-                new Item("fish", "S$", 10),
-                new Item("books", "S$", 8.9)
+                new Item("noodle", "S$", 1.5, ""),
+                new Item("fish", "S$", 10, ""),
+                new Item("books", "S$", 8.9, "")
         );
 
         SpendingList realList = initSpendingList(
-                new Item("rice", "S$", 2),
-                new Item("noodle", "S$", 1.5),
-                new Item("fish", "S$", 10),
-                new Item("books", "S$", 8.9)
+                new Item("rice", "S$", 2, ""),
+                new Item("noodle", "S$", 1.5, ""),
+                new Item("fish", "S$", 10, ""),
+                new Item("books", "S$", 8.9, "")
         );
         realList.deleteItem(0);
 
@@ -66,35 +66,35 @@ class SpendingListTest {
         );
 
         Item firstItem = realList.getItem(0);
-        assertEquals(firstItem.description, "buy book");
-        assertEquals(firstItem.symbol, "S$");
-        assertEquals(firstItem.amount, 10);
+        assertEquals(firstItem.getDescription(), "buy book");
+        assertEquals(firstItem.getSymbol(), "S$");
+        assertEquals(firstItem.getAmount(), 10);
     }
 
     @Test
     void getListSize() throws IOException {
         SpendingList realList = new SpendingList((Storage) null);
 
-        realList.addItem("buy book", "S$", 10);
+        realList.addItem("buy book", "S$", 10, "");
         assertEquals(realList.getListSize(), 1);
 
-        realList.addItem("buy stationary", "S$", 5);
+        realList.addItem("buy stationary", "S$", 5, "");
         assertEquals(realList.getListSize(), 2);
 
         realList.deleteItem(0);
         assertEquals(realList.getListSize(), 1);
 
-        realList.addItem("buy grocery", "S$", 10);
+        realList.addItem("buy grocery", "S$", 10, "");
         assertEquals(realList.getListSize(), 2);
     }
 
     @Test
     void getList() {
         ArrayList<Item> expectedList = initList(
-                new Item("rice", "S$", 2),
-                new Item("noodle", "S$", 1.5),
-                new Item("fish", "S$", 10),
-                new Item("books", "S$", 8.9)
+                new Item("rice", "S$", 2, ""),
+                new Item("noodle", "S$", 1.5, ""),
+                new Item("fish", "S$", 10, ""),
+                new Item("books", "S$", 8.9, "")
         );
 
         SpendingList realSL = new SpendingList(expectedList);
@@ -108,8 +108,8 @@ class SpendingListTest {
         final SpendingList expectedList = new SpendingList((Storage) null);
 
         SpendingList realList = initSpendingList(
-                new Item("buy book", "S$", 10),
-                new Item("buy stationary", "S$", 5)
+                new Item("buy book", "S$", 10, ""),
+                new Item("buy stationary", "S$", 5, "")
         );
         assertEquals(realList.getListSize(), 2, "List not instantiated with 2 items");
         realList.clearAllItems();
@@ -121,11 +121,11 @@ class SpendingListTest {
     @Test
     void editItem() throws IOException {
         SpendingList realList = initSpendingList(
-                new Item("buy book", "S$", 10)
+                new Item("buy book", "S$", 10, "Education")
         );
-        realList.editItem(0, "buy book", "S$", 12);
+        realList.editItem(0, "buy book", "S$", 12,"Education");
 
-        assertEquals(realList.getItem(0).amount, 12);
+        assertEquals(realList.getItem(0).getAmount(), 12);
     }
 
     @Test
@@ -134,12 +134,24 @@ class SpendingListTest {
         String expectedYear = Integer.toString(LocalDate.now().getYear());
 
         SpendingList realList = initSpendingList(
-                new Item("rice", "S$", 2),
-                new Item("noodle", "S$", 1.5),
-                new Item("fish", "S$", 10),
-                new Item("books", "S$", 8.9)
+                new Item("rice", "S$", 2, ""),
+                new Item("noodle", "S$", 1.5, ""),
+                new Item("fish", "S$", 10, ""),
+                new Item("books", "S$", 8.9, "")
         );
 
         assertEquals(realList.getSpendingAmount(expectedYear), expectedAmount);
+    }
+    
+    //@@author killingbear999
+    @Test
+    public void getCurrentAmountTest() {
+        double expectedAmount = 20.0;
+        SpendingList realList = initSpendingList(
+                new Item("sushi", "S$", 11.0, ""),
+                new Item("bubble tea", "S$", 4.0, ""),
+                new Item("medicine", "S$", 5.0, "")
+        );
+        assertEquals(realList.getCurrentAmount(), expectedAmount);
     }
 }

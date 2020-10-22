@@ -1,0 +1,12 @@
+@startuml
+ :User: as user        #tan
+user<-->(Ui)
+(Main)-up->(Ui)
+(Main)-up->(Command)
+(Main)-right->(SpendingList)
+(SpendingList)-->(Item)
+(Main)-left->(Parser)
+(Main)-->(Storage)
+(Storage)-left->(DukeException)
+(Parser)-->(DukeException)
+@enduml

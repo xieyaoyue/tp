@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.category.Item;
 import seedu.duke.command.ConvertCommand;
 
 import java.io.IOException;
@@ -14,6 +15,9 @@ public class SpendingList {
         this.description = description;
         this.spendingList = spendingList;
         this.storage = storage;
+    }
+    
+    public SpendingList() {
     }
 
     public SpendingList(String description, Storage storage) {
@@ -33,6 +37,12 @@ public class SpendingList {
             return;
         }
         storage.save(this);
+    }
+
+    public void addItem(String description, String symbol, double amount, String category) throws IOException {
+        Item item = new Item(description, symbol, amount, category);
+        spendingList.add(item);
+        save();
     }
 
     public void addItem(String description, String symbol, double amount) throws IOException {
@@ -67,24 +77,99 @@ public class SpendingList {
     public double getSpendingAmount(String period) {
         double totalAmount = 0;
         for (Item i: spendingList) {
-            if (i.getYearMonth().contains(period)) {
+            if (i.getDate().contains(period)) {
                 totalAmount += i.getAmount();
             }
         }
         return totalAmount;
     }
     
-    public void editItem(int number, String description, String symbol, double amount) throws IOException {
+    //@@author killingbear999
+    public void editItem(int number, String description, String symbol, double amount, String category)
+            throws IOException {
         Item item = getItem(number);
         item.editDescription(description);
         item.editSymbol(symbol);
         item.editAmount(amount);
+        item.editCategory(category);
         save();
     }
 
+    //@@author killingbear999
     public void updateSpendingList() throws IOException {
         ConvertCommand convertCommand = new ConvertCommand(description);
         spendingList = convertCommand.updateSpendingList();
         save();
+    }
+    
+    //@@author killingbear999
+    public double getCurrentAmount() {
+        double currentAmount = 0;
+        for (Item i: spendingList) {
+            if (i.getDate().compareTo(Budget.getDate()) >= 0) {
+                currentAmount += i.getAmount();
+            }
+        }
+        return currentAmount;
+    }
+    
+    //@@author killingbear999
+    private void swapItem(Item item1, Item item2) {
+        final String tempCategory = item1.getCategory();
+        final String tempDescription = item1.getDescription();
+        final String tempSymbol = item1.getSymbol();
+        final String tempDate = item1.getDate();
+        final double tempAmount = item1.getAmount();
+        
+        item1.editCategory(item2.getCategory());
+        item1.editDescription(item2.getDescription());
+        item1.editSymbol(item2.getSymbol());
+        item1.editAmount(item2.getAmount());
+        item1.editDate(item2.getDate());
+    
+        item2.editCategory(tempCategory);
+        item2.editDescription(tempDescription);
+        item2.editSymbol(tempSymbol);
+        item2.editAmount(tempAmount);
+        item2.editDate(tempDate);
+    }
+    
+    //@@author killingbear999
+    public void categoriseSpendingList() {
+        int count = spendingList.size() - 1;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < spendingList.size(); j++) {
+                Item currentItem = getItem(j);
+                if (i == 0 && currentItem.getCategory().equals("Education")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 1 && currentItem.getCategory().equals("Entertainment")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 2 && currentItem.getCategory().equals("Food")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 3 && currentItem.getCategory().equals("Health")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 4 && currentItem.getCategory().equals("Transportation")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 5 && currentItem.getCategory().equals("Utilities")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                } else if (i == 6 && currentItem.getCategory().equals("Other")) {
+                    Item lastItem = getItem(count);
+                    swapItem(currentItem, lastItem);
+                    count = count - 1;
+                }
+            }
+        }
     }
 }
