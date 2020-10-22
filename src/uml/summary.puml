@@ -1,5 +1,5 @@
 @startuml
--> ":SummaryCommand": execute()
+-> ":SummaryCommand": execute(spendingList, ui)
 activate ":SummaryCommand"
 
 ":SummaryCommand" -> ":SpendingList": getSpendingAmount(period)
