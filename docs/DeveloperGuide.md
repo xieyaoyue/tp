@@ -82,7 +82,6 @@ stored in the memory.
 3. If the item is spent during year 2020, the amount spent will be summed up.
 
 Figure below shows the sequence diagram of `SummaryCommand` class:
-![Sequence Diagram of SummaryCommand class](images/summary.png)
 
 
 
