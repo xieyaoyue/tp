@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ClearListCommandTest {
+class ClearSpendingListCommandTest {
 
     @Test
     void execute_clearIndex() throws InvalidStorageFileExtensionException,

@@ -106,7 +106,9 @@ public class SpendingList {
     public double getCurrentAmount() {
         double currentAmount = 0;
         for (Item i: spendingList) {
-            currentAmount += i.getAmount();
+            if (i.getDate().compareTo(Budget.getDate()) >= 0) {
+                currentAmount += i.getAmount();
+            }
         }
         return currentAmount;
     }
@@ -134,7 +136,7 @@ public class SpendingList {
     
     //@@author killingbear999
     public void categoriseSpendingList() {
-        int count = spendingList.size();
+        int count = spendingList.size() - 1;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < spendingList.size(); j++) {
                 Item currentItem = getItem(j);

@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Ui {
     private Scanner in;
@@ -216,8 +217,11 @@ public class Ui {
         out.println("All data are deleted.");
     }
 
-    //@@author
-    public void printReminderMessage(double amountSpent, double amountRemained, String toString) {
+    //@@author pinfang
+    public void printReminderMessage(double amountSpent, double amountRemained, String startWeek) {
+        out.printf("You have spent $%.2f since this Mon (%s).\n", amountSpent, startWeek);
+        out.printf("You have $%.2f left in your budget.\n", amountRemained);
+        drawSeparateLine();
     }
 
     //@@author Wu-Haitao
@@ -234,6 +238,23 @@ public class Ui {
     //@@author killingbear999
     public static void printNoBudget() {
         System.out.println("No budget has been set yet.");
+    }
+    
+    //@@author killingbear999
+    public void printRepaymentList(ArrayList<String> repaymentList) {
+        if (!repaymentList.isEmpty()) {
+            out.print(repaymentList);
+        } else {
+            out.println("Nothing in the list.");
+        }
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printRepay(String currentString) {
+        out.println("You have added this record: ");
+        out.println(currentString);
+        drawSeparateLine();
     }
 }
 
