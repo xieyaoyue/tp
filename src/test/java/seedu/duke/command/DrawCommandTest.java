@@ -8,7 +8,7 @@ import seedu.duke.category.Item;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class ExportCommandTest {
+class DrawCommandTest {
     public static ArrayList<Item> initList(Item... items) {
         return new ArrayList<>(Arrays.asList(items));
     }
@@ -28,7 +28,7 @@ class ExportCommandTest {
     @Test
     void execute() {
         try {
-            new ExportCommand(System.getProperty("user.dir") + "\\").execute(spendingList, ui);
+            new DrawCommand().execute(spendingList, ui);
         } catch (Exception e) {
             assert false;
         }
