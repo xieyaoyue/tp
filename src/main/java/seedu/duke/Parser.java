@@ -124,7 +124,7 @@ public class Parser {
         case "draw": return new DrawCommand();
         case "drawYear": return new DrawCommand(commandParameters);
         case "drawYearMonth": return new DrawCommand(commandParameters.substring(0, 4),
-                commandParameters.substring(4).strip());
+                 commandParameters.substring(4).strip());
         case "view": return new ViewCommand();
         default: throw new InvalidCommandException();
         }
