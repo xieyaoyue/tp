@@ -8,7 +8,7 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.ClearListCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ConvertCommand;
-import seedu.duke.command.DrawCommand;
+// import seedu.duke.command.DrawCommand;
 import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
@@ -118,10 +118,10 @@ public class Parser {
         case "set": return new SetBudgetCommand(commandParameters);
         case "repay": return new RepayCommand(commandParameters);
         case "export": return new ExportCommand(commandParameters);
-        case "draw": return new DrawCommand();
-        case "drawYear": return new DrawCommand(commandParameters);
-        case "drawYearMonth": return new DrawCommand(commandParameters.substring(0, 4),
-                commandParameters.substring(4).strip());
+        // case "draw": return new DrawCommand();
+        // case "drawYear": return new DrawCommand(commandParameters);
+        // case "drawYearMonth": return new DrawCommand(commandParameters.substring(0, 4),
+                // commandParameters.substring(4).strip());
         case "view": return new ViewCommand();
         default: throw new InvalidCommandException();
         }
