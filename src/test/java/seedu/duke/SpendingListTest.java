@@ -129,7 +129,7 @@ class SpendingListTest {
     }
 
     @Test
-    public void getSpendingAmount() {
+    public void getSpendingAmountTime() {
         double expectedAmount = 22.4;
         String expectedYear = Integer.toString(LocalDate.now().getYear());
 
@@ -140,7 +140,7 @@ class SpendingListTest {
                 new Item("books", "S$", 8.9, "")
         );
 
-        assertEquals(realList.getSpendingAmount(expectedYear), expectedAmount);
+        assertEquals(realList.getSpendingAmountTime(expectedYear), expectedAmount);
     }
     
     //@@author killingbear999
