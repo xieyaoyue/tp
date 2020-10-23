@@ -72,6 +72,6 @@ public class Item {
     }
 
     public String toString() {
-        return date + " " + description + " " + symbol + amount;
+        return date + " [" + category + "] " + description + " " + symbol + amount;
     }
 }

@@ -14,12 +14,14 @@ public class Reminder {
         saveDatesToList();
     }
 
-    public void execute(SpendingList spendingList, Ui ui, WarnCommand warnCommand) {
+    // public void execute(SpendingList spendingList, Ui ui, WarnCommand warnCommand) {
+    public void execute(SpendingList spendingList, Ui ui) {
         double amountSpent = 0;
         for (String i: period) {
             amountSpent += spendingList.getSpendingAmount(i);
         }
-        double amountRemained = warnCommand.findRemainingAmount();
+        // double amountRemained = warnCommand.findRemainingAmount();
+        double amountRemained = 0;
         ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
     }
 
