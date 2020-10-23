@@ -18,7 +18,7 @@ public class RepayCommand extends Command {
     }
     
     private void identifyRepaymentInformation(String description) {
-        int nameBeginIndex = description.indexOf("-d") + "-d".length() + 1;
+        int nameBeginIndex = description.indexOf("-n") + "-n".length() + 1;
         int nameEndIndex = description.indexOf("-s") - 1;
         name = description.substring(nameBeginIndex, nameEndIndex);
         
