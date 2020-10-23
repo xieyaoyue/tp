@@ -74,10 +74,20 @@ public class SpendingList {
         return spendingList;
     }
 
-    public double getSpendingAmount(String period) {
+    public double getSpendingAmountTime(String period) {
         double totalAmount = 0;
         for (Item i: spendingList) {
             if (i.getDate().contains(period)) {
+                totalAmount += i.getAmount();
+            }
+        }
+        return totalAmount;
+    }
+
+    public double getSpendingAmountCategory(String category) {
+        double totalAmount = 0;
+        for (Item i: spendingList) {
+            if (i.getCategory().contains(category)) {
                 totalAmount += i.getAmount();
             }
         }
