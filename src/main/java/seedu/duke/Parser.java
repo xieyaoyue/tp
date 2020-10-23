@@ -26,7 +26,7 @@ public class Parser {
         CLEAR_ALL("^clear\\s*-all$", "clearAll"),
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-c.+-d.+-s\\s*[A-Z]{3}\\s*\\d+([.]\\d*)?$", "add"),
-        REPAY("^repay\\s*-d.+-s\\s*[A-Z]{3}\\s*\\d+([.]\\d*)?\\s*-t\\s*\\d{4}-\\d{2}-\\d{2}$", "repay"),
+        REPAY("^repay\\s*-n.+-s\\s*[A-Z]{3}\\s*\\d+([.]\\d*)?\\s*-t\\s*\\d{4}-\\d{2}-\\d{2}$", "repay"),
         EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
         SPENDINGLIST("^spending list$","spending list"),
         REPAYMENTLIST("^repayment list$","repayment list"),

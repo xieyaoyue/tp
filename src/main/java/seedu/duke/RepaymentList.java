@@ -2,7 +2,6 @@ package seedu.duke;
 
 import java.util.ArrayList;
 
-//@@author killingbear999
 public class RepaymentList {
     private String name;
     private String currency;
