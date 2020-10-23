@@ -6,6 +6,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
 
 public class Ui {
     private Scanner in;
@@ -19,13 +21,20 @@ public class Ui {
             + "  / _ \\___  / / /__ ____| | /| / (_)__ ___ \n"
             + " / // / _ \\/ / / _ `/ __/ |/ |/ / (_-</ -_)\n"
             + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
+    private static final String[][] BUDGET_QUOTES = {
+            {"It takes as much energy to wish as it does to plan.", "Eleanor Roosevelt"},
+            {"Just because you can afford it doesn't mean you should buy it", "Suze Orman"},
+            {"Do not save what is left after spending; instead spend what is left after saving.", "Warren Buffett"},
+            {"Setting goals is the first step in turning the invisible into the visible.", "Tony Robbins"},
+            {"If there is no struggle, there is no progress.", "Frederick Douglass"}
+    };
     private static final String BORDER_CORNER = "+";
     private static final String BORDER_HORIZONTAL = "-";
     private static final String BORDER_VERTICAL = "|";
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -d chicken rice -s SGD 3.00"},
+            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
             {"convert", "convert -d INPUT_CURRENCY -d OUTPUT_CURRENCY", "convert -d SGD -d USD"},
@@ -34,7 +43,7 @@ public class Ui {
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay [-d NAME] [-s AMOUNT] [-t DEADLINE]", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay [-n NAME] [-s AMOUNT] [-t DEADLINE]", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set [-s AMOUNT]", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
@@ -62,14 +71,18 @@ public class Ui {
         this.in = in;
         this.out = out;
     }
-
+    
     public String getUserInput() {
         return in.nextLine();
     }
 
-    public void printMessage(String message) {
-        out.println(message);
-        drawSeparateLine();
+    public void printEncouragementMessage() {
+        out.println("Keep up budgeting! You can do it!");
+        out.println("Here is a quote to keep you going:");
+        Random rand = new Random();
+        int randInt = rand.nextInt(4);
+        out.println(BUDGET_QUOTES[randInt][0]);
+        out.println(" ".repeat(60) + "--" + BUDGET_QUOTES[randInt][1]);
     }
 
     public void printWelcomeMessage() {
@@ -139,8 +152,24 @@ public class Ui {
         drawSeparateLine();
     }
 
+    public void printClearIndex(String repaymentEntry) {
+        out.println("You've deleted this entry in the repayment list:");
+        out.println(repaymentEntry);
+        drawSeparateLine();
+    }
+
     public void printClearAll() {
         out.println("You've deleted all the records.");
+        drawSeparateLine();
+    }
+
+    public void printClearAllSpendingList() {
+        out.println("You've deleted all the records in the spending list.");
+        drawSeparateLine();
+    }
+
+    public void printClearAllRepaymentList() {
+        out.println("You've deleted all the entries in the repayment list.");
         drawSeparateLine();
     }
 
@@ -150,32 +179,38 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printConvertCurrency(String outputCurrency) {
         out.println("The currency has been changed to " + outputCurrency + " .");
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printEdit(SpendingList spendingList, int index) {
         out.println("You've updated the record:");
         out.println(spendingList.getItem(index));
         drawSeparateLine();
     }
 
+    //@@author
     public void printSummaryMessage(double amount) {
         out.printf("You've spent $%f.%n", amount);
         drawSeparateLine();
     }
 
+    //@@author killingbear999
     public void printErrorMessage(String message) {
         out.println(message);
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printBudgetLimit(String currency, double budgetLimit) {
         out.println("The budget limit has been set to " + currency + " " + budgetLimit);
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
         out.println("Warning! Your spending is approaching your budget limit.");
         out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining)
@@ -183,8 +218,67 @@ public class Ui {
         drawSeparateLine();
     }
     
+    //@@author killingbear999
     public void printExceedingWarningMessage() {
         out.println("Warning! Your spending has exceeded your budget limit.");
+        drawSeparateLine();
+    }
+
+    public void printPurgeData() {
+        out.println("All data are deleted.");
+    }
+
+    //@@author pinfang
+    public void printReminderMessage(double amountSpent, double amountRemained, String startWeek) {
+        out.printf("You have spent $%.2f since this Mon (%s).\n", amountSpent, startWeek);
+        out.printf("You have $%.2f left in your budget.\n", amountRemained);
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
+    public void printExportMessage() {
+        out.println("The records have been exported to an Excel file successfully.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public static void printCurrentBudgetLimit() {
+        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+    }
+    
+    //@@author killingbear999
+    public static void printNoBudget() {
+        System.out.println("No budget has been set yet.");
+    }
+    
+    //@@author killingbear999
+    public void printRepaymentList(ArrayList<String> repaymentList) {
+        if (!repaymentList.isEmpty()) {
+            for (int i = 0; i < repaymentList.size(); i++) {
+                out.println(repaymentList.get(i));
+            }
+        } else {
+            out.println("Nothing in the list.");
+        }
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printRepay(String currentString) {
+        out.println("You have added this record: ");
+        out.println(currentString);
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
+    public void printDrawMessage(boolean isSuccessful) {
+        if (isSuccessful) {
+            out.println("The charts have been generated successfully!");
+            out.println("You can find the charts at this location:");
+            out.println(System.getProperty("user.dir") + "\\Charts.xlsx");
+        } else {
+            out.println("Sorry, generation failed.");
+        }
         drawSeparateLine();
     }
 }

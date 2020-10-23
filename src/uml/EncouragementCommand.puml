@@ -1,0 +1,10 @@
+@startuml
+->EncouragementCommand: execute(spendingList, ui)
+activate EncouragementCommand
+EncouragementCommand -> Ui: printEncouragementMessage()
+activate Ui
+Ui -> EncouragementCommand
+deactivate EncouragementCommand
+deactivate Ui
+
+@enduml

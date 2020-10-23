@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
+//@@author killingbear999
 public class ExitCommand extends Command {
 
     public ExitCommand() {

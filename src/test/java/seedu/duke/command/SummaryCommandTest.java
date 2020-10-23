@@ -41,7 +41,7 @@ public class SummaryCommandTest {
             summaryYear.execute(spendingList, ui);
             summary.execute(spendingList, ui);
         } catch (InvalidMonthException e) {
-            assertEquals(e.toString(), "Invalid month input.");
+            assertEquals("Invalid month input.", e.toString());
         }
 
     }

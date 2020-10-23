@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.Budget;
 import seedu.duke.category.Item;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
@@ -9,11 +10,14 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
+//@@author killingbear999
 public class ConvertCommand extends Command {
 
     private String description;
     private String currencies;
     private String outputCurrency;
+    private String inputCurrency;
+    private Item currentString;
     private double exchangeRate = 1.0;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
     private static Logger logger = Logger.getLogger("ConvertCommand");
@@ -34,7 +38,7 @@ public class ConvertCommand extends Command {
         int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
         int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
         int length = description.length();
-        String inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
+        inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
         assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
                 "Incorrect input currency";
         outputCurrency = description.substring(secondCurrencyStartingPosition, length);
@@ -60,11 +64,11 @@ public class ConvertCommand extends Command {
         currencies = identifyCurrency(description);
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
-            Item currentString = newSpendingList.get(0);
-            newSpendingList.remove(0);
-            updateNewAmount(currentString);
-            updateCurrency(currentString);
-            newSpendingList.add(currentString);
+            currentString = newSpendingList.get(i);
+            if (!currentString.getSymbol().equals(outputCurrency)) {
+                updateNewAmount(currentString);
+                updateCurrency(currentString);
+            }
         }
         ui.printConvertCurrency(outputCurrency);
         spendingList.updateSpendingList();
@@ -81,30 +85,25 @@ public class ConvertCommand extends Command {
     private void updateCurrency(Item currentString) {
         switch (currencies) {
         case "SGD USD":
-            currentString.editSymbol("$");
+            currentString.editSymbol("USD");
             break;
         case "USD SGD":
-            currentString.editSymbol("S$");
+            currentString.editSymbol("SGD");
             break;
         case "SGD CNY":
-            currentString.editSymbol("¥");
+            currentString.editSymbol("CNY");
             break;
         case "CNY SGD":
-            currentString.editSymbol("S$");
+            currentString.editSymbol("SGD");
             break;
         default:
         }
     }
     
     public void updateBudgetList() {
-        SetBudgetCommand setBudgetCommand = new SetBudgetCommand();
-        double budgetLimit = setBudgetCommand.getBudgetLimit();
+        double budgetLimit = Budget.getBudgetLimit();
         double newBudgetLimit = budgetLimit * exchangeRate;
-        setBudgetCommand.updateList(outputCurrency, newBudgetLimit);
-    }
-    
-    public String getOutputCurrency() {
-        return outputCurrency;
+        Budget.updateBudget(outputCurrency, newBudgetLimit);
     }
 
     public ArrayList<Item> updateSpendingList() {
