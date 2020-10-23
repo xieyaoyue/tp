@@ -9,6 +9,7 @@ public class Duke {
     private static Ui ui;
     private static Storage storage;
     private static SpendingList spendingList;
+    private static Reminder reminder;
 
     /**
      * Runs the program until termination.
@@ -16,6 +17,7 @@ public class Duke {
     private static void run() {
         String filePath = storage.getFilePath();
         ui.printWelcomeMessage(filePath);
+        reminder.execute(spendingList, ui);
         boolean isExit = false;
         do {
             try {
@@ -35,6 +37,7 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
+        reminder = new Reminder();
         try {
             storage = new Storage();
             spendingList = storage.load();
