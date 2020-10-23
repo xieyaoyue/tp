@@ -44,7 +44,9 @@ public class Item {
     }
 
     public void editCategory(String category) {
-        this.category = category;
+        if (Category.hasCategory(category)) {
+            this.category = category;
+        }
     }
 
     public String getSymbol() {
