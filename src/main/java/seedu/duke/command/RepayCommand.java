@@ -38,5 +38,8 @@ public class RepayCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) {
         identifyRepaymentInformation(description);
+        RepaymentList repaymentList = new RepaymentList(name, currency, repayment, deadline);
+        repaymentList.storeCurrentString();
+        ui.printRepay(repaymentList.returnCurrentString());
     }
 }
