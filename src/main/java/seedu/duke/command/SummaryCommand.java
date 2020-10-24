@@ -46,7 +46,7 @@ public class SummaryCommand extends Command {
             logger.log(Level.FINE, "end of processing");
             ui.printSummaryMessage(amountSpent);
             for (Category c: Category.values()) {
-                double categoryAmountSpent = spendingList.getSpendingAmountCategory(c.toString());
+                double categoryAmountSpent = spendingList.getSpendingAmountCategory(c.toString(), period);
                 ui.printSummaryCategory(c.name(), categoryAmountSpent);
             }
         } else {
