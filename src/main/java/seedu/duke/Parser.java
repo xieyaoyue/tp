@@ -118,10 +118,10 @@ public class Parser {
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());
         case "logout": return new ExitCommand();
-        case "edit":
+        /*case "edit":
             Command newEditCommand = getEditCommand(commandParameters);
             assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
-            return newEditCommand;
+            return newEditCommand;*/
         case "spending list": return new SpendingListCommand();
         case "repayment list": return new RepaymentListCommand();
         case "set": return new SetBudgetCommand(commandParameters);
