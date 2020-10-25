@@ -27,7 +27,7 @@ public class Parser {
         CLEAR_INDEX("^clear\\s*\\d+$", "clear"),
         ADD("^add\\s*-c.+-d.+-s\\s*[A-Z]{3}\\s*\\d+([.]\\d*)?$", "add"),
         REPAY("^repay\\s*-n.+-s\\s*[A-Z]{3}\\s*\\d+([.]\\d*)?\\s*-t\\s*\\d{4}-\\d{2}-\\d{2}$", "repay"),
-        EDIT("^edit\\s*\\d+\\s*-d.+\\s*-s\\s*.\\d+([.]\\d*)?$", "edit"),
+        EDIT("^edit\\s*\\d+\\s*-c.+-d.+\\s*-s\\s*[A-Z]{3}\\s*\\d+([.]\\d*)?$", "edit"),
         SPENDINGLIST("^spending list$","spending list"),
         REPAYMENTLIST("^repayment list$","repayment list"),
         SET("^set\\s*-s.+\\d+([.]\\d*)?$", "set"),
@@ -83,8 +83,8 @@ public class Parser {
         String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
                 spendingBeginIndex).strip();
         String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
-        String symbol = spending.substring(0, 1);
-        double amount = Double.parseDouble(spending.substring(1));
+        String symbol = spending.substring(0, 3);
+        double amount = Double.parseDouble(spending.substring(3));
         return new EditCommand(number, description, symbol, amount, category);
     }
     

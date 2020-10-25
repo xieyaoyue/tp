@@ -18,7 +18,7 @@ public class Reminder {
     public void execute(SpendingList spendingList, Ui ui) {
         double amountSpent = 0;
         for (String i: period) {
-            amountSpent += spendingList.getSpendingAmount(i);
+            amountSpent += spendingList.getSpendingAmountTime(i);
         }
         // double amountRemained = warnCommand.findRemainingAmount();
         double amountRemained = 0;
