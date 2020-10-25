@@ -31,6 +31,9 @@ public class ConvertCommand extends Command {
     public ConvertCommand(String description) {
         this.description = description;
     }
+    
+    public ConvertCommand() {
+    }
 
     public String identifyCurrency(String description) {
         int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
