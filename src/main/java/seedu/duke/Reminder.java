@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 public class Reminder {
     private LocalDate startWeek;
+    WarnCommand warn;
     private ArrayList<String> period = new ArrayList<>();
 
     public Reminder() {
         saveDatesToList();
+        warn = new WarnCommand();
     }
 
     // public void execute(SpendingList spendingList, Ui ui, WarnCommand warnCommand) {
@@ -20,8 +22,9 @@ public class Reminder {
         for (String i: period) {
             amountSpent += spendingList.getSpendingAmountTime(i);
         }
-        // double amountRemained = warnCommand.findRemainingAmount();
-        double amountRemained = 0;
+        warn.execute(spendingList, ui);
+        double amountRemained = warn.findRemainingAmount();
+        // double amountRemained = 0;
         ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
     }
 
