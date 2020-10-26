@@ -16,6 +16,9 @@ public class Command {
     public void execute(RepaymentList repaymentList, Ui ui) {
     }
 
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    }
+
     public boolean isExit() {
         return false;
     }

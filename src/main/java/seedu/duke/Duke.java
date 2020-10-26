@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.command.ClearListCommand;
 import seedu.duke.command.ClearRepaymentListCommand;
 import seedu.duke.command.Command;
 
@@ -25,10 +26,12 @@ public class Duke {
             try {
                 String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                if (!(c instanceof ClearRepaymentListCommand)) {
+                if (!(c instanceof ClearRepaymentListCommand) && !(c instanceof ClearListCommand)) {
                     c.execute(spendingList, ui);
-                } else {
+                } else if (c instanceof ClearRepaymentListCommand) {
                     c.execute(repaymentList, ui);
+                } else {
+                    c.execute(spendingList, repaymentList, ui);
                 }
                 isExit = c.isExit();
             } catch (Exception e) {

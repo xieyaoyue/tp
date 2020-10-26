@@ -29,12 +29,4 @@ public class ClearSpendingListCommand extends Command {
             ui.printClearAllSpendingList();
         }
     }
-
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-        spendingList.clearAllItems();
-        repaymentList.clearAllEntries();
-        assert spendingList.getListSize() == 0 : "List size should be 0";
-        assert repaymentList.getListSize() == 0 : "List size should be 0";
-        ui.printClearAll();
-    }
 }
