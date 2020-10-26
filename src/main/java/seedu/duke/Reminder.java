@@ -16,15 +16,14 @@ public class Reminder {
         warn = new WarnCommand();
     }
 
-    // public void execute(SpendingList spendingList, Ui ui, WarnCommand warnCommand) {
     public void execute(SpendingList spendingList, Ui ui) {
+        warn.execute(spendingList, ui);
+        double amountRemained = warn.findRemainingAmount(spendingList);
         double amountSpent = 0;
+
         for (String i: period) {
             amountSpent += spendingList.getSpendingAmountTime(i);
         }
-        warn.execute(spendingList, ui);
-        double amountRemained = warn.findRemainingAmount();
-        // double amountRemained = 0;
         ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
     }
 
