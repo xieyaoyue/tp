@@ -6,22 +6,18 @@ import seedu.duke.Ui;
 
 import java.io.IOException;
 
-public class ClearListCommand extends Command {
-
+public class ClearSpendingListCommand extends Command {
     private boolean isClearAll;
     private int clearIndex;
 
-    public ClearListCommand(boolean isClearAll, int clearIndex) {
+    public ClearSpendingListCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
-        if (!isClearAll) {
-            this.clearIndex = clearIndex;
-        }
+        this.clearIndex = clearIndex;
     }
 
-    public ClearListCommand() {
+    public ClearSpendingListCommand() {
     }
 
-    @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         if (!isClearAll) {
             assert (clearIndex > 0 && clearIndex <= spendingList.getListSize()) : "Wrong index";
@@ -31,18 +27,6 @@ public class ClearListCommand extends Command {
             spendingList.clearAllItems();
             assert spendingList.getListSize() == 0 : "List size should be 0";
             ui.printClearAllSpendingList();
-        }
-    }
-
-    public void execute(RepaymentList repaymentList, Ui ui) {
-        if (!isClearAll) {
-            assert (clearIndex > 0 && clearIndex <= repaymentList.getListSize()) : "Wrong index";
-            ui.printClearIndex(repaymentList.getEntry(clearIndex - 1));
-            repaymentList.deleteRepaymentEntry(clearIndex - 1);
-        } else {
-            repaymentList.clearAllEntries();
-            assert repaymentList.getListSize() == 0 : "List size should be 0";
-            ui.printClearAllRepaymentList();
         }
     }
 

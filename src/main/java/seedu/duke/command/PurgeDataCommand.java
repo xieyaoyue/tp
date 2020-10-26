@@ -10,9 +10,11 @@ public class PurgeDataCommand extends Command {
 
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         RepaymentList repaymentList = new RepaymentList();
-        ClearListCommand clearListCommand = new ClearListCommand();
+        ClearSpendingListCommand clearSpendingListCommand = new ClearSpendingListCommand();
+        ClearRepaymentListCommand clearRepaymentListCommand = new ClearRepaymentListCommand();
         ClearBudgetCommand clearBudgetCommand = new ClearBudgetCommand();
-        clearListCommand.execute(spendingList, repaymentList, ui);
+        clearSpendingListCommand.execute(spendingList, ui);
+        clearRepaymentListCommand.execute(repaymentList, ui);
         clearBudgetCommand.execute(spendingList, ui);
         ui.printPurgeData();
     }
