@@ -24,9 +24,18 @@ public class AddCommand extends Command {
         this.category = category;
     }
     
+    private final String[][] exchangeRates = {
+            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
+            {"0.74", "1.36", "4.99", "0.20"},
+    };
+    
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to add item");
+        if (!symbol.equals("SGD")) {
+            updateAmount();
+            updateCurrency();
+        }
         spendingList.addItem(description, symbol, amount, category);
         ui.printAdd(spendingList);
         int size = spendingList.getListSize();
@@ -42,5 +51,18 @@ public class AddCommand extends Command {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, ui);
         }
+    }
+    
+    //@@author killingbear999
+    private void updateAmount() {
+        if (symbol.equals("USD")) {
+            amount = amount * Double.parseDouble(exchangeRates[1][1]);
+        } else if (symbol.equals("CNY")) {
+            amount = amount * Double.parseDouble(exchangeRates[1][3]);
+        }
+    }
+    
+    private void updateCurrency() {
+        symbol = "SGD";
     }
 }
