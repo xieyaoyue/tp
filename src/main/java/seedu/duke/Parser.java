@@ -37,6 +37,7 @@ public class Parser {
         SUMMARY("^summary$", "summary"),
         SUMMARY_YEAR("^summary\\s*\\d{4}$", "summaryYear"),
         SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth"),
+        SUMMARY_ALL("^summary\\s*-a$", "summaryAll"),
         EXPORT("^export.*$", "export"),
         DRAW("^draw$", "draw"),
         DRAW_YEAR("^draw\\s*\\d{4}$", "drawYear"),
@@ -113,7 +114,8 @@ public class Parser {
         case "clear": return new ClearListCommand(false, Integer.parseInt(commandParameters));
         case "clearAll": return new ClearListCommand(true, 0);
         case "convert": return new ConvertCommand(commandParameters);
-        case "summary": return new SummaryCommand();
+        case "summary": return new SummaryCommand(true);
+        case "summaryAll": return new SummaryCommand(false);
         case "summaryYear": return new SummaryCommand(commandParameters);
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());

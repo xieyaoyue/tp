@@ -27,8 +27,7 @@ public class WarnCommand {
         }
     }
     
-    public double findRemainingAmount() {
-        SpendingList spendingList = new SpendingList();
+    public double findRemainingAmount(SpendingList spendingList) {
         Budget budget = new Budget();
         budgetLimit = budget.getBudgetLimit();
         double currentAmount = spendingList.getCurrentAmount();

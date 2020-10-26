@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class Budget {
     private static double budgetLimit;
-    private static String currency;
+    private static String currency = "SGD";
     public static boolean hasBudget;
-    public static String date;
+    public static String date = "1000-01-01";
 
     public static double getBudgetLimit() {
         return budgetLimit;
