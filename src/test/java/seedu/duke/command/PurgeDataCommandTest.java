@@ -25,7 +25,7 @@ class PurgeDataCommandTest {
         PurgeDataCommand purgeDataCommand = new PurgeDataCommand();
         Ui ui = new Ui();
         purgeDataCommand.execute(spendingList, ui);
-        //assertFalse(Budget.hasBudget);
-        //assertEquals(0, spendingList.getListSize());
+        assertFalse(Budget.hasBudget);
+        assertEquals(0, spendingList.getListSize());
     }
 }
