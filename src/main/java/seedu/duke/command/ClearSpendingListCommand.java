@@ -15,9 +15,6 @@ public class ClearSpendingListCommand extends Command {
         this.clearIndex = clearIndex;
     }
 
-    public ClearSpendingListCommand() {
-    }
-
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         if (!isClearAll) {
             assert (clearIndex > 0 && clearIndex <= spendingList.getListSize()) : "Wrong index";

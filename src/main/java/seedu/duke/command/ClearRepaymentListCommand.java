@@ -12,9 +12,6 @@ public class ClearRepaymentListCommand extends Command {
         this.clearIndex = clearIndex;
     }
 
-    public ClearRepaymentListCommand() {
-    }
-
     public void execute(RepaymentList repaymentList, Ui ui) {
         if (!isClearAll) {
             assert (clearIndex > 0 && clearIndex <= repaymentList.getListSize()) : "Wrong index";
