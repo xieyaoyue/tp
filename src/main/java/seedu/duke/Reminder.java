@@ -17,13 +17,17 @@ public class Reminder {
     }
 
     public void execute(SpendingList spendingList, Ui ui) {
-        warn.execute(spendingList, ui);
-        double amountRemained = warn.findRemainingAmount(spendingList);
-        double amountSpent = 0;
+        double amountRemained = 0;
+        if (Budget.hasBudget) {
+            warn.execute(spendingList, ui);
+            amountRemained = warn.findRemainingAmount(spendingList);
+        }
 
+        double amountSpent = 0;
         for (String i: period) {
             amountSpent += spendingList.getSpendingAmountTime(i);
         }
+
         ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
     }
 
