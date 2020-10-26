@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddCommand extends Command {
-
     public String description;
     public double amount;
     public String symbol;
@@ -18,12 +17,16 @@ public class AddCommand extends Command {
     private static Logger logger = Logger.getLogger("AddCommand");
 
     public AddCommand(String description, String symbol, double amount, String category) {
+        init(description, symbol, amount, category);
+    }
+
+    private void init(String description, String symbol, double amount, String category) {
         this.description = description;
         this.amount = amount;
         this.symbol = symbol;
         this.category = category;
     }
-    
+
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to add item");
