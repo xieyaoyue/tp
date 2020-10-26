@@ -192,10 +192,14 @@ public class Ui {
         drawSeparateLine();
     }
 
-    //@@author
+    //@@author pinfang
     public void printSummaryMessage(double amount) {
-        out.printf("You've spent $%f.%n", amount);
+        out.printf("You've spent $%.2f.%n", amount);
         drawSeparateLine();
+    }
+
+    public void printSummaryCategory(String category, double amount) {
+        out.printf("%-20s $%.2f\n", category, amount);
     }
 
     //@@author killingbear999
@@ -254,8 +258,8 @@ public class Ui {
     //@@author killingbear999
     public void printRepaymentList(ArrayList<String> repaymentList) {
         if (!repaymentList.isEmpty()) {
-            for (int i = 0; i < repaymentList.size(); i++) {
-                out.println(repaymentList.get(i));
+            for (String s : repaymentList) {
+                out.println(s);
             }
         } else {
             out.println("Nothing in the list.");

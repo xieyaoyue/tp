@@ -1,5 +1,9 @@
 # Developer Guide
 
+## Introduction
+Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
+This developer guide provides information on the architecture and design of the application. It will not only help you get started as a Cent Wise Dollar Wise contributer, but that you will find useful to refer to even if you are already a contributer of this project. 
+
 ## Design & implementation
 ### Edit Feature
 `SpendingList` and `Ui` facilitate this feature. The Edit feature is able to edit the existing items in the spending list. 
@@ -75,7 +79,9 @@ given a date. It implements the following operations:
 * `Item#getDate()` → gets the date when user spent on the item
 * `Item#getAmount()` → gets the amount spent on the item
 * `SpendinList#getSpendingAmount(period)` → gets the total amount spent during a period
+
 Below shows an example of usage:
+
 1. User executes the `summary 2020` command to get the amount spent during year 2020.
 2. The `summary` command calls the `SpendinList#getSpendingAmount(2020)` which checks the spending date of every items
 stored in the memory.

@@ -22,4 +22,8 @@ public enum Category {
         }
         return false;
     }
+
+    public String toString() {
+        return this.category;
+    }
 }

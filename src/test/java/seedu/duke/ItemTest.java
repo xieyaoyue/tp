@@ -9,33 +9,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ItemTest {
     private LocalDate date = LocalDate.now();
-    private Item rice = new Item("rice", "S$", 2);
+    private Item rice = new Item("rice", "SGD", 2);
     private Item food = new Item("food", "SGD", 2, "Food");
 
     @Test
     public void testStringConversion() {
-        String expectedString = date.toString() + " [Other] rice S$2.0";
+        String expectedString = date.toString() + " [Other] rice SGD 2.0";
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editAmount() {
-        String expectedString = date.toString() + " [Other] rice S$5.0";
+        String expectedString = date.toString() + " [Other] rice SGD 5.0";
         rice.editAmount(5);
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editDescription() {
-        String expectedString = date.toString() + " [Other] chicken rice S$2.0";
+        String expectedString = date.toString() + " [Other] chicken rice SGD 2.0";
         rice.editDescription("chicken rice");
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
+    public void editCategory() {
+        String expectedString = date.toString() + " [Food] rice SGD 2.0";
+        rice.editCategory("Food");
+        assertEquals(expectedString, rice.toString());
+    }
+
+    @Test
     public void editSymbol() {
-        String expectedString = date.toString() + " [Other] rice $2.0";
-        rice.editSymbol("$");
+        String expectedString = date.toString() + " [Other] rice USD 2.0";
+        rice.editSymbol("USD");
         assertEquals(expectedString, rice.toString());
     }
 
@@ -53,7 +60,7 @@ public class ItemTest {
 
     @Test
     public void getSymbol() {
-        String expectedSymbol = "S$";
+        String expectedSymbol = "SGD";
         assertEquals(expectedSymbol, rice.getSymbol());
     }
 

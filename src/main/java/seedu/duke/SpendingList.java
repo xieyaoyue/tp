@@ -74,7 +74,7 @@ public class SpendingList {
         return spendingList;
     }
 
-    public double getSpendingAmount(String period) {
+    public double getSpendingAmountTime(String period) {
         double totalAmount = 0;
         for (Item i: spendingList) {
             if (i.getDate().contains(period)) {
@@ -83,15 +83,38 @@ public class SpendingList {
         }
         return totalAmount;
     }
+
+    public double getSpendingAmountCategory(String category, String period) {
+        double totalAmount = 0;
+        for (Item i: spendingList) {
+            if (i.getCategory().contains(category) && i.getDate().contains(period)) {
+                totalAmount += i.getAmount();
+            }
+        }
+        return totalAmount;
+    }
     
     //@@author killingbear999
-    public void editItem(int number, String description, String symbol, double amount, String category)
+    public void editItemDescription(int number, String description)
             throws IOException {
         Item item = getItem(number);
         item.editDescription(description);
-        item.editSymbol(symbol);
-        item.editAmount(amount);
+        save();
+    }
+    
+    //@@author killingbear999
+    public void editItemCategory(int number, String category)
+            throws IOException {
+        Item item = getItem(number);
         item.editCategory(category);
+        save();
+    }
+    
+    //@@author killingbear999
+    public void editItemAmount(int number, double amount)
+            throws IOException {
+        Item item = getItem(number);
+        item.editAmount(amount);
         save();
     }
 

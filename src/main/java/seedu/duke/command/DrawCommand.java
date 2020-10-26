@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+//@@author Wu-Haitao
 public class DrawCommand extends Command {
     private final DateFormatter dateFormatter = new DateFormatter();
     private String timePeriod;
@@ -57,7 +58,7 @@ public class DrawCommand extends Command {
         XSSFSheet sheet1 = workbook.createSheet("Sheet 1");
         sheet0.setDefaultColumnWidth(5);
         sheet1.setDefaultColumnWidth(5);
-        ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<Item> items = new ArrayList<>();
         SpendingList targetSpendingList = new SpendingList(items);
         for (int i = 0; i < spendingList.getListSize(); i++) {
             if (spendingList.getItem(i).getDate().startsWith(timePeriod)) {
