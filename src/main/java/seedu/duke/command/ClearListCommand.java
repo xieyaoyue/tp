@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class ClearListCommand extends Command {
 
-    private boolean isClearAll;
-    private int clearIndex;
+    public boolean isClearAll;
+    public int clearIndex;
 
     public ClearListCommand(boolean isClearAll, int clearIndex) {
         this.isClearAll = isClearAll;
