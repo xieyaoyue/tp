@@ -23,7 +23,7 @@ public class SummaryParser extends Parser {
         CommandLine line = parser.parse(options, args);
 
         if (line.hasOption("a")) {
-            return new SummaryCommand();
+            return new SummaryCommand(false);
         }
 
         String[] period = line.getArgs();
