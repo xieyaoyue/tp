@@ -12,7 +12,8 @@ import java.util.logging.Level;
 
 //@@author killingbear999
 public class ConvertCommand extends Command {
-
+    public String source;
+    public String target;
     private String description;
     private String currencies;
     private String outputCurrency;
@@ -28,8 +29,14 @@ public class ConvertCommand extends Command {
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
+
     public ConvertCommand(String description) {
         this.description = description;
+    }
+
+    public ConvertCommand(String source, String target) {
+        this.source = source;
+        this.target = target;
     }
 
     public String identifyCurrency(String description) {

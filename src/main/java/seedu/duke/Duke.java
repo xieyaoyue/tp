@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.command.ClearListCommand;
 import seedu.duke.command.ClearRepaymentListCommand;
 import seedu.duke.command.Command;
+import seedu.duke.parser.Parser;
 
 public class Duke {
     /**
