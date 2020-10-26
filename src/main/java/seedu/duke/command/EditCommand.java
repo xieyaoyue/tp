@@ -13,28 +13,27 @@ public class EditCommand extends Command {
     public int index;
     public String category;
 
-    // TODO : allow null @killingbear999
     public EditCommand(int index, String description, String symbol, Double amount, String category) {
         this.index = index;
         this.description = description;
-        this.isCategory = isCategory;
-        this.isDescription = isDescription;
-    }
-    
-    public EditCommand(int index, double amount, boolean isAmount) {
-        this.index = index;
+        this.symbol = symbol;
         this.amount = amount;
-        this.isAmount = isAmount;
+        this.category = category;
     }
-    
+
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
-        if (isDescription) {
+        if (description != null) {
             spendingList.editItemDescription(index, description);
-        } else if (isCategory) {
-            spendingList.editItemCategory(index, description);
-        } else if (isAmount) {
+        }
+        if (symbol != null) {
+            // TODO : edit symbol @killingbear999
+        }
+        if (amount != null) {
             spendingList.editItemAmount(index, amount);
+        }
+        if (category != null) {
+            spendingList.editItemCategory(index, category);
         }
         ui.printEdit(spendingList, index);
     }
