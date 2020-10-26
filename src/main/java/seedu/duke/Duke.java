@@ -25,7 +25,7 @@ public class Duke {
             try {
                 String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                if(!(c instanceof ClearRepaymentListCommand)) {
+                if (!(c instanceof ClearRepaymentListCommand)) {
                     c.execute(spendingList, ui);
                 } else {
                     c.execute(repaymentList, ui);
