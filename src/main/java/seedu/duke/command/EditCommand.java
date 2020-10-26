@@ -7,14 +7,14 @@ import java.io.IOException;
 
 //@@author killingbear999
 public class EditCommand extends Command {
-    
-    private String description;
-    private double amount;
-    private String symbol;
-    private int index;
-    private String category;
-    
-    public EditCommand(int index, String description, String symbol, double amount, String category) {
+    public String description;
+    public Double amount;
+    public String symbol;
+    public int index;
+    public String category;
+
+    // TODO : allow null @killingbear999
+    public EditCommand(int index, String description, String symbol, Double amount, String category) {
         this.index = index;
         this.description = description;
         this.amount = amount;
