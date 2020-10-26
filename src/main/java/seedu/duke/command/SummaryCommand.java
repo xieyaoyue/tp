@@ -4,8 +4,6 @@ import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 import seedu.duke.exceptions.InvalidMonthException;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,10 +28,18 @@ public class SummaryCommand extends Command {
         period = year;
     }
 
+    public SummaryCommand(boolean all) {
+        if (all) {
+            period = "all"; // TODO : @pinfang
+        } else {
+            this.year = dateFormatter.getCurrentYear();
+            this.month = dateFormatter.getCurrentMonth();
+            period = year + "-" + month;
+        }
+    }
+
     public SummaryCommand() {
-        this.year = dateFormatter.getCurrentYear();
-        this.month = dateFormatter.getCurrentMonth();
-        period = year + "-" + month;
+        this(false);
     }
 
     @Override
