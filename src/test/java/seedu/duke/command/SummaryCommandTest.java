@@ -34,7 +34,7 @@ public class SummaryCommandTest {
         SummaryCommand invalidSummaryMonth = new SummaryCommand("2020", "fdj");
         SummaryCommand validSummaryMonth = new SummaryCommand("2020", "Jan");
         SummaryCommand summaryYear = new SummaryCommand("2020");
-        SummaryCommand summary = new SummaryCommand();
+        SummaryCommand summary = new SummaryCommand(true);
         try {
             invalidSummaryMonth.execute(spendingList, ui);
             validSummaryMonth.execute(spendingList, ui);
