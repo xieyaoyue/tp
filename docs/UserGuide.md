@@ -27,6 +27,25 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
+### View Summary: `summary`
+Views the monthly / yearly summary expenditure.
+
+Format: 
+
+`summary YEAR MONTH [-a]`
+
+* The abbreviation of `MONTH` is case sensitive.
+
+Example of usage:
+
+`summary` → shows summary of current month
+
+`summary 2020` → shows summary of a specific year
+
+`summary 2020 Oct` → shows summary of a specific year and month
+
+`summary -a` → shows the summary of total expenditure
+
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another computer? 
