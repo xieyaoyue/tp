@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
+import seedu.duke.category.Category;
 import seedu.duke.exceptions.InvalidMonthException;
 
 import java.util.logging.Level;
@@ -28,18 +29,15 @@ public class SummaryCommand extends Command {
         period = year;
     }
 
-    public SummaryCommand(boolean all) {
-        if (all) {
-            period = "all"; // TODO : @pinfang
-        } else {
+    public SummaryCommand(boolean isCurrentMonth) {
+        if (isCurrentMonth) {
             this.year = dateFormatter.getCurrentYear();
             this.month = dateFormatter.getCurrentMonth();
             period = year + "-" + month;
+        } else {
+            this.month = "-";
+            period = "-";
         }
-    }
-
-    public SummaryCommand() {
-        this(false);
     }
 
     @Override
@@ -47,11 +45,16 @@ public class SummaryCommand extends Command {
         if (month == null) {
             isValidMonth = false;
         }
+
         if (isValidMonth) {
             logger.log(Level.FINE, "going to start processing");
-            double amountSpent = spendingList.getSpendingAmount(period);
+            double amountSpent = spendingList.getSpendingAmountTime(period);
             logger.log(Level.FINE, "end of processing");
             ui.printSummaryMessage(amountSpent);
+            for (Category c : Category.values()) {
+                double categoryAmountSpent = spendingList.getSpendingAmountCategory(c.toString(), period);
+                ui.printSummaryCategory(c.name(), categoryAmountSpent);
+            }
         } else {
             throw new InvalidMonthException();
         }

@@ -43,7 +43,7 @@ public class Ui {
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay [-d NAME] [-s AMOUNT] [-t DEADLINE]", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay [-n NAME] [-s AMOUNT] [-t DEADLINE]", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set [-s AMOUNT]", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
@@ -74,11 +74,6 @@ public class Ui {
     
     public String getUserInput() {
         return in.nextLine();
-    }
-
-    public void printMessage(String message) {
-        out.println(message);
-        drawSeparateLine();
     }
 
     public void printEncouragementMessage() {
@@ -197,10 +192,14 @@ public class Ui {
         drawSeparateLine();
     }
 
-    //@@author
+    //@@author pinfang
     public void printSummaryMessage(double amount) {
-        out.printf("You've spent $%f.%n", amount);
+        out.printf("You've spent $%.2f.%n", amount);
         drawSeparateLine();
+    }
+
+    public void printSummaryCategory(String category, double amount) {
+        out.printf("%-20s $%.2f\n", category, amount);
     }
 
     //@@author killingbear999
@@ -259,7 +258,9 @@ public class Ui {
     //@@author killingbear999
     public void printRepaymentList(ArrayList<String> repaymentList) {
         if (!repaymentList.isEmpty()) {
-            out.print(repaymentList);
+            for (String s : repaymentList) {
+                out.println(s);
+            }
         } else {
             out.println("Nothing in the list.");
         }
