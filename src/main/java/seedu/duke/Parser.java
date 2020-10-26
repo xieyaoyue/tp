@@ -5,16 +5,13 @@ import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.command.ConvertCommand;
 import seedu.duke.command.EditCommand;
 import seedu.duke.command.AddCommand;
-import seedu.duke.command.ClearListCommand;
+import seedu.duke.command.ClearSpendingListCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.ConvertCommand;
 import seedu.duke.command.DrawCommand;
-import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.RepayCommand;
-import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewCommand;
 import seedu.duke.command.RepaymentListCommand;
@@ -37,6 +34,7 @@ public class Parser {
         SUMMARY("^summary$", "summary"),
         SUMMARY_YEAR("^summary\\s*\\d{4}$", "summaryYear"),
         SUMMARY_YEAR_MONTH("^summary\\s*\\d{4}\\s*[a-zA-Z]{3}$", "summaryYearMonth"),
+        SUMMARY_ALL("^summary\\s*-a$", "summaryAll"),
         EXPORT("^export.*$", "export"),
         DRAW("^draw$", "draw"),
         DRAW_YEAR("^draw\\s*\\d{4}$", "drawYear"),
@@ -110,10 +108,11 @@ public class Parser {
             assert newAddCommand instanceof AddCommand : "Getting new add command failed.";
             return newAddCommand;
         case "help": return new HelpCommand();
-        case "clear": return new ClearListCommand(false, Integer.parseInt(commandParameters));
-        case "clearAll": return new ClearListCommand(true, 0);
+        case "clear": return new ClearSpendingListCommand(false, Integer.parseInt(commandParameters));
+        case "clearAll": return new ClearSpendingListCommand(true, 0);
         case "convert": return new ConvertCommand(commandParameters);
-        case "summary": return new SummaryCommand();
+        case "summary": return new SummaryCommand(true);
+        case "summaryAll": return new SummaryCommand(false);
         case "summaryYear": return new SummaryCommand(commandParameters);
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());
