@@ -74,18 +74,24 @@ public class Parser {
     }
     
     private static Command getEditCommand(String commandParameters) {
-        int categoryBeginIndex = commandParameters.indexOf("-c");
-        int descriptionBeginIndex = commandParameters.indexOf("-d");
-        int spendingBeginIndex = commandParameters.indexOf("-s");
-        int number = Integer.parseInt(commandParameters.substring(0, categoryBeginIndex).strip()) - 1;
-        String category = commandParameters.substring(categoryBeginIndex + "-c".length(),
-                descriptionBeginIndex).strip();
-        String description = commandParameters.substring(descriptionBeginIndex + "-d".length(),
-                spendingBeginIndex).strip();
-        String spending = commandParameters.substring(spendingBeginIndex + "-s".length()).strip();
-        String symbol = spending.substring(0, 3);
-        double amount = Double.parseDouble(spending.substring(3));
-        return new EditCommand(number, description, symbol, amount, category);
+        int number = Integer.parseInt(commandParameters.substring(0, 1));
+        if (commandParameters.contains("-c")) {
+            int categoryBeginIndex = commandParameters.indexOf("-c") + "-c".length() + 1;
+            int categoryEndIndex = commandParameters.length();
+            String category = commandParameters.substring(categoryBeginIndex, categoryEndIndex);
+            return new EditCommand(number, category, true, false);
+        } else if (commandParameters.contains("-d")) {
+            int descriptionBeginIndex = commandParameters.indexOf("-d") + "-d".length() + 1;
+            int descriptionEndIndex = commandParameters.length();
+            String description = commandParameters.substring(descriptionBeginIndex, descriptionEndIndex);
+            return new EditCommand(number, description, false, true);
+        } else if (commandParameters.contains("-s")) {
+            int amountBeginIndex = commandParameters.indexOf("-s") + "-s".length() + 1;
+            int amountEndIndex = commandParameters.length();
+            double amount = Double.parseDouble(commandParameters.substring(amountBeginIndex, amountEndIndex));
+            return new EditCommand(number, amount, true);
+        }
+        return null;
     }
     
     public static Command parseCommand(String userInput) throws InvalidCommandException {
@@ -112,10 +118,10 @@ public class Parser {
         case "summaryYearMonth": return new SummaryCommand(commandParameters.substring(0, 4),
                 commandParameters.substring(4).strip());
         case "logout": return new ExitCommand();
-        case "edit":
+        /*case "edit":
             Command newEditCommand = getEditCommand(commandParameters);
             assert newEditCommand instanceof EditCommand : "Getting new edit command failed.";
-            return newEditCommand;
+            return newEditCommand;*/
         case "spending list": return new SpendingListCommand();
         case "repayment list": return new RepaymentListCommand();
         case "set": return new SetBudgetCommand(commandParameters);
