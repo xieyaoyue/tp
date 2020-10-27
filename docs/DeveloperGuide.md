@@ -93,7 +93,8 @@ Figure below shows the sequence diagram of `RepayCommand` class:
 given a date. It implements the following operations:
 * `Item#getDate()` → gets the date when user spent on the item
 * `Item#getAmount()` → gets the amount spent on the item
-* `SpendinList#getSpendingAmount(period)` → gets the total amount spent during a period
+* `SpendingList#getSpendingAmountTime(period)` → gets the total amount spent during a period
+* `SpendingList#getSpendingAmountCategory(category, period)` → gets the total amount spent of a given category
 
 Below shows an example of usage:
 
@@ -104,6 +105,23 @@ stored in the memory.
 
 Figure below shows the sequence diagram of `SummaryCommand` class:
 ![Sequence Diagram of SummaryCommand class](images/summary.png)
+
+### Reminder Feature
+`SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
+total expenditure of the current week, starting on Monday. It implements the following operations:
+* `SpendingList#getSpendingAmountTime(period)` 
+* `WarnCommand#execute(spendingList, ui)`
+
+Below shows an example of usage:
+
+1. User starts the application.
+2. The `Reminder` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
+3. In the `Reminder#execute(spendinglist, ui)`, a check will be done to see if there is any budget being set by the user.
+    * If no budget is being set, the total expenditure of current week will be tallied up. 
+    * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
+
+Figure below shows the sequence diagram of Reminder class: 
+![Sequence Diagram of SummaryCommand class](images/reminder.png)
 
 ### Export Feature
 `Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The export data feature could extract the current data and export to an Excel file. It implements the following operations:
