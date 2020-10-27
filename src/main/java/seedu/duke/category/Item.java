@@ -21,9 +21,7 @@ public class Item {
         this.symbol = symbol;
         this.amount = amount;
         this.date = currentDate();
-        if (Category.hasCategory(category)) {
-            this.category = category;
-        }
+        this.category = Category.categoryName(category);
     }
 
     protected String currentDate() {
@@ -44,11 +42,7 @@ public class Item {
     }
 
     public void editCategory(String category) {
-        if (Category.hasCategory(category)) {
-            this.category = category;
-        } else {
-            this.category = "Other";
-        }
+        this.category = Category.categoryName(category);
     }
 
     public String getSymbol() {
