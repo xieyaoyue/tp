@@ -7,6 +7,10 @@ import seedu.duke.Ui;
 import java.io.IOException;
 
 public class ClearListCommand extends Command {
+
+    public boolean isClearAll;
+    public int clearIndex;
+
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         spendingList.clearAllItems();
         repaymentList.clearAllEntries();

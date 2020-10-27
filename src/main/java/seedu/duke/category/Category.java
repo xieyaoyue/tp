@@ -14,13 +14,13 @@ public enum Category {
         this.category = category;
     }
 
-    public static boolean hasCategory(String name) {
+    public static String categoryName(String name) {
         for (Category c: values()) {
-            if (name.equals(c.category)) {
-                return true;
+            if (name.equalsIgnoreCase(c.category)) {
+                return c.toString();
             }
         }
-        return false;
+        return OTHER.toString();
     }
 
     public String toString() {

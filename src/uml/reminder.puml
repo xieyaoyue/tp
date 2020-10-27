@@ -1,0 +1,30 @@
+@startuml
+
+
+->":Reminder" : execute(spendingList, ui)
+
+activate ":Reminder"
+
+opt Budget.hasBudget
+":Reminder" -> ":WarnCommand" : execute(spendingList, ui)
+activate ":WarnCommand"
+":WarnCommand" --> ":Reminder"
+deactivate ":WarnCommand"
+end
+
+loop week.size() times
+":Reminder" -> ":Reminder" : totalAmountSpent = 0
+":Reminder" -> ":SpendingList" : getSpendingAmountTime(period)
+activate ":SpendingList"
+":SpendingList" --> ":Reminder" : amountSpent
+deactivate ":SpendingList"
+
+":Reminder" -> ":Reminder" :totalAmountSpent += amountSpent
+
+end
+
+
+<-- ":Reminder"
+deactivate ":Reminder"
+
+@enduml
