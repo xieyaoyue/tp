@@ -115,12 +115,19 @@ public class Ui {
     }
 
     public void printSpendingList(SpendingList spendingList) {
-        String spendingString = getSpendingList(spendingList);
+        if (spendingList.getListSize() == 0) {
+            out.println("Nothing in the list.");
+        } else {
+            for (int i = 1; i < spendingList.getListSize() + 1; i++) {
+                out.println(i + ". " + spendingList.getItem(i - 1));
+            }
+        }
+        /*String spendingString = getSpendingList(spendingList);
         if (!spendingString.isEmpty()) {
             out.print(spendingString);
         } else {
             out.println("Nothing in the list.");
-        }
+        }*/
         drawSeparateLine();
     }
 
@@ -258,8 +265,8 @@ public class Ui {
     //@@author killingbear999
     public void printRepaymentList(ArrayList<String> repaymentList) {
         if (!repaymentList.isEmpty()) {
-            for (String s : repaymentList) {
-                out.println(s);
+            for (int i = 1; i < repaymentList.size() + 1; i++) {
+                out.println(i + ". " + repaymentList.get(i - 1));
             }
         } else {
             out.println("Nothing in the list.");
