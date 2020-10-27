@@ -15,7 +15,7 @@ activate ":Item"
 ":Item" --> ":SpendingList": date
 deactivate ":Item"
 
-alt period == date
+opt period == date
 ":SpendingList" -> ":Item": getAmount()
 activate ":Item"
 ":Item" --> ":SpendingList": amount

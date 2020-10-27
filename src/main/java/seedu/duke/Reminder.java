@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Reminder {
     private LocalDate startWeek;
     WarnCommand warn;
-    private ArrayList<String> period = new ArrayList<>();
+    private ArrayList<String> week = new ArrayList<>();
 
     public Reminder() {
         saveDatesToList();
@@ -20,15 +20,15 @@ public class Reminder {
         double amountRemained = 0;
         if (Budget.hasBudget) {
             warn.execute(spendingList, ui);
-            amountRemained = warn.findRemainingAmount(spendingList);
+            amountRemained = findRemainingAmount(spendingList);
         }
 
-        double amountSpent = 0;
-        for (String i: period) {
-            amountSpent += spendingList.getSpendingAmountTime(i);
+        double totalAmountSpent = 0;
+        for (String i: week) {
+            totalAmountSpent += spendingList.getSpendingAmountTime(i);
         }
 
-        ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
+        ui.printReminderMessage(totalAmountSpent, amountRemained, startWeek.toString());
     }
 
     private LocalDate startOfWeek() {
@@ -66,7 +66,13 @@ public class Reminder {
     private void saveDatesToList() {
         LocalDate startDay = startOfWeek();
         for (int i = 0; i < 7; i++) {
-            period.add(startDay.minusDays(-i).toString());
+            week.add(startDay.minusDays(-i).toString());
         }
+    }
+
+    public double findRemainingAmount(SpendingList spendingList) {
+        double budgetLimit = Budget.getBudgetLimit();
+        double currentAmount = spendingList.getCurrentAmount();
+        return budgetLimit - currentAmount;
     }
 }
