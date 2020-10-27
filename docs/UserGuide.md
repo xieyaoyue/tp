@@ -13,22 +13,85 @@ This user guide provides in-depth documentation on the application’s installat
 6. Refer to the Features below for details of each command.
 
 ## 3. Features 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### 3. 1 Viewing Repayment List Summary: `repayment list`
+This command shows your repayment list.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format:
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+`repayment list`
 
-Example of usage: 
+### 3.2 Viewing Spending List Summary: `spending list`
+This command shows your spending records during a specified period of time (a particular year or month, or both).
+You can also choose to view your spending records which belong to a specific spending category.
 
-`todo n/Write the rest of the User Guide d/next week`
+Format:
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]`
 
-### View Summary: `summary`
-Views the monthly / yearly summary expenditure.
+* The abbreviation of `MONTH` is case sensitive.
+
+Examples of usage:
+
+`spending list` → lists all entries for the current month
+
+`spending list 2020` → lists all entries for year 2020
+
+`spending list 2020 Jul` → lists all entries for July 2020
+
+`spending list -c Food` → lists all food entries for the current month
+
+`spending list 2020 -c Food` → lists all food entries for the year 2020
+
+`spending list 2020 Jul -c Food` → lists all food entries for July 2020
+
+`spending list -a` → lists all entries
+
+### 3.3 Viewing Budget Limit: `view`
+This command shows the current budget limit you have set.
+
+Format:
+
+`view`
+
+### 3.4 Setting Budget Limit: `set`
+This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
+the limit or exceeds the limit.
+
+Format:
+
+`set [-s AMOUNT]`
+
+Example of usage:
+
+`set -s SGD 100.0` → sets the budget limit to SGD 100.0
+
+### 3.5 Inputting Repayment Information: `repay`
+This command adds a repayment record to your repayment list.
+
+Format:
+
+`repay [-n NAME] [-s AMOUNT] [-t DEADLINE]`
+
+Example of usage:
+
+`repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
+2020-12-02
+
+### 3.6 Converting Currency: `convert`
+If you are an international student, you may be more used to viewing your spendings in terms of your home currency. 
+This command will help you by converting the currency in your spending list to another currency you prefer.
+
+Format: 
+
+`convert [-d INPUT_CURRENCY} [-d OUTPUT_CURRENCY]`
+
+Example of usage:
+
+`convert -d SGD -d USD` → converts the currency from SGD to USD
+
+### 3.7 Viewing Summary: `summary`
+This command generates a statement of your total expenditure during a specific period of time (a particular year or 
+month, or both). Statements based on each spending category will also be shown.
 
 Format: 
 
@@ -36,7 +99,7 @@ Format:
 
 * The abbreviation of `MONTH` is case sensitive.
 
-Example of usage:
+Examples of usage:
 
 `summary` → shows summary of current month
 
@@ -64,7 +127,7 @@ export | export PATH
 help | help
 logout | logout
 purge data | purge data
-repay | repay [-d NAME] [-s AMOUNT] [-t DEADLINE] </br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
+repay | repay [-n NAME] [-s AMOUNT] [-t DEADLINE] </br> e.g. repay -n Johnny -s SGD 5.00 -t 2020-12-02
 repayment list | repayment list
 set | set [-s AMOUNT] </br> e.g. set -s SGD 100.00
 view | view
