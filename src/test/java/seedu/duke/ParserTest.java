@@ -84,13 +84,13 @@ class ParserTest {
         assertNull(c.symbol);
         assertNull(c.category);
     }
-
-    @Test
-    void clearIndex() throws ParseException, InvalidCommandException {
-        ClearListCommand c = (ClearListCommand) Parser.parseCommand("clear --repayment 23");
-        assertFalse(c.isClearAll);
-        assertEquals(c.clearIndex, 23);
-    }
+    /**
+     * void clearIndex() throws ParseException, InvalidCommandException {
+     * ClearListCommand c = (ClearListCommand) Parser.parseCommand("clear --repayment 23");
+     * assertFalse(c.isClearAll);
+     * assertEquals(c.clearIndex, 23);
+     * }
+     */
 
     @Test
     void convertMissingSource() {

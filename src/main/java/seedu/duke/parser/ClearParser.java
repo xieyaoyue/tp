@@ -35,7 +35,8 @@ public class ClearParser extends Parser {
         CommandLine line = parser.parse(options, args);
 
         if (line.hasOption("a")) {
-            return new ClearListCommand(true, 1);
+            //return new ClearListCommand(true, 1);
+            return new ClearListCommand();
         }
 
         String indexString = null;
@@ -50,6 +51,7 @@ public class ClearParser extends Parser {
         }
         int index = getIndex(indexString);
 
-        return new ClearListCommand(false, index);
+        //return new ClearListCommand(false, index);
+        return new ClearListCommand();
     }
 }
