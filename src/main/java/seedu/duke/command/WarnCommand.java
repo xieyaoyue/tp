@@ -26,12 +26,4 @@ public class WarnCommand {
             ui.printExceedingWarningMessage();
         }
     }
-    
-    public double findRemainingAmount(SpendingList spendingList) {
-        Budget budget = new Budget();
-        budgetLimit = budget.getBudgetLimit();
-        double currentAmount = spendingList.getCurrentAmount();
-        double amountRemained = budgetLimit - currentAmount;
-        return amountRemained;
-    }
 }
