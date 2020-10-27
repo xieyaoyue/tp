@@ -107,7 +107,7 @@ Below shows an example of usage:
     * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
 
 Figure below shows the sequence diagram of Reminder class: 
-![Sequence Diagram of SummaryCommand class]
+![Sequence Diagram of SummaryCommand class](images/reminder.png)
 
 ### Export Feature
 `Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The export data feature could extract the current data and export to an Excel file. It implements the following operations:

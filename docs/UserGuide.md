@@ -10,9 +10,11 @@ This user guide provides in-depth documentation on the application’s installat
 3. Copy the file to a home folder you would like to use.
 4. Open a terminal in that home folder and enter java -jar duke.jar to begin.
 5. Type the desired command and press Enter to execute it. Tips: entering help will display the help window with a list of commands that could be executed.
-6. Refer to the Features below for details of each command.
+
+Refer to the Features below for details of each command.
 
 ## 3. Features 
+This section shows the features that can be executed by the user.
 ### Adding a todo: `todo`
 Adds a new item to the list of todo items.
 
@@ -46,13 +48,27 @@ Example of usage:
 
 `summary -a` → shows the summary of total expenditure
 
-## 4. FAQ
+## 4. Useful Hidden Features
+This section shows you some of the hidden features which serve as notifications and interactions with the user.
+### Reminder 
+Reminds you about your weekly expenditures and the amount of budget left when you starts the application.
+It will also warn you if you are reaching your budget limit.
+
+[includes a diagram]
+
+Note: A new week starts on Monday.
+
+### Warning
+
+### Encouragement
+
+## 5. FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Install the app in the other computer and copy the data/duke.json to the same folder. When you start the app, it will automatically detect and load the backup data.
 
-## 5. Command Summary
+## 6. Command Summary
 Action | Format & Examples 
 --- | ---
 add | add [-d DESCRIPTION] [-s SPENDING]
