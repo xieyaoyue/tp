@@ -20,7 +20,7 @@ public class Reminder {
         double amountRemained = 0;
         if (Budget.hasBudget) {
             warn.execute(spendingList, ui);
-            amountRemained = warn.findRemainingAmount(spendingList);
+            amountRemained = findRemainingAmount(spendingList);
         }
 
         double totalAmountSpent = 0;
@@ -68,5 +68,11 @@ public class Reminder {
         for (int i = 0; i < 7; i++) {
             week.add(startDay.minusDays(-i).toString());
         }
+    }
+
+    public double findRemainingAmount(SpendingList spendingList) {
+        double budgetLimit = Budget.getBudgetLimit();
+        double currentAmount = spendingList.getCurrentAmount();
+        return budgetLimit - currentAmount;
     }
 }
