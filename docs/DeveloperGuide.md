@@ -96,7 +96,6 @@ Figure below shows the sequence diagram of `SummaryCommand` class:
 total expenditure of the current week, starting on Monday. It implements the following operations:
 * `SpendingList#getSpendingAmountTime(period)` 
 * `WarnCommand#execute(spendingList, ui)`
-* `WarnCommand#`
 
 Below shows an example of usage:
 
