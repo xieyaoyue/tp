@@ -1,5 +1,9 @@
 # Developer Guide
 
+## Introduction
+Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
+This developer guide provides information on the architecture and design of the application. It will not only help you get started as a Cent Wise Dollar Wise contributer, but that you will find useful to refer to even if you are already a contributer of this project. 
+
 ## Design & implementation
 ### Edit Feature
 `SpendingList` and `Ui` facilitate this feature. The Edit feature is able to edit the existing items in the spending list. 
@@ -75,16 +79,33 @@ given a date. It implements the following operations:
 * `Item#getDate()` → gets the date when user spent on the item
 * `Item#getAmount()` → gets the amount spent on the item
 * `SpendinList#getSpendingAmount(period)` → gets the total amount spent during a period
+
 Below shows an example of usage:
+
 1. User executes the `summary 2020` command to get the amount spent during year 2020.
 2. The `summary` command calls the `SpendinList#getSpendingAmount(2020)` which checks the spending date of every items
 stored in the memory.
 3. If the item is spent during year 2020, the amount spent will be summed up.
 
 Figure below shows the sequence diagram of `SummaryCommand` class:
-![Sequence Diagram of SummaryCommand class](images/summary1.png)
+![Sequence Diagram of SummaryCommand class](images/summary.png)
 
+### Export Feature
+`Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The export data feature could extract the current data and export to an Excel file. It implements the following operations:
+* `Workbook#createSheet()` → creates a sheet in the workbook
+* `SpendingList#getItem()` → gets the item waiting to be added to the workbook
+* `Workbook#write()` → writes the data to an Excel file
+* `Ui#printExportMessage()` → prints the message indicating that the Excel file has been created successfully
 
+Below shows an example of usage:
+
+1. User executes the `export F:\` command to export the data to the location `F:\`.
+2. The `export` command calls the `Workbook#createSheet()` to create an Excel workbook sheet.
+3. `SpendingList#getItem()` will be called repeatedly to get items and set the cells' values accordingly.
+3. After writing to an Excel file at the location `F:\` using `Workbook#write()`, a prompt message will be shown by `Ui`.
+
+Figure below shows the sequence diagram of `ExportCommand` class:
+![Sequence Diagram of ExportCommand class](images/ExportCommand.png)
 
 ## Product scope
 ### Target user profile

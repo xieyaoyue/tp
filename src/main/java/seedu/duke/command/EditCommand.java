@@ -7,24 +7,34 @@ import java.io.IOException;
 
 //@@author killingbear999
 public class EditCommand extends Command {
-    
-    private String description;
-    private double amount;
-    private String symbol;
-    private int index;
-    private String category;
-    
-    public EditCommand(int index, String description, String symbol, double amount, String category) {
+    public String description;
+    public Double amount;
+    public String symbol;
+    public int index;
+    public String category;
+
+    public EditCommand(int index, String description, String symbol, Double amount, String category) {
         this.index = index;
         this.description = description;
-        this.amount = amount;
         this.symbol = symbol;
+        this.amount = amount;
         this.category = category;
     }
-    
+
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
-        spendingList.editItem(index, description, symbol, amount, category);
+        if (description != null) {
+            spendingList.editItemDescription(index, description);
+        }
+        if (symbol != null) {
+            // TODO : edit symbol @killingbear999
+        }
+        if (amount != null) {
+            spendingList.editItemAmount(index, amount);
+        }
+        if (category != null) {
+            spendingList.editItemCategory(index, category);
+        }
         ui.printEdit(spendingList, index);
     }
 }

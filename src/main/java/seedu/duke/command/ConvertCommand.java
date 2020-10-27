@@ -12,10 +12,13 @@ import java.util.logging.Level;
 
 //@@author killingbear999
 public class ConvertCommand extends Command {
-
+    public String source;
+    public String target;
     private String description;
     private String currencies;
     private String outputCurrency;
+    private String inputCurrency;
+    private Item currentString;
     private double exchangeRate = 1.0;
     public static ArrayList<Item> newSpendingList = new ArrayList<>();
     private static Logger logger = Logger.getLogger("ConvertCommand");
@@ -26,8 +29,14 @@ public class ConvertCommand extends Command {
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
+
     public ConvertCommand(String description) {
         this.description = description;
+    }
+
+    public ConvertCommand(String source, String target) {
+        this.source = source;
+        this.target = target;
     }
 
     public String identifyCurrency(String description) {
@@ -36,7 +45,7 @@ public class ConvertCommand extends Command {
         int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
         int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
         int length = description.length();
-        String inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
+        inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
         assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
                 "Incorrect input currency";
         outputCurrency = description.substring(secondCurrencyStartingPosition, length);
@@ -62,11 +71,11 @@ public class ConvertCommand extends Command {
         currencies = identifyCurrency(description);
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
-            Item currentString = newSpendingList.get(0);
-            newSpendingList.remove(0);
-            updateNewAmount(currentString);
-            updateCurrency(currentString);
-            newSpendingList.add(currentString);
+            currentString = newSpendingList.get(i);
+            if (!currentString.getSymbol().equals(outputCurrency)) {
+                updateNewAmount(currentString);
+                updateCurrency(currentString);
+            }
         }
         ui.printConvertCurrency(outputCurrency);
         spendingList.updateSpendingList();

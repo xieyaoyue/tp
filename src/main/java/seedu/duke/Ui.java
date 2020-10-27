@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Ui {
     private Scanner in;
@@ -33,7 +34,7 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -d chicken rice -s SGD 3.00"},
+            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
             {"convert", "convert -d INPUT_CURRENCY -d OUTPUT_CURRENCY", "convert -d SGD -d USD"},
@@ -42,7 +43,7 @@ public class Ui {
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay [-d NAME] [-s AMOUNT] [-t DEADLINE]", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay [-n NAME] [-s AMOUNT] [-t DEADLINE]", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set [-s AMOUNT]", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
@@ -73,11 +74,6 @@ public class Ui {
     
     public String getUserInput() {
         return in.nextLine();
-    }
-
-    public void printMessage(String message) {
-        out.println(message);
-        drawSeparateLine();
     }
 
     public void printEncouragementMessage() {
@@ -156,8 +152,24 @@ public class Ui {
         drawSeparateLine();
     }
 
+    public void printClearIndex(String repaymentEntry) {
+        out.println("You've deleted this entry in the repayment list:");
+        out.println(repaymentEntry);
+        drawSeparateLine();
+    }
+
     public void printClearAll() {
         out.println("You've deleted all the records.");
+        drawSeparateLine();
+    }
+
+    public void printClearAllSpendingList() {
+        out.println("You've deleted all the records in the spending list.");
+        drawSeparateLine();
+    }
+
+    public void printClearAllRepaymentList() {
+        out.println("You've deleted all the entries in the repayment list.");
         drawSeparateLine();
     }
 
@@ -180,10 +192,14 @@ public class Ui {
         drawSeparateLine();
     }
 
-    //@@author
+    //@@author pinfang
     public void printSummaryMessage(double amount) {
-        out.printf("You've spent $%f.%n", amount);
+        out.printf("You've spent $%.2f.%n", amount);
         drawSeparateLine();
+    }
+
+    public void printSummaryCategory(String category, double amount) {
+        out.printf("%-20s $%.2f\n", category, amount);
     }
 
     //@@author killingbear999
@@ -237,6 +253,37 @@ public class Ui {
     //@@author killingbear999
     public static void printNoBudget() {
         System.out.println("No budget has been set yet.");
+    }
+    
+    //@@author killingbear999
+    public void printRepaymentList(ArrayList<String> repaymentList) {
+        if (!repaymentList.isEmpty()) {
+            for (String s : repaymentList) {
+                out.println(s);
+            }
+        } else {
+            out.println("Nothing in the list.");
+        }
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printRepay(String currentString) {
+        out.println("You have added this record: ");
+        out.println(currentString);
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
+    public void printDrawMessage(boolean isSuccessful) {
+        if (isSuccessful) {
+            out.println("The charts have been generated successfully!");
+            out.println("You can find the charts at this location:");
+            out.println(System.getProperty("user.dir") + "\\Charts.xlsx");
+        } else {
+            out.println("Sorry, generation failed.");
+        }
+        drawSeparateLine();
     }
 }
 

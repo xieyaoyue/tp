@@ -18,7 +18,7 @@ public class RepayCommand extends Command {
     }
     
     private void identifyRepaymentInformation(String description) {
-        int nameBeginIndex = description.indexOf("-d") + "-d".length() + 1;
+        int nameBeginIndex = description.indexOf("-n") + "-n".length() + 1;
         int nameEndIndex = description.indexOf("-s") - 1;
         name = description.substring(nameBeginIndex, nameEndIndex);
         
@@ -38,5 +38,8 @@ public class RepayCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) {
         identifyRepaymentInformation(description);
+        RepaymentList repaymentList = new RepaymentList(name, currency, repayment, deadline);
+        repaymentList.storeCurrentString();
+        ui.printRepay(repaymentList.returnCurrentString());
     }
 }

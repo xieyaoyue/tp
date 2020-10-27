@@ -7,7 +7,7 @@ import seedu.duke.exceptions.InvalidCommandException;
 
 import java.util.ArrayList;
 
-public class ListCommand extends Command {
+public class SpendingListCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, Ui ui) throws InvalidCommandException {
         ArrayList<Item> list = spendingList.getSpendingList();

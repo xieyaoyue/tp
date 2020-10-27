@@ -44,7 +44,11 @@ public class Item {
     }
 
     public void editCategory(String category) {
-        this.category = category;
+        if (Category.hasCategory(category)) {
+            this.category = category;
+        } else {
+            this.category = "Other";
+        }
     }
 
     public String getSymbol() {
@@ -72,6 +76,6 @@ public class Item {
     }
 
     public String toString() {
-        return date + " " + description + " " + symbol + amount;
+        return date + " [" + category + "] " + description + " " + symbol + " " + amount;
     }
 }
