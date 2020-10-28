@@ -32,12 +32,19 @@ This developer guide provides information on the architecture and design of the 
 ![image](https://user-images.githubusercontent.com/45732128/97327381-e083a780-18af-11eb-8fed-eb6d7de73703.png)
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
+
 Main: Initializes spending list at app launch and coordinates the interaction between other components
+
 DukeException: Issues exceptions if there are errors in storage or wrong format of user input is detected
+
 SpendingList: Stores the expenditure of the user as individual entries
+
 Storage: Reads data from, and writes data to, the hard disk
+
 Ui: Interacts with the user
+
 Command: Executes the user command or system-issued command
+
 Parser: Analyzes the user command
 
 **How the architecture components interact with each other** </br>
