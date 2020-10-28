@@ -59,7 +59,8 @@ public abstract class Parser {
         case "draw":
         case "export":
         case "repay":
-        case "repayment": return new RepaymentListCommand();
+        case "repayment":
+            return new RepaymentListCommand();
         case "set":
         case "spending":
             return null;
