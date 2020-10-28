@@ -41,6 +41,7 @@ Command: Executes the user command or system-issued command
 Parser: Analyzes the user command
 
 **How the architecture components interact with each other** </br>
+
 The sequence diagram below shows how the components interact with each other when the user issues a general command.
 
 ![image](https://user-images.githubusercontent.com/45732128/97327808-50922d80-18b0-11eb-9111-ee1880207b80.png)
