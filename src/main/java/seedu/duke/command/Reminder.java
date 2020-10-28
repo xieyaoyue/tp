@@ -9,12 +9,12 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ReminderCommand extends Command {
+public class Reminder extends Command {
     private LocalDate startWeek;
     WarnCommand warn;
     private ArrayList<String> week = new ArrayList<>();
 
-    public ReminderCommand() {
+    public Reminder() {
         saveDatesToList();
         warn = new WarnCommand();
     }

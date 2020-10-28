@@ -2,7 +2,7 @@ package seedu.duke;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.ClearRepaymentListCommand;
-import seedu.duke.command.ReminderCommand;
+import seedu.duke.command.Reminder;
 import seedu.duke.command.EncouragementCommand;
 import seedu.duke.command.ClearListCommand;
 import seedu.duke.parser.Parser;
@@ -15,7 +15,7 @@ public class Duke {
     private static Storage storage;
     private static SpendingList spendingList;
     private static RepaymentList repaymentList;
-    private static ReminderCommand reminder;
+    private static Reminder reminder;
     private static EncouragementCommand encouragement;
 
     /**
@@ -51,7 +51,7 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        reminder = new ReminderCommand();
+        reminder = new Reminder();
         encouragement = new EncouragementCommand();
         try {
             storage = new Storage();
