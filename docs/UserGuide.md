@@ -111,6 +111,32 @@ Examples of usage:
 
 `summary -a` → shows the summary of total expenditure
 
+### 3.8 Visualizing data: `draw`
+This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
+
+Format: 
+
+`draw [YEAR = current year] [MONTH = current month]`
+
+Examples of usage: 
+
+`draw` → shows the graph of current month
+
+`draw 2012` → shows the graph of year 2012
+
+`draw 2020 Jun` → shows the graph of Jun 2020
+
+### 3.9 Exporting data: `export`
+This command exports the data to an Excel file at the given location.
+
+Format: 
+
+`export PATH`
+
+Example of usage: 
+
+`export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
+
 ## 4. Useful Hidden Features
 This section shows you some of the hidden features which serve as notifications and interactions with the user.
 ### Reminder 
@@ -130,6 +156,10 @@ Note: A new week starts on Monday.
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Install the app in the other computer and copy the data/duke.json to the same folder. When you start the app, it will automatically detect and load the backup data.
+
+**Q**: Are the commands case sensitive?
+
+**A**: Yes, they are. To execute the commands properly, please strictly follow the format given above.
 
 ## 6. Command Summary
 Action | Format & Examples 
