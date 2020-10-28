@@ -1,17 +1,20 @@
-package seedu.duke;
+package seedu.duke.command;
 
+import seedu.duke.Budget;
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 import seedu.duke.command.WarnCommand;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Reminder {
+public class ReminderCommand extends Command {
     private LocalDate startWeek;
     WarnCommand warn;
     private ArrayList<String> week = new ArrayList<>();
 
-    public Reminder() {
+    public ReminderCommand() {
         saveDatesToList();
         warn = new WarnCommand();
     }
