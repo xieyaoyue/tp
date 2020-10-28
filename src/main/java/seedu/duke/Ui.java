@@ -23,7 +23,7 @@ public class Ui {
             + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
     private static final String[][] BUDGET_QUOTES = {
             {"It takes as much energy to wish as it does to plan.", "Eleanor Roosevelt"},
-            {"Just because you can afford it doesn't mean you should buy it", "Suze Orman"},
+            {"Just because you can afford it doesn't mean you should buy it.", "Suze Orman"},
             {"Do not save what is left after spending; instead spend what is left after saving.", "Warren Buffett"},
             {"Setting goals is the first step in turning the invisible into the visible.", "Tony Robbins"},
             {"If there is no struggle, there is no progress.", "Frederick Douglass"}
@@ -77,12 +77,12 @@ public class Ui {
     }
 
     public void printEncouragementMessage() {
-        out.println("Keep up budgeting! You can do it!");
-        out.println("Here is a quote to keep you going:");
         Random rand = new Random();
         int randInt = rand.nextInt(4);
         out.println(BUDGET_QUOTES[randInt][0]);
         out.println(" ".repeat(60) + "--" + BUDGET_QUOTES[randInt][1]);
+        out.println("Keep up budgeting! You can do it!");
+        drawSeparateLine();
     }
 
     public void printWelcomeMessage() {

@@ -5,10 +5,11 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.Command;
-import seedu.duke.command.ExitCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.ViewCommand;
+import seedu.duke.command.ExitCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 import java.util.Arrays;
@@ -59,6 +60,7 @@ public abstract class Parser {
         case "export":
         case "repay":
         case "repayment":
+            return new RepaymentListCommand();
         case "set":
         case "spending":
             return null;
