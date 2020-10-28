@@ -1,0 +1,18 @@
+@startuml
+->":RepayCommand":execute(spendingList, ui)
+activate ":RepayCommand"
+":RepayCommand"->":RepayCommand":identifyRepaymentInformation(description)
+activate ":RepayCommand"
+":RepayCommand"-->":RepayCommand":
+deactivate ":RepayCommand"
+":RepayCommand"->":RepaymentList":storeCurrentString()
+activate ":RepaymentList"
+":RepaymentList"-->":RepayCommand":
+deactivate ":RepaymentList"
+":RepayCommand"->":Ui":printRepay(repaymentList.returnCurrentString())
+activate ":Ui"
+":Ui"-->":RepayCommand":
+deactivate ":Ui"
+<--":RepayCommand"
+deactivate ":RepayCommand"
+@enduml

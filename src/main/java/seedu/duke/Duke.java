@@ -1,6 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.command.ClearListCommand;
+import seedu.duke.command.ClearRepaymentListCommand;
 import seedu.duke.command.Command;
+import seedu.duke.parser.Parser;
 
 public class Duke {
     /**
@@ -9,6 +12,7 @@ public class Duke {
     private static Ui ui;
     private static Storage storage;
     private static SpendingList spendingList;
+    private static RepaymentList repaymentList;
     private static Reminder reminder;
 
     /**
@@ -23,7 +27,13 @@ public class Duke {
             try {
                 String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                c.execute(spendingList, ui);
+                if (!(c instanceof ClearRepaymentListCommand) && !(c instanceof ClearListCommand)) {
+                    c.execute(spendingList, ui);
+                } else if (c instanceof ClearRepaymentListCommand) {
+                    c.execute(repaymentList, ui);
+                } else {
+                    c.execute(spendingList, repaymentList, ui);
+                }
                 isExit = c.isExit();
             } catch (Exception e) {
                 ui.printErrorMessage(e.toString());
