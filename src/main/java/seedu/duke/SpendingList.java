@@ -120,7 +120,7 @@ public class SpendingList {
 
     //@@author killingbear999
     public void updateSpendingList() throws IOException {
-        ConvertCommand convertCommand = new ConvertCommand(description);
+        ConvertCommand convertCommand = new ConvertCommand();
         spendingList = convertCommand.updateSpendingList();
         save();
     }
