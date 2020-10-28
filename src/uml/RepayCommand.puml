@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 ->":RepayCommand":execute(spendingList, ui)
 activate ":RepayCommand"
 ":RepayCommand"->":RepayCommand":identifyRepaymentInformation(description)

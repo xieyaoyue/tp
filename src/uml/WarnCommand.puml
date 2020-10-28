@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 ->":WarnCommand":execute(spendingList, ui)
 activate ":WarnCommand"
 ":WarnCommand"->":Budget":getCurrency()

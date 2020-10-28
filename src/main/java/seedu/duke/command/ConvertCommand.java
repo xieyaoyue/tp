@@ -12,9 +12,6 @@ import java.util.logging.Level;
 
 //@@author killingbear999
 public class ConvertCommand extends Command {
-    public String source;
-    public String target;
-    private String description;
     private String currencies;
     private String outputCurrency;
     private String inputCurrency;
@@ -30,27 +27,15 @@ public class ConvertCommand extends Command {
     };
 
 
-    public ConvertCommand(String description) {
-        this.description = description;
+    public ConvertCommand() {
     }
 
     public ConvertCommand(String source, String target) {
-        this.source = source;
-        this.target = target;
+        this.inputCurrency = source;
+        this.outputCurrency = target;
     }
 
-    public String identifyCurrency(String description) {
-        int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
-        assert firstCurrencyStartingPosition == 3 : "The value of firstCurrencyStartingPosition should be 3";
-        int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
-        int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
-        int length = description.length();
-        inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
-        assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
-                "Incorrect input currency";
-        outputCurrency = description.substring(secondCurrencyStartingPosition, length);
-        assert outputCurrency.equals(description.substring(secondCurrencyStartingPosition, length)) :
-                "Incorrect output currency";
+    public String identifyCurrency() {
         return inputCurrency + outputCurrency;
     }
 
@@ -68,7 +53,7 @@ public class ConvertCommand extends Command {
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to start processing");
         newSpendingList = spendingList.getSpendingList();
-        currencies = identifyCurrency(description);
+        currencies = identifyCurrency();
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
             currentString = newSpendingList.get(i);

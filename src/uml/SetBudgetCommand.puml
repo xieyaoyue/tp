@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 ->":SetBudgetCommand":execute(spendingList, ui)
 activate ":SetBudgetCommand"
 ":SetBudgetCommand"->":SetBudgetCommand":identifyBudgetLimit(description)
