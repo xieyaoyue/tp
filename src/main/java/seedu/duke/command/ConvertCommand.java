@@ -22,7 +22,7 @@ public class ConvertCommand extends Command {
 
     /** SGD to USD; USD to SGD; SGD to CNY; CNY to SGD. */
     private final String[][] exchangeRates = {
-            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
+            {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
@@ -70,22 +70,22 @@ public class ConvertCommand extends Command {
 
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
-        amount = amount * exchangeRate;
+        amount = Math.round(amount * exchangeRate * 100.0) / 100.0;
         currentString.editAmount(amount);
     }
 
     private void updateCurrency(Item currentString) {
         switch (currencies) {
-        case "SGD USD":
+        case "SGDUSD":
             currentString.editSymbol("USD");
             break;
-        case "USD SGD":
+        case "USDSGD":
             currentString.editSymbol("SGD");
             break;
-        case "SGD CNY":
+        case "SGDCNY":
             currentString.editSymbol("CNY");
             break;
-        case "CNY SGD":
+        case "CNYSGD":
             currentString.editSymbol("SGD");
             break;
         default:

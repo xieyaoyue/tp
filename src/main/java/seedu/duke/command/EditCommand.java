@@ -14,7 +14,7 @@ public class EditCommand extends Command {
     public String category;
 
     public EditCommand(int index, String description, String symbol, Double amount, String category) {
-        this.index = index;
+        this.index = index - 1;
         this.description = description;
         this.symbol = symbol;
         this.amount = amount;

@@ -101,7 +101,7 @@ class ParserTest {
     void editOneParam() throws ParseException, InvalidCommandException, NoSuchMethodException, InstantiationException,
         IllegalAccessException, InvocationTargetException, java.text.ParseException {
         EditCommand c = (EditCommand) Parser.parseCommand("edit 987 --description fried rice");
-        assertEquals(c.index, 987);
+        assertEquals(c.index, 986);
         assertEquals(c.description, "fried rice");
         assertNull(c.amount);
         assertNull(c.symbol);
