@@ -20,7 +20,7 @@ class ClearSpendingListCommandTest {
         Ui ui = new Ui();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
-        c.execute(spendingList, ui);
+        c.execute(spendingList, null, ui);
         assertEquals(1, spendingList.getListSize());
     }
 
@@ -31,7 +31,7 @@ class ClearSpendingListCommandTest {
         Ui ui = new Ui();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
-        c.execute(spendingList, ui);
+        c.execute(spendingList, null, ui);
         assertEquals(0, spendingList.getListSize());
     }
 

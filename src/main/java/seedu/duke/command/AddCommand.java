@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Budget;
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.SpendingListCategoriser;
 import seedu.duke.Ui;
@@ -30,7 +31,7 @@ public class AddCommand extends Command {
     };
     
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to add item");
         if (!symbol.equals("SGD")) {
             updateAmount();
@@ -45,11 +46,11 @@ public class AddCommand extends Command {
         }
         if (size % 8 == 0) {
             EncouragementCommand encouragementCommand = new EncouragementCommand();
-            encouragementCommand.execute(spendingList, ui);
+            encouragementCommand.execute(spendingList, null, ui);
         }
         if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
-            warnCommand.execute(spendingList, ui);
+            warnCommand.execute(spendingList, null, ui);
         }
     }
     

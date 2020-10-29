@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Budget;
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
@@ -19,7 +20,7 @@ public class SetBudgetCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         Budget.addBudget(currency, budgetLimit);
         ui.printBudgetLimit(currency, budgetLimit);
     }

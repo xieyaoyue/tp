@@ -17,7 +17,7 @@ class ClearRepaymentListCommandTest {
         repaymentList2.storeCurrentString();
         Ui ui = new Ui();
         ClearRepaymentListCommand c = new ClearRepaymentListCommand(false, 1);
-        c.execute(repaymentList2, ui);
+        c.execute(null, repaymentList2, ui);
         assertEquals(1, repaymentList2.getListSize());
     }
 
@@ -29,7 +29,7 @@ class ClearRepaymentListCommandTest {
         repaymentList2.storeCurrentString();
         Ui ui = new Ui();
         ClearRepaymentListCommand c = new ClearRepaymentListCommand(true, 0);
-        c.execute(repaymentList2, ui);
+        c.execute(null, repaymentList2, ui);
         assertEquals(0, repaymentList2.getListSize());
     }
 }
