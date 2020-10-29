@@ -26,6 +26,10 @@ Example: `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION]` can be used as `edit 1 
 * The abbreviation of `MONTH` is case sensitive. The system only accepts the abbreviation of `MONTH` with the first three letters, and the first
 letter is capitalised. Example: `Jul` for July or `Oct` for October.
 
+* The system has the feature of a currency converter, but it only supports currency conversion for SGD to USD, or USD to SGD, or SGD to CNY, or CNY to SGD.
+
+* The default currency of the system is SGD.
+
 ### 3.1 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
@@ -64,6 +68,16 @@ Format:
 
 `view`
 
+Example of usage:
+
+`view` → views the budget limit that was set previously
+
+Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet):
+![Example for Viewing Budget Limit](images/NoBudgetExample.png)
+
+Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set):
+![Example for Viewing Budget Limit](images/BudgetExample.png)
+
 ### 3.4 Setting Budget Limit: `set`
 This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
 the limit or exceeds the limit.
@@ -88,6 +102,9 @@ Example of usage:
 `repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
+Feature below shows an example for Inputting Repayment Information feature:
+![Example for Inputting Repayment Information](images/RepayExample.png)
+
 ### 3.6 Converting Currency: `convert`
 This command converts the currency in your spending list to another currency you prefer.
 
@@ -98,6 +115,9 @@ Format:
 Example of usage:
 
 `convert -s SGD -t USD` → converts the currency from SGD to USD
+
+Feature below shows an example for Converting Currency feature:
+![Example for Converting Currency](images/ConvertExample.png)
 
 ### 3.7 Viewing Summary: `summary`
 This command generates a statement of your total expenditure during a specific period of time (a particular year or 
@@ -154,7 +174,10 @@ Format:
 
 Example of usage:
 
-`edit 1 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
+`edit 3 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
+
+Feature below shows an example for Editing Spending feature:
+![Example for Editing Spending](images/EditExample.png)
 
 ## 4. Useful Hidden Features
 This section shows you the hidden features which serve as notifications and interactions with the user.
