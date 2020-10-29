@@ -70,7 +70,7 @@ public class ConvertCommand extends Command {
 
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
-        amount = amount * exchangeRate;
+        amount = Math.round(amount * exchangeRate * 100.0) / 100.0;
         currentString.editAmount(amount);
     }
 

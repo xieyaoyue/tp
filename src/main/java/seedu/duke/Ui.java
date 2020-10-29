@@ -249,11 +249,13 @@ public class Ui {
     //@@author killingbear999
     public static void printCurrentBudgetLimit() {
         System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+        System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999
     public static void printNoBudget() {
         System.out.println("No budget has been set yet.");
+        System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999
