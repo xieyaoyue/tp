@@ -215,7 +215,10 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 
 ## 6. Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The system should respond within two seconds.
+2. The system should be easy to use, do not require much effort to learn.
+3. The system should work on any mainstream OS that has Java 11 or above installed.
+4. Users with faster typing speed than average should be able to use this program with ease.
 
 ## 7. Glossary
 
