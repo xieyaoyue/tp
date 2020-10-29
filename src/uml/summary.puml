@@ -1,4 +1,6 @@
 @startuml
+hide footbox
+
 -> ":SummaryCommand": execute(spendingList, ui)
 activate ":SummaryCommand"
 
@@ -27,8 +29,12 @@ end
 
 end
 
-":SpendingList" --> ":SummaryCommand": amountSpent
+":SpendingList" -> ":SummaryCommand": amountSpent
 deactivate ":SpendingList"
+":SummaryCommand" -> ":Ui" : printSummaryMessage(amountSpent)
+activate ":Ui"
+":Ui" --> ":SummaryCommand"
+deactivate ":Ui"
 
 <-- ":SummaryCommand"
 deactivate ":SummaryCommand"

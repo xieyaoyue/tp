@@ -1,11 +1,12 @@
 @startuml
+hide footbox
 ->":ConvertCommand":execute(spendingList, ui)
 activate ":ConvertCommand"
 ":ConvertCommand"->":SpendingList":getSpendingList()
 activate ":SpendingList"
 ":SpendingList"-->":ConvertCommand":spendingList
 deactivate ":SpendingList"
-":ConvertCommand"->":ConvertCommand":identifyCurrency(description)
+":ConvertCommand"->":ConvertCommand":identifyCurrency()
 activate ":ConvertCommand"
 ":ConvertCommand"-->":ConvertCommand":currencies
 deactivate ":ConvertCommand"
