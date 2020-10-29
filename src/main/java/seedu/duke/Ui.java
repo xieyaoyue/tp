@@ -56,9 +56,6 @@ public class Ui {
             {"summary", "summary", ""},
             {"", "OR summary YEAR", "summary 2020"},
             {"", "OR summary YEAR MONTH", "summary 2020 Jul"},
-            {"", "OR summary -c CATEGORY", "summary -c food"},
-            {"", "OR summary YEAR -c CATEGORY", "summary 2020 -c food"},
-            {"", "OR summary YEAR MONTH -c CATEGORY", "summary 2020 Jul -c food"},
             {"", "OR summary -a", ""},
             {"purge data", "purge data", ""}
     };
