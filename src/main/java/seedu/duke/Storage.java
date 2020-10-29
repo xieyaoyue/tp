@@ -1,17 +1,19 @@
 package seedu.duke;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.util.Scanner;
 
 public class Storage {
-    private static File file;
-    private static Gson gson;
+    private final File file;
+    private final Gson gson;
 
     /**
      * Creates the Storage object based on the user-specified file path.
@@ -31,7 +33,9 @@ public class Storage {
         }
         // Create or Initialise object
         file = new File(path);
-        gson = new Gson();
+        gson = new GsonBuilder()
+            .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
+            .create();
         if (file.exists()) {
             return;
         }
@@ -65,20 +69,6 @@ public class Storage {
         return sl;
     }
 
-    public void save(SpendingList spendingList) throws IOException {
-        String jsonContent = gson.toJson(spendingList);
-        FileWriter fw = new FileWriter(file, false);
-        fw.write(jsonContent);
-        fw.close();
-    }
-
-    public void save(RepaymentList repaymentList) throws IOException {
-        String jsonContent = gson.toJson(repaymentList);
-        FileWriter fw = new FileWriter(file, false);
-        fw.write(jsonContent);
-        fw.close();
-    }
-
     public RepaymentList loadRepaymentList() {
         RepaymentList rl;
         try {
@@ -93,4 +83,17 @@ public class Storage {
         return rl;
     }
 
+    public void save(SpendingList spendingList) throws IOException {
+        String jsonContent = gson.toJson(spendingList, SpendingList.class);
+        FileWriter fw = new FileWriter(file, false);
+        fw.write(jsonContent);
+        fw.close();
+    }
+
+    public void save(RepaymentList repaymentList) throws IOException {
+        String jsonContent = gson.toJson(repaymentList, RepaymentList.class);
+        FileWriter fw = new FileWriter(file, false);
+        fw.write(jsonContent);
+        fw.close();
+    }
 }
