@@ -3,6 +3,8 @@ package seedu.duke.command;
 import seedu.duke.RepaymentList;
 import seedu.duke.Ui;
 
+import java.io.IOException;
+
 public class ClearRepaymentListCommand extends Command {
     public boolean isClearAll;
     public Integer clearIndex;
@@ -12,7 +14,7 @@ public class ClearRepaymentListCommand extends Command {
         this.clearIndex = clearIndex;
     }
 
-    public void execute(RepaymentList repaymentList, Ui ui) {
+    public void execute(RepaymentList repaymentList, Ui ui) throws IOException {
         if (!isClearAll) {
             assert (clearIndex > 0 && clearIndex <= repaymentList.getListSize()) : "Wrong index";
             ui.printClearIndex(repaymentList.getEntry(clearIndex - 1));

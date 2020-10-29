@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.RepaymentList;
 import seedu.duke.Ui;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClearRepaymentListCommandTest {
     @Test
-    void execute_clearIndex() {
+    void execute_clearIndex() throws IOException {
         RepaymentList repaymentList1 = new RepaymentList("John", "SGD", 10.00, "1 Nov 2020");
         repaymentList1.storeCurrentString();
         RepaymentList repaymentList2 = new RepaymentList("Ben", "USD", 20.00, "10 Nov 2020");
@@ -20,7 +22,7 @@ class ClearRepaymentListCommandTest {
     }
 
     @Test
-    void execute_clearAll()  {
+    void execute_clearAll() throws IOException {
         RepaymentList repaymentList1 = new RepaymentList("John", "SGD", 10.00, "1 Nov 2020");
         repaymentList1.storeCurrentString();
         RepaymentList repaymentList2 = new RepaymentList("Ben", "USD", 20.00, "10 Nov 2020");

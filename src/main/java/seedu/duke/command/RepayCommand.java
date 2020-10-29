@@ -4,6 +4,8 @@ import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
+import java.io.IOException;
+
 //@@author killingbear999
 public class RepayCommand extends Command {
     private String name;
@@ -19,7 +21,7 @@ public class RepayCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
+    public void execute(SpendingList spendingList, Ui ui) throws IOException {
         RepaymentList repaymentList = new RepaymentList(name, currency, repayment, deadline);
         repaymentList.storeCurrentString();
         ui.printRepay(repaymentList.returnCurrentString());
