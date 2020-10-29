@@ -1,8 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.command.ClearListCommand;
-import seedu.duke.command.ClearRepaymentListCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.ClearRepaymentListCommand;
+import seedu.duke.command.Reminder;
+import seedu.duke.command.EncouragementCommand;
+import seedu.duke.command.ClearListCommand;
 import seedu.duke.parser.Parser;
 
 public class Duke {
@@ -14,6 +16,7 @@ public class Duke {
     private static SpendingList spendingList;
     private static RepaymentList repaymentList;
     private static Reminder reminder;
+    private static EncouragementCommand encouragement;
 
     /**
      * Runs the program until termination.
@@ -22,6 +25,7 @@ public class Duke {
         String filePath = storage.getFilePath();
         ui.printWelcomeMessage(filePath);
         reminder.execute(spendingList, ui);
+        encouragement.execute(spendingList, ui);
         boolean isExit = false;
         do {
             try {
@@ -48,6 +52,7 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         reminder = new Reminder();
+        encouragement = new EncouragementCommand();
         try {
             storage = new Storage();
             spendingList = storage.load();

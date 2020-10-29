@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 ->":EditCommand":execute(spendingList, ui)
 activate ":EditCommand"
 alt isDescription
