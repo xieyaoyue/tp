@@ -30,6 +30,8 @@ letter is capitalised. Example: `Jul` for July or `Oct` for October.
 
 * The default currency of the system is SGD.
 
+* There are six different categories provided, including Education, Entertainment, Food, Health, Transportation and Utilities. Other tasks could be categorised under the category of Other.
+
 ### 3.1 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
@@ -49,15 +51,9 @@ Examples of usage:
 
 `spending list` → lists all entries for the current month
 
-`spending list 2020` → lists all entries for year 2020
-
 `spending list 2020 Jul` → lists all entries for July 2020
 
 `spending list -c Food` → lists all food entries for the current month
-
-`spending list 2020 -c Food` → lists all food entries for the year 2020
-
-`spending list 2020 Jul -c Food` → lists all food entries for July 2020
 
 `spending list -a` → lists all entries
 
@@ -179,6 +175,7 @@ Feature below shows an example for Editing Spending feature:
 
 ## 4. Useful Hidden Features
 This section shows you the hidden features which serve as notifications and interactions with the user.
+
 ### Reminder 
 Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
 It will also warn you if you are reaching your budget limit.
