@@ -1,10 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.command.Command;
 import seedu.duke.command.ClearRepaymentListCommand;
-import seedu.duke.command.Reminder;
+import seedu.duke.command.ClearSpendingListCommand;
+import seedu.duke.command.Command;
 import seedu.duke.command.EncouragementCommand;
-import seedu.duke.command.ClearListCommand;
+import seedu.duke.command.Reminder;
 import seedu.duke.parser.Parser;
 
 public class Duke {
@@ -31,7 +31,7 @@ public class Duke {
             try {
                 String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                if (!(c instanceof ClearRepaymentListCommand) && !(c instanceof ClearListCommand)) {
+                if (c instanceof ClearSpendingListCommand) {
                     c.execute(spendingList, ui);
                 } else if (c instanceof ClearRepaymentListCommand) {
                     c.execute(repaymentList, ui);
