@@ -20,7 +20,7 @@ public class RepayParser extends Parser {
         Spending s = parseSpendingOption(line);
         String description = parseDescriptionOption(line);
         String date = parseDateOption(line);
-
+        
         return new RepayCommand(description, s.symbol, s.amount, date);
     }
 }
