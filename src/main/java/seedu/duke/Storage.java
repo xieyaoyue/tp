@@ -72,6 +72,13 @@ public class Storage {
         fw.close();
     }
 
+    public void save(RepaymentList repaymentList) throws IOException {
+        String jsonContent = gson.toJson(repaymentList);
+        FileWriter fw = new FileWriter(file, false);
+        fw.write(jsonContent);
+        fw.close();
+    }
+
     public RepaymentList loadRepaymentList() {
         RepaymentList rl;
         try {
@@ -84,13 +91,6 @@ public class Storage {
             rl = new RepaymentList(this);
         }
         return rl;
-    }
-
-    public void save(RepaymentList repaymentList) throws IOException {
-        String jsonContent = gson.toJson(repaymentList);
-        FileWriter fw = new FileWriter(file, false);
-        fw.write(jsonContent);
-        fw.close();
     }
 
 }

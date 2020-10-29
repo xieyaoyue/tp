@@ -33,12 +33,19 @@ public class RepaymentList {
 
     public void deleteRepaymentEntry(int index) throws IOException {
         repaymentList.remove(index);
+        save();
+    }
+
+    private void save() throws IOException {
+        if (storage == null) {
+            return;
+        }
         storage.save(this);
     }
 
     public void clearAllEntries() throws IOException {
         repaymentList.clear();
-        storage.save(this);
+        save();
     }
 
     public int getListSize() {
@@ -56,7 +63,7 @@ public class RepaymentList {
     public void storeCurrentString() throws IOException {
         combine();
         repaymentList.add(currentString);
-        storage.save(this);
+        save();
     }
 
     public String returnCurrentString() {
