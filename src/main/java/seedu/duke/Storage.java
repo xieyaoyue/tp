@@ -12,16 +12,6 @@ import java.util.Scanner;
 public class Storage {
     private static File file;
     private static Gson gson;
-    private static final String defaultPath = "data/duke.json";
-
-    /**
-     * Creates the Storage object based on the the default storage path.
-     * @throws InvalidStorageFilePathException for empty or blank file path
-     * @throws InvalidStorageFileExtensionException for non-json file path
-     */
-    public Storage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException {
-        this(defaultPath);
-    }
 
     /**
      * Creates the Storage object based on the user-specified file path.
@@ -61,7 +51,7 @@ public class Storage {
         return file.getPath();
     }
 
-    public SpendingList load() {
+    public SpendingList loadSpendingList() {
         SpendingList sl;
         try {
             Scanner s = new Scanner(file);
@@ -81,4 +71,26 @@ public class Storage {
         fw.write(jsonContent);
         fw.close();
     }
+
+    public RepaymentList loadRepaymentList() {
+        RepaymentList rl;
+        try {
+            Scanner s = new Scanner(file);
+            String jsonContent = s
+                .useDelimiter("\\Z")
+                .next();
+            rl = gson.fromJson(jsonContent, RepaymentList.class);
+        } catch (Exception e) {
+            rl = new RepaymentList(this);
+        }
+        return rl;
+    }
+
+    public void save(RepaymentList repaymentList) throws IOException {
+        String jsonContent = gson.toJson(repaymentList);
+        FileWriter fw = new FileWriter(file, false);
+        fw.write(jsonContent);
+        fw.close();
+    }
+
 }

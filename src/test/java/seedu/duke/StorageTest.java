@@ -30,7 +30,7 @@ class StorageTest {
         expectedList.addItem("fish", "S$", 10, "");
         expectedList.addItem("books", "S$", 8.9, "");
 
-        SpendingList actualList = storage.load();
+        SpendingList actualList = storage.loadSpendingList();
         SpendingListTest.assertEqualList(expectedList, actualList);
     }
 

@@ -12,7 +12,6 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     private static Ui ui;
-    private static Storage storage;
     private static SpendingList spendingList;
     private static RepaymentList repaymentList;
     private static Reminder reminder;
@@ -22,8 +21,7 @@ public class Duke {
      * Runs the program until termination.
      */
     private static void run() {
-        String filePath = storage.getFilePath();
-        ui.printWelcomeMessage(filePath);
+        ui.printWelcomeMessage();
         reminder.execute(spendingList, ui);
         encouragement.execute(spendingList, ui);
         boolean isExit = false;
@@ -54,8 +52,8 @@ public class Duke {
         reminder = new Reminder();
         encouragement = new EncouragementCommand();
         try {
-            storage = new Storage();
-            spendingList = storage.load();
+            spendingList = new Storage("data/duke_spending.json").loadSpendingList();
+            repaymentList = new Storage("data/duke_repayment.json").loadRepaymentList();
         } catch (Exception e) {
             ui.printErrorMessage(e.toString());
             System.exit(0);
