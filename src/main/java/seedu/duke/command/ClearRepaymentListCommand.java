@@ -4,10 +4,10 @@ import seedu.duke.RepaymentList;
 import seedu.duke.Ui;
 
 public class ClearRepaymentListCommand extends Command {
-    private boolean isClearAll;
-    private int clearIndex;
+    public boolean isClearAll;
+    public Integer clearIndex;
 
-    public ClearRepaymentListCommand(boolean isClearAll, int clearIndex) {
+    public ClearRepaymentListCommand(boolean isClearAll, Integer clearIndex) {
         this.isClearAll = isClearAll;
         this.clearIndex = clearIndex;
     }
