@@ -2,7 +2,6 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.SpendingList;
-import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
@@ -16,8 +15,7 @@ class AddCommandTest {
     @Test
     void execute() throws IOException, InvalidStorageFileExtensionException, InvalidStorageFilePathException {
         AddCommand addCommand = new AddCommand("buy sushi", "SGD", 3.0, "");
-        Storage storage = new Storage();
-        SpendingList spendingList = new SpendingList(storage);
+        SpendingList spendingList = new SpendingList();
         Ui ui = new Ui();
         addCommand.execute(spendingList, ui);
         assertEquals("buy sushi", spendingList.getItem(0).getDescription());
