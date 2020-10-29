@@ -24,7 +24,7 @@ public class RepaymentList {
     }
 
     public RepaymentList(Storage storage) {
-        RepaymentList.storage = storage;
+        this.storage = storage;
     }
 
     public ArrayList<String> getRepaymentList() {
