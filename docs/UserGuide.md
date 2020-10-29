@@ -127,8 +127,6 @@ Format:
 
 `summary [YEAR] [MONTH] [-a]`
 
-* The abbreviation of `MONTH` is case sensitive.
-
 Examples of usage:
 
 `summary` → shows summary of current month
@@ -165,7 +163,7 @@ Example of usage:
 
 `export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
 
-### 4.10 Editing spending: `edit`
+### 3.10 Editing spending: `edit`
 This command edits the existing records in the spending list.
 
 Format:
@@ -185,13 +183,20 @@ This section shows you the hidden features which serve as notifications and inte
 Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
 It will also warn you if you are reaching your budget limit.
 
-[includes a diagram]
+![reminder message](images/reminderMessage.png)
 
 Note: A new week starts on Monday.
 
 ### Warning
+Warns you when you are about to overspend. The budget threshold is 90% of your budget set. After you add a spending 
+item and the total expenditure is more than the budget threshold, warning message will appear.
+
+![reminder message](images/warningMessage.png)
+
+Note: You need to set the budget in order to get the warning feature.
 
 ### Encouragement
+Encourages you when you add spending items.
 
 ## 5. FAQ
 
