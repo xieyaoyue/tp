@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 //@@author Wu-Haitao
-public class DrawCommand extends Command {
+public class DrawCommand extends DateCommand {
     private final DateFormatter dateFormatter = new DateFormatter();
     private String timePeriod;
 
@@ -38,14 +38,10 @@ public class DrawCommand extends Command {
         timePeriod = "";
     }
 
-    public DrawCommand(String year) throws InvalidCommandException {
-        timePeriod = year;
-    }
-
     public DrawCommand(String year, String month) throws InvalidCommandException {
         String convertedMonth = dateFormatter.changeMonthFormat(month);
         if (convertedMonth == null) {
-            throw new InvalidCommandException();
+            timePeriod = year;
         } else {
             timePeriod = year + "-" + convertedMonth;
         }
