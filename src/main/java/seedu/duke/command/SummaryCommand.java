@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author pinfang
-public class SummaryCommand extends Command {
+public class SummaryCommand extends DateCommand {
     private String year;
     private String month;
     private String period;
@@ -21,7 +21,11 @@ public class SummaryCommand extends Command {
     public SummaryCommand(String year, String month) {
         this.year = year;
         this.month = dateFormatter.changeMonthFormat(month);
-        period = this.year + "-" + this.month;
+        if (month == null) {
+            period = year;
+        } else {
+            period = year + "-" + month;
+        }
     }
 
     public SummaryCommand(String year) {
@@ -29,15 +33,8 @@ public class SummaryCommand extends Command {
         period = year;
     }
 
-    public SummaryCommand(boolean isCurrentMonth) {
-        if (isCurrentMonth) {
-            this.year = dateFormatter.getCurrentYear();
-            this.month = dateFormatter.getCurrentMonth();
-            period = year + "-" + month;
-        } else {
-            this.month = "-";
-            period = "-";
-        }
+    public SummaryCommand() {
+        period = "-";
     }
 
     @Override
