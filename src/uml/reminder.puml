@@ -1,9 +1,24 @@
 @startuml
+hide footbox
+
+":Duke" -> ":Reminder"
+create ":Reminder"
+":Duke" -> ":Reminder"
+activate ":Reminder"
+
+":Reminder" -> ":Reminder" : saveDatesToList()
+activate ":Reminder"
+":Reminder" --> ":Reminder"
+deactivate ":Reminder"
+":Reminder" --> ":Duke"
+deactivate ":Reminder"
 
 
 ->":Reminder" : execute(spendingList, ui)
 
 activate ":Reminder"
+
+":Reminder" -> ":Reminder" : amountRemained = 0
 
 opt Budget.hasBudget
 ":Reminder" -> ":WarnCommand" : execute(spendingList, ui)
@@ -23,7 +38,10 @@ deactivate ":SpendingList"
 
 end
 
-
+":Reminder" -> ":Ui" : printReminderMessage(totalAmountSpent,amountRemained,startWeek.toString())
+activate ":Ui"
+":Ui" --> ":Reminder"
+deactivate ":Ui"
 <-- ":Reminder"
 deactivate ":Reminder"
 

@@ -34,18 +34,18 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -c Food -d chicken rice -s SGD 3.00"},
+            {"add", "add -c CATEGORY -d DESCRIPTION -s SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
-            {"convert", "convert -d INPUT_CURRENCY -d OUTPUT_CURRENCY", "convert -d SGD -d USD"},
+            {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
             {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
-            {"edit", "edit INDEX [-d NEW_DESCRIPTION] [-s NEW_SPENDING]", "edit 1 -d bubble tea -s SGD 4.00"},
+            {"edit", "edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]", "edit 1 -s SGD 4.00"},
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay [-n NAME] [-s AMOUNT] [-t DEADLINE]", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay -n NAME -s AMOUNT -t DEADLINE", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
-            {"set", "set [-s AMOUNT]", "set -s SGD 100.00"},
+            {"set", "set -s AMOUNT", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
             {"list", "OR spending list YEAR", "list 2020"},
             {"", "OR spending list YEAR MONTH", "list 2020 Jul"},
@@ -122,12 +122,6 @@ public class Ui {
                 out.println(i + ". " + spendingList.getItem(i - 1));
             }
         }
-        /*String spendingString = getSpendingList(spendingList);
-        if (!spendingString.isEmpty()) {
-            out.print(spendingString);
-        } else {
-            out.println("Nothing in the list.");
-        }*/
         drawSeparateLine();
     }
 

@@ -13,9 +13,20 @@ This user guide provides in-depth documentation on the application’s installat
 
 Refer to the Features below for details of each command.
 
-## 3. Features 
+## 3. Command Features 
+In this section, specific information about each command will be explained. This includes the purpose of each command, and how it is formatted.
 
-### 3. 1 Viewing Repayment List Summary: `repayment list`
+Before we begin, do take note of the following information which applies to all commands:
+* Words in UPPER_CASE are parameters that you should provide.
+Example: In `-c CATEGORY`, `CATEGORY` is a parameter. `-c Food` would mean that the item belongs to the 'food' category.
+
+* Parameters in square brackets (i.e. []) are options provided for you to choose to enter. You may choose one out of all.
+Example: `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION]` can be used as `edit 1 [-c Food]` or `edit 1 [-c NEW DESCRIPTION]`
+
+* The abbreviation of `MONTH` is case sensitive. The system only accepts the abbreviation of `MONTH` with the first three letters, and the first
+letter is capitalised. Example: `Jul` for July or `Oct` for October.
+
+### 3.1 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
 Format:
@@ -23,14 +34,12 @@ Format:
 `repayment list`
 
 ### 3.2 Viewing Spending List Summary: `spending list`
-This command shows your spending records during a specified period of time (a particular year or month, or both).
+This command shows your spending records during a specified period (a particular year or month, or both).
 You can also choose to view your spending records which belong to a specific spending category.
 
 Format:
 
-`spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]`
-
-* The abbreviation of `MONTH` is case sensitive.
+`spending list [YEAR] [MONTH] [-c CATEGORY] [-a]`
 
 Examples of usage:
 
@@ -61,7 +70,7 @@ the limit or exceeds the limit.
 
 Format:
 
-`set [-s AMOUNT]`
+`set -s AMOUNT`
 
 Example of usage:
 
@@ -72,7 +81,7 @@ This command adds a repayment record to your repayment list.
 
 Format:
 
-`repay [-n NAME] [-s AMOUNT] [-t DEADLINE]`
+`repay -n NAME -s AMOUNT -t DEADLINE`
 
 Example of usage:
 
@@ -80,16 +89,15 @@ Example of usage:
 2020-12-02
 
 ### 3.6 Converting Currency: `convert`
-If you are an international student, you may be more used to viewing your spendings in terms of your home currency. 
-This command will help you by converting the currency in your spending list to another currency you prefer.
+This command converts the currency in your spending list to another currency you prefer.
 
 Format: 
 
-`convert [-d INPUT_CURRENCY} [-d OUTPUT_CURRENCY]`
+`convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY`
 
 Example of usage:
 
-`convert -d SGD -d USD` → converts the currency from SGD to USD
+`convert -s SGD -t USD` → converts the currency from SGD to USD
 
 ### 3.7 Viewing Summary: `summary`
 This command generates a statement of your total expenditure during a specific period of time (a particular year or 
@@ -97,9 +105,7 @@ month, or both). Statements based on each spending category will also be shown.
 
 Format: 
 
-`summary YEAR MONTH [-a]`
-
-* The abbreviation of `MONTH` is case sensitive.
+`summary [YEAR] [MONTH] [-a]`
 
 Examples of usage:
 
@@ -111,19 +117,63 @@ Examples of usage:
 
 `summary -a` → shows the summary of total expenditure
 
+### 3.8 Visualizing data: `draw`
+This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
+
+Format: 
+
+`draw [YEAR = current year] [MONTH = current month]`
+
+Examples of usage: 
+
+`draw` → shows the graph of current month
+
+`draw 2012` → shows the graph of year 2012
+
+`draw 2020 Jun` → shows the graph of Jun 2020
+
+### 3.9 Exporting data: `export`
+This command exports the data to an Excel file at the given location.
+
+Format: 
+
+`export PATH`
+
+Example of usage: 
+
+`export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
+
+### 3.10 Editing spending: `edit`
+This command edits the existing records in the spending list.
+
+Format:
+
+`edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION] [-s NEW SPENDING]`
+
+Example of usage:
+
+`edit 1 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
+
 ## 4. Useful Hidden Features
-This section shows you some of the hidden features which serve as notifications and interactions with the user.
+This section shows you the hidden features which serve as notifications and interactions with the user.
 ### Reminder 
-Reminds you about your weekly expenditures and the amount of budget left when you starts the application.
+Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
 It will also warn you if you are reaching your budget limit.
 
-[includes a diagram]
+![reminder message](images/reminderMessage.png)
 
 Note: A new week starts on Monday.
 
 ### Warning
+Warns you when you are about to overspend. The budget threshold is 90% of your budget set. After you add a spending 
+item and the total expenditure is more than the budget threshold, warning message will appear.
+
+![reminder message](images/warningMessage.png)
+
+Note: You need to set the budget in order to get the warning feature.
 
 ### Encouragement
+Encourages you when you add spending items.
 
 ## 5. FAQ
 
@@ -131,21 +181,25 @@ Note: A new week starts on Monday.
 
 **A**: Install the app in the other computer and copy the data/duke.json to the same folder. When you start the app, it will automatically detect and load the backup data.
 
+**Q**: Are the commands case sensitive?
+
+**A**: Yes, they are. To execute the commands properly, please strictly follow the format given above.
+
 ## 6. Command Summary
 Action | Format & Examples 
 --- | ---
-add | add [-d DESCRIPTION] [-s SPENDING]
-clear | clear KEYWORD </br> e.g. clear 1
-convert | convert [-d DESCRIPTION] [-d DESCRIPTION] </br> e.g. convert -d SGD -d USD
-draw | draw [YEAR = current year] [MONTH = current month]
-edit | edit INDEX [-d NEW_DESCRIPTION] [-s NEW_SPENDING] </br> e.g. edit 1 -d bubble tea -s SGD 4.00
-export | export PATH
-help | help
-logout | logout
-purge data | purge data
-repay | repay [-n NAME] [-s AMOUNT] [-t DEADLINE] </br> e.g. repay -n Johnny -s SGD 5.00 -t 2020-12-02
-repayment list | repayment list
-set | set [-s AMOUNT] </br> e.g. set -s SGD 100.00
-view | view
-spending list | spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a] </br> e.g. spending list 2020 Jul -c food
-summary | summary [YEAR = current year] [MONTH = current month] [-a] </br> e.g. summary 2020 Jul 
+add | `add  -c CATEGORY -d DESCRIPTION -s SPENDING` </br> e.g. add -c Food -d chicken rice -s GSD 5.0
+clear | `clear KEYWORD` </br> e.g. clear 1
+convert | `convert -s DESCRIPTION -t DESCRIPTION` </br> e.g. convert -s SGD -t USD
+draw | `draw [YEAR = current year] [MONTH = current month]`
+edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]` </br> e.g. edit 1 -d bubble tea
+export | `export PATH`
+help | `help`
+logout | `logout`
+purge data | `purge data`
+repay | `repay -n NAME -s AMOUNT -t DEADLINE` </br> e.g. repay -n Johnny -s SGD 5.00 -t 2020-12-02
+repayment list | `repayment list`
+set | `set -s AMOUNT` </br> e.g. set -s SGD 100.00
+view | `view`
+spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` </br> e.g. spending list 2020 Jul
+summary | `summary [YEAR = current year] [MONTH = current month] [-a]` </br> e.g. summary 2020 Jul 
