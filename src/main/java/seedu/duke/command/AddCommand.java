@@ -29,7 +29,7 @@ public class AddCommand extends Command {
 
     
     private final String[][] exchangeRates = {
-            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
+            {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
     
