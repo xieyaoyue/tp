@@ -23,7 +23,7 @@ public class Ui {
             + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
     private static final String[][] BUDGET_QUOTES = {
             {"It takes as much energy to wish as it does to plan.", "Eleanor Roosevelt"},
-            {"Just because you can afford it doesn't mean you should buy it", "Suze Orman"},
+            {"Just because you can afford it doesn't mean you should buy it.", "Suze Orman"},
             {"Do not save what is left after spending; instead spend what is left after saving.", "Warren Buffett"},
             {"Setting goals is the first step in turning the invisible into the visible.", "Tony Robbins"},
             {"If there is no struggle, there is no progress.", "Frederick Douglass"}
@@ -34,18 +34,18 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "add -c Food -d chicken rice -s SGD 3.00"},
+            {"add", "add -c CATEGORY -d DESCRIPTION -s SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
-            {"convert", "convert -d INPUT_CURRENCY -d OUTPUT_CURRENCY", "convert -d SGD -d USD"},
+            {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
             {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
-            {"edit", "edit INDEX [-d NEW_DESCRIPTION] [-s NEW_SPENDING]", "edit 1 -d bubble tea -s SGD 4.00"},
+            {"edit", "edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]", "edit 1 -s SGD 4.00"},
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay [-n NAME] [-s AMOUNT] [-t DEADLINE]", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay -n NAME -s AMOUNT -t DEADLINE", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
-            {"set", "set [-s AMOUNT]", "set -s SGD 100.00"},
+            {"set", "set -s AMOUNT", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
             {"list", "OR spending list YEAR", "list 2020"},
             {"", "OR spending list YEAR MONTH", "list 2020 Jul"},
@@ -56,9 +56,6 @@ public class Ui {
             {"summary", "summary", ""},
             {"", "OR summary YEAR", "summary 2020"},
             {"", "OR summary YEAR MONTH", "summary 2020 Jul"},
-            {"", "OR summary -c CATEGORY", "summary -c food"},
-            {"", "OR summary YEAR -c CATEGORY", "summary 2020 -c food"},
-            {"", "OR summary YEAR MONTH -c CATEGORY", "summary 2020 Jul -c food"},
             {"", "OR summary -a", ""},
             {"purge data", "purge data", ""}
     };
@@ -77,12 +74,12 @@ public class Ui {
     }
 
     public void printEncouragementMessage() {
-        out.println("Keep up budgeting! You can do it!");
-        out.println("Here is a quote to keep you going:");
         Random rand = new Random();
         int randInt = rand.nextInt(4);
         out.println(BUDGET_QUOTES[randInt][0]);
         out.println(" ".repeat(60) + "--" + BUDGET_QUOTES[randInt][1]);
+        out.println("Keep up budgeting! You can do it!");
+        drawSeparateLine();
     }
 
     public void printWelcomeMessage() {
@@ -122,12 +119,6 @@ public class Ui {
                 out.println(i + ". " + spendingList.getItem(i - 1));
             }
         }
-        /*String spendingString = getSpendingList(spendingList);
-        if (!spendingString.isEmpty()) {
-            out.print(spendingString);
-        } else {
-            out.println("Nothing in the list.");
-        }*/
         drawSeparateLine();
     }
 
@@ -255,11 +246,13 @@ public class Ui {
     //@@author killingbear999
     public static void printCurrentBudgetLimit() {
         System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+        System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999
     public static void printNoBudget() {
         System.out.println("No budget has been set yet.");
+        System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999

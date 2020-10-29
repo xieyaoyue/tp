@@ -17,7 +17,6 @@ public class SetBudgetCommand extends Command {
         this.description = description;
     }
     
-    
     private void identifyBudgetLimit(String description) {
         int currencyBeginIndex = description.indexOf("-s") + "-s".length() + 1;
         int currencyEndIndex = currencyBeginIndex + 3;

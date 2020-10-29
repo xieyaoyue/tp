@@ -12,9 +12,6 @@ import java.util.logging.Level;
 
 //@@author killingbear999
 public class ConvertCommand extends Command {
-    public String source;
-    public String target;
-    private String description;
     private String currencies;
     private String outputCurrency;
     private String inputCurrency;
@@ -25,32 +22,20 @@ public class ConvertCommand extends Command {
 
     /** SGD to USD; USD to SGD; SGD to CNY; CNY to SGD. */
     private final String[][] exchangeRates = {
-            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
+            {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
 
-    public ConvertCommand(String description) {
-        this.description = description;
+    public ConvertCommand() {
     }
 
     public ConvertCommand(String source, String target) {
-        this.source = source;
-        this.target = target;
+        this.inputCurrency = source;
+        this.outputCurrency = target;
     }
 
-    public String identifyCurrency(String description) {
-        int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
-        assert firstCurrencyStartingPosition == 3 : "The value of firstCurrencyStartingPosition should be 3";
-        int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
-        int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
-        int length = description.length();
-        inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
-        assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
-                "Incorrect input currency";
-        outputCurrency = description.substring(secondCurrencyStartingPosition, length);
-        assert outputCurrency.equals(description.substring(secondCurrencyStartingPosition, length)) :
-                "Incorrect output currency";
+    public String identifyCurrency() {
         return inputCurrency + outputCurrency;
     }
 
@@ -68,7 +53,7 @@ public class ConvertCommand extends Command {
     public void execute(SpendingList spendingList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to start processing");
         newSpendingList = spendingList.getSpendingList();
-        currencies = identifyCurrency(description);
+        currencies = identifyCurrency();
         findExchangeRate();
         for (int i = 0; i < newSpendingList.size(); i++) {
             currentString = newSpendingList.get(i);
@@ -85,22 +70,22 @@ public class ConvertCommand extends Command {
 
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
-        amount = amount * exchangeRate;
+        amount = Math.round(amount * exchangeRate * 100.0) / 100.0;
         currentString.editAmount(amount);
     }
 
     private void updateCurrency(Item currentString) {
         switch (currencies) {
-        case "SGD USD":
+        case "SGDUSD":
             currentString.editSymbol("USD");
             break;
-        case "USD SGD":
+        case "USDSGD":
             currentString.editSymbol("SGD");
             break;
-        case "SGD CNY":
+        case "SGDCNY":
             currentString.editSymbol("CNY");
             break;
-        case "CNY SGD":
+        case "CNYSGD":
             currentString.editSymbol("SGD");
             break;
         default:
