@@ -15,6 +15,9 @@ public enum Category {
     }
 
     public static String categoryName(String name) {
+        if (name == null) {
+            return OTHER.toString();
+        }
         for (Category c: values()) {
             if (name.equalsIgnoreCase(c.category)) {
                 return c.toString();
