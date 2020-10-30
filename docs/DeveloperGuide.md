@@ -29,7 +29,8 @@ This developer guide provides information on the architecture and design of the 
 
 ## 3. Design & implementation
 ### 3.1 Architecture
-![image](https://user-images.githubusercontent.com/45732128/97327381-e083a780-18af-11eb-8fed-eb6d7de73703.png)
+![image](https://user-images.githubusercontent.com/45732128/97327381-e083a780-18af-11eb-8fed-eb6d7de73703.png) </br>
+Figure 1: Architecture diagram
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
 
@@ -51,7 +52,8 @@ Parser: Analyzes the user command
 
 The sequence diagram below shows how the components interact with each other when the user issues a general command.
 
-![image](https://user-images.githubusercontent.com/45732128/97327808-50922d80-18b0-11eb-9111-ee1880207b80.png)
+![image](https://user-images.githubusercontent.com/45732128/97583491-fa4cf800-1a31-11eb-98a5-3fe405076db2.png) </br>
+Figure 2: Interaction between architecture components
 
 
 ### 3.2 Edit Feature
@@ -67,7 +69,8 @@ Below shows an example of the usage:
 2. The `edit` command calls the `EditCommand#execute(spendingList, ui)` to complete the edition process
 
 Figure below shows the sequence diagram of `EditCommand` class.
-![Sequence Diagram of EditCommand class](images/EditCommand.png)
+![Sequence Diagram of EditCommand class](images/EditCommand.png) </br>
+Figure 3: Sequence diagram of EditCommand class
 
 ### 3.3 Convert Feature
 `SpendingList`, `Ui` and `Item` facilitate this feature. The Convert feature is able to convert the currency of the items 
@@ -86,7 +89,9 @@ Below shows an example of the usage:
 2. The `convert` command calls the `ConvertCommand#execute(spendingList, ui)` to complete the conversion process
 
 Figure below shows the sequence diagram of `ConvertCommand` class.
-![Sequence Diagram of ConvertCommand class](images/ConvertCommand.png)
+
+![Sequence Diagram of ConvertCommand class](images/ConvertCommand.png) </br>
+Figure 4: Sequence diagram of `ConvertCommand` class
 
 ### 3.4 Set Budget Feature
 `Budget` and `Ui` facilitate this feature. The Set Budget feature is able to set the budget limit for the spending. 
@@ -100,8 +105,10 @@ Below shows an example of usage:
 1. User executes `set SGD 100.0` to set the budget limit to SGD 100.0
 2. The `set` command calls `SetBudgetCommand#execute(spendingList, ui)` to complete the setting budget process
 
-Figure below shows the sequence diagram of SetBudgetCommand class.
-![Sequence Diagram of SetBudgetCommand class](images/SetBudgetCommand.png)
+Figure below shows the sequence diagram of `SetBudgetCommand` class.
+
+![Sequence Diagram of SetBudgetCommand class](images/SetBudgetCommand.png) </br>
+Figure 5: Sequence diagram of `SetBudgetCommand` class
 
 ### 3.5 Warn Feature
 `Budget`, `SpendingList` and `Ui` facilitate this feature. The Warn feature is able to warn the user when the total 
@@ -121,7 +128,9 @@ Below shows an example of usage:
 limit 
 
 Figure below shows the sequence diagram of WarnCommand class.
-![Sequence Diagram of WarnCommand class](images/WarnCommand.png)
+
+![Sequence Diagram of WarnCommand class](images/WarnCommand.png) </br>
+Figure 6: Sequence Diagram of `WarnCommand` class
 
 ### 3.6 Repay Feature
 `RepaymentList` and `Ui` facilitate this feature. The Repay feature is able to store the repayment information as a 
@@ -134,8 +143,10 @@ Below shows an example of usage:
 SGD 5.0 to Johnny before 2020-12-20
 2. The `repay` command calls the `RepayCommand#execute(spendingList, ui)` to complete the adding process
 
-Figure below shows the sequence diagram of `RepayCommand` class:
-![Sequence Diagram of RepayCommand class](images/RepayCommand.png)
+Figure below shows the sequence diagram of `RepayCommand` class.
+
+![Sequence Diagram of RepayCommand class](images/RepayCommand.png) </br>
+Figure 7: Sequence diagram of `RepayCommand` class
 
 ### 3.7 Summary Feature
 `SpendingList` and `Item` facilitate this feature. The Summary feature is able to summarise the total amount spent 
@@ -152,8 +163,10 @@ Below shows an example of usage:
 stored in the memory.
 3. If the item is spent during year 2020, the amount spent will be summed up.
 
-Figure below shows the sequence diagram of `SummaryCommand` class:
-![Sequence Diagram of SummaryCommand class](images/summary.png)
+Figure below shows the sequence diagram of `SummaryCommand` class.
+
+![Sequence Diagram of SummaryCommand class](images/summary.png) </br>
+Figure 8: Sequence diagram of `SummaryCommand` class
 
 ### 3.8 Reminder Feature
 `SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
@@ -169,8 +182,9 @@ Below shows an example of usage:
     * If no budget is being set, the total expenditure of current week will be tallied up. 
     * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
 
-Figure below shows the sequence diagram of Reminder class: 
-![Sequence Diagram of SummaryCommand class](images/reminder.png)
+Figure below shows the sequence diagram of Reminder class.
+![Sequence Diagram of SummaryCommand class](images/reminder.png) </br>
+Figure 9: Sequence diagram of `SummaryCommand` class
 
 ### 3.9 Export Feature
 `Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The export data feature could extract the current data and export to an Excel file. It implements the following operations:
@@ -186,8 +200,10 @@ Below shows an example of usage:
 3. `SpendingList#getItem()` will be called repeatedly to get items and set the cells' values accordingly.
 3. After writing to an Excel file at the location `F:\` using `Workbook#write()`, a prompt message will be shown by `Ui`.
 
-Figure below shows the sequence diagram of `ExportCommand` class:
-![Sequence Diagram of ExportCommand class](images/ExportCommand.png)
+Figure below shows the sequence diagram of `ExportCommand` class.
+![Sequence Diagram of ExportCommand class](images/ExportCommand.png) </br>
+Figure 10: Sequence diagram of `ExportCommand` class
+
 
 ## 4. Product scope
 ### 4.1 Target user profile
@@ -215,7 +231,10 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 
 ## 6. Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The system should respond within two seconds.
+2. The system should be easy to use, do not require much effort to learn.
+3. The system should work on any mainstream OS that has Java 11 or above installed.
+4. Users with faster typing speed than average should be able to use this program with ease.
 
 ## 7. Glossary
 

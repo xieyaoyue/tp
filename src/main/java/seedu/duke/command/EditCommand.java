@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 
@@ -22,7 +23,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         if (description != null) {
             spendingList.editItemDescription(index, description);
         }

@@ -33,7 +33,7 @@ class DrawCommandTest {
         spendingList.getItem(2).editDate("2020-08-11");
         spendingList.getItem(3).editDate("2020-08-12");
         try {
-            new DrawCommand("2020").execute(spendingList, ui);
+            new DrawCommand("2020", null).execute(spendingList, null, ui);
         } catch (Exception e) {
             assert false;
         }
