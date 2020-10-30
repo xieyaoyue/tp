@@ -19,6 +19,7 @@ import org.openxmlformats.schemas.drawingml.x2006.chart.CTLineChart;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTLineSer;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTPlotArea;
 
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
 import seedu.duke.category.Item;
@@ -38,7 +39,7 @@ public class DrawCommand extends DateCommand {
         timePeriod = "";
     }
 
-    public DrawCommand(String year, String month) throws InvalidCommandException {
+    public DrawCommand(String year, String month) {
         String convertedMonth = dateFormatter.changeMonthFormat(month);
         if (convertedMonth == null) {
             timePeriod = year;
@@ -48,7 +49,7 @@ public class DrawCommand extends DateCommand {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet0 = workbook.createSheet("Sheet 0");
         XSSFSheet sheet1 = workbook.createSheet("Sheet 1");

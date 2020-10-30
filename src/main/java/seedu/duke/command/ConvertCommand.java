@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Budget;
+import seedu.duke.RepaymentList;
 import seedu.duke.category.Item;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
@@ -50,7 +51,7 @@ public class ConvertCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to start processing");
         newSpendingList = spendingList.getSpendingList();
         currencies = identifyCurrency();

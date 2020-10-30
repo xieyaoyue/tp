@@ -7,8 +7,7 @@ import seedu.duke.Ui;
 //@@author killingbear999
 public class RepaymentListCommand extends Command {
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
-        RepaymentList repaymentList = new RepaymentList();
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         ui.printRepaymentList(repaymentList.getRepaymentList());
     }
 }
