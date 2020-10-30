@@ -7,8 +7,6 @@ import seedu.duke.Ui;
 
 //@@author killingbear999
 public class SetBudgetCommand extends Command {
-    
-    private String description;
 
     private double budgetLimit;
     private String currency;
