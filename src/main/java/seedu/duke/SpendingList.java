@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SpendingList {
-    private ArrayList<Item> spendingList;
     private String description;
     private Storage storage;
+
+    private static ArrayList<Item> spendingList;
 
     public SpendingList(String description, ArrayList<Item> spendingList, Storage storage) {
         this.description = description;
@@ -18,6 +19,7 @@ public class SpendingList {
     }
     
     public SpendingList() {
+        spendingList = new ArrayList<Item>();
     }
 
     public SpendingList(String description, Storage storage) {

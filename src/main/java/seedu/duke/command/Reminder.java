@@ -1,9 +1,9 @@
 package seedu.duke.command;
 
 import seedu.duke.Budget;
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
-import seedu.duke.command.WarnCommand;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -19,10 +19,11 @@ public class Reminder extends Command {
         warn = new WarnCommand();
     }
 
-    public void execute(SpendingList spendingList, Ui ui) {
+    @Override
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         double amountRemained = 0;
         if (Budget.hasBudget) {
-            warn.execute(spendingList, ui);
+            warn.execute(spendingList, null, ui);
             amountRemained = findRemainingAmount(spendingList);
         }
 
