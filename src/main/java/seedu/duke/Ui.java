@@ -150,7 +150,7 @@ public class Ui {
         drawSeparateLine();
     }
 
-    public void printClearIndex(String repaymentEntry) {
+    public void printClearIndex(Repay repaymentEntry) {
         out.println("You've deleted this entry in the repayment list:");
         out.println(repaymentEntry);
         drawSeparateLine();
@@ -174,6 +174,13 @@ public class Ui {
     public void printAdd(SpendingList spendingList) {
         out.println("You've added the record:");
         out.println(spendingList.getItem(spendingList.getListSize() - 1));
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printAddRepay(RepaymentList repaymentList) {
+        out.println("You've added this repayment record:");
+        out.println(repaymentList.getEntry(repaymentList.getListSize() - 1));
         drawSeparateLine();
     }
 
@@ -256,7 +263,7 @@ public class Ui {
     }
     
     //@@author killingbear999
-    public void printRepaymentList(ArrayList<String> repaymentList) {
+    public void printRepaymentList(ArrayList<Repay> repaymentList) {
         if (!repaymentList.isEmpty()) {
             for (int i = 1; i < repaymentList.size() + 1; i++) {
                 out.println(i + ". " + repaymentList.get(i - 1));
