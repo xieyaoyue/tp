@@ -7,7 +7,7 @@ public enum Category {
     HEALTH("Health"),
     TRANSPORTATION("Transportation"),
     UTILITIES("Utilities"),
-    OTHER("Other");
+    OTHERS("Others");
 
     private String category;
     Category(String category) {
@@ -16,14 +16,14 @@ public enum Category {
 
     public static String categoryName(String name) {
         if (name == null) {
-            return OTHER.toString();
+            return OTHERS.toString();
         }
         for (Category c: values()) {
             if (name.equalsIgnoreCase(c.category)) {
                 return c.toString();
             }
         }
-        return OTHER.toString();
+        return OTHERS.toString();
     }
 
     public String toString() {
