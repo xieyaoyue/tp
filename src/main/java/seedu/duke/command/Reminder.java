@@ -1,34 +1,38 @@
-package seedu.duke;
+package seedu.duke.command;
 
-import seedu.duke.command.WarnCommand;
+import seedu.duke.Budget;
+import seedu.duke.RepaymentList;
+import seedu.duke.SpendingList;
+import seedu.duke.Ui;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Reminder {
+public class Reminder extends Command {
     private LocalDate startWeek;
     WarnCommand warn;
-    private ArrayList<String> period = new ArrayList<>();
+    private ArrayList<String> week = new ArrayList<>();
 
     public Reminder() {
         saveDatesToList();
         warn = new WarnCommand();
     }
 
-    public void execute(SpendingList spendingList, Ui ui) {
+    @Override
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         double amountRemained = 0;
         if (Budget.hasBudget) {
-            warn.execute(spendingList, ui);
-            amountRemained = warn.findRemainingAmount(spendingList);
+            warn.execute(spendingList, null, ui);
+            amountRemained = findRemainingAmount(spendingList);
         }
 
-        double amountSpent = 0;
-        for (String i: period) {
-            amountSpent += spendingList.getSpendingAmountTime(i);
+        double totalAmountSpent = 0;
+        for (String i: week) {
+            totalAmountSpent += spendingList.getSpendingAmountTime(i);
         }
 
-        ui.printReminderMessage(amountSpent, amountRemained, startWeek.toString());
+        ui.printReminderMessage(totalAmountSpent, amountRemained, startWeek.toString());
     }
 
     private LocalDate startOfWeek() {
@@ -66,7 +70,13 @@ public class Reminder {
     private void saveDatesToList() {
         LocalDate startDay = startOfWeek();
         for (int i = 0; i < 7; i++) {
-            period.add(startDay.minusDays(-i).toString());
+            week.add(startDay.minusDays(-i).toString());
         }
+    }
+
+    public double findRemainingAmount(SpendingList spendingList) {
+        double budgetLimit = Budget.getBudgetLimit();
+        double currentAmount = spendingList.getCurrentAmount();
+        return budgetLimit - currentAmount;
     }
 }

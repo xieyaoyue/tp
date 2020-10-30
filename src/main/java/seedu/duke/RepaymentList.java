@@ -1,56 +1,52 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RepaymentList {
-    private String name;
-    private String currency;
-    private double repayment;
-    private String deadline;
-    private String currentString;
-    
-    public static ArrayList<String> repaymentList = new ArrayList<>();
-    
-    public RepaymentList(String name, String currency, double repayment, String deadline) {
-        this.name = name;
-        this.currency = currency;
-        this.repayment = repayment;
-        this.deadline = deadline;
-    }
-    
+    private Storage storage;
+    public ArrayList<Repay> repaymentList = new ArrayList<>();
+
     public RepaymentList() {
     }
     
-    public ArrayList<String> getRepaymentList() {
+    public RepaymentList(Storage storage) {
+        this.storage = storage;
+    }
+    
+    public ArrayList<Repay> getRepaymentList() {
         return repaymentList;
     }
-
-    public void deleteRepaymentEntry(int index) {
-        repaymentList.remove(index);
+    
+    public void addItem(String name, String symbol, double amount, String deadline) throws IOException {
+        Repay repay = new Repay(name, symbol, amount, deadline);
+        repaymentList.add(repay);
+        save();
     }
 
-    public void clearAllEntries() {
+    public void deleteRepaymentEntry(int index) throws IOException {
+        repaymentList.remove(index);
+        save();
+    }
+
+    private void save() throws IOException {
+        if (storage == null) {
+            return;
+        }
+        storage.save(this);
+    }
+
+    public void clearAllEntries() throws IOException {
         repaymentList.clear();
+        assert getListSize() == 0 : "list size should be 0";
+        save();
     }
 
     public int getListSize() {
         return repaymentList.size();
     }
-
-    public String getEntry(int index) {
+    
+    public Repay getEntry(int index) {
         return repaymentList.get(index);
-    }
-    
-    private void combine() {
-        currentString = name + " " + currency + " " + repayment + " " + deadline;
-    }
-    
-    public void storeCurrentString() {
-        combine();
-        repaymentList.add(currentString);
-    }
-    
-    public String returnCurrentString() {
-        return currentString;
     }
 }

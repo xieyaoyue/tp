@@ -1,4 +1,7 @@
 @startuml
+
+hide footbox
+
 ->":ExportCommand":execute(spendingList, ui)
 activate ":ExportCommand"
 ":ExportCommand" -> ":ExportCommand" : exportToExcel()
@@ -14,8 +17,7 @@ deactivate ":Workbook"
 
 loop spendingList.size times
 
-":ExportCommand" -> ":Workbook"
-activate ":Workbook"
+
 ":ExportCommand" -> ":SpendingList"
 activate ":SpendingList"
 ":SpendingList" -> ":SpendingList" : getItem()
@@ -25,11 +27,12 @@ deactivate ":SpendingList"
 ":SpendingList" --> ":ExportCommand" : item
 deactivate ":SpendingList"
 
+":ExportCommand" -> ":Workbook"
+activate ":Workbook"
 ":Workbook" -> ":Workbook": createCell()
 activate ":Workbook"
 ":Workbook" --> ":Workbook"
 deactivate ":Workbook"
-":ExportCommand" -> ":Workbook" : item
 ":Workbook" -> ":Workbook" : set cell value
 activate ":Workbook"
 ":Workbook" --> ":Workbook"
@@ -39,11 +42,7 @@ deactivate ":Workbook"
 end
 ":ExportCommand" -> ":Workbook"
 activate ":Workbook"
-":Workbook" -> ":FileOutputStream"
-activate ":FileOutputStream"
-":FileOutputStream" --> ":Workbook" : output
-deactivate ":FileOutputStream"
-":Workbook" -> ":Workbook" : write(output)
+":Workbook" -> ":Workbook" : write()
 activate ":Workbook"
 ":Workbook" --> ":Workbook"
 deactivate ":Workbook"

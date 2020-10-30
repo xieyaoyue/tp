@@ -2,7 +2,6 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.SpendingList;
-import seedu.duke.Storage;
 import seedu.duke.Ui;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
@@ -16,25 +15,23 @@ class ClearSpendingListCommandTest {
     @Test
     void execute_clearIndex() throws InvalidStorageFileExtensionException,
             InvalidStorageFilePathException, IOException {
-        ClearListCommand clearListCommand = new ClearListCommand(false, 1);
-        Storage storage = new Storage();
-        SpendingList spendingList = new SpendingList(storage);
+        ClearSpendingListCommand c = new ClearSpendingListCommand(false, 1);
+        SpendingList spendingList = new SpendingList();
         Ui ui = new Ui();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
-        clearListCommand.execute(spendingList, ui);
+        c.execute(spendingList, null, ui);
         assertEquals(1, spendingList.getListSize());
     }
 
     @Test
     void execute_clearAll() throws InvalidStorageFileExtensionException, InvalidStorageFilePathException, IOException {
-        ClearListCommand clearListCommand = new ClearListCommand(true, 0);
-        Storage storage = new Storage();
-        SpendingList spendingList = new SpendingList(storage);
+        ClearSpendingListCommand c = new ClearSpendingListCommand(true, 0);
+        SpendingList spendingList = new SpendingList();
         Ui ui = new Ui();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
-        clearListCommand.execute(spendingList, ui);
+        c.execute(spendingList, null, ui);
         assertEquals(0, spendingList.getListSize());
     }
 

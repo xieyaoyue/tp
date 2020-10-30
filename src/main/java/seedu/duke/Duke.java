@@ -1,29 +1,33 @@
 package seedu.duke;
 
 import seedu.duke.command.Command;
+import seedu.duke.command.EncouragementCommand;
+import seedu.duke.command.Reminder;
+import seedu.duke.parser.Parser;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     private static Ui ui;
-    private static Storage storage;
     private static SpendingList spendingList;
+    private static RepaymentList repaymentList;
     private static Reminder reminder;
+    private static EncouragementCommand encouragement;
 
     /**
      * Runs the program until termination.
      */
     private static void run() {
-        String filePath = storage.getFilePath();
-        ui.printWelcomeMessage(filePath);
-        reminder.execute(spendingList, ui);
+        ui.printWelcomeMessage();
+        reminder.execute(spendingList, null, ui);
+        encouragement.execute(null, null, ui);
         boolean isExit = false;
         do {
             try {
                 String fullCommand = ui.getUserInput();
                 Command c = Parser.parseCommand(fullCommand);
-                c.execute(spendingList, ui);
+                c.execute(spendingList, repaymentList, ui);
                 isExit = c.isExit();
             } catch (Exception e) {
                 ui.printErrorMessage(e.toString());
@@ -38,9 +42,10 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         reminder = new Reminder();
+        encouragement = new EncouragementCommand();
         try {
-            storage = new Storage();
-            spendingList = storage.load();
+            spendingList = new Storage("data/duke_spending.json").loadSpendingList();
+            repaymentList = new Storage("data/duke_repayment.json").loadRepaymentList();
         } catch (Exception e) {
             ui.printErrorMessage(e.toString());
             System.exit(0);

@@ -1,16 +1,21 @@
 package seedu.duke.command;
 
-import seedu.duke.category.Item;
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.Ui;
-import seedu.duke.exceptions.InvalidCommandException;
 
-import java.util.ArrayList;
+public class SpendingListCommand extends DateCommand {
+    public SpendingListCommand() {
+        // TODO : accept all time
+    }
 
-public class SpendingListCommand extends Command {
+    public SpendingListCommand(String year, String month) {
+        // TODO : accept year and month (possibly null)
+        // TODO : accept category
+    }
+
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws InvalidCommandException {
-        ArrayList<Item> list = spendingList.getSpendingList();
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         ui.printSpendingList(spendingList);
     }
 }

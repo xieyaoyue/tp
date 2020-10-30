@@ -33,7 +33,7 @@ public class Budget {
     }
 
     public static void clearBudget() {
-        Budget.currency = null;
+        Budget.currency = "SGD";
         Budget.budgetLimit = 0;
         Budget.hasBudget = false;
     }
