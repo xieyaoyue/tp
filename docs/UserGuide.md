@@ -48,7 +48,10 @@ Format:
 
 `repayment list`
 
+**Important: storage of repayment list is coming soon.**
+
 ### 3.3 Viewing Spending List Summary: `spending list`
+
 This command shows your spending records during a specified period (a particular year or month, or both).
 You can also choose to view your spending records which belong to a specific spending category.
 
@@ -139,15 +142,16 @@ Format:
 
 Examples of usage:
 
-`summary` → shows summary of current month
+`summary` → shows summary of current month **(coming soon)**
 
-`summary 2020` → shows summary of a specific year
+`summary 2020` → shows summary of a specific year **(coming soon)**
 
 `summary 2020 Oct` → shows summary of a specific year and month
 
 `summary -a` → shows the summary of total expenditure
 
-### 3.9 Visualizing data: `draw`
+### 3.9 Visualizing data: `draw` **(coming soon)**
+
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
 
 Format: 
@@ -162,7 +166,8 @@ Examples of usage:
 
 `draw 2020 Jun` → shows the graph of Jun 2020
 
-### 3.10 Exporting data: `export`
+### 3.10 Exporting data: `export` **(coming soon)**
+
 This command exports the data to an Excel file at the given location.
 
 Format: 
@@ -222,14 +227,14 @@ Encourages you when you add spending items.
 Action | Format & Examples 
 --- | ---
 add | `add  -c CATEGORY -d DESCRIPTION -s SPENDING` </br> e.g. add -c Food -d chicken rice -s GSD 5.0
-clear | `clear KEYWORD` </br> e.g. clear 1
+clear (coming soon) | `clear KEYWORD` </br> e.g. clear 1
 convert | `convert -s DESCRIPTION -t DESCRIPTION` </br> e.g. convert -s SGD -t USD
-draw | `draw [YEAR = current year] [MONTH = current month]`
+draw (coming soon) | `draw [YEAR = current year] [MONTH = current month]`
 edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]` </br> e.g. edit 1 -d bubble tea
-export | `export PATH`
+export (coming soon) | `export PATH`
 help | `help`
 logout | `logout`
-purge data | `purge data`
+purge data (coming soon) | `purge data`
 repay | `repay -d NAME -s AMOUNT -t DEADLINE` </br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
 repayment list | `repayment list`
 set | `set -s AMOUNT` </br> e.g. set -s SGD 100.00
