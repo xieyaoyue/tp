@@ -6,13 +6,15 @@ This developer guide provides information on the architecture and design of the 
 
 ## 2. Setting up
 ### 2.1 Prerequisites
-- JDK 1.8.0_60 or later </br>
-🛈 Having any Java 8 version is not enough. </br>
+- JDK 1.8.0_60 or later <br>
+🛈 Having any Java 8 version is not enough. <br>
 🛈 This app will not work with earlier versions of Java 8.
-- IntelliJ IDE </br>
-🛈 IntelliJ by default has Gradle and JavaFx plugins installed. </br>
+- IntelliJ IDE <br>
+🛈 IntelliJ by default has Gradle and JavaFx plugins installed. <br>
 🛈 Do not disable them. If you have disabled them, go to File > Settings > Plugins to re-enable them.
+
 ### 2.2 Setting up the project in your computer
+The following are the steps to set up the project in your computer:
 1. Fork this repo, and clone the fork to your computer.
 2. Open IntelliJ. If you are not in the welcome screen, click File > Close Project to close the existing project dialog first.
 3. Set up the correct JDK version for Gradle.
@@ -23,13 +25,15 @@ This developer guide provides information on the architecture and design of the 
 8. Click Open as Project
 9. Click OK to accept the default settings
 10. Open a console and run the command gradlew processResources (Mac/Linux: ./gradlew processResources). It should finish with the BUILD SUCCESSFUL message. This will generate all resources required by the application and tests.
+
 ### 2.3 Verifying the setup
+The following are the steps to verify your setup:
 1. Run the seedu.duke.Duke and try a few commands.
 2. Run the tests and ensure all the tests pass.
 
 ## 3. Design & implementation
 ### 3.1 Architecture
-![image](https://user-images.githubusercontent.com/45732128/97327381-e083a780-18af-11eb-8fed-eb6d7de73703.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97735431-4886f780-1b15-11eb-920c-24e5bf7a76fe.png) <br>
 Figure 1: Architecture diagram
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
@@ -48,11 +52,10 @@ Command: Executes the user command or system-issued command
 
 Parser: Analyzes the user command
 
-**How the architecture components interact with each other** </br>
+**How the architecture components interact with each other** <br>
 
 The sequence diagram below shows how the components interact with each other when the user issues a general command.
-
-![image](https://user-images.githubusercontent.com/45732128/97583491-fa4cf800-1a31-11eb-98a5-3fe405076db2.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97735507-62c0d580-1b15-11eb-9f14-aab54bf5b29d.png) <br>
 Figure 2: Interaction between architecture components
 
 
@@ -65,11 +68,11 @@ It implements the following operations:
 * `Ui#printEdit(spendingList, index)` → prints the message to show the successful completion of the edition process
 
 Below shows an example of the usage:
-1. User executes `edit 1 bubble tea` command to edit the first item in the spending list to bubble tea 
+1. User executes `edit 1 bubble tea` command to edit the first item in the spending list to bubble tea
 2. The `edit` command calls the `EditCommand#execute(spendingList, ui)` to complete the edition process
 
 Figure below shows the sequence diagram of `EditCommand` class.
-![Sequence Diagram of EditCommand class](images/EditCommand.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97735682-97cd2800-1b15-11eb-9a72-dd0b0dee7b43.png) <br>
 Figure 3: Sequence diagram of EditCommand class
 
 ### 3.3 Convert Feature
@@ -90,7 +93,7 @@ Below shows an example of the usage:
 
 Figure below shows the sequence diagram of `ConvertCommand` class.
 
-![Sequence Diagram of ConvertCommand class](images/ConvertCommand.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97736543-d2839000-1b16-11eb-8ecd-ced57fe20466.png) <br>
 Figure 4: Sequence diagram of `ConvertCommand` class
 
 ### 3.4 Set Budget Feature
@@ -107,7 +110,7 @@ Below shows an example of usage:
 
 Figure below shows the sequence diagram of `SetBudgetCommand` class.
 
-![Sequence Diagram of SetBudgetCommand class](images/SetBudgetCommand.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97735896-ee3a6680-1b15-11eb-82a1-df893ea95675.png) <br>
 Figure 5: Sequence diagram of `SetBudgetCommand` class
 
 ### 3.5 Warn Feature
@@ -129,7 +132,7 @@ limit
 
 Figure below shows the sequence diagram of WarnCommand class.
 
-![Sequence Diagram of WarnCommand class](images/WarnCommand.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97735970-feeadc80-1b15-11eb-9a72-f37dc73ea7e9.png) <br>
 Figure 6: Sequence Diagram of `WarnCommand` class
 
 ### 3.6 Repay Feature
@@ -145,7 +148,7 @@ SGD 5.0 to Johnny before 2020-12-20
 
 Figure below shows the sequence diagram of `RepayCommand` class.
 
-![Sequence Diagram of RepayCommand class](images/RepayCommand.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97736043-14f89d00-1b16-11eb-85c4-73a3e52112c2.png) <br>
 Figure 7: Sequence diagram of `RepayCommand` class
 
 ### 3.7 Summary Feature
@@ -165,7 +168,7 @@ stored in the memory.
 
 Figure below shows the sequence diagram of `SummaryCommand` class.
 
-![Sequence Diagram of SummaryCommand class](images/summary.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97736098-26da4000-1b16-11eb-8e03-37486b55303d.png) <br>
 Figure 8: Sequence diagram of `SummaryCommand` class
 
 ### 3.8 Reminder Feature
@@ -183,7 +186,7 @@ Below shows an example of usage:
     * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
 
 Figure below shows the sequence diagram of Reminder class.
-![Sequence Diagram of SummaryCommand class](images/reminder.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97736156-39ed1000-1b16-11eb-93d4-062a41d9657b.png) <br>
 Figure 9: Sequence diagram of `SummaryCommand` class
 
 ### 3.9 Export Feature
@@ -201,7 +204,7 @@ Below shows an example of usage:
 3. After writing to an Excel file at the location `F:\` using `Workbook#write()`, a prompt message will be shown by `Ui`.
 
 Figure below shows the sequence diagram of `ExportCommand` class.
-![Sequence Diagram of ExportCommand class](images/ExportCommand.png) </br>
+![image](https://user-images.githubusercontent.com/45732128/97736203-4a9d8600-1b16-11eb-9661-ce9c27ccb6a9.png) <br>
 Figure 10: Sequence diagram of `ExportCommand` class
 
 
