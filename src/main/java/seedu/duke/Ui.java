@@ -133,11 +133,11 @@ public class Ui {
     public void printHelp() {
         out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
-        for (int i = 0; i < 28; i++) {
+        for (int i = 0; i < 25; i++) {
             out.format("%1s%-15s%1s%-55s%1s%-41s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
                     BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
                     BORDER_VERTICAL);
-            if (i == 0 || i == 1 || (i >= 3 && i <= 12) || i == 19 || i == 26) {
+            if (i == 0 || i == 1 || (i >= 3 && i <= 12) || i == 19 || i == 23) {
                 printWithinTableBorder();
             }
         }
