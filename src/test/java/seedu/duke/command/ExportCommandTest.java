@@ -28,7 +28,7 @@ class ExportCommandTest {
     @Test
     void execute() {
         try {
-            new ExportCommand(System.getProperty("user.dir") + "\\").execute(spendingList, ui);
+            new ExportCommand(System.getProperty("user.dir") + "\\").execute(spendingList, null, ui);
         } catch (Exception e) {
             assert false;
         }

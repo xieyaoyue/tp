@@ -56,9 +56,6 @@ public class Ui {
             {"summary", "summary", ""},
             {"", "OR summary YEAR", "summary 2020"},
             {"", "OR summary YEAR MONTH", "summary 2020 Jul"},
-            {"", "OR summary -c CATEGORY", "summary -c food"},
-            {"", "OR summary YEAR -c CATEGORY", "summary 2020 -c food"},
-            {"", "OR summary YEAR MONTH -c CATEGORY", "summary 2020 Jul -c food"},
             {"", "OR summary -a", ""},
             {"purge data", "purge data", ""}
     };
@@ -249,11 +246,13 @@ public class Ui {
     //@@author killingbear999
     public static void printCurrentBudgetLimit() {
         System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+        System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999
     public static void printNoBudget() {
         System.out.println("No budget has been set yet.");
+        System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999
