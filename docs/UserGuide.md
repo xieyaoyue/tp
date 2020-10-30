@@ -99,11 +99,10 @@ Format:
 
 Example of usage:
 
-`repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
+`repay -d Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
 Feature below shows an example for Inputting Repayment Information feature:
-![Example for Inputting Repayment Information](images/RepayExample.png)
 
 ### 3.6 Converting Currency: `convert`
 This command converts the currency in your spending list to another currency you prefer.
@@ -220,7 +219,7 @@ export | `export PATH`
 help | `help`
 logout | `logout`
 purge data | `purge data`
-repay | `repay -n NAME -s AMOUNT -t DEADLINE` </br> e.g. repay -n Johnny -s SGD 5.00 -t 2020-12-02
+repay | `repay -d NAME -s AMOUNT -t DEADLINE` </br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
 repayment list | `repayment list`
 set | `set -s AMOUNT` </br> e.g. set -s SGD 100.00
 view | `view`
