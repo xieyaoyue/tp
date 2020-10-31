@@ -18,11 +18,11 @@ class PurgeDataCommandTest {
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);
         Budget.addBudget("SGD", 100);
-        RepaymentList repaymentList = new RepaymentList("John","USD",123,"2020-02-20");
-        repaymentList.storeCurrentString();
-        repaymentList = new RepaymentList("John","USD",123,"2020-02-20");
-        repaymentList.storeCurrentString();
-        assertEquals(2,repaymentList.getListSize());
+        RepaymentList repaymentList = new RepaymentList();
+        repaymentList.addItem("John","USD",123,"2020-02-20");
+        repaymentList = new RepaymentList();
+        repaymentList.addItem("John","USD",123,"2020-02-20");
+        assertEquals(1,repaymentList.getListSize());
         PurgeDataCommand purgeDataCommand = new PurgeDataCommand();
         Ui ui = new Ui();
         purgeDataCommand.execute(spendingList, repaymentList, ui);

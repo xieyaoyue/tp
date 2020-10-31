@@ -36,7 +36,8 @@ public class Storage {
         // Create or Initialise object
         file = new File(path);
         gson = new GsonBuilder()
-            .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
+            .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
+            .serializeNulls()
             .create();
         if (file.exists()) {
             return;
@@ -86,14 +87,14 @@ public class Storage {
     }
 
     public void save(SpendingList spendingList) throws IOException {
-        String jsonContent = gson.toJson(spendingList, SpendingList.class);
+        String jsonContent = gson.toJson(spendingList);
         FileWriter fw = new FileWriter(file, false);
         fw.write(jsonContent);
         fw.close();
     }
 
     public void save(RepaymentList repaymentList) throws IOException {
-        String jsonContent = gson.toJson(repaymentList, RepaymentList.class);
+        String jsonContent = gson.toJson(repaymentList);
         FileWriter fw = new FileWriter(file, false);
         fw.write(jsonContent);
         fw.close();

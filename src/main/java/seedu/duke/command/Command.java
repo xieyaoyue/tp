@@ -7,6 +7,7 @@ import seedu.duke.exceptions.InvalidMonthException;
 
 import java.io.IOException;
 
+
 public abstract class Command {
     public abstract void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
         InvalidMonthException;
