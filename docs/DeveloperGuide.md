@@ -22,7 +22,7 @@ The following are the steps to set up the project in your computer:
 7. Locate the build.gradle file and select it. Click OK
 8. Click Open as Project
 9. Click OK to accept the default settings
-10. Open a console and run the command gradlew processResources (Mac/Linux: ./gradlew processResources). It should finish with the BUILD SUCCESSFUL message. This will generate all resources required by the application and tests.
+10. Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the BUILD SUCCESSFUL message. This will generate all resources required by the application and tests.
 
 ### 2.3 Verifying the setup
 The following are the steps to verify your setup:
@@ -35,20 +35,17 @@ The following are the steps to verify your setup:
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
 
-Main: Initializes spending list at app launch and coordinates the interaction between other components
+main: Initializes spending list at app launch and coordinates the interaction between other components
 
-DukeException: Issues exceptions if there are errors in storage or wrong format of user input is detected
+data: Stores the data collected from the user
 
-SpendingList: Stores the expenditure of the user as individual entries
+storage: Reads data from, and writes data to, the hard disk
 
-Storage: Reads data from, and writes data to, the hard disk
+ui: Interacts with the user
 
-Ui: Interacts with the user
+command: Executes the user command or system-issued command
 
-Command: Executes the user command or system-issued command
-
-Parser: Analyzes the user command
-
+parser: Analyzes the user command
 
 **How the architecture components interact with each other** <br>
 
@@ -69,27 +66,27 @@ Every command that a user can input into the application is represented by an ob
 The following sections classify the `Command`s into different types based on their functionality within the application.
 
 #### 3.4.1 CLI `Command`s related to Spending List
-The following class diagram describes the CLI `Command`s specifically related to the spending list.
+The following class diagram describes the CLI `Command`s specifically related to the spending list. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97780213-3c0aa980-1bbe-11eb-8ab7-2a553d7b7111.png) <br>
 
 #### 3.4.2 CLI `Command`s related to Repayment List
-The following class diagram describes the CLI `Command`s specifically related to the repayment list.
+The following class diagram describes the CLI `Command`s specifically related to the repayment list. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97780261-7e33eb00-1bbe-11eb-95e7-1418969f3fac.png)
 
 #### 3.4.3 CLI `Command`s related to Budget
-The following class diagram describes the CLI `Command`s specifically related to the budget.
+The following class diagram describes the CLI `Command`s specifically related to the budget. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97780278-9c015000-1bbe-11eb-921b-69dfabacadab.png)
 
 #### 3.4.4 General CLI `Command`s 
-The following class diagram describes general CLI `Command`s that apply to the whole application.
+The following class diagram describes general CLI `Command`s that apply to the whole application. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97780323-eda9da80-1bbe-11eb-8672-6cd7af590b61.png)
 
 #### 3.4.5 Hidden `Command`s
-The following class diagram describes the hidden commands within the program.
+The following class diagram describes the hidden commands within the program. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97780364-28137780-1bbf-11eb-9442-caa76f3db339.png)
 
@@ -101,7 +98,8 @@ class, in the memory.
 The SpendingList class also stores a list of Item objects that the user has spent. The `SpendingList` does not depend on 
 Ui, Parser and Storage components. 
 
-Below shows a class diagram how `SpendingList` interacts with other classes.
+Below shows a class diagram how `SpendingList` interacts with other classes. <br>
+
 ![image](images/classDiagram.png)
 Figure X: 
 
@@ -132,7 +130,7 @@ Below shows an example of usage:
    5. SpendingListCategoriser#execute to categorise beer under the food category of the spending list
    6. WarnCommand#execute to print a warning message if required
    
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97770676-60d83000-1b70-11eb-95c1-63c2b300af05.png) <br>
 
@@ -158,7 +156,7 @@ Below shows an example of usage:
    1. SpendingList#clearAllItems to clear all items in the spending list and saves the updated spending list in storage.
    2. Ui#printClearAllSpendingList to print a message if the spending list is cleared successfully
    
-The following sequence diagram illustrates how clearing a spending list works.
+The following sequence diagram illustrates how clearing a spending list works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97770858-08099700-1b72-11eb-86e4-80e07c416ea6.png) <br>
 
@@ -175,7 +173,7 @@ Below shows an example of the usage:
 1. User executes `edit 1 bubble tea` command to edit the first item in the spending list to bubble tea
 2. The `edit` command calls the `EditCommand#execute` to complete the edition process
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97735682-97cd2800-1b15-11eb-9a72-dd0b0dee7b43.png) <br>
 
@@ -196,7 +194,8 @@ Below shows an example of the usage:
 1. User executes `convert SGD USD` command to convert the currency from SGD to USD
 2. The `convert` command calls the `ConvertCommand#execute` to complete the conversion process
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
+
 ![image](https://user-images.githubusercontent.com/45732128/97736543-d2839000-1b16-11eb-8ecd-ced57fe20466.png) <br>
 
 ### 4.5 Set Budget Feature
@@ -211,10 +210,9 @@ Below shows an example of usage:
 1. User executes `set SGD 100.0` to set the budget limit to SGD 100.0
 2. The `set` command calls `SetBudgetCommand#execute` to complete the setting budget process
 
-Figure below shows the sequence diagram of `SetBudgetCommand` class.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97735896-ee3a6680-1b15-11eb-82a1-df893ea95675.png) <br>
-Figure 5: Sequence diagram of `SetBudgetCommand` class
 
 ### 4.6 Warn Feature
 `Budget`, `SpendingList` and `Ui` facilitate this feature. The Warn feature is able to warn the user when the total 
@@ -233,7 +231,7 @@ Below shows an example of usage:
 2. The `add` command calls `WarnCommand#execute` to check if the user approaches or exceeds budget 
 limit 
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97735970-feeadc80-1b15-11eb-9a72-f37dc73ea7e9.png) <br>
 
@@ -248,7 +246,7 @@ Below shows an example of usage:
 SGD 5.0 to Johnny before 2020-12-20
 2. The `repay` command calls the `RepayCommand#execute` to complete the adding process
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97736043-14f89d00-1b16-11eb-85c4-73a3e52112c2.png) <br>
 
@@ -267,10 +265,9 @@ Below shows an example of usage:
 stored in the memory.
 3. If the item is spent during year 2020, the amount spent will be summed up.
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works.<br>
 
-![image](https://user-images.githubusercontent.com/45732128/97736098-26da4000-1b16-11eb-8e03-37486b55303d.png) <br>
-
+![image](https://user-images.githubusercontent.com/45732128/97780845-1bdce980-1bc2-11eb-8bc8-3ca8f1b93a54.png) <br>
 
 ### 4.9 Reminder Feature
 `SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
@@ -286,9 +283,9 @@ Below shows an example of usage:
     * If no budget is being set, the total expenditure of current week will be tallied up. 
     * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
-![image](images/reminder.png) <br>
+![image](https://user-images.githubusercontent.com/45732128/97780789-b0931780-1bc1-11eb-8bf9-f8e7b087aa47.png) <br>
 
 ### 4.10 Encouragement Feature
 The Ui facilitate this feature. The Encouragement feature regularly encourages the user to keep up his effort in using the application. It implements the following operation:
@@ -296,7 +293,7 @@ Ui#printEncouragementMessage() → prints an encouragement message for the user
 
 This is a hidden feature that will be executed automatically by the application when the application is launched. Figure below shows the sequence diagram of `EncouragementCommand` class.
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97768300-0386b380-1b5d-11eb-9438-1c328ab10139.png) <br>
 
@@ -315,7 +312,7 @@ Below shows an example of usage:
 3. `SpendingList#getItem` will be called repeatedly to get items and set the cells' values accordingly.
 3. After writing to an Excel file at the location `F:\` using `Workbook#write`, a prompt message will be shown by `Ui`.
 
-The following sequence diagram illustrates how this feature works.
+The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97736203-4a9d8600-1b16-11eb-9661-ce9c27ccb6a9.png) <br>
 
