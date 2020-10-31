@@ -30,6 +30,15 @@ letter is capitalised. Example: `Jul` for July or `Oct` for October.
 
 * The default currency of the system is SGD.
 
+* There are 7 categories of spending items:
+    1. Education
+    2. Entertainment
+    3. Food
+    4. Health
+    5. Other
+    6. Transportation
+    7. Utilities
+    
 ### 3.1 Adding Spending: `add`
 This command allows you to add a spending record to the application.
 
