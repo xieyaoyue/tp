@@ -21,8 +21,8 @@ import org.openxmlformats.schemas.drawingml.x2006.chart.CTPlotArea;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
-import seedu.duke.Ui;
-import seedu.duke.category.Item;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.utilities.DateFormatter;
 

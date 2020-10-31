@@ -5,6 +5,8 @@ import seedu.duke.command.Reminder;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
 
 public class Duke {
     /**

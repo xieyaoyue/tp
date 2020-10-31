@@ -1,7 +1,6 @@
 package seedu.duke.data;
 
-import seedu.duke.Storage;
-import seedu.duke.category.Item;
+import seedu.duke.storage.Storage;
 import seedu.duke.command.ConvertCommand;
 
 import java.io.IOException;

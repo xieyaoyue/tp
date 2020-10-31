@@ -4,7 +4,7 @@ import seedu.duke.data.Budget;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 import seedu.duke.utilities.SpendingListCategoriser;
-import seedu.duke.Ui;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.util.logging.Level;

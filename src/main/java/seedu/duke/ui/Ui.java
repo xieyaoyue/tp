@@ -1,7 +1,9 @@
-package seedu.duke;
+package seedu.duke.ui;
 
-import seedu.duke.category.Item;
+import seedu.duke.data.Item;
 import seedu.duke.data.Budget;
+import seedu.duke.data.Repay;
+import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 
 import java.io.ByteArrayOutputStream;

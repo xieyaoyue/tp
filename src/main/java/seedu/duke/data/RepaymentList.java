@@ -1,6 +1,6 @@
 package seedu.duke.data;
 
-import seedu.duke.Storage;
+import seedu.duke.storage.Storage;
 
 import java.io.IOException;
 import java.util.ArrayList;
