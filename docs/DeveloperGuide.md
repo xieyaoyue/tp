@@ -168,7 +168,7 @@ stored in the memory.
 
 Figure below shows the sequence diagram of `SummaryCommand` class.
 
-![image](https://user-images.githubusercontent.com/45732128/97736098-26da4000-1b16-11eb-8e03-37486b55303d.png) <br>
+![image](images/summary.png) <br>
 Figure 8: Sequence diagram of `SummaryCommand` class
 
 ### 3.8 Reminder Feature
@@ -186,8 +186,8 @@ Below shows an example of usage:
     * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
 
 Figure below shows the sequence diagram of Reminder class.
-![image](https://user-images.githubusercontent.com/45732128/97736156-39ed1000-1b16-11eb-93d4-062a41d9657b.png) <br>
-Figure 9: Sequence diagram of `SummaryCommand` class
+![image](images/reminder.png) <br>
+Figure 9: Sequence diagram of `Reminder` class
 
 ### 3.9 Export Feature
 `Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The export data feature could extract the current data and export to an Excel file. It implements the following operations:
