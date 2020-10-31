@@ -293,7 +293,7 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 3. The system should work on any mainstream OS that has Java 11 or above installed.
 4. Users with faster typing speed than average should be able to use this program with ease.
 
-## 7. Glossary
+## 7. Glossary 
 
 * *glossary item* - Definition
 
