@@ -20,7 +20,7 @@ Before we begin, do take note of the following information which applies to all 
 * Words in UPPER_CASE are parameters that you should provide.
 Example: In `-c CATEGORY`, `CATEGORY` is a parameter. `-c Food` would mean that the item belongs to the 'food' category.
 
-* Parameters in square brackets (i.e. []) are options provided for you to choose to enter. You may choose one out of all.
+* Parameters in square brackets (i.e. []) are options provided for you to choose to enter (no need to enter [] when entering the command). You may choose one out of all.
 Example: `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION]` can be used as `edit 1 [-c Food]` or `edit 1 [-c NEW DESCRIPTION]`
 
 * The abbreviation of `MONTH` is case sensitive. The system only accepts the abbreviation of `MONTH` with the first three letters, and the first
@@ -28,7 +28,7 @@ letter is capitalised. Example: `Jul` for July or `Oct` for October.
 
 * The system has the feature of a currency converter, but it only supports currency conversion for SGD to USD, or USD to SGD, or SGD to CNY, or CNY to SGD.
 
-* The default currency of the system is SGD.
+* The default currency of the system is SGD, but after calling `convert` feature, the default currency will be changed to the currency you have converted to.
 
 * There are 7 categories of spending items:
     1. Education
@@ -201,6 +201,17 @@ Example of usage:
 
 Feature below shows an example for Editing Spending feature:
 ![Example for Editing Spending](images/EditExample.png)
+
+### 3.12 Exiting program: `logout`
+This command exists the application.
+
+Format:
+
+`logout`
+
+Example of usage:
+
+`logout` → exits the program
 
 ## 4. Useful Hidden Features
 This section shows you the hidden features which serve as notifications and interactions with the user.

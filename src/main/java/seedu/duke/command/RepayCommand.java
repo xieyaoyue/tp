@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DateTimeFormatter;
 
 import java.io.IOException;
 
@@ -22,7 +23,16 @@ public class RepayCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-        repaymentList.addItem(name, currency, repayment, deadline);
-        ui.printAddRepay(repaymentList);
+        DateTimeFormatter dateTimeFormatter = new DateTimeFormatter("yyyy-mm-dd");
+        if (repayment >= 0) {
+            if (dateTimeFormatter.isValid(deadline)) {
+                repaymentList.addItem(name, currency, repayment, deadline);
+                ui.printAddRepay(repaymentList);
+            } else {
+                ui.printInvalidDate();
+            }
+        } else {
+            ui.printInvalidAmount();
+        }
     }
 }

@@ -190,7 +190,7 @@ public class Ui {
 
     //@@author killingbear999
     public void printConvertCurrency(String outputCurrency) {
-        out.println("The currency has been changed to " + outputCurrency + " .");
+        out.println("The currency has been changed to " + outputCurrency + ".");
         drawSeparateLine();
     }
 
@@ -294,6 +294,36 @@ public class Ui {
         } else {
             out.println("Sorry, generation failed.");
         }
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidOutputCurrency() {
+        out.println("Sorry, the output currency you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidInputCurrency() {
+        out.println("Sorry, the input currency you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidBudget() {
+        out.println("Sorry, the budget amount you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidAmount() {
+        out.println("Sorry, the amount input is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidDate() {
+        out.println("Sorry, the date you input is invalid. Please try again");
         drawSeparateLine();
     }
 }
