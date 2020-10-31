@@ -104,7 +104,7 @@ class ParserTest {
         assertEquals(c.index, 986);
         assertEquals(c.description, "fried rice");
         assertNull(c.amount);
-        assertNull(c.symbol);
+        assertNull(c.currency);
         assertNull(c.category);
     }
 
