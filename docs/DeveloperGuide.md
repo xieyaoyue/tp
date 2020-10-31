@@ -6,9 +6,7 @@ This developer guide provides information on the architecture and design of the 
 
 ## 2. Setting up
 ### 2.1 Prerequisites
-- JDK 1.8.0_60 or later <br>
-🛈 Having any Java 8 version is not enough. <br>
-🛈 This app will not work with earlier versions of Java 8.
+- JDK 11 <br>
 - IntelliJ IDE <br>
 🛈 IntelliJ by default has Gradle and JavaFx plugins installed. <br>
 🛈 Do not disable them. If you have disabled them, go to File > Settings > Plugins to re-enable them.
@@ -31,7 +29,7 @@ The following are the steps to verify your setup:
 1. Run the seedu.duke.Duke and try a few commands.
 2. Run the tests and ensure all the tests pass.
 
-## 3. Design & implementation
+## 3. Design
 ### 3.1 Architecture
 ![image](https://user-images.githubusercontent.com/45732128/97735431-4886f780-1b15-11eb-920c-24e5bf7a76fe.png) <br>
 
@@ -56,15 +54,44 @@ Parser: Analyzes the user command
 
 The sequence diagram below shows how the components interact with each other when the user issues a general command. <br>
 
-The sequence diagram below shows how the components interact with each other when the user issues a general command.
 ![image](https://user-images.githubusercontent.com/45732128/97735507-62c0d580-1b15-11eb-9f14-aab54bf5b29d.png) <br>
 
-=======
+
 ### 3.2 UI component
 
 ### 3.3 Parser component
 
 ### 3.4 Command component
+Every command that a user can input into the application is represented by an object that extends the abstract class `Command`. In addition, hidden commands that do not require user inputs also extends from the same abstract class `Command`. `Command` contains some basic methods that are shared by all types of commands, including:
+* execute(), which is called after setting up the object appropriately, to perform the action requested by the user; and
+* isExit(), which returns a boolean that indicates whether the program should terminate after the command is executed.
+
+The following sections classify the `Command`s into different types based on their functionality within the application.
+
+#### 3.4.1 CLI `Command`s related to Spending List
+The following class diagram describes the CLI `Command`s specifically related to the spending list.
+
+![image](https://user-images.githubusercontent.com/45732128/97780213-3c0aa980-1bbe-11eb-8ab7-2a553d7b7111.png) <br>
+
+#### 3.4.2 CLI `Command`s related to Repayment List
+The following class diagram describes the CLI `Command`s specifically related to the repayment list.
+
+![image](https://user-images.githubusercontent.com/45732128/97780261-7e33eb00-1bbe-11eb-95e7-1418969f3fac.png)
+
+#### 3.4.3 CLI `Command`s related to Budget
+The following class diagram describes the CLI `Command`s specifically related to the budget.
+
+![image](https://user-images.githubusercontent.com/45732128/97780278-9c015000-1bbe-11eb-921b-69dfabacadab.png)
+
+#### 3.4.4 General CLI `Command`s 
+The following class diagram describes general CLI `Command`s that apply to the whole application.
+
+![image](https://user-images.githubusercontent.com/45732128/97780323-eda9da80-1bbe-11eb-8672-6cd7af590b61.png)
+
+#### 3.4.5 Hidden `Command`s
+The following class diagram describes the hidden commands within the program.
+
+![image](https://user-images.githubusercontent.com/45732128/97780364-28137780-1bbf-11eb-9442-caa76f3db339.png)
 
 ### 3.5 Data component
 This component holds the data of the application, including the SpendingList class, Budget class and RepaymentList 
@@ -242,7 +269,7 @@ stored in the memory.
 
 The following sequence diagram illustrates how this feature works.
 
-![image](images/summary.png) <br>
+![image](https://user-images.githubusercontent.com/45732128/97736098-26da4000-1b16-11eb-8e03-37486b55303d.png) <br>
 
 
 ### 4.9 Reminder Feature
