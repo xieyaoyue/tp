@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.data;
 
 //@@author killingbear999
 public class Repay {

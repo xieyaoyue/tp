@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package seedu.duke.utilities;
 
 import java.time.LocalDate;
 import java.util.HashMap;

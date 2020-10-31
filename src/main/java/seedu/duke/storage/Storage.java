@@ -1,7 +1,9 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 

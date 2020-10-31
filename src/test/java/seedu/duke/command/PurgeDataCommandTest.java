@@ -1,10 +1,10 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Budget;
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
