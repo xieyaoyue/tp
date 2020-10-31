@@ -74,7 +74,7 @@ public class AddCommand extends Command {
         } else if (currency.equals("SGD") && defaultCurrency.equals("USD")) {
             amount = Math.round(amount * Double.parseDouble(exchangeRates[1][0]) * 100.0) / 100.0;
         } else if (currency.equals("SGD") && defaultCurrency.equals("CNY")) {
-            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][2]) * 100.0) /100.0;
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][2]) * 100.0) / 100.0;
         }
     }
     
