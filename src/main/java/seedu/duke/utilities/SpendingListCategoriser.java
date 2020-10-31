@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.utilities;
+
+import seedu.duke.data.SpendingList;
 
 //@@author killingbear999
 public class SpendingListCategoriser {
