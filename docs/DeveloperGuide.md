@@ -267,7 +267,7 @@ stored in the memory.
 
 The following sequence diagram illustrates how this feature works.<br>
 
-![image](https://user-images.githubusercontent.com/45732128/97780845-1bdce980-1bc2-11eb-8bc8-3ca8f1b93a54.png) <br>
+![image](https://user-images.githubusercontent.com/45732128/97781639-c7d50380-1bc7-11eb-8fe8-ce1f1e80dc35.png) <br>
 
 ### 4.9 Reminder Feature
 `SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
@@ -285,7 +285,7 @@ Below shows an example of usage:
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97780789-b0931780-1bc1-11eb-8bf9-f8e7b087aa47.png) <br>
+![image](https://user-images.githubusercontent.com/45732128/97781544-2e0d5680-1bc7-11eb-938e-110342ff8842.png) <br>
 
 ### 4.10 Encouragement Feature
 The Ui facilitate this feature. The Encouragement feature regularly encourages the user to keep up his effort in using the application. It implements the following operation:
@@ -295,7 +295,7 @@ This is a hidden feature that will be executed automatically by the application 
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97768300-0386b380-1b5d-11eb-9438-1c328ab10139.png) <br>
+![image](https://user-images.githubusercontent.com/45732128/97781607-99572880-1bc7-11eb-82a7-50b614572269.png) <br>
 
 ### 4.11 Export Feature
 
