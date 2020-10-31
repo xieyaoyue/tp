@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.RepaymentList;
+import seedu.duke.data.RepaymentList;
 import seedu.duke.Ui;
 
 import java.io.IOException;

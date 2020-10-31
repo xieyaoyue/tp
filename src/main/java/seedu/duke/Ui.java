@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import seedu.duke.category.Item;
+import seedu.duke.data.Budget;
+import seedu.duke.data.SpendingList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -39,7 +41,7 @@ public class Ui {
             {"", "OR clear all", ""},
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
             {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
-            {"edit", "edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]", "edit 1 -s SGD 4.00"},
+            {"edit", "edit INDEX [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "edit 1 -s SGD 4.00"},
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},

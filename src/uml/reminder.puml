@@ -2,8 +2,6 @@
 hide footbox
 
 ":Duke" -> ":Reminder"
-create ":Reminder"
-":Duke" -> ":Reminder"
 activate ":Reminder"
 
 ":Reminder" -> ":Reminder" : saveDatesToList()

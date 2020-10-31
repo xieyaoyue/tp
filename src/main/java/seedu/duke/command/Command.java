@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.Ui;
 import seedu.duke.exceptions.InvalidMonthException;
 

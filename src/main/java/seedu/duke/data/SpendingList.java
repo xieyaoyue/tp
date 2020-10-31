@@ -1,5 +1,6 @@
-package seedu.duke;
+package seedu.duke.data;
 
+import seedu.duke.Storage;
 import seedu.duke.category.Item;
 import seedu.duke.command.ConvertCommand;
 
