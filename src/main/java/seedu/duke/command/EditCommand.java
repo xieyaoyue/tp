@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.Ui;
 
 import java.io.IOException;
@@ -10,14 +10,14 @@ import java.io.IOException;
 public class EditCommand extends Command {
     public String description;
     public Double amount;
-    public String symbol;
+    public String currency;
     public int index;
     public String category;
 
-    public EditCommand(int index, String description, String symbol, Double amount, String category) {
+    public EditCommand(int index, String description, String currency, Double amount, String category) {
         this.index = index - 1;
         this.description = description;
-        this.symbol = symbol;
+        this.currency = currency;
         this.amount = amount;
         this.category = category;
     }
@@ -27,7 +27,7 @@ public class EditCommand extends Command {
         if (description != null) {
             spendingList.editItemDescription(index, description);
         }
-        if (symbol != null) {
+        if (currency != null) {
             // TODO : edit symbol @killingbear999
         }
         if (amount != null) {

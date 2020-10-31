@@ -1,12 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.Budget;
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.Ui;
 
 //@@author killingbear999
-public class ViewCommand extends Command {
+public class ViewBudgetCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {

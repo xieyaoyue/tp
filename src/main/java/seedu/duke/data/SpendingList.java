@@ -1,5 +1,6 @@
-package seedu.duke;
+package seedu.duke.data;
 
+import seedu.duke.Storage;
 import seedu.duke.category.Item;
 import seedu.duke.command.ConvertCommand;
 
@@ -10,7 +11,7 @@ public class SpendingList {
     private String description;
     private Storage storage;
 
-    private static ArrayList<Item> spendingList;
+    public ArrayList<Item> spendingList;
 
     public SpendingList(String description, ArrayList<Item> spendingList, Storage storage) {
         this.description = description;

@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.Budget;
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.Ui;
 
 import java.time.DayOfWeek;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Reminder extends Command {
     private LocalDate startWeek;
-    WarnCommand warn;
+    private WarnCommand warn;
     private ArrayList<String> week = new ArrayList<>();
 
     public Reminder() {
