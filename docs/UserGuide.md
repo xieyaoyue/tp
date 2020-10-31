@@ -17,6 +17,8 @@ Refer to the Features below for details of each command.
 In this section, specific information about each command will be explained. This includes the purpose of each command, and how it is formatted.
 
 Before we begin, do take note of the following information which applies to all commands:
+* This application only takes in currencies of SGD, USD and CNY.
+
 * Words in UPPER_CASE are parameters that you should provide.
 Example: In `-c CATEGORY`, `CATEGORY` is a parameter. `-c Food` would mean that the item belongs to the 'food' category.
 
@@ -44,7 +46,7 @@ This command allows you to add a spending record to the application.
 
 Format:
 
-`add -c CATEGORY -d DESCRIPTION -s SPENDING`
+`add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING`
 
 Example of usage: 
 
@@ -107,7 +109,7 @@ the limit or exceeds the limit.
 
 Format:
 
-`set -s AMOUNT`
+`set -s CURRENCY AMOUNT`
 
 Example of usage:
 
@@ -118,7 +120,7 @@ This command adds a repayment record to your repayment list.
 
 Format:
 
-`repay -n NAME -s AMOUNT -t DEADLINE`
+`repay -n NAME -s CURRENCY AMOUNT -t DEADLINE`
 
 Example of usage:
 
@@ -193,7 +195,7 @@ This command edits the existing records in the spending list.
 
 Format:
 
-`edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION] [-s NEW SPENDING]`
+`edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION] [-s CURRENCY NEW SPENDING]`
 
 Example of usage:
 
@@ -247,18 +249,18 @@ Encourages you when you add spending items.
 ## 6. Command Summary
 Action | Format & Examples 
 --- | ---
-add | `add  -c CATEGORY -d DESCRIPTION -s SPENDING` </br> e.g. add -c Food -d chicken rice -s GSD 5.0
+add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` </br> e.g. add -c Food -d chicken rice -s SGD 5.0
 clear (coming soon) | `clear KEYWORD` </br> e.g. clear 1
-convert | `convert -s DESCRIPTION -t DESCRIPTION` </br> e.g. convert -s SGD -t USD
+convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` </br> e.g. convert -s SGD -t USD
 draw (coming soon) | `draw [YEAR = current year] [MONTH = current month]`
-edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]` </br> e.g. edit 1 -d bubble tea
+edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` </br> e.g. edit 1 -d bubble tea
 export (coming soon) | `export PATH`
 help | `help`
 logout | `logout`
 purge data (coming soon) | `purge data`
-repay | `repay -n NAME -s AMOUNT -t DEADLINE` </br> e.g. repay -n Johnny -s SGD 5.00 -t 2020-12-02
+repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` </br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
 repayment list | `repayment list`
-set | `set -s AMOUNT` </br> e.g. set -s SGD 100.00
+set | `set -s CURRENCY AMOUNT` </br> e.g. set -s SGD 100.00
 view | `view`
 spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` </br> e.g. spending list 2020 Jul
 summary | `summary [YEAR = current year] [MONTH = current month] [-a]` </br> e.g. summary 2020 Jul 
