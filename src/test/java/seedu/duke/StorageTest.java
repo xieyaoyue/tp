@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StorageTest {
-    private static Storage storage;
+    private Storage storage;
 
     @Test
     public void createFileAndPath() {
@@ -26,11 +26,11 @@ class StorageTest {
     @Test
     public void saveAndLoad() throws IOException {
         SpendingList expectedList = new SpendingList(storage);
-        expectedList.addItem("noodle", "S$", 1.5, "");
+        expectedList.addItem("noodle", "S$", 1.5, null);
         expectedList.addItem("fish", "S$", 10, "");
         expectedList.addItem("books", "S$", 8.9, "");
 
-        SpendingList actualList = storage.load();
+        SpendingList actualList = storage.loadSpendingList();
         SpendingListTest.assertEqualList(expectedList, actualList);
     }
 

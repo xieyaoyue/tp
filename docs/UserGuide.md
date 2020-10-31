@@ -26,14 +26,32 @@ Example: `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION]` can be used as `edit 1 
 * The abbreviation of `MONTH` is case sensitive. The system only accepts the abbreviation of `MONTH` with the first three letters, and the first
 letter is capitalised. Example: `Jul` for July or `Oct` for October.
 
-### 3.1 Viewing Repayment List Summary: `repayment list`
+* The system has the feature of a currency converter, but it only supports currency conversion for SGD to USD, or USD to SGD, or SGD to CNY, or CNY to SGD.
+
+* The default currency of the system is SGD.
+
+### 3.1 Adding Spending: `add`
+This command allows you to add a spending record to the application.
+
+Format:
+
+`add -c CATEGORY -d DESCRIPTION -s SPENDING`
+
+Example of usage: 
+
+`add -c Food -d chicken rice -s SGD 3.00` → adds chicken rice which costs SGD 3.00 into the food category of the spending list
+
+### 3.2 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
 Format:
 
 `repayment list`
 
-### 3.2 Viewing Spending List Summary: `spending list`
+**Important: storage of repayment list is coming soon.**
+
+### 3.3 Viewing Spending List Summary: `spending list`
+
 This command shows your spending records during a specified period (a particular year or month, or both).
 You can also choose to view your spending records which belong to a specific spending category.
 
@@ -57,14 +75,24 @@ Examples of usage:
 
 `spending list -a` → lists all entries
 
-### 3.3 Viewing Budget Limit: `view`
+### 3.4 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
 
 Format:
 
 `view`
 
-### 3.4 Setting Budget Limit: `set`
+Example of usage:
+
+`view` → views the budget limit that was set previously
+
+Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet):
+![Example for Viewing Budget Limit](images/NoBudgetExample.png)
+
+Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set):
+![Example for Viewing Budget Limit](images/BudgetExample.png)
+
+### 3.5 Setting Budget Limit: `set`
 This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
 the limit or exceeds the limit.
 
@@ -76,7 +104,7 @@ Example of usage:
 
 `set -s SGD 100.0` → sets the budget limit to SGD 100.0
 
-### 3.5 Inputting Repayment Information: `repay`
+### 3.6 Inputting Repayment Information: `repay`
 This command adds a repayment record to your repayment list.
 
 Format:
@@ -88,7 +116,10 @@ Example of usage:
 `repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
-### 3.6 Converting Currency: `convert`
+Feature below shows an example for Inputting Repayment Information feature:
+![Example for Inputting Repayment Information](images/RepayExample.png)
+
+### 3.7 Converting Currency: `convert`
 This command converts the currency in your spending list to another currency you prefer.
 
 Format: 
@@ -99,7 +130,10 @@ Example of usage:
 
 `convert -s SGD -t USD` → converts the currency from SGD to USD
 
-### 3.7 Viewing Summary: `summary`
+Feature below shows an example for Converting Currency feature:
+![Example for Converting Currency](images/ConvertExample.png)
+
+### 3.8 Viewing Summary: `summary`
 This command generates a statement of your total expenditure during a specific period of time (a particular year or 
 month, or both). Statements based on each spending category will also be shown.
 
@@ -109,15 +143,16 @@ Format:
 
 Examples of usage:
 
-`summary` → shows summary of current month
+`summary` → shows summary of current month **(coming soon)**
 
-`summary 2020` → shows summary of a specific year
+`summary 2020` → shows summary of a specific year **(coming soon)**
 
 `summary 2020 Oct` → shows summary of a specific year and month
 
 `summary -a` → shows the summary of total expenditure
 
-### 3.8 Visualizing data: `draw`
+### 3.9 Visualizing data: `draw` **(coming soon)**
+
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
 
 Format: 
@@ -132,7 +167,8 @@ Examples of usage:
 
 `draw 2020 Jun` → shows the graph of Jun 2020
 
-### 3.9 Exporting data: `export`
+### 3.10 Exporting data: `export` **(coming soon)**
+
 This command exports the data to an Excel file at the given location.
 
 Format: 
@@ -143,7 +179,7 @@ Example of usage:
 
 `export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
 
-### 3.10 Editing spending: `edit`
+### 3.11 Editing spending: `edit`
 This command edits the existing records in the spending list.
 
 Format:
@@ -152,11 +188,14 @@ Format:
 
 Example of usage:
 
-`edit 1 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
+`edit 3 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
+
+Feature below shows an example for Editing Spending feature:
+![Example for Editing Spending](images/EditExample.png)
 
 ## 4. Useful Hidden Features
 This section shows you the hidden features which serve as notifications and interactions with the user.
-### Reminder 
+### 4.1 Reminder 
 Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
 It will also warn you if you are reaching your budget limit.
 
@@ -164,7 +203,7 @@ It will also warn you if you are reaching your budget limit.
 
 Note: A new week starts on Monday.
 
-### Warning
+### 4.2 Warning
 Warns you when you are about to overspend. The budget threshold is 90% of your budget set. After you add a spending 
 item and the total expenditure is more than the budget threshold, warning message will appear.
 
@@ -172,7 +211,7 @@ item and the total expenditure is more than the budget threshold, warning messag
 
 Note: You need to set the budget in order to get the warning feature.
 
-### Encouragement
+### 4.3 Encouragement
 Encourages you when you add spending items.
 
 ## 5. FAQ
@@ -189,14 +228,14 @@ Encourages you when you add spending items.
 Action | Format & Examples 
 --- | ---
 add | `add  -c CATEGORY -d DESCRIPTION -s SPENDING` </br> e.g. add -c Food -d chicken rice -s GSD 5.0
-clear | `clear KEYWORD` </br> e.g. clear 1
+clear (coming soon) | `clear KEYWORD` </br> e.g. clear 1
 convert | `convert -s DESCRIPTION -t DESCRIPTION` </br> e.g. convert -s SGD -t USD
-draw | `draw [YEAR = current year] [MONTH = current month]`
+draw (coming soon) | `draw [YEAR = current year] [MONTH = current month]`
 edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]` </br> e.g. edit 1 -d bubble tea
-export | `export PATH`
+export (coming soon) | `export PATH`
 help | `help`
 logout | `logout`
-purge data | `purge data`
+purge data (coming soon) | `purge data`
 repay | `repay -n NAME -s AMOUNT -t DEADLINE` </br> e.g. repay -n Johnny -s SGD 5.00 -t 2020-12-02
 repayment list | `repayment list`
 set | `set -s AMOUNT` </br> e.g. set -s SGD 100.00

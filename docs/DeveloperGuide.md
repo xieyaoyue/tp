@@ -6,13 +6,15 @@ This developer guide provides information on the architecture and design of the 
 
 ## 2. Setting up
 ### 2.1 Prerequisites
-- JDK 1.8.0_60 or later </br>
-🛈 Having any Java 8 version is not enough. </br>
+- JDK 1.8.0_60 or later <br>
+🛈 Having any Java 8 version is not enough. <br>
 🛈 This app will not work with earlier versions of Java 8.
-- IntelliJ IDE </br>
-🛈 IntelliJ by default has Gradle and JavaFx plugins installed. </br>
+- IntelliJ IDE <br>
+🛈 IntelliJ by default has Gradle and JavaFx plugins installed. <br>
 🛈 Do not disable them. If you have disabled them, go to File > Settings > Plugins to re-enable them.
+
 ### 2.2 Setting up the project in your computer
+The following are the steps to set up the project in your computer:
 1. Fork this repo, and clone the fork to your computer.
 2. Open IntelliJ. If you are not in the welcome screen, click File > Close Project to close the existing project dialog first.
 3. Set up the correct JDK version for Gradle.
@@ -23,13 +25,16 @@ This developer guide provides information on the architecture and design of the 
 8. Click Open as Project
 9. Click OK to accept the default settings
 10. Open a console and run the command gradlew processResources (Mac/Linux: ./gradlew processResources). It should finish with the BUILD SUCCESSFUL message. This will generate all resources required by the application and tests.
+
 ### 2.3 Verifying the setup
+The following are the steps to verify your setup:
 1. Run the seedu.duke.Duke and try a few commands.
 2. Run the tests and ensure all the tests pass.
 
 ## 3. Design & implementation
 ### 3.1 Architecture
-![image](https://user-images.githubusercontent.com/45732128/97327381-e083a780-18af-11eb-8fed-eb6d7de73703.png)
+![image](https://user-images.githubusercontent.com/45732128/97735431-4886f780-1b15-11eb-920c-24e5bf7a76fe.png) <br>
+Figure 1: Architecture diagram
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
 
@@ -47,11 +52,11 @@ Command: Executes the user command or system-issued command
 
 Parser: Analyzes the user command
 
-**How the architecture components interact with each other** </br>
+**How the architecture components interact with each other** <br>
 
 The sequence diagram below shows how the components interact with each other when the user issues a general command.
-
-![image](https://user-images.githubusercontent.com/45732128/97327808-50922d80-18b0-11eb-9111-ee1880207b80.png)
+![image](https://user-images.githubusercontent.com/45732128/97735507-62c0d580-1b15-11eb-9f14-aab54bf5b29d.png) <br>
+Figure 2: Interaction between architecture components
 
 
 ### 3.2 Edit Feature
@@ -63,11 +68,12 @@ It implements the following operations:
 * `Ui#printEdit(spendingList, index)` → prints the message to show the successful completion of the edition process
 
 Below shows an example of the usage:
-1. User executes `edit 1 bubble tea` command to edit the first item in the spending list to bubble tea 
+1. User executes `edit 1 bubble tea` command to edit the first item in the spending list to bubble tea
 2. The `edit` command calls the `EditCommand#execute(spendingList, ui)` to complete the edition process
 
 Figure below shows the sequence diagram of `EditCommand` class.
-![Sequence Diagram of EditCommand class](images/EditCommand.png)
+![image](https://user-images.githubusercontent.com/45732128/97735682-97cd2800-1b15-11eb-9a72-dd0b0dee7b43.png) <br>
+Figure 3: Sequence diagram of EditCommand class
 
 ### 3.3 Convert Feature
 `SpendingList`, `Ui` and `Item` facilitate this feature. The Convert feature is able to convert the currency of the items 
@@ -86,7 +92,9 @@ Below shows an example of the usage:
 2. The `convert` command calls the `ConvertCommand#execute(spendingList, ui)` to complete the conversion process
 
 Figure below shows the sequence diagram of `ConvertCommand` class.
-![Sequence Diagram of ConvertCommand class](images/ConvertCommand.png)
+
+![image](https://user-images.githubusercontent.com/45732128/97736543-d2839000-1b16-11eb-8ecd-ced57fe20466.png) <br>
+Figure 4: Sequence diagram of `ConvertCommand` class
 
 ### 3.4 Set Budget Feature
 `Budget` and `Ui` facilitate this feature. The Set Budget feature is able to set the budget limit for the spending. 
@@ -100,8 +108,10 @@ Below shows an example of usage:
 1. User executes `set SGD 100.0` to set the budget limit to SGD 100.0
 2. The `set` command calls `SetBudgetCommand#execute(spendingList, ui)` to complete the setting budget process
 
-Figure below shows the sequence diagram of SetBudgetCommand class.
-![Sequence Diagram of SetBudgetCommand class](images/SetBudgetCommand.png)
+Figure below shows the sequence diagram of `SetBudgetCommand` class.
+
+![image](https://user-images.githubusercontent.com/45732128/97735896-ee3a6680-1b15-11eb-82a1-df893ea95675.png) <br>
+Figure 5: Sequence diagram of `SetBudgetCommand` class
 
 ### 3.5 Warn Feature
 `Budget`, `SpendingList` and `Ui` facilitate this feature. The Warn feature is able to warn the user when the total 
@@ -121,7 +131,9 @@ Below shows an example of usage:
 limit 
 
 Figure below shows the sequence diagram of WarnCommand class.
-![Sequence Diagram of WarnCommand class](images/WarnCommand.png)
+
+![image](https://user-images.githubusercontent.com/45732128/97735970-feeadc80-1b15-11eb-9a72-f37dc73ea7e9.png) <br>
+Figure 6: Sequence Diagram of `WarnCommand` class
 
 ### 3.6 Repay Feature
 `RepaymentList` and `Ui` facilitate this feature. The Repay feature is able to store the repayment information as a 
@@ -134,8 +146,10 @@ Below shows an example of usage:
 SGD 5.0 to Johnny before 2020-12-20
 2. The `repay` command calls the `RepayCommand#execute(spendingList, ui)` to complete the adding process
 
-Figure below shows the sequence diagram of `RepayCommand` class:
-![Sequence Diagram of RepayCommand class](images/RepayCommand.png)
+Figure below shows the sequence diagram of `RepayCommand` class.
+
+![image](https://user-images.githubusercontent.com/45732128/97736043-14f89d00-1b16-11eb-85c4-73a3e52112c2.png) <br>
+Figure 7: Sequence diagram of `RepayCommand` class
 
 ### 3.7 Summary Feature
 `SpendingList` and `Item` facilitate this feature. The Summary feature is able to summarise the total amount spent 
@@ -152,8 +166,10 @@ Below shows an example of usage:
 stored in the memory.
 3. If the item is spent during year 2020, the amount spent will be summed up.
 
-Figure below shows the sequence diagram of `SummaryCommand` class:
-![Sequence Diagram of SummaryCommand class](images/summary.png)
+Figure below shows the sequence diagram of `SummaryCommand` class.
+
+![image](https://user-images.githubusercontent.com/45732128/97736098-26da4000-1b16-11eb-8e03-37486b55303d.png) <br>
+Figure 8: Sequence diagram of `SummaryCommand` class
 
 ### 3.8 Reminder Feature
 `SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
@@ -169,8 +185,9 @@ Below shows an example of usage:
     * If no budget is being set, the total expenditure of current week will be tallied up. 
     * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
 
-Figure below shows the sequence diagram of Reminder class: 
-![Sequence Diagram of SummaryCommand class](images/reminder.png)
+Figure below shows the sequence diagram of Reminder class.
+![image](https://user-images.githubusercontent.com/45732128/97736156-39ed1000-1b16-11eb-93d4-062a41d9657b.png) <br>
+Figure 9: Sequence diagram of `SummaryCommand` class
 
 ### 3.9 Export Feature
 `Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The export data feature could extract the current data and export to an Excel file. It implements the following operations:
@@ -186,8 +203,10 @@ Below shows an example of usage:
 3. `SpendingList#getItem()` will be called repeatedly to get items and set the cells' values accordingly.
 3. After writing to an Excel file at the location `F:\` using `Workbook#write()`, a prompt message will be shown by `Ui`.
 
-Figure below shows the sequence diagram of `ExportCommand` class:
-![Sequence Diagram of ExportCommand class](images/ExportCommand.png)
+Figure below shows the sequence diagram of `ExportCommand` class.
+![image](https://user-images.githubusercontent.com/45732128/97736203-4a9d8600-1b16-11eb-9661-ce9c27ccb6a9.png) <br>
+Figure 10: Sequence diagram of `ExportCommand` class
+
 
 ## 4. Product scope
 ### 4.1 Target user profile
@@ -215,7 +234,10 @@ Cent Wise Dollar Wise aims to help hostel students to have better financial mana
 
 ## 6. Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The system should respond within two seconds.
+2. The system should be easy to use, do not require much effort to learn.
+3. The system should work on any mainstream OS that has Java 11 or above installed.
+4. Users with faster typing speed than average should be able to use this program with ease.
 
 ## 7. Glossary
 

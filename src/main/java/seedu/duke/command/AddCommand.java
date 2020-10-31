@@ -1,6 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.Budget;
+import seedu.duke.RepaymentList;
 import seedu.duke.SpendingList;
 import seedu.duke.SpendingListCategoriser;
 import seedu.duke.Ui;
@@ -17,10 +18,6 @@ public class AddCommand extends Command {
     private static Logger logger = Logger.getLogger("AddCommand");
 
     public AddCommand(String description, String symbol, double amount, String category) {
-        init(description, symbol, amount, category);
-    }
-
-    private void init(String description, String symbol, double amount, String category) {
         this.description = description;
         this.amount = amount;
         this.symbol = symbol;
@@ -29,12 +26,12 @@ public class AddCommand extends Command {
 
     
     private final String[][] exchangeRates = {
-            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
+            {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
     
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to add item");
         if (!symbol.equals("SGD")) {
             updateAmount();
@@ -49,11 +46,11 @@ public class AddCommand extends Command {
         }
         if (size % 8 == 0) {
             EncouragementCommand encouragementCommand = new EncouragementCommand();
-            encouragementCommand.execute(spendingList, ui);
+            encouragementCommand.execute(spendingList, null, ui);
         }
         if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
-            warnCommand.execute(spendingList, ui);
+            warnCommand.execute(spendingList, null, ui);
         }
     }
     
