@@ -28,7 +28,7 @@ public class ConvertCommandTest {
     @Test
     public void execute() throws IOException {
         Ui ui = new Ui();
-        ConvertCommand convertCommand = new ConvertCommand();
+        ConvertCommand convertCommand = new ConvertCommand("SGD", "USD");
         convertCommand.execute(realList, null, ui);
     }
 }

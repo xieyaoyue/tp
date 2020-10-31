@@ -68,13 +68,13 @@ public class AddCommand extends Command {
     //@@author killingbear999
     private void updateAmount() {
         if (currency.equals("USD") && defaultCurrency.equals("SGD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][1]);
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][1]) * 100.0) / 100.0;
         } else if (currency.equals("CNY") && defaultCurrency.equals("SGD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][3]);
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][3]) * 100.0) / 100.0;
         } else if (currency.equals("SGD") && defaultCurrency.equals("USD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][0]);
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][0]) * 100.0) / 100.0;
         } else if (currency.equals("SGD") && defaultCurrency.equals("CNY")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][2]);
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][2]) * 100.0) /100.0;
         }
     }
     
