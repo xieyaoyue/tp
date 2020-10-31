@@ -24,15 +24,15 @@ class StorageTest {
     }
 
     // @Test
-    public void saveAndLoad() throws IOException {
-        SpendingList expectedList = new SpendingList(storage);
-        expectedList.addItem("noodle", "S$", 1.5, "");
-        expectedList.addItem("fish", "S$", 10, "");
-        expectedList.addItem("books", "S$", 8.9, "");
-
-        SpendingList actualList = storage.loadSpendingList();
-        SpendingListTest.assertEqualList(expectedList, actualList);
-    }
+//    public void saveAndLoad() throws IOException {
+//        SpendingList expectedList = new SpendingList(storage);
+//        expectedList.addItem("noodle", "S$", 1.5, "");
+//        expectedList.addItem("fish", "S$", 10, "");
+//        expectedList.addItem("books", "S$", 8.9, "");
+//
+//        SpendingList actualList = storage.loadSpendingList();
+//        SpendingListTest.assertEqualList(expectedList, actualList);
+//    }
 
     @BeforeEach
     public void initStorage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException {
