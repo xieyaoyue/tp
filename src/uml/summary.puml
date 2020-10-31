@@ -7,9 +7,7 @@ activate ":SummaryCommand"
 ":SummaryCommand" -> ":SpendingList": getSpendingAmount(period)
 activate ":SpendingList"
 
-":SpendingList" -> ":SpendingList": amountSpent = 0
-
-loop spendingList.size times
+loop spendingList.size() times
 
 
 ":SpendingList" -> ":Item": getDate()
@@ -22,8 +20,6 @@ opt period == date
 activate ":Item"
 ":Item" --> ":SpendingList": amount
 deactivate ":Item"
-
-":SpendingList" -> ":SpendingList": amountSpent += amount
 
 end
 
