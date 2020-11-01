@@ -41,6 +41,7 @@ public class SpendingList {
         storage.save(this);
     }
 
+    //@@author pinfang
     public void addItem(String description, String symbol, double amount, String category) throws IOException {
         Item item = new Item(description, symbol, amount, category);
         spendingList.add(item);
