@@ -1,4 +1,11 @@
-# User Guide
+---
+layout: page
+title: Cent Wise Dollar Wise User Guide
+---
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
 Welcome to Cent Wise Dollar Wise User Guide! Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
@@ -39,7 +46,7 @@ letter is capitalised. Example: `Jul` for July or `Oct` for October.
     4. Health
     5. Transportation
     6. Utilities
-If you categorise an item in a category that is not from these six, the item will be categorised as Other.
+If you categorise an item in a category that is not from these six, the item will be categorised as Others.
     
 ### 3.1 Adding Spending: `add`
 This command allows you to add a spending record to the application.
