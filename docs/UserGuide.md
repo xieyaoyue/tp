@@ -7,11 +7,11 @@ title: Cent Wise Dollar Wise User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction
+## **1. Introduction**
 Welcome to Cent Wise Dollar Wise User Guide! Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
 This user guide provides in-depth documentation on the application’s installation process and command features. 
 
-## 2. Quick Start
+## **2. Quick Start**
 1. Ensure that you have Java 11 or above installed in your computer.
 2. Download the latest version of `Duke` from [here](http://link.to/duke).
 3. Copy the file to a home folder you would like to use.
@@ -20,7 +20,7 @@ This user guide provides in-depth documentation on the application’s installat
 
 Refer to the Features below for details of each command.
 
-## 3. Command Features 
+## **3. Command Features**
 In this section, specific information about each command will be explained. This includes the purpose of each command, and how it is formatted.
 
 Before we begin, do take note of the following information which applies to all commands:
@@ -222,7 +222,7 @@ Example of usage:
 
 `logout` → exits the program
 
-## 4. Useful Hidden Features
+## **4. Useful Hidden Features**
 This section shows you the hidden features which serve as notifications and interactions with the user.
 ### 4.1 Reminder 
 Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
@@ -243,7 +243,7 @@ Note: You need to set the budget in order to get the warning feature.
 ### 4.3 Encouragement
 Encourages you when you add spending items.
 
-## 5. FAQ
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another computer? 
 
@@ -253,7 +253,7 @@ Encourages you when you add spending items.
 
 **A**: Yes, they are. To execute the commands properly, please strictly follow the format given above.
 
-## 6. Command Summary
+## **6. Command Summary**
 Action | Format & Examples 
 --- | ---
 add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` </br> e.g. add -c Food -d chicken rice -s SGD 5.0
