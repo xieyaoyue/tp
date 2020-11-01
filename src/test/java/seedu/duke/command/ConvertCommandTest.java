@@ -1,15 +1,13 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.SpendingList;
-import seedu.duke.category.Item;
-import seedu.duke.Ui;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author killingbear999
 public class ConvertCommandTest {
@@ -30,7 +28,7 @@ public class ConvertCommandTest {
     @Test
     public void execute() throws IOException {
         Ui ui = new Ui();
-        ConvertCommand convertCommand = new ConvertCommand();
-        convertCommand.execute(realList, ui);
+        ConvertCommand convertCommand = new ConvertCommand("SGD", "USD");
+        convertCommand.execute(realList, null, ui);
     }
 }

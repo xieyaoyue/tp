@@ -1,27 +1,21 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.util.Scanner;
 
 public class Storage {
-    private static File file;
-    private static Gson gson;
-    private static final String defaultPath = "data/duke.json";
-
-    /**
-     * Creates the Storage object based on the the default storage path.
-     * @throws InvalidStorageFilePathException for empty or blank file path
-     * @throws InvalidStorageFileExtensionException for non-json file path
-     */
-    public Storage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException {
-        this(defaultPath);
-    }
+    private final File file;
+    private final Gson gson;
 
     /**
      * Creates the Storage object based on the user-specified file path.
@@ -41,7 +35,10 @@ public class Storage {
         }
         // Create or Initialise object
         file = new File(path);
-        gson = new Gson();
+        gson = new GsonBuilder()
+            .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
+            .serializeNulls()
+            .create();
         if (file.exists()) {
             return;
         }
@@ -61,7 +58,7 @@ public class Storage {
         return file.getPath();
     }
 
-    public SpendingList load() {
+    public SpendingList loadSpendingList() {
         SpendingList sl;
         try {
             Scanner s = new Scanner(file);
@@ -75,8 +72,29 @@ public class Storage {
         return sl;
     }
 
+    public RepaymentList loadRepaymentList() {
+        RepaymentList rl;
+        try {
+            Scanner s = new Scanner(file);
+            String jsonContent = s
+                .useDelimiter("\\Z")
+                .next();
+            rl = gson.fromJson(jsonContent, RepaymentList.class);
+        } catch (Exception e) {
+            rl = new RepaymentList(this);
+        }
+        return rl;
+    }
+
     public void save(SpendingList spendingList) throws IOException {
         String jsonContent = gson.toJson(spendingList);
+        FileWriter fw = new FileWriter(file, false);
+        fw.write(jsonContent);
+        fw.close();
+    }
+
+    public void save(RepaymentList repaymentList) throws IOException {
+        String jsonContent = gson.toJson(repaymentList);
         FileWriter fw = new FileWriter(file, false);
         fw.write(jsonContent);
         fw.close();

@@ -1,9 +1,10 @@
 package seedu.duke.command;
 
-import seedu.duke.Budget;
-import seedu.duke.category.Item;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.Item;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class ConvertCommand extends Command {
         this.outputCurrency = target;
     }
 
-    public String identifyCurrency() {
+    private String identifyCurrency() {
         return inputCurrency + outputCurrency;
     }
 
@@ -50,22 +51,30 @@ public class ConvertCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
-        logger.log(Level.FINE, "going to start processing");
-        newSpendingList = spendingList.getSpendingList();
-        currencies = identifyCurrency();
-        findExchangeRate();
-        for (int i = 0; i < newSpendingList.size(); i++) {
-            currentString = newSpendingList.get(i);
-            if (!currentString.getSymbol().equals(outputCurrency)) {
-                updateNewAmount(currentString);
-                updateCurrency(currentString);
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+        if (outputCurrency.equals("SGD") || outputCurrency.equals("USD") || outputCurrency.equals("CNY")) {
+            if (inputCurrency.equals("SGD") || inputCurrency.equals("USD") || inputCurrency.equals("CNY")) {
+                logger.log(Level.FINE, "going to start processing");
+                newSpendingList = spendingList.getSpendingList();
+                currencies = identifyCurrency();
+                findExchangeRate();
+                for (int i = 0; i < newSpendingList.size(); i++) {
+                    currentString = newSpendingList.get(i);
+                    if (!currentString.getSymbol().equals(outputCurrency)) {
+                        updateNewAmount(currentString);
+                        updateCurrency(currentString);
+                    }
+                }
+                ui.printConvertCurrency(outputCurrency);
+                spendingList.updateSpendingList();
+                updateBudgetList();
+                logger.log(Level.FINE, "end of processing");
+            } else {
+                ui.printInvalidInputCurrency();
             }
+        } else {
+            ui.printInvalidOutputCurrency();
         }
-        ui.printConvertCurrency(outputCurrency);
-        spendingList.updateSpendingList();
-        updateBudgetList();
-        logger.log(Level.FINE, "end of processing");
     }
 
     private void updateNewAmount(Item currentString) {
@@ -93,9 +102,11 @@ public class ConvertCommand extends Command {
     }
     
     public void updateBudgetList() {
-        double budgetLimit = Budget.getBudgetLimit();
-        double newBudgetLimit = budgetLimit * exchangeRate;
-        Budget.updateBudget(outputCurrency, newBudgetLimit);
+        if (!Budget.getCurrency().equals(outputCurrency)) {
+            double budgetLimit = Budget.getBudgetLimit();
+            double newBudgetLimit = budgetLimit * exchangeRate;
+            Budget.updateBudget(outputCurrency, newBudgetLimit);
+        }
     }
 
     public ArrayList<Item> updateSpendingList() {

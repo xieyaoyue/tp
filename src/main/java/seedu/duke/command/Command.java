@@ -1,23 +1,16 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
-import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 import seedu.duke.exceptions.InvalidMonthException;
 
 import java.io.IOException;
 
-public class Command {
-    public void execute(SpendingList spendingList, Ui ui) throws InvalidCommandException, IOException,
-            InvalidMonthException {
-    }
 
-    public void execute(RepaymentList repaymentList, Ui ui) {
-    }
-
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-    }
+public abstract class Command {
+    public abstract void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
+        InvalidMonthException;
 
     public boolean isExit() {
         return false;

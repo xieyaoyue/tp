@@ -1,15 +1,16 @@
-package seedu.duke;
+package seedu.duke.data;
 
-import seedu.duke.category.Item;
+import seedu.duke.storage.Storage;
 import seedu.duke.command.ConvertCommand;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class SpendingList {
-    private ArrayList<Item> spendingList;
     private String description;
     private Storage storage;
+
+    public ArrayList<Item> spendingList;
 
     public SpendingList(String description, ArrayList<Item> spendingList, Storage storage) {
         this.description = description;
@@ -18,6 +19,7 @@ public class SpendingList {
     }
     
     public SpendingList() {
+        spendingList = new ArrayList<Item>();
     }
 
     public SpendingList(String description, Storage storage) {
