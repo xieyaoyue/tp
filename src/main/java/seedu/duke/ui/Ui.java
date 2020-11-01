@@ -38,7 +38,7 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add -c CATEGORY -d DESCRIPTION -s SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
+            {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
@@ -47,9 +47,9 @@ public class Ui {
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay -n NAME -s AMOUNT -t DEADLINE", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
-            {"set", "set -s AMOUNT", "set -s SGD 100.00"},
+            {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
             {"list", "OR spending list YEAR", "list 2020"},
             {"", "OR spending list YEAR MONTH", "list 2020 Jul"},
@@ -190,7 +190,7 @@ public class Ui {
 
     //@@author killingbear999
     public void printConvertCurrency(String outputCurrency) {
-        out.println("The currency has been changed to " + outputCurrency + " .");
+        out.println("The currency has been changed to " + outputCurrency + ".");
         drawSeparateLine();
     }
 
@@ -294,6 +294,36 @@ public class Ui {
         } else {
             out.println("Sorry, generation failed.");
         }
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidOutputCurrency() {
+        out.println("Sorry, the output currency you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidInputCurrency() {
+        out.println("Sorry, the input currency you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidBudget() {
+        out.println("Sorry, the budget amount you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidAmount() {
+        out.println("Sorry, the amount input is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidDate() {
+        out.println("Sorry, the date you input is invalid. Please try again");
         drawSeparateLine();
     }
 }

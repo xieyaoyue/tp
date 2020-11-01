@@ -15,6 +15,7 @@ public class AddCommand extends Command {
     public double amount;
     public String currency;
     public String category;
+    private String defaultCurrency = "SGD";
     private static Logger logger = Logger.getLogger("AddCommand");
 
     public AddCommand(String description, String symbol, double amount, String category) {
@@ -23,7 +24,6 @@ public class AddCommand extends Command {
         this.currency = symbol;
         this.category = category;
     }
-
     
     private final String[][] exchangeRates = {
             {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
@@ -33,18 +33,29 @@ public class AddCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         logger.log(Level.FINE, "going to add item");
-        if (!currency.equals("SGD")) {
+        int size = spendingList.getListSize();
+        if (size != 0) {
+            defaultCurrency = spendingList.getItem(0).getSymbol();
+        }
+        if (!currency.equals(defaultCurrency)) {
             updateAmount();
             updateCurrency();
         }
-        spendingList.addItem(description, currency, amount, category);
-        ui.printAdd(spendingList);
-        int size = spendingList.getListSize();
+        if (amount >= 0) {
+            if (currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY")) {
+                spendingList.addItem(description, currency, amount, category);
+                ui.printAdd(spendingList);
+            } else {
+                ui.printInvalidInputCurrency();
+            }
+        } else {
+            ui.printInvalidAmount();
+        }
         if (size > 1) {
             SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
             spendingListCategoriser.execute(spendingList);
         }
-        if (size % 8 == 0) {
+        if (size % 4 == 0) {
             EncouragementCommand encouragementCommand = new EncouragementCommand();
             encouragementCommand.execute(spendingList, null, ui);
         }
@@ -56,14 +67,18 @@ public class AddCommand extends Command {
     
     //@@author killingbear999
     private void updateAmount() {
-        if (currency.equals("USD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][1]);
-        } else if (currency.equals("CNY")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][3]);
+        if (currency.equals("USD") && defaultCurrency.equals("SGD")) {
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][1]) * 100.0) / 100.0;
+        } else if (currency.equals("CNY") && defaultCurrency.equals("SGD")) {
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][3]) * 100.0) / 100.0;
+        } else if (currency.equals("SGD") && defaultCurrency.equals("USD")) {
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][0]) * 100.0) / 100.0;
+        } else if (currency.equals("SGD") && defaultCurrency.equals("CNY")) {
+            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][2]) * 100.0) / 100.0;
         }
     }
     
     private void updateCurrency() {
-        currency = "SGD";
+        currency = defaultCurrency;
     }
 }

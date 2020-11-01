@@ -19,7 +19,15 @@ public class SetBudgetCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
-        Budget.addBudget(currency, budgetLimit);
-        ui.printBudgetLimit(currency, budgetLimit);
+        if (budgetLimit >= 0) {
+            if (currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY")) {
+                Budget.addBudget(currency, budgetLimit);
+                ui.printBudgetLimit(currency, budgetLimit);
+            } else {
+                ui.printInvalidInputCurrency();
+            }
+        } else {
+            ui.printInvalidBudget();
+        }
     }
 }
