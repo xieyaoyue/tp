@@ -55,7 +55,7 @@ public class Storage {
      * @return file path
      */
     public String getFilePath() {
-        return file.getPath();
+        return file.getAbsolutePath();
     }
 
     public SpendingList loadSpendingList() {
