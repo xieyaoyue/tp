@@ -261,20 +261,20 @@ Figure below shows an example of encouragement message. <br>
 
 ## **6. Command Summary**
 
-Action | Format & Examples 
---- | ---
-add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` <br> e.g. add -c Food -d chicken rice -s SGD 5.0
-clear (coming soon) | `clear KEYWORD` <br> e.g. clear 1
-convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` <br> e.g. convert -s SGD -t USD
-draw (coming soon) | `draw [YEAR = current year] [MONTH = current month]`
-edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` <br> e.g. edit 1 -d bubble tea
-export (coming soon) | `export PATH`
-help | `help`
-logout | `logout`
-purge data (coming soon) | `purge data`
-repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` <br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
-repayment list | `repayment list`
-set | `set -s CURRENCY AMOUNT` <br> e.g. set -s SGD 100.00
-view | `view`
-spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` <br> e.g. spending list 2020 Jul
-summary | `summary [YEAR = current year] [MONTH = current month] [-a]` <br> e.g. summary 2020 Jul 
+| Action | Format | Examples |
+|:------:|--------|----------|
+|add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
+|clear | `clear KEYWORD` | clear 1|
+|convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
+|draw | `draw [YEAR = current year] [MONTH = current month]`|
+|edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
+|export | `export PATH`|
+|help | `help`|
+|logout | `logout`|
+|purge data | `purge data`|
+|repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
+|repayment list | `repayment list`|
+|set | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
+|spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|summary | `summary [YEAR = current year] [MONTH = current month] [-a]` | summary 2020 Jul |
+|view | `view`|
