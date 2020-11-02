@@ -318,8 +318,8 @@ public class Ui {
     //@@author killingbear999
     public void printInvalidAmount() {
         out.println("Sorry, the amount input is invalid. Please try again.");
-        out.println("The amount input should be larger than 0.01. Negative number and extremely small amount will" +
-                            "be considered as invalid input.");
+        out.println("The amount input should be larger than 0.01. Negative number and extremely small amount will"
+                            + "be considered as invalid input.");
         drawSeparateLine();
     }
     
