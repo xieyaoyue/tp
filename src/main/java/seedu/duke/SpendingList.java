@@ -19,7 +19,7 @@ public class SpendingList {
     }
     
     public SpendingList() {
-        spendingList = new ArrayList<Item>();
+        spendingList = new ArrayList<>();
     }
 
     public SpendingList(String description, Storage storage) {
