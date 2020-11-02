@@ -1,12 +1,13 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.category.Item;
+import seedu.duke.data.Item;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author pinfang
 public class ItemTest {
     private LocalDate date = LocalDate.now();
     private Item rice = new Item("rice", "SGD", 2);

@@ -1,8 +1,9 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DateTimeFormatter;
 
 import java.io.IOException;
 
@@ -22,8 +23,29 @@ public class RepayCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-        repaymentList = new RepaymentList(name, currency, repayment, deadline);
-        repaymentList.storeCurrentString();
-        ui.printRepay(repaymentList.returnCurrentString());
+        DateTimeFormatter dateTimeFormatter = new DateTimeFormatter("yyyy-MM-dd");
+        if (repayment >= 0.01) {
+            if (dateTimeFormatter.isValid(deadline)) {
+                repay(repaymentList, ui);
+            } else {
+                ui.printInvalidDate();
+            }
+        } else {
+            ui.printInvalidAmount();
+        }
+    }
+    
+    private void repay(RepaymentList repaymentList, Ui ui) throws IOException {
+        if (isValidName()) {
+            repayment = Math.round(repayment * 100.0) / 100.0;
+            repaymentList.addItem(name, currency, repayment, deadline);
+            ui.printAddRepay(repaymentList);
+        } else {
+            ui.printInvalidName();
+        }
+    }
+    
+    private boolean isValidName() {
+        return ((name != null) && (!name.equals("")) && (name.matches("^[a-zA-Z]*$")));
     }
 }

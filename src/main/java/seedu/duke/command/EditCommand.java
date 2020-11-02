@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
@@ -10,32 +10,34 @@ import java.io.IOException;
 public class EditCommand extends Command {
     public String description;
     public Double amount;
-    public String symbol;
+    public String currency;
     public int index;
     public String category;
 
-    public EditCommand(int index, String description, String symbol, Double amount, String category) {
+    public EditCommand(int index, String description, String currency, Double amount, String category) {
         this.index = index - 1;
         this.description = description;
-        this.symbol = symbol;
+        this.currency = currency;
         this.amount = amount;
         this.category = category;
     }
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-        if (description != null) {
-            spendingList.editItemDescription(index, description);
+        if (amount > 0.01) {
+            if (description != null) {
+                spendingList.editItemDescription(index, description);
+            }
+            if (amount != null) {
+                amount = Math.round(amount * 100.0) / 100.0;
+                spendingList.editItemAmount(index, amount);
+            }
+            if (category != null) {
+                spendingList.editItemCategory(index, category);
+            }
+            ui.printEdit(spendingList, index);
+        } else {
+            ui.printInvalidAmount();
         }
-        if (symbol != null) {
-            // TODO : edit symbol @killingbear999
-        }
-        if (amount != null) {
-            spendingList.editItemAmount(index, amount);
-        }
-        if (category != null) {
-            spendingList.editItemCategory(index, category);
-        }
-        ui.printEdit(spendingList, index);
     }
 }

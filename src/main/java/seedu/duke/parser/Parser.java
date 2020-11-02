@@ -13,7 +13,7 @@ import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.SummaryCommand;
-import seedu.duke.command.ViewCommand;
+import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 import java.lang.reflect.InvocationTargetException;
@@ -204,7 +204,7 @@ public abstract class Parser {
         case "summary":
             return new DateParser<>(SummaryCommand.class).parse(opts);
         case "view":
-            return new ViewCommand();
+            return new ViewBudgetCommand();
         default:
             throw new InvalidCommandException();
         }

@@ -1,14 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.Budget;
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 
 //@@author killingbear999
 public class SetBudgetCommand extends Command {
-    
-    private String description;
 
     private double budgetLimit;
     private String currency;
@@ -21,7 +19,15 @@ public class SetBudgetCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
-        Budget.addBudget(currency, budgetLimit);
-        ui.printBudgetLimit(currency, budgetLimit);
+        if (budgetLimit >= 0) {
+            if (currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY")) {
+                Budget.addBudget(currency, budgetLimit);
+                ui.printBudgetLimit(currency, budgetLimit);
+            } else {
+                ui.printInvalidInputCurrency();
+            }
+        } else {
+            ui.printInvalidBudget();
+        }
     }
 }

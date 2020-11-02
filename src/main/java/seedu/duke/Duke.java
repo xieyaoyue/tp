@@ -1,9 +1,12 @@
 package seedu.duke;
 
 import seedu.duke.command.Command;
-import seedu.duke.command.EncouragementCommand;
 import seedu.duke.command.Reminder;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.Ui;
 
 public class Duke {
     /**
@@ -13,7 +16,6 @@ public class Duke {
     private static SpendingList spendingList;
     private static RepaymentList repaymentList;
     private static Reminder reminder;
-    private static EncouragementCommand encouragement;
 
     /**
      * Runs the program until termination.
@@ -21,7 +23,6 @@ public class Duke {
     private static void run() {
         ui.printWelcomeMessage();
         reminder.execute(spendingList, null, ui);
-        encouragement.execute(null, null, ui);
         boolean isExit = false;
         do {
             try {
@@ -42,7 +43,6 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         reminder = new Reminder();
-        encouragement = new EncouragementCommand();
         try {
             spendingList = new Storage("data/duke_spending.json").loadSpendingList();
             repaymentList = new Storage("data/duke_repayment.json").loadRepaymentList();

@@ -3,8 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
-
-import java.util.ArrayList;
+import seedu.duke.storage.Storage;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
