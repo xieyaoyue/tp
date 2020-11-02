@@ -29,6 +29,7 @@ public class EditCommand extends Command {
                 spendingList.editItemDescription(index, description);
             }
             if (amount != null) {
+                amount = Math.round(amount * 100.0) / 100.0;
                 spendingList.editItemAmount(index, amount);
             }
             if (category != null) {

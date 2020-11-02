@@ -67,7 +67,7 @@ public class ConvertCommand extends Command {
         int size = spendingList.getListSize();
         String defaultCurrency = spendingList.getItem(0).getSymbol();
         if (size > 0) {
-            if (!inputCurrency.equals(defaultCurrency)) {
+            if (inputCurrency.equals(defaultCurrency)) {
                 logger.log(Level.FINE, "going to start processing");
                 newSpendingList = spendingList.getSpendingList();
                 currencies = identifyCurrency();
