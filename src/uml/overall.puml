@@ -1,31 +1,36 @@
 @startuml
 
-user -> ui: sends \ncommand
+hide footbox
+
+activate main
+main -> ui: requests user \ncommand
 activate ui
+ui -> user: gets user \ncommand
+user --> ui: sends user \ncommand
+ui --> main: passes \ncommand
+deactivate ui
 
-ui -> parser: handles \ncommand
+main -> parser: processes \ncommand
 activate parser
-
-parser -> command: processes \ncommand
+parser --> main: returns \nprocessed \ncommand
 deactivate parser
+main -> command: executes \ncommand
 activate command
 
-command -> storage
+command -> data: updates \ndata
+activate data
+data -> storage: saves data
 activate storage
-
-storage -> storage: saves \ndata
-activate storage
-
-storage --> storage
+storage --> data
 deactivate storage
-
-storage --> command
-deactivate storage
-
-command --> ui:
+data --> command
+deactivate data
+command -> ui: returns message
+activate ui
+ui --> command
+deactivate ui
+command --> main
 deactivate command
 
-ui --> user: return message
-deactivate ui
 
 @enduml
