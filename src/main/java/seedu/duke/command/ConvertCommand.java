@@ -54,6 +54,20 @@ public class ConvertCommand extends Command {
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         if (outputCurrency.equals("SGD") || outputCurrency.equals("USD") || outputCurrency.equals("CNY")) {
             if (inputCurrency.equals("SGD") || inputCurrency.equals("USD") || inputCurrency.equals("CNY")) {
+                convert(spendingList, ui);
+            } else {
+                ui.printInvalidInputCurrency();
+            }
+        } else {
+            ui.printInvalidOutputCurrency();
+        }
+    }
+    
+    private void convert(SpendingList spendingList, Ui ui) throws IOException {
+        int size = spendingList.getListSize();
+        String defaultCurrency = spendingList.getItem(0).getSymbol();
+        if (size > 0) {
+            if (!inputCurrency.equals(defaultCurrency)) {
                 logger.log(Level.FINE, "going to start processing");
                 newSpendingList = spendingList.getSpendingList();
                 currencies = identifyCurrency();
@@ -70,13 +84,13 @@ public class ConvertCommand extends Command {
                 updateBudgetList();
                 logger.log(Level.FINE, "end of processing");
             } else {
-                ui.printInvalidInputCurrency();
+                ui.printInvalidConversion(defaultCurrency);
             }
         } else {
-            ui.printInvalidOutputCurrency();
+            ui.printEmptyList();
         }
     }
-
+    
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
         amount = Math.round(amount * exchangeRate * 100.0) / 100.0;
