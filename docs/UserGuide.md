@@ -1,7 +1,3 @@
----
-layout: page
-title: Cent Wise Dollar Wise User Guide
----
 * Table of Contents
 {:toc}
 
@@ -104,10 +100,10 @@ Example of usage:
 
 `view` → views the budget limit that was set previously
 
-Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet):
+Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet): <br>
 ![Example for Viewing Budget Limit](images/NoBudgetExample.png)
 
-Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set):
+Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set): <br>
 ![Example for Viewing Budget Limit](images/BudgetExample.png)
 
 ### 3.5 Setting Budget Limit: `set`
@@ -134,7 +130,8 @@ Example of usage:
 `repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
-Feature below shows an example for Inputting Repayment Information feature:
+Feature below shows an example for Inputting Repayment Information feature: <br>
+
 ![Example for Inputting Repayment Information](images/RepayExample.png)
 
 ### 3.7 Converting Currency: `convert`
@@ -148,7 +145,8 @@ Example of usage:
 
 `convert -s SGD -t USD` → converts the currency from SGD to USD
 
-Feature below shows an example for Converting Currency feature:
+Feature below shows an example for Converting Currency feature: <br>
+
 ![Example for Converting Currency](images/ConvertExample.png)
 
 ### 3.8 Viewing Summary: `summary`
@@ -208,7 +206,8 @@ Example of usage:
 
 `edit 3 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
 
-Feature below shows an example for Editing Spending feature:
+Feature below shows an example for Editing Spending feature: <br>
+
 ![Example for Editing Spending](images/EditExample.png)
 
 ### 3.12 Exiting program: `logout`
@@ -226,7 +225,7 @@ Example of usage:
 This section shows you the hidden features which serve as notifications and interactions with the user.
 ### 4.1 Reminder 
 Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
-It will also warn you if you are reaching your budget limit.
+It will also warn you if you are reaching your budget limit. <br>
 
 ![reminder message](images/reminderMessage.png)
 
@@ -234,7 +233,7 @@ Note: A new week starts on Monday.
 
 ### 4.2 Warning
 Warns you when you are about to overspend. The budget threshold is 90% of your budget set. After you add a spending 
-item and the total expenditure is more than the budget threshold, warning message will appear.
+item and the total expenditure is more than the budget threshold, warning message will appear. <br>
 
 ![reminder message](images/warningMessage.png)
 
