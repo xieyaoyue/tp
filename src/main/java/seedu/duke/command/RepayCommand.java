@@ -37,6 +37,7 @@ public class RepayCommand extends Command {
     
     private void repay(RepaymentList repaymentList, Ui ui) throws IOException {
         if (isValidName()) {
+            repayment = Math.round(repayment * 100.0) / 100.0;
             repaymentList.addItem(name, currency, repayment, deadline);
             ui.printAddRepay(repaymentList);
         } else {

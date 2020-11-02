@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SpendingList {
     private String description;
-    private Storage storage;
+    public Storage storage;
 
     public ArrayList<Item> spendingList;
 

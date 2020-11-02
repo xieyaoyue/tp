@@ -41,8 +41,9 @@ public class AddCommand extends Command {
             updateAmount();
             updateCurrency();
         }
-        if (amount >= 0) {
+        if (amount >= 0.01) {
             if (currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY")) {
+                amount = Math.round(amount * 100.0) / 100.0;
                 spendingList.addItem(description, currency, amount, category);
                 ui.printAdd(spendingList);
             } else {
