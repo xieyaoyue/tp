@@ -318,12 +318,34 @@ public class Ui {
     //@@author killingbear999
     public void printInvalidAmount() {
         out.println("Sorry, the amount input is invalid. Please try again.");
+        out.println("The amount input should be larger than 0.01. Negative number and extremely small amount will" +
+                            "be considered as invalid input.");
         drawSeparateLine();
     }
     
     //@@author killingbear999
     public void printInvalidDate() {
         out.println("Sorry, the date you input is invalid. Please try again");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printEmptyList() {
+        out.println("Sorry, the spending list is empty.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidConversion(String defaultCurrency) {
+        out.println("Sorry, the input currency does not match with the current currency in the spending list.");
+        out.println("The current currency in the spending list is " + defaultCurrency + ".");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidName() {
+        out.println("Sorry, the name you input is invalid.");
+        out.println("Name containing only alphabets will be considered valid.");
         drawSeparateLine();
     }
 }
