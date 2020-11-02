@@ -9,7 +9,7 @@ This user guide provides in-depth documentation on the application’s installat
 
 ## **2. Quick Start**
 1. Ensure that you have Java 11 or above installed in your computer.
-2. Download the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Duke` from [here](https://github.com/AY2021S1-CS2113T-F14-2/tp/releases).
 3. Copy the file to a home folder you would like to use.
 4. Open a terminal in that home folder and enter java -jar duke.jar to begin.
 5. Type the desired command and press Enter to execute it. Tips: entering help will display the help window with a list of commands that could be executed.
