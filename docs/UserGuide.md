@@ -100,10 +100,12 @@ Example of usage:
 
 `view` → views the budget limit that was set previously
 
-Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet): <br>
+Figure below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet): <br>
+
 ![Example for Viewing Budget Limit](images/NoBudgetExample.png)
 
-Feature below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set): <br>
+Figure below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set): <br>
+
 ![Example for Viewing Budget Limit](images/BudgetExample.png)
 
 ### 3.5 Setting Budget Limit: `set`
@@ -130,7 +132,7 @@ Example of usage:
 `repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
-Feature below shows an example for Inputting Repayment Information feature: <br>
+Figure below shows an example for Inputting Repayment Information feature: <br>
 
 ![Example for Inputting Repayment Information](images/RepayExample.png)
 
@@ -145,7 +147,7 @@ Example of usage:
 
 `convert -s SGD -t USD` → converts the currency from SGD to USD
 
-Feature below shows an example for Converting Currency feature: <br>
+Figure below shows an example for Converting Currency feature: <br>
 
 ![Example for Converting Currency](images/ConvertExample.png)
 
@@ -206,7 +208,7 @@ Example of usage:
 
 `edit 3 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
 
-Feature below shows an example for Editing Spending feature: <br>
+Figure below shows an example for Editing Spending feature: <br>
 
 ![Example for Editing Spending](images/EditExample.png)
 
@@ -240,7 +242,11 @@ item and the total expenditure is more than the budget threshold, warning messag
 Note: You need to set the budget in order to get the warning feature.
 
 ### 4.3 Encouragement
-Encourages you when you add spending items.
+Being able to create your budget is a great start, but if you do not have the willpower to stick to the budget you have set, you will soon discover that using this application is a waste of your time. Hence, this feature is implemented to motivate you in keeping up your efforts in budgeting. An encouragement message will be shown every eight times you add an item to the spending list.
+
+Figure below shows an example of encouragement message. <br>
+
+![image](https://user-images.githubusercontent.com/45732128/97827031-108ed880-1cfe-11eb-8071-fb5dc906b216.png)
 
 ## **5. FAQ**
 
@@ -253,20 +259,21 @@ Encourages you when you add spending items.
 **A**: Yes, they are. To execute the commands properly, please strictly follow the format given above.
 
 ## **6. Command Summary**
+
 Action | Format & Examples 
 --- | ---
-add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` </br> e.g. add -c Food -d chicken rice -s SGD 5.0
-clear (coming soon) | `clear KEYWORD` </br> e.g. clear 1
-convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` </br> e.g. convert -s SGD -t USD
+add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` <br> e.g. add -c Food -d chicken rice -s SGD 5.0
+clear (coming soon) | `clear KEYWORD` <br> e.g. clear 1
+convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` <br> e.g. convert -s SGD -t USD
 draw (coming soon) | `draw [YEAR = current year] [MONTH = current month]`
-edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` </br> e.g. edit 1 -d bubble tea
+edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` <br> e.g. edit 1 -d bubble tea
 export (coming soon) | `export PATH`
 help | `help`
 logout | `logout`
 purge data (coming soon) | `purge data`
-repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` </br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
+repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` <br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
 repayment list | `repayment list`
-set | `set -s CURRENCY AMOUNT` </br> e.g. set -s SGD 100.00
+set | `set -s CURRENCY AMOUNT` <br> e.g. set -s SGD 100.00
 view | `view`
-spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` </br> e.g. spending list 2020 Jul
-summary | `summary [YEAR = current year] [MONTH = current month] [-a]` </br> e.g. summary 2020 Jul 
+spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` <br> e.g. spending list 2020 Jul
+summary | `summary [YEAR = current year] [MONTH = current month] [-a]` <br> e.g. summary 2020 Jul 
