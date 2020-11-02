@@ -1,7 +1,7 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.category.Item;
+import seedu.duke.data.Item;
 
 import java.time.LocalDate;
 
