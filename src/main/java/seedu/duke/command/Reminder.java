@@ -1,14 +1,17 @@
-package seedu.duke;
+package seedu.duke.command;
 
-import seedu.duke.command.WarnCommand;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Reminder {
+public class Reminder extends Command {
     private LocalDate startWeek;
-    WarnCommand warn;
+    private WarnCommand warn;
     private ArrayList<String> week = new ArrayList<>();
 
     public Reminder() {
@@ -16,10 +19,11 @@ public class Reminder {
         warn = new WarnCommand();
     }
 
-    public void execute(SpendingList spendingList, Ui ui) {
+    @Override
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         double amountRemained = 0;
         if (Budget.hasBudget) {
-            warn.execute(spendingList, ui);
+            warn.execute(spendingList, null, ui);
             amountRemained = findRemainingAmount(spendingList);
         }
 

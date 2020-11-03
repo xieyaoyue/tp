@@ -1,45 +1,53 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DateTimeFormatter;
+import seedu.duke.utilities.DecimalFormatter;
+
+import java.io.IOException;
 
 //@@author killingbear999
 public class RepayCommand extends Command {
-
-    private String description;
     private String name;
     private String currency;
     private double repayment;
     private String deadline;
-    
-    public RepayCommand(String description) {
-        this.description = description;
+
+    public RepayCommand(String name, String currency, Double amount, String deadline) {
+        this.name = name;
+        this.currency = currency;
+        this.repayment = amount;
+        this.deadline = deadline;
     }
-    
-    private void identifyRepaymentInformation(String description) {
-        int nameBeginIndex = description.indexOf("-n") + "-n".length() + 1;
-        int nameEndIndex = description.indexOf("-s") - 1;
-        name = description.substring(nameBeginIndex, nameEndIndex);
-        
-        int currencyBeginIndex = description.indexOf("-s") + "-s".length() + 1;
-        int currencyEndIndex = currencyBeginIndex + 3;
-        currency = description.substring(currencyBeginIndex, currencyEndIndex);
-        
-        int repaymentBeginIndex = currencyEndIndex + 1;
-        int repaymentEndIndex = description.indexOf("-t") - 1;
-        repayment = Double.parseDouble(description.substring(repaymentBeginIndex, repaymentEndIndex));
-        
-        int deadlineBeginIndex = description.indexOf("-t") + "-t".length() + 1;
-        int deadlineEndIndex = description.length();
-        deadline = description.substring(deadlineBeginIndex, deadlineEndIndex);
-    }
-    
+
     @Override
-    public void execute(SpendingList spendingList, Ui ui) {
-        identifyRepaymentInformation(description);
-        RepaymentList repaymentList = new RepaymentList(name, currency, repayment, deadline);
-        repaymentList.storeCurrentString();
-        ui.printRepay(repaymentList.returnCurrentString());
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+        DateTimeFormatter dateTimeFormatter = new DateTimeFormatter("yyyy-MM-dd");
+        if (repayment >= 0.01) {
+            if (dateTimeFormatter.isValid(deadline)) {
+                repay(repaymentList, ui);
+            } else {
+                ui.printInvalidDate();
+            }
+        } else {
+            ui.printInvalidAmount();
+        }
+    }
+    
+    private void repay(RepaymentList repaymentList, Ui ui) throws IOException {
+        if (isValidName()) {
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
+            repayment = decimalFormatter.convert(repayment);
+            repaymentList.addItem(name, currency, repayment, deadline);
+            ui.printAddRepay(repaymentList);
+        } else {
+            ui.printInvalidName();
+        }
+    }
+    
+    private boolean isValidName() {
+        return ((name != null) && (!name.equals("")) && (name.matches("^[a-zA-Z]*$")));
     }
 }

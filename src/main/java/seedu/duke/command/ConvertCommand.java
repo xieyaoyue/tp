@@ -1,9 +1,11 @@
 package seedu.duke.command;
 
-import seedu.duke.Budget;
-import seedu.duke.category.Item;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Budget;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.Item;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DecimalFormatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,9 +14,6 @@ import java.util.logging.Level;
 
 //@@author killingbear999
 public class ConvertCommand extends Command {
-    public String source;
-    public String target;
-    private String description;
     private String currencies;
     private String outputCurrency;
     private String inputCurrency;
@@ -25,32 +24,20 @@ public class ConvertCommand extends Command {
 
     /** SGD to USD; USD to SGD; SGD to CNY; CNY to SGD. */
     private final String[][] exchangeRates = {
-            {"SGD USD", "USD SGD", "SGD CNY", "CNY SGD"},
+            {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
             {"0.74", "1.36", "4.99", "0.20"},
     };
 
 
-    public ConvertCommand(String description) {
-        this.description = description;
+    public ConvertCommand() {
     }
 
     public ConvertCommand(String source, String target) {
-        this.source = source;
-        this.target = target;
+        this.inputCurrency = source;
+        this.outputCurrency = target;
     }
 
-    public String identifyCurrency(String description) {
-        int firstCurrencyStartingPosition = description.indexOf(" ") + 1;
-        assert firstCurrencyStartingPosition == 3 : "The value of firstCurrencyStartingPosition should be 3";
-        int firstCurrencyEndingPosition = description.indexOf("-d", firstCurrencyStartingPosition);
-        int secondCurrencyStartingPosition = description.indexOf("-d", firstCurrencyStartingPosition) + 3;
-        int length = description.length();
-        inputCurrency = description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition);
-        assert inputCurrency.equals(description.substring(firstCurrencyStartingPosition, firstCurrencyEndingPosition)) :
-                "Incorrect input currency";
-        outputCurrency = description.substring(secondCurrencyStartingPosition, length);
-        assert outputCurrency.equals(description.substring(secondCurrencyStartingPosition, length)) :
-                "Incorrect output currency";
+    private String identifyCurrency() {
         return inputCurrency + outputCurrency;
     }
 
@@ -63,44 +50,81 @@ public class ConvertCommand extends Command {
             }
         }
     }
-
-    @Override
-    public void execute(SpendingList spendingList, Ui ui) throws IOException {
-        logger.log(Level.FINE, "going to start processing");
-        newSpendingList = spendingList.getSpendingList();
-        currencies = identifyCurrency(description);
-        findExchangeRate();
-        for (int i = 0; i < newSpendingList.size(); i++) {
-            currentString = newSpendingList.get(i);
-            if (!currentString.getSymbol().equals(outputCurrency)) {
-                updateNewAmount(currentString);
-                updateCurrency(currentString);
+    
+    private boolean isValid() {
+        for (int i = 0; i < 4; i++) {
+            if (exchangeRates[0][i].equals(currencies)) {
+                return true;
             }
         }
-        ui.printConvertCurrency(outputCurrency);
-        spendingList.updateSpendingList();
-        updateBudgetList();
-        logger.log(Level.FINE, "end of processing");
+        return false;
     }
 
+    @Override
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+        if (outputCurrency.equals("SGD") || outputCurrency.equals("USD") || outputCurrency.equals("CNY")) {
+            if (inputCurrency.equals("SGD") || inputCurrency.equals("USD") || inputCurrency.equals("CNY")) {
+                convert(spendingList, ui);
+            } else {
+                ui.printInvalidInputCurrency();
+            }
+        } else {
+            ui.printInvalidOutputCurrency();
+        }
+    }
+    
+    private void convert(SpendingList spendingList, Ui ui) throws IOException {
+        int size = spendingList.getListSize();
+        String defaultCurrency = spendingList.getItem(0).getSymbol();
+        if (size > 0) {
+            if (inputCurrency.equals(defaultCurrency)) {
+                logger.log(Level.FINE, "going to start processing");
+                newSpendingList = spendingList.getSpendingList();
+                currencies = identifyCurrency();
+                findExchangeRate();
+                for (int i = 0; i < newSpendingList.size(); i++) {
+                    currentString = newSpendingList.get(i);
+                    if (!currentString.getSymbol().equals(outputCurrency)) {
+                        updateNewAmount(currentString);
+                        updateCurrency(currentString);
+                    }
+                }
+                if (isValid()) {
+                    ui.printConvertCurrency(outputCurrency);
+                } else {
+                    ui.printInvalidCurrency();
+                }
+                spendingList.updateSpendingList();
+                updateBudgetList();
+                logger.log(Level.FINE, "end of processing");
+            } else {
+                ui.printInvalidConversion(defaultCurrency);
+            }
+        } else {
+            ui.printEmptyList();
+        }
+    }
+    
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
         amount = amount * exchangeRate;
+        DecimalFormatter decimalFormatter = new DecimalFormatter();
+        amount = decimalFormatter.convert(amount);
         currentString.editAmount(amount);
     }
 
     private void updateCurrency(Item currentString) {
         switch (currencies) {
-        case "SGD USD":
+        case "SGDUSD":
             currentString.editSymbol("USD");
             break;
-        case "USD SGD":
+        case "USDSGD":
             currentString.editSymbol("SGD");
             break;
-        case "SGD CNY":
+        case "SGDCNY":
             currentString.editSymbol("CNY");
             break;
-        case "CNY SGD":
+        case "CNYSGD":
             currentString.editSymbol("SGD");
             break;
         default:
@@ -108,9 +132,11 @@ public class ConvertCommand extends Command {
     }
     
     public void updateBudgetList() {
-        double budgetLimit = Budget.getBudgetLimit();
-        double newBudgetLimit = budgetLimit * exchangeRate;
-        Budget.updateBudget(outputCurrency, newBudgetLimit);
+        if (!Budget.getCurrency().equals(outputCurrency)) {
+            double budgetLimit = Budget.getBudgetLimit();
+            double newBudgetLimit = budgetLimit * exchangeRate;
+            Budget.updateBudget(outputCurrency, newBudgetLimit);
+        }
     }
 
     public ArrayList<Item> updateSpendingList() {

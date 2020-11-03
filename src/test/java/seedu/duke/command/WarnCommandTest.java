@@ -1,13 +1,10 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import seedu.duke.Budget;
-import seedu.duke.SpendingList;
-import seedu.duke.category.Item;
-import seedu.duke.Ui;
+import seedu.duke.data.Budget;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +30,7 @@ public class WarnCommandTest {
         Ui ui = new Ui();
         Budget.addBudget("SGD", 20.0);
         WarnCommand approachingLimit = new WarnCommand();
-        approachingLimit.execute(realList, ui);
+        approachingLimit.execute(realList, null, ui);
     }
     
     @Test
@@ -41,6 +38,6 @@ public class WarnCommandTest {
         Ui ui = new Ui();
         Budget.addBudget("SGD", 10.0);
         WarnCommand exceedingLimit = new WarnCommand();
-        exceedingLimit.execute(realList, ui);
+        exceedingLimit.execute(realList, null, ui);
     }
 }

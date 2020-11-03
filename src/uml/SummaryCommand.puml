@@ -1,13 +1,13 @@
 @startuml
+hide footbox
+
 -> ":SummaryCommand": execute(spendingList, ui)
 activate ":SummaryCommand"
 
 ":SummaryCommand" -> ":SpendingList": getSpendingAmount(period)
 activate ":SpendingList"
 
-":SpendingList" -> ":SpendingList": amountSpent = 0
-
-loop spendingList.size times
+loop spendingList.size() times
 
 
 ":SpendingList" -> ":Item": getDate()
@@ -21,14 +21,16 @@ activate ":Item"
 ":Item" --> ":SpendingList": amount
 deactivate ":Item"
 
-":SpendingList" -> ":SpendingList": amountSpent += amount
-
 end
 
 end
 
 ":SpendingList" --> ":SummaryCommand": amountSpent
 deactivate ":SpendingList"
+":SummaryCommand" -> ":Ui" : printSummaryMessage(amountSpent)
+activate ":Ui"
+":Ui" --> ":SummaryCommand"
+deactivate ":Ui"
 
 <-- ":SummaryCommand"
 deactivate ":SummaryCommand"

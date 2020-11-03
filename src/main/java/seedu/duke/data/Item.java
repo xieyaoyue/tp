@@ -1,4 +1,4 @@
-package seedu.duke.category;
+package seedu.duke.data;
 
 import java.time.LocalDate;
 
@@ -70,6 +70,6 @@ public class Item {
     }
 
     public String toString() {
-        return date + " [" + category + "] " + description + " " + symbol + " " + amount;
+        return date + " [" + category + "] " + description + " " + symbol + " " + String.format("%.2f", amount);
     }
 }

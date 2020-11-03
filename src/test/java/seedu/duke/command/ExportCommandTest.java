@@ -1,9 +1,9 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
-import seedu.duke.category.Item;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ class ExportCommandTest {
     @Test
     void execute() {
         try {
-            new ExportCommand(System.getProperty("user.dir") + "\\").execute(spendingList, ui);
+            new ExportCommand(System.getProperty("user.dir") + "\\").execute(spendingList, null, ui);
         } catch (Exception e) {
             assert false;
         }

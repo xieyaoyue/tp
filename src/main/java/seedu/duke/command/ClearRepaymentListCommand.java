@@ -1,18 +1,21 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.Ui;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+
+import java.io.IOException;
 
 public class ClearRepaymentListCommand extends Command {
-    private boolean isClearAll;
-    private int clearIndex;
+    public boolean isClearAll;
+    public Integer clearIndex;
 
-    public ClearRepaymentListCommand(boolean isClearAll, int clearIndex) {
+    public ClearRepaymentListCommand(boolean isClearAll, Integer clearIndex) {
         this.isClearAll = isClearAll;
         this.clearIndex = clearIndex;
     }
 
-    public void execute(RepaymentList repaymentList, Ui ui) {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
         if (!isClearAll) {
             assert (clearIndex > 0 && clearIndex <= repaymentList.getListSize()) : "Wrong index";
             ui.printClearIndex(repaymentList.getEntry(clearIndex - 1));
