@@ -337,7 +337,7 @@ public class Ui {
     
     //@@author killingbear999
     public void printInvalidDate() {
-        out.println("Sorry, the date you input is invalid. Please try again");
+        out.println("Sorry, the date you input is invalid. Please try again.");
         drawSeparateLine();
     }
     
@@ -358,6 +358,13 @@ public class Ui {
     public void printInvalidName() {
         out.println("Sorry, the name you input is invalid.");
         out.println("Name containing only alphabets will be considered valid.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidCurrency() {
+        out.println("Sorry, the system  only supports currency conversion for SGD to USD, or USD to SGD, "
+                            + "or SGD to CNY, or CNY to SGD.");
         drawSeparateLine();
     }
 }
