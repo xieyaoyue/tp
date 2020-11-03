@@ -5,6 +5,7 @@ import seedu.duke.data.RepaymentList;
 import seedu.duke.data.Item;
 import seedu.duke.data.SpendingList;
 import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DecimalFormatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +50,15 @@ public class ConvertCommand extends Command {
             }
         }
     }
+    
+    private boolean isValid() {
+        for (int i = 0; i < 4; i++) {
+            if (exchangeRates[0][i].equals(currencies)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
@@ -79,7 +89,11 @@ public class ConvertCommand extends Command {
                         updateCurrency(currentString);
                     }
                 }
-                ui.printConvertCurrency(outputCurrency);
+                if (isValid()) {
+                    ui.printConvertCurrency(outputCurrency);
+                } else {
+                    ui.printInvalidCurrency();
+                }
                 spendingList.updateSpendingList();
                 updateBudgetList();
                 logger.log(Level.FINE, "end of processing");
@@ -93,7 +107,9 @@ public class ConvertCommand extends Command {
     
     private void updateNewAmount(Item currentString) {
         double amount = currentString.getAmount();
-        amount = Math.round(amount * exchangeRate * 100.0) / 100.0;
+        amount = amount * exchangeRate;
+        DecimalFormatter decimalFormatter = new DecimalFormatter();
+        amount = decimalFormatter.convert(amount);
         currentString.editAmount(amount);
     }
 

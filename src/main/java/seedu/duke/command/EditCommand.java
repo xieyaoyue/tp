@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DecimalFormatter;
 
 import java.io.IOException;
 
@@ -29,7 +30,8 @@ public class EditCommand extends Command {
                 spendingList.editItemDescription(index, description);
             }
             if (amount != null) {
-                amount = Math.round(amount * 100.0) / 100.0;
+                DecimalFormatter decimalFormatter = new DecimalFormatter();
+                amount = decimalFormatter.convert(amount);
                 spendingList.editItemAmount(index, amount);
             }
             if (category != null) {
