@@ -9,6 +9,8 @@ public class ClearBudgetCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
+
         Budget.clearBudget();
+        ui.printClearBudget();
     }
 }
