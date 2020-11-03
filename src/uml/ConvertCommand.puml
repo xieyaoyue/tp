@@ -32,7 +32,7 @@ deactivate ":Item"
 ":ConvertCommand"-->":ConvertCommand":
 deactivate ":ConvertCommand"
 end
-":ConvertCommand"->":Ui":printConvertCurrency(outputCurrecny)
+":ConvertCommand"->":Ui":printConvertCurrency(outputCurrency)
 activate ":Ui"
 ":Ui"-->":ConvertCommand":
 deactivate ":Ui"

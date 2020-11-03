@@ -1,6 +1,6 @@
-package seedu.duke;
+package seedu.duke.data;
 
-import seedu.duke.category.Item;
+import seedu.duke.storage.Storage;
 import seedu.duke.command.ConvertCommand;
 
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SpendingList {
     private String description;
-    private Storage storage;
+    public Storage storage;
 
     public ArrayList<Item> spendingList;
 
@@ -19,7 +19,7 @@ public class SpendingList {
     }
     
     public SpendingList() {
-        spendingList = new ArrayList<Item>();
+        spendingList = new ArrayList<>();
     }
 
     public SpendingList(String description, Storage storage) {
@@ -41,6 +41,7 @@ public class SpendingList {
         storage.save(this);
     }
 
+    //@@author pinfang
     public void addItem(String description, String symbol, double amount, String category) throws IOException {
         Item item = new Item(description, symbol, amount, category);
         spendingList.add(item);

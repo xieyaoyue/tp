@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.data;
 
 //@@author killingbear999
 public class Repay {
@@ -15,7 +15,7 @@ public class Repay {
     }
     
     public String toString() {
-        return name + " " + symbol + " " + amount + " " + deadline;
+        return name + " " + symbol + " " + String.format("%.2f", amount) + " " + deadline;
     }
 }
 

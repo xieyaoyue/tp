@@ -1,9 +1,9 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
-import seedu.duke.category.Item;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;

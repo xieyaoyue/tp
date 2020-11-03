@@ -1,6 +1,10 @@
-package seedu.duke;
+package seedu.duke.ui;
 
-import seedu.duke.category.Item;
+import seedu.duke.data.Item;
+import seedu.duke.data.Budget;
+import seedu.duke.data.Repay;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -34,18 +38,18 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add -c CATEGORY -d DESCRIPTION -s SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
+            {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear INDEX", "clear 1"},
             {"", "OR clear all", ""},
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
             {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
-            {"edit", "edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_SPENDING]", "edit 1 -s SGD 4.00"},
+            {"edit", "edit INDEX [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "edit 1 -s SGD 4.00"},
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
-            {"repay", "repay -n NAME -s AMOUNT -t DEADLINE", "repay -n Johnny -s SGD 5.00 -t 2020-12-02"},
+            {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
-            {"set", "set -s AMOUNT", "set -s SGD 100.00"},
+            {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
             {"spending", "spending list", ""},
             {"list", "OR spending list YEAR", "list 2020"},
             {"", "OR spending list YEAR MONTH", "list 2020 Jul"},
@@ -186,7 +190,7 @@ public class Ui {
 
     //@@author killingbear999
     public void printConvertCurrency(String outputCurrency) {
-        out.println("The currency has been changed to " + outputCurrency + " .");
+        out.println("The currency has been changed to " + outputCurrency + ".");
         drawSeparateLine();
     }
 
@@ -290,6 +294,65 @@ public class Ui {
         } else {
             out.println("Sorry, generation failed.");
         }
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidOutputCurrency() {
+        out.println("Sorry, the output currency you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidInputCurrency() {
+        out.println("Sorry, the input currency you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidBudget() {
+        out.println("Sorry, the budget amount you entered is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidAmount() {
+        out.println("Sorry, the amount input is invalid. Please try again.");
+        out.println("The amount input should be larger than 0.01. Negative number and extremely small amount will"
+                            + "be considered as invalid input.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidDate() {
+        out.println("Sorry, the date you input is invalid. Please try again.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printEmptyList() {
+        out.println("Sorry, the spending list is empty.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidConversion(String defaultCurrency) {
+        out.println("Sorry, the input currency does not match with the current currency in the spending list.");
+        out.println("The current currency in the spending list is " + defaultCurrency + ".");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidName() {
+        out.println("Sorry, the name you input is invalid.");
+        out.println("Name containing only alphabets will be considered valid.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidCurrency() {
+        out.println("Sorry, the system  only supports currency conversion for SGD to USD, or USD to SGD, "
+                            + "or SGD to CNY, or CNY to SGD.");
         drawSeparateLine();
     }
 }

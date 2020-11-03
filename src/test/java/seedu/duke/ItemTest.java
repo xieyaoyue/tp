@@ -1,12 +1,13 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.category.Item;
+import seedu.duke.data.Item;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author pinfang
 public class ItemTest {
     private LocalDate date = LocalDate.now();
     private Item rice = new Item("rice", "SGD", 2);
@@ -14,41 +15,41 @@ public class ItemTest {
 
     @Test
     public void testStringConversion() {
-        String expectedString = date.toString() + " [Other] rice SGD 2.0";
+        String expectedString = date.toString() + " [Other] rice SGD 2.00";
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editAmount() {
-        String expectedString = date.toString() + " [Other] rice SGD 5.0";
+        String expectedString = date.toString() + " [Other] rice SGD 5.00";
         rice.editAmount(5);
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editDescription() {
-        String expectedString = date.toString() + " [Other] chicken rice SGD 2.0";
+        String expectedString = date.toString() + " [Other] chicken rice SGD 2.00";
         rice.editDescription("chicken rice");
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editCategory() {
-        String expectedString = date.toString() + " [Food] rice SGD 2.0";
+        String expectedString = date.toString() + " [Food] rice SGD 2.00";
         rice.editCategory("Food");
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editSymbol() {
-        String expectedString = date.toString() + " [Other] rice USD 2.0";
+        String expectedString = date.toString() + " [Other] rice USD 2.00";
         rice.editSymbol("USD");
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void getAmount() {
-        Double expectedAmount = 2.0;
+        Double expectedAmount = 2.00;
         assertEquals(expectedAmount, rice.getAmount());
     }
 
