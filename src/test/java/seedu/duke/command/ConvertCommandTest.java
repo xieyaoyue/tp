@@ -2,8 +2,8 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.SpendingList;
-import seedu.duke.Ui;
-import seedu.duke.category.Item;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class ConvertCommandTest {
     @Test
     public void execute() throws IOException {
         Ui ui = new Ui();
-        ConvertCommand convertCommand = new ConvertCommand();
+        ConvertCommand convertCommand = new ConvertCommand("SGD", "USD");
         convertCommand.execute(realList, null, ui);
     }
 }

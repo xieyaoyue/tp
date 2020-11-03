@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
@@ -24,18 +24,20 @@ public class EditCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-        if (description != null) {
-            spendingList.editItemDescription(index, description);
+        if (amount > 0.01) {
+            if (description != null) {
+                spendingList.editItemDescription(index, description);
+            }
+            if (amount != null) {
+                amount = Math.round(amount * 100.0) / 100.0;
+                spendingList.editItemAmount(index, amount);
+            }
+            if (category != null) {
+                spendingList.editItemCategory(index, category);
+            }
+            ui.printEdit(spendingList, index);
+        } else {
+            ui.printInvalidAmount();
         }
-        if (currency != null) {
-            // TODO : edit symbol @killingbear999
-        }
-        if (amount != null) {
-            spendingList.editItemAmount(index, amount);
-        }
-        if (category != null) {
-            spendingList.editItemCategory(index, category);
-        }
-        ui.printEdit(spendingList, index);
     }
 }

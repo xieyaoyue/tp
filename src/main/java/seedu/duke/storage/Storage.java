@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -55,7 +55,7 @@ public class Storage {
      * @return file path
      */
     public String getFilePath() {
-        return file.getPath();
+        return file.getAbsolutePath();
     }
 
     public SpendingList loadSpendingList() {
@@ -66,9 +66,14 @@ public class Storage {
                     .useDelimiter("\\Z")
                     .next();
             sl = gson.fromJson(jsonContent, SpendingList.class);
+            if (sl == null) {
+                throw new InvalidStorageFilePathException();
+            }
         } catch (Exception e) {
+            System.out.println("error");
             sl = new SpendingList(this);
         }
+        sl.storage = this;
         return sl;
     }
 
@@ -80,9 +85,13 @@ public class Storage {
                 .useDelimiter("\\Z")
                 .next();
             rl = gson.fromJson(jsonContent, RepaymentList.class);
+            if (rl == null) {
+                throw new InvalidStorageFilePathException();
+            }
         } catch (Exception e) {
             rl = new RepaymentList(this);
         }
+        rl.storage = this;
         return rl;
     }
 

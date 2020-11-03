@@ -1,4 +1,4 @@
-package seedu.duke.category;
+package seedu.duke.data;
 
 public enum Category {
     FOOD("Food"),
