@@ -5,7 +5,6 @@ import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.Test;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.ClearRepaymentListCommand;
-import seedu.duke.command.ClearSpendingListCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.ConvertCommand;
 import seedu.duke.command.DrawCommand;
@@ -13,6 +12,7 @@ import seedu.duke.command.EditCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
+import seedu.duke.command.MultipleCommand;
 import seedu.duke.command.RepayCommand;
 import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.SetBudgetCommand;
@@ -45,9 +45,9 @@ class ParserTest {
         new Rule("add -d Item 0 -s SGD 114.514 ", AddCommand.class),
         new Rule("edit 100 -s SGD 1.23 --description Chicken Rice -c Food", EditCommand.class),
         new Rule("edit 100 -s SGD 1.23 -c Food", EditCommand.class),
-        new Rule("clear --all --repayment", ClearRepaymentListCommand.class),
-        new Rule("clear --spending 234", ClearSpendingListCommand.class),
-        new Rule("clear -r 420", ClearRepaymentListCommand.class),
+        new Rule("clear --spending 234", MultipleCommand.class),
+        new Rule("clear -r 1 -b --spending 234", MultipleCommand.class),
+        new Rule("clear -r 420", MultipleCommand.class),
         new Rule("convert -s SGD --target CNY", ConvertCommand.class),
         new Rule("draw ", DrawCommand.class),
         new Rule("draw 2020", DrawCommand.class),
@@ -104,16 +104,28 @@ class ParserTest {
         assertEquals(c.index, 986);
         assertEquals(c.description, "fried rice");
         assertNull(c.amount);
-        assertNull(c.symbol);
+        assertNull(c.currency);
         assertNull(c.category);
     }
 
     @Test
     void clearIndex() throws ParseException, InvalidCommandException, NoSuchMethodException, InstantiationException,
         IllegalAccessException, java.text.ParseException, InvocationTargetException {
-        ClearRepaymentListCommand c = (ClearRepaymentListCommand) Parser.parseCommand("clear --repayment 23");
-        assertFalse(c.isClearAll);
-        assertEquals(c.clearIndex, 23);
+        MultipleCommand c = (MultipleCommand) Parser.parseCommand("clear --repayment 23");
+        ClearRepaymentListCommand cl = (ClearRepaymentListCommand) c.commands.get(0);
+        assertFalse(cl.isClearAll);
+        assertEquals(cl.clearIndex, 23);
+    }
+
+    @Test
+    void clearMultipleLists() throws NoSuchMethodException, ParseException, InvalidCommandException,
+        InstantiationException, java.text.ParseException, IllegalAccessException, InvocationTargetException {
+        MultipleCommand c = (MultipleCommand) Parser.parseCommand("clear --spending 234");
+        assertEquals(1, c.commands.size());
+        c = (MultipleCommand) Parser.parseCommand("clear -r 1 --spending 234");
+        assertEquals(2, c.commands.size());
+        c = (MultipleCommand) Parser.parseCommand("clear -r 1 -b --spending 234");
+        assertEquals(3, c.commands.size());
     }
 
     @Test

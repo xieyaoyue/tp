@@ -1,7 +1,9 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 
@@ -34,7 +36,8 @@ public class Storage {
         // Create or Initialise object
         file = new File(path);
         gson = new GsonBuilder()
-            .excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
+            .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
+            .serializeNulls()
             .create();
         if (file.exists()) {
             return;
@@ -52,7 +55,7 @@ public class Storage {
      * @return file path
      */
     public String getFilePath() {
-        return file.getPath();
+        return file.getAbsolutePath();
     }
 
     public SpendingList loadSpendingList() {
@@ -63,9 +66,14 @@ public class Storage {
                     .useDelimiter("\\Z")
                     .next();
             sl = gson.fromJson(jsonContent, SpendingList.class);
+            if (sl == null) {
+                throw new InvalidStorageFilePathException();
+            }
         } catch (Exception e) {
+            System.out.println("error");
             sl = new SpendingList(this);
         }
+        sl.storage = this;
         return sl;
     }
 
@@ -77,21 +85,25 @@ public class Storage {
                 .useDelimiter("\\Z")
                 .next();
             rl = gson.fromJson(jsonContent, RepaymentList.class);
+            if (rl == null) {
+                throw new InvalidStorageFilePathException();
+            }
         } catch (Exception e) {
             rl = new RepaymentList(this);
         }
+        rl.storage = this;
         return rl;
     }
 
     public void save(SpendingList spendingList) throws IOException {
-        String jsonContent = gson.toJson(spendingList, SpendingList.class);
+        String jsonContent = gson.toJson(spendingList);
         FileWriter fw = new FileWriter(file, false);
         fw.write(jsonContent);
         fw.close();
     }
 
     public void save(RepaymentList repaymentList) throws IOException {
-        String jsonContent = gson.toJson(repaymentList, RepaymentList.class);
+        String jsonContent = gson.toJson(repaymentList);
         FileWriter fw = new FileWriter(file, false);
         fw.write(jsonContent);
         fw.close();

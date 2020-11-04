@@ -1,8 +1,8 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 
