@@ -57,15 +57,18 @@ public class Ui {
             {"purge data", "purge data", ""}
     };
 
+    //@@author Wu-Haitao
     public Ui() {
         this(new Scanner(System.in), System.out);
     }
 
+    //@@author Wu-Haitao
     public Ui(Scanner in, PrintStream out) {
         this.in = in;
         this.out = out;
     }
-    
+
+    //@@author Wu-Haitao
     public String getUserInput() {
         return in.nextLine();
     }
@@ -80,24 +83,27 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printWelcomeMessage() {
         drawSeparateLine();
         out.println(LOGO);
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printWelcomeMessage(String filePath) {
         printWelcomeMessage();
         out.println("Local file path: " + filePath);
         drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printGoodbyeMessage() {
         out.println("See you next time!");
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     private void drawSeparateLine() {
         out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
@@ -154,21 +160,21 @@ public class Ui {
                 + "\ncurrent month.");
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printClearIndex(Item item) {
         out.println("You've deleted the record:");
         out.println(item);
         drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printClearIndex(Repay repaymentEntry) {
         out.println("You've deleted this entry in the repayment list:");
         out.println(repaymentEntry);
         drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printClearAllSpendingList() {
         out.println("You've deleted all the records in the spending list.");
         drawSeparateLine();
@@ -185,6 +191,7 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printAdd(SpendingList spendingList) {
         out.println("You've added the record:");
         out.println(spendingList.getItem(spendingList.getListSize() - 1));
@@ -221,7 +228,7 @@ public class Ui {
         out.printf("%-20s $%.2f\n", category, amount);
     }
 
-    //@@author killingbear999
+    //@@author Wu-Haitao
     public void printErrorMessage(String message) {
         out.println(message);
         drawSeparateLine();
