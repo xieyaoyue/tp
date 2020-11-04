@@ -315,6 +315,13 @@ public class Ui {
         }
         drawSeparateLine();
     }
+
+    //@@author Wu-Haitao
+    public void printOpenFileFailedMessage() {
+        out.println("Sorry, the file couldn't be opened.");
+        out.println("Please try find the file in the application folder and open it manually.");
+        drawSeparateLine();
+    }
     
     //@@author killingbear999
     public void printInvalidOutputCurrency() {
