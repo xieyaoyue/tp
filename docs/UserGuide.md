@@ -63,8 +63,6 @@ Format:
 
 `repayment list`
 
-**Important: storage of repayment list is coming soon.**
-
 ### 3.3 Viewing Spending List Summary: `spending list`
 
 This command shows your spending records during a specified period (a particular year or month, or both).
@@ -162,15 +160,15 @@ Format:
 
 Examples of usage:
 
-`summary` → shows summary of current month **(coming soon)**
+`summary` → shows summary of current month 
 
-`summary 2020` → shows summary of a specific year **(coming soon)**
+`summary 2020` → shows summary of a specific year 
 
 `summary 2020 Oct` → shows summary of a specific year and month
 
 `summary -a` → shows the summary of total expenditure
 
-### 3.9 Visualizing data: `draw` **(coming soon)**
+### 3.9 Visualizing Data: `draw` 
 
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
 
@@ -186,7 +184,7 @@ Examples of usage:
 
 `draw 2020 Jun` → shows the graph of Jun 2020
 
-### 3.10 Exporting data: `export` **(coming soon)**
+### 3.10 Exporting Data: `export` 
 
 This command exports the data to an Excel file at the given location.
 
@@ -198,7 +196,7 @@ Example of usage:
 
 `export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
 
-### 3.11 Editing spending: `edit`
+### 3.11 Editing Spending: `edit`
 This command edits the existing records in the spending list.
 
 Format:
@@ -213,7 +211,7 @@ Figure below shows an example for Editing Spending feature: <br>
 
 ![Example for Editing Spending](images/EditExample.png)
 
-### 3.12 Exiting program: `logout`
+### 3.12 Exiting Program: `logout`
 This command exists the application.
 
 Format:
