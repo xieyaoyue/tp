@@ -38,10 +38,17 @@ public class DrawCommand extends DateCommand {
     private final DateFormatter dateFormatter = new DateFormatter();
     private final String filePath = "Charts.xlsx";
     private final FileExplorer fileExplorer = new FileExplorer(filePath);
+    private boolean isOpening;
     private String timePeriod;
 
-    public DrawCommand() throws InvalidCommandException {
+    public DrawCommand() {
         timePeriod = "";
+        this.isOpening = true;
+    }
+
+    public DrawCommand(boolean isOpening) {
+        timePeriod = "";
+        this.isOpening = isOpening;
     }
 
     public DrawCommand(String year, String month) {
@@ -51,10 +58,21 @@ public class DrawCommand extends DateCommand {
         } else {
             timePeriod = year + "-" + convertedMonth;
         }
+        this.isOpening = true;
+    }
+
+    public DrawCommand(String year, String month, boolean isOpening) {
+        String convertedMonth = dateFormatter.changeMonthFormat(month);
+        if (convertedMonth == null) {
+            timePeriod = year;
+        } else {
+            timePeriod = year + "-" + convertedMonth;
+        }
+        this.isOpening = isOpening;
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet0 = workbook.createSheet("Sheet 0");
         XSSFSheet sheet1 = workbook.createSheet("Sheet 1");
@@ -85,15 +103,23 @@ public class DrawCommand extends DateCommand {
             Double[] amountsForCategories = categoryMap.values().toArray(new Double[0]);
             drawChart(sheet1, categories, amountsForCategories, 0, 0, 10, 12);
 
-            FileOutputStream fileOut = new FileOutputStream(filePath);
-            workbook.write(fileOut);
-            fileOut.flush();
-            fileOut.close();
-            ui.printDrawMessage(true);
             try {
-                fileExplorer.openFile();
-            } catch (IOException e) {
-                ui.printOpenFileFailedMessage();
+                FileOutputStream fileOut = new FileOutputStream(filePath);
+                workbook.write(fileOut);
+                fileOut.flush();
+                fileOut.close();
+            } catch (Exception e) {
+                assert false : "Failed to create Excel file";
+            }
+
+            ui.printDrawMessage(true);
+
+            if (isOpening) {
+                try {
+                    fileExplorer.openFile();
+                } catch (IOException e) {
+                    ui.printOpenFileFailedMessage();
+                }
             }
         } else {
             ui.printDrawMessage(false);

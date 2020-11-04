@@ -30,7 +30,7 @@ class ExportCommandTest {
     void execute() {
         initSpendingList();
         try {
-            new ExportCommand(System.getProperty("user.dir") + "\\").execute(spendingList, null, ui);
+            new ExportCommand(System.getProperty("user.dir") + "\\", false).execute(spendingList, null, ui);
         } catch (Exception e) {
             assert false;
         }

@@ -21,24 +21,34 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExportCommand extends Command {
     private String filePath;
     private final FileExplorer fileExplorer;
+    private boolean isOpening;
 
     public ExportCommand(String filePath) {
         this.filePath = filePath + "Records.xlsx";
         fileExplorer = new FileExplorer(this.filePath);
+        this.isOpening = true;
+    }
+
+    public ExportCommand(String filePath, boolean isOpening) {
+        this.filePath = filePath + "Records.xlsx";
+        fileExplorer = new FileExplorer(this.filePath);
+        this.isOpening = isOpening;
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
         exportToExcel(spendingList);
-        try {
-            fileExplorer.openFile();
-        } catch (IOException e) {
-            ui.printOpenFileFailedMessage();
+        if (isOpening) {
+            try {
+                fileExplorer.openFile();
+            } catch (IOException e) {
+                ui.printOpenFileFailedMessage();
+            }
         }
         ui.printExportMessage();
     }
 
-    private void exportToExcel(SpendingList list) throws IOException {
+    private void exportToExcel(SpendingList list) {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("sheet0");
         sheet.setDefaultColumnWidth(15);
@@ -59,7 +69,7 @@ public class ExportCommand extends Command {
             output.flush();
             output.close();
         } catch (Exception e) {
-            throw new IOException();
+            assert false : "Failed to create Excel file";
         }
     }
 

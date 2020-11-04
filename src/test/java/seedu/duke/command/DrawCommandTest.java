@@ -40,7 +40,7 @@ class DrawCommandTest {
     void execute() {
         initSpendingList();
         try {
-            new DrawCommand("2020", null).execute(spendingList, null, ui);
+            new DrawCommand("2020", null, false).execute(spendingList, null, ui);
         } catch (Exception e) {
             assert false;
         }
