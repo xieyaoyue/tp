@@ -1,5 +1,19 @@
 package seedu.duke.command;
 
+import seedu.duke.data.RepaymentList;
+import seedu.duke.data.SpendingList;
+import seedu.duke.data.Item;
+import seedu.duke.utilities.DateFormatter;
+import seedu.duke.utilities.FileExplorer;
+import seedu.duke.ui.Ui;
+import seedu.duke.exceptions.InvalidCommandException;
+
+import java.util.ArrayList;
+import java.util.TreeMap;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.apache.poi.xddf.usermodel.chart.AxisPosition;
 import org.apache.poi.xddf.usermodel.chart.ChartTypes;
 import org.apache.poi.xddf.usermodel.chart.XDDFChartAxis;
@@ -19,21 +33,11 @@ import org.openxmlformats.schemas.drawingml.x2006.chart.CTLineChart;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTLineSer;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTPlotArea;
 
-import seedu.duke.data.RepaymentList;
-import seedu.duke.data.SpendingList;
-import seedu.duke.ui.Ui;
-import seedu.duke.data.Item;
-import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.utilities.DateFormatter;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.TreeMap;
-
 //@@author Wu-Haitao
 public class DrawCommand extends DateCommand {
     private final DateFormatter dateFormatter = new DateFormatter();
+    private final String filePath = "Charts.xlsx";
+    private final FileExplorer fileExplorer = new FileExplorer(filePath);
     private String timePeriod;
 
     public DrawCommand() throws InvalidCommandException {
@@ -81,11 +85,16 @@ public class DrawCommand extends DateCommand {
             Double[] amountsForCategories = categoryMap.values().toArray(new Double[0]);
             drawChart(sheet1, categories, amountsForCategories, 0, 0, 10, 12);
 
-            FileOutputStream fileOut = new FileOutputStream("Charts.xlsx");
+            FileOutputStream fileOut = new FileOutputStream(filePath);
             workbook.write(fileOut);
             fileOut.flush();
             fileOut.close();
             ui.printDrawMessage(true);
+            try {
+                fileExplorer.openFile();
+            } catch (IOException e) {
+                ui.printOpenFileFailedMessage();
+            }
         } else {
             ui.printDrawMessage(false);
         }
@@ -206,4 +215,5 @@ public class DrawCommand extends DateCommand {
             }
         }
     }
+
 }
