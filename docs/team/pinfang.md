@@ -44,11 +44,12 @@ financial situation and track their spending efficiently.
     1. Maintaining the issue tracker
     2. Setting the deadline of milestone
     3. Updating user/developer docs that are not specific to a feature
-    4. Reporting bugs to team members
+    
     
  * Review/mentoring contributions:
-    1. Reviewing PRs: [links]
+    1. Reviewing PRs 
+    2. Reporting bugs to team members
     
  * Contributions beyond the project team:
-    1. Reporting bugs for other team's product [links]
-    
+    1. Reporting bugs for other team's product during PE dry-run: [link](https://github.com/pinfang/ped/issues)
+    2. DG reviews for other team 
