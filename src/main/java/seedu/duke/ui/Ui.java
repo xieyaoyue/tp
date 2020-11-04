@@ -41,7 +41,7 @@ public class Ui {
             {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]", "clear -s 1"},
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
-            {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
+            {"draw", "draw [YEAR] [MONTH]", "draw 2020 Jun"},
             {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
             {"", "[-s NEW_SPENDING]", ""},
             {"export", "export PATH", "export F:\\MyFolder"},
@@ -50,22 +50,25 @@ public class Ui {
             {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
-            {"spending", "spending list [YEAR = current year]", "spending list"},
-            {"list", "[MONTH = current month] [-c CATEGORY] [-a]", "OR spending list 2020 -food"},
-            {"summary", "summary [YEAR = current year] [MONTH = current month]", "summary"},
-            {"", "[-a]", "OR summary 2020"},
+            {"spending", "spending list", "spending list"},
+            {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -food"},
+            {"summary", "summary", "summary"},
+            {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
             {"purge data", "purge data", ""}
     };
 
+    //@@author Wu-Haitao
     public Ui() {
         this(new Scanner(System.in), System.out);
     }
 
+    //@@author Wu-Haitao
     public Ui(Scanner in, PrintStream out) {
         this.in = in;
         this.out = out;
     }
-    
+
+    //@@author Wu-Haitao
     public String getUserInput() {
         return in.nextLine();
     }
@@ -80,24 +83,27 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printWelcomeMessage() {
         drawSeparateLine();
         out.println(LOGO);
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printWelcomeMessage(String filePath) {
         printWelcomeMessage();
         out.println("Local file path: " + filePath);
         drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printGoodbyeMessage() {
         out.println("See you next time!");
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     private void drawSeparateLine() {
         out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
@@ -144,32 +150,23 @@ public class Ui {
             }
         }
         printTopBottomBorder();
-        out.println(" ");
-        out.println("Note: If you see an equal sign in any of the option within the 'FORMAT' section, "
-                + "this is the default parameter"
-                + "\nwhich would be used if you did not enter the parameter corresponding to the "
-                + "option in your command. "
-                + "\nFor example, if you enter " + '"' + "spending list" + '"' + " as a command, you "
-                + "would be shown a list of spending entries of the"
-                + "\ncurrent month.");
-        drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printClearIndex(Item item) {
         out.println("You've deleted the record:");
         out.println(item);
         drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printClearIndex(Repay repaymentEntry) {
         out.println("You've deleted this entry in the repayment list:");
         out.println(repaymentEntry);
         drawSeparateLine();
     }
 
-    //@@author xieyaoyue
+    //@@author Wu-Haitao
     public void printClearAllSpendingList() {
         out.println("You've deleted all the records in the spending list.");
         drawSeparateLine();
@@ -186,6 +183,7 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printAdd(SpendingList spendingList) {
         out.println("You've added the record:");
         out.println(spendingList.getItem(spendingList.getListSize() - 1));
@@ -220,10 +218,9 @@ public class Ui {
 
     public void printSummaryCategory(String category, double amount) {
         out.printf("%-20s $%.2f\n", category, amount);
-        drawSeparateLine();
     }
 
-    //@@author killingbear999
+    //@@author Wu-Haitao
     public void printErrorMessage(String message) {
         out.println(message);
         drawSeparateLine();
@@ -308,6 +305,13 @@ public class Ui {
         } else {
             out.println("Sorry, generation failed.");
         }
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
+    public void printOpenFileFailedMessage() {
+        out.println("Sorry, the file couldn't be opened.");
+        out.println("Please try find the file in the application folder and open it manually.");
         drawSeparateLine();
     }
     
