@@ -147,11 +147,12 @@ public class Ui {
         out.println(" ");
         out.println("Note: If you see an equal sign in any of the option within the 'FORMAT' section, "
                 + "this is the default parameter"
-                + "\nwhich would be used even if you did not enter the parameter corresponding to the "
+                + "\nwhich would be used if you did not enter the parameter corresponding to the "
                 + "option in your command. "
                 + "\nFor example, if you enter " + '"' + "spending list" + '"' + " as a command, you "
                 + "would be shown a list of spending entries of the"
                 + "\ncurrent month.");
+        drawSeparateLine();
     }
 
     //@@author xieyaoyue
@@ -219,6 +220,7 @@ public class Ui {
 
     public void printSummaryCategory(String category, double amount) {
         out.printf("%-20s $%.2f\n", category, amount);
+        drawSeparateLine();
     }
 
     //@@author killingbear999
