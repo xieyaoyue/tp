@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StorageTest {
@@ -63,9 +62,7 @@ class StorageTest {
         String path = storage.getFilePath();
         storage = null;
         File f = new File(path);
-        f.delete();
-        // assertTrue(f.delete(), "Unable to delete file");
-        assertFalse(f.exists(), "Did not delete file");
+        f.deleteOnExit();
     }
 }
 

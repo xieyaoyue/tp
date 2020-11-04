@@ -3,9 +3,11 @@ package seedu.duke.parser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.ParseException;
+import seedu.duke.command.ClearBudgetCommand;
 import seedu.duke.command.ClearRepaymentListCommand;
 import seedu.duke.command.ClearSpendingListCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.MultipleCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 
 public class ClearParser extends Parser {
@@ -23,33 +25,60 @@ public class ClearParser extends Parser {
             .optionalArg(true)
             .argName("spending")
             .build();
+        Option budget = Option.builder("b")
+            .longOpt("budget")
+            .argName("budget")
+            .build();
 
-        addAllOption();
         options.addOption(repayment);
         options.addOption(spending);
+        options.addOption(budget);
     }
 
     public Command parse(String[] args) throws ParseException, InvalidCommandException {
         CommandLine line = parser.parse(options, args);
+        MultipleCommand mc = new MultipleCommand();
 
-        boolean isClearAll = parseAllOption(line);
-
-        if (line.hasOption("r")) {
-            String indexString = line.getOptionValue("r");
-            Integer index = getIndex(indexString);
-            if (index == null && !isClearAll) {
-                throw new InvalidCommandException();
-            }
-            return new ClearRepaymentListCommand(isClearAll, index);
-        } else if (line.hasOption("s")) {
-            String indexString = line.getOptionValue("s");
-            Integer index = getIndex(indexString);
-            if (index == null && !isClearAll) {
-                throw new InvalidCommandException();
-            }
-            return new ClearSpendingListCommand(isClearAll, index);
+        Integer index = clearList(line, "r");
+        if (index != null) {
+            mc.addCommand(new ClearRepaymentListCommand(index == -1, index));
+        }
+        index = clearList(line, "s");
+        if (index != null) {
+            mc.addCommand(new ClearSpendingListCommand(index == -1, index));
+        }
+        if (line.hasOption("b")) {
+            mc.addCommand(new ClearBudgetCommand());
+        }
+        if (mc.noCommandsGiven()) {
+            throw new InvalidCommandException();
         }
 
-        throw new InvalidCommandException();
+        return mc;
+    }
+
+    /**
+     * clearList parses line with flag for 0..1 argument given
+     * @param line to check flags with
+     * @param flag for command
+     * @return null for option not selected, -1 for clear all, >=0 for clear 1
+     * @throws InvalidCommandException if argument is given is invalid index
+     */
+    private Integer clearList(CommandLine line, String flag) throws InvalidCommandException {
+        if (!line.hasOption(flag)) {
+            return null;
+        }
+
+        String indexString = line.getOptionValue(flag);
+        boolean isClearAll = indexString == null;
+        if (isClearAll) {
+            return -1;
+        }
+
+        Integer index = getIndex(indexString);
+        if (index == null) {
+            throw new InvalidCommandException();
+        }
+        return index;
     }
 }

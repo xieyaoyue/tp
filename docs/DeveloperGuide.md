@@ -308,13 +308,37 @@ The following sequence diagram illustrates how this feature works. <br>
 Below shows an example of usage:
 
 1. User executes the `export F:\` command to export the data to the location `F:\`.
-2. The `export` command calls the `Workbook#createSheet()` to create an Excel workbook sheet.
+2. The `exportCommand` calls the `Workbook#createSheet()` to create an Excel workbook sheet.
 3. `SpendingList#getItem` will be called repeatedly to get items and set the cells' values accordingly.
 3. After writing to an Excel file at the location `F:\` using `Workbook#write`, a prompt message will be shown by `Ui`.
 
 The following sequence diagram illustrates how this feature works. <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/97736203-4a9d8600-1b16-11eb-9661-ce9c27ccb6a9.png) <br>
+
+### 4.12 Draw Feature
+
+`Workbook`, `FileOutputStream`, `SpendingList` and `Ui` facilitate this feature. The draw feature analyze the target records and plot two charts accordingly. It implements the following operations:
+* `Workbook#createSheet` → creates a sheet in the workbook
+* `SpendingList#getItem` → gets the item waiting to be added to the workbook
+* `DrawCommand#getYearMap` `DrawCommand#getMonthMap` `DrawCommand#getDayMap` → returns a map containing the information of sum of amount in records
+* `DrawCommand#getCategories` → returns a map containing the information of proportions of different categories
+* `DrawCommand#drawChart` → generate charts in the worksheet
+* `Workbook#write` → writes the data to an Excel file
+* `Ui#printDrawMessage` → prints the message indicating that the charts have been generated successfully
+
+Below shows an example of usage:
+
+1. User executes the `draw 2020` command to generate charts for year 2020.
+2. The `drawCommand` calls the `Workbook#createSheet()` twice to create two Excel workbook sheet.
+3. `SpendingList#getItem` will be called repeatedly to get items.
+4. `DrawCommand#getMonthMap` and `DrawCommand#getCategories` will be called to analyze the data and decide which data are going to be shown in charts.
+5. After processing of data, `DrawCommand#drawChart` will be called to generate charts in worksheets.
+6. After writing to an Excel file using `Workbook#write`, a prompt message will be shown by `Ui`.
+
+The following sequence diagram illustrates how this feature works. <br>
+
+![image](https://user-images.githubusercontent.com/59434361/97977429-2b993f80-1e07-11eb-8b57-c6c72eb7e11c.png) <br>
 
 ## 5. Product scope
 ### 5.1 Target user profile

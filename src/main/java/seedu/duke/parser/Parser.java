@@ -11,6 +11,7 @@ import seedu.duke.command.DrawCommand;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
+import seedu.duke.command.PurgeDataCommand;
 import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewBudgetCommand;
@@ -179,33 +180,44 @@ public abstract class Parser {
         switch (cmd) {
         case "add":
             return new AddParser().parse(opts);
-        case "edit":
-            return new EditParser().parse(opts);
-        case "help":
-            return new HelpCommand();
         case "clear":
             return new ClearParser().parse(opts);
         case "convert":
             return new ConvertParser().parse(opts);
         case "draw":
             return new DateParser<>(DrawCommand.class).parse(opts);
+        case "edit":
+            return new EditParser().parse(opts);
         case "export":
             return new ExportCommand(String.join(" ", opts));
+        case "help":
+            return new HelpCommand();
+        case "logout":
+            return new ExitCommand();
         case "repay":
             return new RepayParser().parse(opts);
+        case "purge":
+            checkRemainingCommand(opts, "data");
+            return new PurgeDataCommand();
         case "repayment":
+            checkRemainingCommand(opts, "list");
             return new RepaymentListCommand();
         case "set":
             return new SetParser().parse(opts);
         case "spending":
             return new SpendingListParser().parse(opts);
-        case "logout":
-            return new ExitCommand();
         case "summary":
             return new DateParser<>(SummaryCommand.class).parse(opts);
         case "view":
             return new ViewBudgetCommand();
         default:
+            throw new InvalidCommandException();
+        }
+    }
+
+    private static void checkRemainingCommand(String[] args, String remainingCommand) throws InvalidCommandException {
+        String[] c = remainingCommand.strip().split(" ");
+        if (args.length != c.length || !Arrays.equals(c, args)) {
             throw new InvalidCommandException();
         }
     }
