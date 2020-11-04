@@ -56,14 +56,61 @@ Example of usage:
 
 `add -c Food -d chicken rice -s SGD 3.00` → adds chicken rice which costs SGD 3.00 into the food category of the spending list
 
-### 3.2 Viewing Repayment List Summary: `repayment list`
+Figure below shows an example for Adding Spending Feature: <br>
+
+![image](https://user-images.githubusercontent.com/45732128/98068206-6302fd00-1e96-11eb-9f94-af0daeed3175.png)
+
+### 3.2 Clearing Data: `clear`
+The `clear` command allows you to clear specific data that you have stored in the application. This includes your spending list, repayment list and budget. You can choose to clear all entries or specified entries of either your spending list or repayment list (or both). 
+
+🛈 If you do not specify SPENDING_INDEX or REPAYMENT_INDEX but specify its corresponding prefix, the whole list representing it will be cleared
+
+Format:
+
+`clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]`
+
+Example of usage:
+
+`clear -b` → clears the budget limit set previously
+
+`clear -s 1` → clears entry 1 of the spending list
+
+`clear -r 1` → clears entry 1 of the repayment list
+
+`clear -s` → clears the entire spending list
+
+`clear -r` → clears the entire repayment list
+
+Figure below shows an example for Clearing Data feature: <br>
+
+![image](https://user-images.githubusercontent.com/45732128/98068110-1b7c7100-1e96-11eb-9bc8-82e839885d6a.png)
+
+### 3.3 Viewing Help: `help`
+If you are unsure on how to use a command, or would like to know more uses of a command, you can use this command to get more information.
+
+Format:
+
+`help`
+
+You shall expect to see the following help screen: <br>
+
+![image](https://user-images.githubusercontent.com/45732128/98068989-a8c0c500-1e98-11eb-9b1e-efbd6a1d7b7b.png)
+
+### 3.4. Purging Data: `purge data`
+This command is similar to the `clear` command, except that it allows you to clear all data, including your spending list, repayment list and budget, all at one go.
+
+Format:
+
+`purge data`
+
+### 3.5 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
 Format:
 
 `repayment list`
 
-### 3.3 Viewing Spending List Summary: `spending list`
+### 3.6 Viewing Spending List Summary: `spending list`
 
 This command shows your spending records during a specified period (a particular year or month, or both).
 You can also choose to view your spending records which belong to a specific spending category.
@@ -88,7 +135,7 @@ Examples of usage:
 
 `spending list -a` → lists all entries
 
-### 3.4 Viewing Budget Limit: `view`
+### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
 
 Format:
@@ -107,7 +154,7 @@ Figure below shows an example for Viewing Budget Limit feature (i.e. budget limi
 
 ![Example for Viewing Budget Limit](images/BudgetExample.png)
 
-### 3.5 Setting Budget Limit: `set`
+### 3.8 Setting Budget Limit: `set`
 This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
 the limit or exceeds the limit.
 
@@ -119,7 +166,7 @@ Example of usage:
 
 `set -s SGD 100.0` → sets the budget limit to SGD 100.0
 
-### 3.6 Inputting Repayment Information: `repay`
+### 3.9 Inputting Repayment Information: `repay`
 This command adds a repayment record to your repayment list.
 
 Format:
@@ -135,7 +182,7 @@ Figure below shows an example for Inputting Repayment Information feature: <br>
 
 ![Example for Inputting Repayment Information](images/RepayExample.png)
 
-### 3.7 Converting Currency: `convert`
+### 3.10 Converting Currency: `convert`
 This command converts the currency in your spending list to another currency you prefer.
 
 Format: 
@@ -150,7 +197,7 @@ Figure below shows an example for Converting Currency feature: <br>
 
 ![Example for Converting Currency](images/ConvertExample.png)
 
-### 3.8 Viewing Summary: `summary`
+### 3.11 Viewing Summary: `summary`
 This command generates a statement of your total expenditure during a specific period of time (a particular year or 
 month, or both). Statements based on each spending category will also be shown.
 
@@ -168,7 +215,7 @@ Examples of usage:
 
 `summary -a` → shows the summary of total expenditure
 
-### 3.9 Visualizing Data: `draw` 
+### 3.12 Visualizing Data: `draw` 
 
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
 
@@ -184,7 +231,7 @@ Examples of usage:
 
 `draw 2020 Jun` → shows the graph of Jun 2020
 
-### 3.10 Exporting Data: `export` 
+### 3.13 Exporting Data: `export` 
 
 This command exports the data to an Excel file at the given location.
 
@@ -196,7 +243,7 @@ Example of usage:
 
 `export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
 
-### 3.11 Editing Spending: `edit`
+### 3.14 Editing Spending: `edit`
 This command edits the existing records in the spending list.
 
 Format:
@@ -211,7 +258,7 @@ Figure below shows an example for Editing Spending feature: <br>
 
 ![Example for Editing Spending](images/EditExample.png)
 
-### 3.12 Exiting Program: `logout`
+### 3.15 Exiting Program: `logout`
 This command exists the application.
 
 Format:
@@ -262,7 +309,7 @@ Figure below shows an example of encouragement message. <br>
 | Action | Format | Examples |
 |:------:|--------|----------|
 |add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
-|clear | `clear KEYWORD` | clear 1|
+|clear | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
 |convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
 |draw | `draw [YEAR = current year] [MONTH = current month]`|
 |edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
