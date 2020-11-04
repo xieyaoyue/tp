@@ -13,6 +13,7 @@ import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ExportCommand;
 import seedu.duke.command.HelpCommand;
 import seedu.duke.command.MultipleCommand;
+import seedu.duke.command.PurgeDataCommand;
 import seedu.duke.command.RepayCommand;
 import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.SetBudgetCommand;
@@ -53,6 +54,7 @@ class ParserTest {
         new Rule("draw 2020", DrawCommand.class),
         new Rule("export ./data", ExportCommand.class),
         new Rule("logout", ExitCommand.class),
+        new Rule("purge data", PurgeDataCommand.class),
         new Rule("repay -s CAD 3.14 -t 2020-12-02 --description John", RepayCommand.class),
         new Rule("repayment list", RepaymentListCommand.class),
         new Rule("summary 2020 Jul", SummaryCommand.class),
@@ -133,5 +135,15 @@ class ParserTest {
         assertThrows(MissingOptionException.class, () -> {
             ConvertCommand c = (ConvertCommand) Parser.parseCommand("convert --target USD");
         });
+    }
+
+    @Test
+    void mustGiveFullCommand() {
+        String[] incompleteCommands = {"purge", "repayment", "spending"};
+        for (String c : incompleteCommands) {
+            assertThrows(InvalidCommandException.class, () -> {
+                Parser.parseCommand(c);
+            });
+        }
     }
 }
