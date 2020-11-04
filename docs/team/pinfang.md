@@ -47,7 +47,7 @@ financial situation and track their spending efficiently.
     
     
  * Review/mentoring contributions:
-    1. Reviewing PRs [link](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+    1. Reviewing PRs: [link](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
     2. Reporting bugs to team members
     
  * Contributions beyond the project team:
