@@ -9,7 +9,7 @@ This user guide provides in-depth documentation on the application’s installat
 
 ## **2. Quick Start**
 1. Ensure that you have Java 11 or above installed in your computer.
-2. Download the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Duke` from [here](https://github.com/AY2021S1-CS2113T-F14-2/tp/releases).
 3. Copy the file to a home folder you would like to use.
 4. Open a terminal in that home folder and enter java -jar duke.jar to begin.
 5. Type the desired command and press Enter to execute it. Tips: entering help will display the help window with a list of commands that could be executed.
@@ -42,6 +42,7 @@ letter is capitalised. Example: `Jul` for July or `Oct` for October.
     4. Health
     5. Transportation
     6. Utilities
+    
 If you categorise an item in a category that is not from these six, the item will be categorised as Others.
     
 ### 3.1 Adding Spending: `add`
@@ -61,8 +62,6 @@ This command shows your repayment list.
 Format:
 
 `repayment list`
-
-**Important: storage of repayment list is coming soon.**
 
 ### 3.3 Viewing Spending List Summary: `spending list`
 
@@ -161,15 +160,15 @@ Format:
 
 Examples of usage:
 
-`summary` → shows summary of current month **(coming soon)**
+`summary` → shows summary of current month 
 
-`summary 2020` → shows summary of a specific year **(coming soon)**
+`summary 2020` → shows summary of a specific year 
 
 `summary 2020 Oct` → shows summary of a specific year and month
 
 `summary -a` → shows the summary of total expenditure
 
-### 3.9 Visualizing data: `draw` **(coming soon)**
+### 3.9 Visualizing Data: `draw` 
 
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
 
@@ -185,7 +184,7 @@ Examples of usage:
 
 `draw 2020 Jun` → shows the graph of Jun 2020
 
-### 3.10 Exporting data: `export` **(coming soon)**
+### 3.10 Exporting Data: `export` 
 
 This command exports the data to an Excel file at the given location.
 
@@ -197,7 +196,7 @@ Example of usage:
 
 `export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
 
-### 3.11 Editing spending: `edit`
+### 3.11 Editing Spending: `edit`
 This command edits the existing records in the spending list.
 
 Format:
@@ -212,7 +211,7 @@ Figure below shows an example for Editing Spending feature: <br>
 
 ![Example for Editing Spending](images/EditExample.png)
 
-### 3.12 Exiting program: `logout`
+### 3.12 Exiting Program: `logout`
 This command exists the application.
 
 Format:
@@ -260,20 +259,20 @@ Figure below shows an example of encouragement message. <br>
 
 ## **6. Command Summary**
 
-Action | Format & Examples 
---- | ---
-add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` <br> e.g. add -c Food -d chicken rice -s SGD 5.0
-clear (coming soon) | `clear KEYWORD` <br> e.g. clear 1
-convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` <br> e.g. convert -s SGD -t USD
-draw (coming soon) | `draw [YEAR = current year] [MONTH = current month]`
-edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` <br> e.g. edit 1 -d bubble tea
-export (coming soon) | `export PATH`
-help | `help`
-logout | `logout`
-purge data (coming soon) | `purge data`
-repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` <br> e.g. repay -d Johnny -s SGD 5.00 -t 2020-12-02
-repayment list | `repayment list`
-set | `set -s CURRENCY AMOUNT` <br> e.g. set -s SGD 100.00
-view | `view`
-spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` <br> e.g. spending list 2020 Jul
-summary | `summary [YEAR = current year] [MONTH = current month] [-a]` <br> e.g. summary 2020 Jul 
+| Action | Format | Examples |
+|:------:|--------|----------|
+|add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
+|clear | `clear KEYWORD` | clear 1|
+|convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
+|draw | `draw [YEAR = current year] [MONTH = current month]`|
+|edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
+|export | `export PATH`|
+|help | `help`|
+|logout | `logout`|
+|purge data | `purge data`|
+|repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
+|repayment list | `repayment list`|
+|set | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
+|spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|summary | `summary [YEAR = current year] [MONTH = current month] [-a]` | summary 2020 Jul |
+|view | `view`|

@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.Budget;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
+import seedu.duke.utilities.DecimalFormatter;
 import seedu.duke.utilities.SpendingListCategoriser;
 import seedu.duke.ui.Ui;
 
@@ -41,8 +42,10 @@ public class AddCommand extends Command {
             updateAmount();
             updateCurrency();
         }
-        if (amount >= 0) {
+        if (amount >= 0.01) {
             if (currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY")) {
+                DecimalFormatter decimalFormatter = new DecimalFormatter();
+                amount = decimalFormatter.convert(amount);
                 spendingList.addItem(description, currency, amount, category);
                 ui.printAdd(spendingList);
             } else {
@@ -68,13 +71,21 @@ public class AddCommand extends Command {
     //@@author killingbear999
     private void updateAmount() {
         if (currency.equals("USD") && defaultCurrency.equals("SGD")) {
-            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][1]) * 100.0) / 100.0;
+            amount = amount * Double.parseDouble(exchangeRates[1][1]);
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
+            amount = decimalFormatter.convert(amount);
         } else if (currency.equals("CNY") && defaultCurrency.equals("SGD")) {
-            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][3]) * 100.0) / 100.0;
+            amount = amount * Double.parseDouble(exchangeRates[1][3]);
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
+            amount = decimalFormatter.convert(amount);
         } else if (currency.equals("SGD") && defaultCurrency.equals("USD")) {
-            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][0]) * 100.0) / 100.0;
+            amount = amount * Double.parseDouble(exchangeRates[1][0]);
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
+            amount = decimalFormatter.convert(amount);
         } else if (currency.equals("SGD") && defaultCurrency.equals("CNY")) {
-            amount = Math.round(amount * Double.parseDouble(exchangeRates[1][2]) * 100.0) / 100.0;
+            amount = amount * Double.parseDouble(exchangeRates[1][2]);
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
+            amount = decimalFormatter.convert(amount);
         }
     }
     
