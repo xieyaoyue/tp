@@ -39,44 +39,41 @@ public class Ui {
     private static final String[][] TABLE_OF_COMMANDS = {
             {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
             {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
-            {"clear", "clear INDEX", "clear 1"},
-            {"", "OR clear all", ""},
+            {"clear", "clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]", "clear -s 1"},
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
             {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
-            {"edit", "edit INDEX [-c CATEGORY] [-d DESCRIPTION] [-s SPENDING]", "edit 1 -s SGD 4.00"},
+            {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
+            {"", "[-s NEW_SPENDING]", ""},
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
             {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
-            {"spending", "spending list", ""},
-            {"list", "OR spending list YEAR", "list 2020"},
-            {"", "OR spending list YEAR MONTH", "list 2020 Jul"},
-            {"", "OR spending list -c CATEGORY", "spending list -c food"},
-            {"", "OR spending list YEAR -c CATEGORY", "spending list 2020 -c food"},
-            {"", "OR spending list YEAR MONTH -c CATEGORY", "spending list 2020 Jul -c food"},
-            {"", "OR spending list -a", ""},
-            {"summary", "summary", ""},
-            {"", "OR summary YEAR", "summary 2020"},
-            {"", "OR summary YEAR MONTH", "summary 2020 Jul"},
-            {"", "OR summary -a", ""},
+            {"spending", "spending list [YEAR = current year]", "spending list"},
+            {"list", "[MONTH = current month] [-c CATEGORY] [-a]", "OR spending list 2020 -food"},
+            {"summary", "summary [YEAR = current year] [MONTH = current month]", "summary"},
+            {"", "[-a]", "OR summary 2020"},
             {"purge data", "purge data", ""}
     };
 
+    //@@author Wu-Haitao
     public Ui() {
         this(new Scanner(System.in), System.out);
     }
 
+    //@@author Wu-Haitao
     public Ui(Scanner in, PrintStream out) {
         this.in = in;
         this.out = out;
     }
-    
+
+    //@@author Wu-Haitao
     public String getUserInput() {
         return in.nextLine();
     }
 
+    //@@author xieyaoyue
     public void printEncouragementMessage() {
         Random rand = new Random();
         int randInt = rand.nextInt(4);
@@ -86,23 +83,27 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printWelcomeMessage() {
         drawSeparateLine();
         out.println(LOGO);
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printWelcomeMessage(String filePath) {
         printWelcomeMessage();
         out.println("Local file path: " + filePath);
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printGoodbyeMessage() {
         out.println("See you next time!");
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     private void drawSeparateLine() {
         out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
@@ -126,55 +127,71 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author xieyaoyue
     private void printTopBottomBorder() {
         out.println(BORDER_CORNER + BORDER_HORIZONTAL.repeat(TABLE_SIZE - 2) + BORDER_CORNER);
     }
 
+    //@@author xieyaoyue
     private void printWithinTableBorder() {
         System.out.println(BORDER_HORIZONTAL.repeat(TABLE_SIZE));
     }
 
+    //@@author xieyaoyue
     public void printHelp() {
         out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 18; i++) {
             out.format("%1s%-15s%1s%-55s%1s%-41s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
                     BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
                     BORDER_VERTICAL);
-            if (i == 0 || i == 1 || (i >= 3 && i <= 12) || i == 19 || i == 23) {
+            if (i <= 4 || (i >= 6 && i <= 12) || i == 14 || i == 16) {
                 printWithinTableBorder();
             }
         }
         printTopBottomBorder();
+        out.println(" ");
+        out.println("Note: If you see an equal sign in any of the option within the 'FORMAT' section, "
+                + "this is the default parameter"
+                + "\nwhich would be used even if you did not enter the parameter corresponding to the "
+                + "option in your command. "
+                + "\nFor example, if you enter " + '"' + "spending list" + '"' + " as a command, you "
+                + "would be shown a list of spending entries of the"
+                + "\ncurrent month.");
     }
 
+    //@@author Wu-Haitao
     public void printClearIndex(Item item) {
         out.println("You've deleted the record:");
         out.println(item);
         drawSeparateLine();
     }
 
+    //@@author Wu-Haitao
     public void printClearIndex(Repay repaymentEntry) {
         out.println("You've deleted this entry in the repayment list:");
         out.println(repaymentEntry);
         drawSeparateLine();
     }
 
-    public void printClearAll() {
-        out.println("You've deleted all the records.");
-        drawSeparateLine();
-    }
-
+    //@@author Wu-Haitao
     public void printClearAllSpendingList() {
         out.println("You've deleted all the records in the spending list.");
         drawSeparateLine();
     }
 
+    //@@author xieyaoyue
     public void printClearAllRepaymentList() {
         out.println("You've deleted all the entries in the repayment list.");
         drawSeparateLine();
     }
 
+    public void printClearBudget() {
+        out.println("You've cleared your budget limit.");
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
     public void printAdd(SpendingList spendingList) {
         out.println("You've added the record:");
         out.println(spendingList.getItem(spendingList.getListSize() - 1));
@@ -211,7 +228,7 @@ public class Ui {
         out.printf("%-20s $%.2f\n", category, amount);
     }
 
-    //@@author killingbear999
+    //@@author Wu-Haitao
     public void printErrorMessage(String message) {
         out.println(message);
         drawSeparateLine();
@@ -237,8 +254,10 @@ public class Ui {
         drawSeparateLine();
     }
 
+    //@@author xieyaoyue
     public void printPurgeData() {
         out.println("All data are deleted.");
+        drawSeparateLine();
     }
 
     //@@author pinfang
@@ -325,7 +344,7 @@ public class Ui {
     
     //@@author killingbear999
     public void printInvalidDate() {
-        out.println("Sorry, the date you input is invalid. Please try again");
+        out.println("Sorry, the date you input is invalid. Please try again.");
         drawSeparateLine();
     }
     
@@ -346,6 +365,13 @@ public class Ui {
     public void printInvalidName() {
         out.println("Sorry, the name you input is invalid.");
         out.println("Name containing only alphabets will be considered valid.");
+        drawSeparateLine();
+    }
+    
+    //@@author killingbear999
+    public void printInvalidCurrency() {
+        out.println("Sorry, the system  only supports currency conversion for SGD to USD, or USD to SGD, "
+                            + "or SGD to CNY, or CNY to SGD.");
         drawSeparateLine();
     }
 }
