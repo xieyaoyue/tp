@@ -197,11 +197,10 @@ public abstract class Parser {
         case "repay":
             return new RepayParser().parse(opts);
         case "purge":
-            if (opts.length != 1 || !opts[0].equals("data")) {
-                throw new InvalidCommandException();
-            }
+            checkRemainingCommand(opts, "data");
             return new PurgeDataCommand();
         case "repayment":
+            checkRemainingCommand(opts, "list");
             return new RepaymentListCommand();
         case "set":
             return new SetParser().parse(opts);
@@ -212,6 +211,13 @@ public abstract class Parser {
         case "view":
             return new ViewBudgetCommand();
         default:
+            throw new InvalidCommandException();
+        }
+    }
+
+    private static void checkRemainingCommand(String[] args, String remainingCommand) throws InvalidCommandException {
+        String[] c = remainingCommand.strip().split(" ");
+        if (args.length != c.length || !Arrays.equals(c, args)) {
             throw new InvalidCommandException();
         }
     }
