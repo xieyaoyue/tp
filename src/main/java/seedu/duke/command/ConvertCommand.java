@@ -4,6 +4,10 @@ import seedu.duke.data.Budget;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.Item;
 import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.EmptyListException;
+import seedu.duke.exceptions.InvalidCurrencyException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
+import seedu.duke.exceptions.InvalidOutputCurrencyException;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DecimalFormatter;
 
@@ -61,47 +65,53 @@ public class ConvertCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
+            InvalidInputCurrencyException, InvalidOutputCurrencyException, InvalidCurrencyException,
+            EmptyListException {
         if (outputCurrency.equals("SGD") || outputCurrency.equals("USD") || outputCurrency.equals("CNY")) {
             if (inputCurrency.equals("SGD") || inputCurrency.equals("USD") || inputCurrency.equals("CNY")) {
                 convert(spendingList, ui);
             } else {
-                ui.printInvalidInputCurrency();
+                throw new InvalidInputCurrencyException();
             }
         } else {
-            ui.printInvalidOutputCurrency();
+            throw new InvalidOutputCurrencyException();
         }
     }
     
-    private void convert(SpendingList spendingList, Ui ui) throws IOException {
+    private void convert(SpendingList spendingList, Ui ui) throws IOException, InvalidCurrencyException,
+            EmptyListException {
         int size = spendingList.getListSize();
+        if (size == 0) {
+            throw new EmptyListException();
+        }
         String defaultCurrency = spendingList.getItem(0).getSymbol();
-        if (size > 0) {
-            if (inputCurrency.equals(defaultCurrency)) {
-                logger.log(Level.FINE, "going to start processing");
-                newSpendingList = spendingList.getSpendingList();
-                currencies = identifyCurrency();
-                findExchangeRate();
-                for (int i = 0; i < newSpendingList.size(); i++) {
-                    currentString = newSpendingList.get(i);
-                    if (!currentString.getSymbol().equals(outputCurrency)) {
-                        updateNewAmount(currentString);
-                        updateCurrency(currentString);
-                    }
-                }
-                if (isValid()) {
-                    ui.printConvertCurrency(outputCurrency);
-                } else {
-                    ui.printInvalidCurrency();
-                }
-                spendingList.updateSpendingList();
-                updateBudgetList();
-                logger.log(Level.FINE, "end of processing");
+        if (inputCurrency.equals(defaultCurrency)) {
+            logger.log(Level.FINE, "going to start processing");
+            newSpendingList = spendingList.getSpendingList();
+            currencies = identifyCurrency();
+            findExchangeRate();
+            updateList();
+            if (isValid()) {
+                ui.printConvertCurrency(outputCurrency);
             } else {
-                ui.printInvalidConversion(defaultCurrency);
+                throw new InvalidCurrencyException();
             }
+            spendingList.updateSpendingList();
+            updateBudgetList();
+            logger.log(Level.FINE, "end of processing");
         } else {
-            ui.printEmptyList();
+            ui.printInvalidConversion(defaultCurrency);
+        }
+    }
+    
+    private void updateList() {
+        for (int i = 0; i < newSpendingList.size(); i++) {
+            currentString = newSpendingList.get(i);
+            if (!currentString.getSymbol().equals(outputCurrency)) {
+                updateNewAmount(currentString);
+                updateCurrency(currentString);
+            }
         }
     }
     
