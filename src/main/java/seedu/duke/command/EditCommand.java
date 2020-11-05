@@ -2,10 +2,11 @@ package seedu.duke.command;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
-import seedu.duke.exceptions.InvalidAmountException;
-import seedu.duke.exceptions.InvalidNumberException;
+import seedu.duke.exceptions.EmptyListException;
 import seedu.duke.exceptions.InvalidNameException;
 import seedu.duke.exceptions.InvalidInputCurrencyException;
+import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.InvalidNumberException;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DecimalFormatter;
 
@@ -29,9 +30,12 @@ public class EditCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
-            InvalidAmountException, InvalidNumberException, InvalidInputCurrencyException, InvalidNameException {
-       
-        if (index >= spendingList.getListSize()) {
+            InvalidAmountException, InvalidNumberException, InvalidInputCurrencyException, InvalidNameException,
+            EmptyListException {
+    
+        if (spendingList.getListSize() == 0) {
+            throw new EmptyListException();
+        } else if (index >= spendingList.getListSize() && spendingList.getListSize() != 0) {
             throw new InvalidNumberException();
         }
         

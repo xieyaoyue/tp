@@ -2,7 +2,9 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.SpendingList;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
+import seedu.duke.exceptions.InvalidNameException;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
