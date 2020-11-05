@@ -2,6 +2,9 @@ package seedu.duke.command;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.InvalidNameException;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DateTimeFormatter;
 import seedu.duke.utilities.DecimalFormatter;
@@ -23,28 +26,26 @@ public class RepayCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
+            InvalidDateException, InvalidAmountException, InvalidNameException {
         DateTimeFormatter dateTimeFormatter = new DateTimeFormatter("yyyy-MM-dd");
-        if (repayment >= 0.01) {
-            if (dateTimeFormatter.isValid(deadline)) {
-                repay(repaymentList, ui);
-            } else {
-                ui.printInvalidDate();
-            }
-        } else {
-            ui.printInvalidAmount();
+        if (repayment < 0.01) {
+            throw new InvalidAmountException();
         }
+        if (!dateTimeFormatter.isValid(deadline)) {
+            throw new InvalidDateException();
+        }
+        repay(repaymentList, ui);
     }
     
-    private void repay(RepaymentList repaymentList, Ui ui) throws IOException {
-        if (isValidName()) {
-            DecimalFormatter decimalFormatter = new DecimalFormatter();
-            repayment = decimalFormatter.convert(repayment);
-            repaymentList.addItem(name, currency, repayment, deadline);
-            ui.printAddRepay(repaymentList);
-        } else {
-            ui.printInvalidName();
+    private void repay(RepaymentList repaymentList, Ui ui) throws IOException, InvalidNameException {
+        if (!isValidName()) {
+            throw new InvalidNameException();
         }
+        DecimalFormatter decimalFormatter = new DecimalFormatter();
+        repayment = decimalFormatter.convert(repayment);
+        repaymentList.addItem(name, currency, repayment, deadline);
+        ui.printAddRepay(repaymentList);
     }
     
     private boolean isValidName() {

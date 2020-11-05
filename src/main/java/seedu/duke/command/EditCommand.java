@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.*;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DecimalFormatter;
 
@@ -24,22 +25,48 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
-        if (amount > 0.01) {
-            if (description != null) {
-                spendingList.editItemDescription(index, description);
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
+            InvalidAmountException, InvalidNumberException, InvalidInputCurrencyException, InvalidNameException {
+    
+        if (amount != null && amount < 0.01) {
+            throw new InvalidAmountException();
+        }
+       
+        if (index >= spendingList.getListSize()) {
+            throw new InvalidNumberException();
+        }
+    
+        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+            throw new InvalidInputCurrencyException();
+        }
+        
+        if (description != null) {
+            if (!isValidName()) {
+                throw new InvalidNameException();
             }
-            if (amount != null) {
+            spendingList.editItemDescription(index, description);
+            ui.printEdit(spendingList, index);
+        }
+        
+        if (amount != null) {
+            String defaultCurrency = spendingList.getItem(0).getSymbol();
+            if (currency.equals(defaultCurrency)) {
                 DecimalFormatter decimalFormatter = new DecimalFormatter();
                 amount = decimalFormatter.convert(amount);
                 spendingList.editItemAmount(index, amount);
+                ui.printEdit(spendingList, index);
+            } else {
+                ui.printInvalidConversion(defaultCurrency);
             }
-            if (category != null) {
-                spendingList.editItemCategory(index, category);
-            }
-            ui.printEdit(spendingList, index);
-        } else {
-            ui.printInvalidAmount();
         }
+        
+        if (category != null) {
+            spendingList.editItemCategory(index, category);
+            ui.printEdit(spendingList, index);
+        }
+    }
+    
+    private boolean isValidName() {
+        return ((description != null) && (!description.equals("")) && (description.matches("^[a-zA-Z]*$")));
     }
 }

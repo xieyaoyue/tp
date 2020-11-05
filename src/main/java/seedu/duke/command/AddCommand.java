@@ -3,6 +3,9 @@ package seedu.duke.command;
 import seedu.duke.data.Budget;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
+import seedu.duke.exceptions.InvalidNameException;
 import seedu.duke.utilities.DecimalFormatter;
 import seedu.duke.utilities.SpendingListCategoriser;
 import seedu.duke.ui.Ui;
@@ -32,7 +35,8 @@ public class AddCommand extends Command {
     };
     
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
+            InvalidInputCurrencyException, InvalidAmountException, InvalidNameException {
         logger.log(Level.FINE, "going to add item");
         int size = spendingList.getListSize();
         if (size != 0) {
@@ -42,26 +46,32 @@ public class AddCommand extends Command {
             updateAmount();
             updateCurrency();
         }
-        if (amount >= 0.01) {
-            if (currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY")) {
-                DecimalFormatter decimalFormatter = new DecimalFormatter();
-                amount = decimalFormatter.convert(amount);
-                spendingList.addItem(description, currency, amount, category);
-                ui.printAdd(spendingList);
-            } else {
-                ui.printInvalidInputCurrency();
-            }
-        } else {
-            ui.printInvalidAmount();
+        if (!isValidName()) {
+            throw new InvalidNameException();
         }
+        if (amount < 0.01) {
+            throw new InvalidAmountException();
+        }
+        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+            throw new InvalidInputCurrencyException();
+        }
+        
+        DecimalFormatter decimalFormatter = new DecimalFormatter();
+        amount = decimalFormatter.convert(amount);
+        spendingList.addItem(description, currency, amount, category);
+        ui.printAdd(spendingList);
+
+        
         if (size > 1) {
             SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
             spendingListCategoriser.execute(spendingList);
         }
+        
         if (size % 4 == 0) {
             EncouragementCommand encouragementCommand = new EncouragementCommand();
             encouragementCommand.execute(spendingList, null, ui);
         }
+        
         if (Budget.hasBudget) {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, null, ui);
@@ -89,7 +99,13 @@ public class AddCommand extends Command {
         }
     }
     
+    //@@author killingbear999
     private void updateCurrency() {
         currency = defaultCurrency;
+    }
+    
+    //@@author killingbear999
+    private boolean isValidName() {
+        return ((description != null) && (!description.equals("")) && (description.matches("^[a-zA-Z]*$")));
     }
 }
