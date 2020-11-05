@@ -2,7 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.InvalidNumberException;
+import seedu.duke.exceptions.InvalidNameException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DecimalFormatter;
 
