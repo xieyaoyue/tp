@@ -22,7 +22,7 @@ financial situation and track their spending efficiently.
   13. `SpendingList` class (some functions and methods)
   14. `AddCommand` class (some functions and methods)
   
-  Refer these links for more information: 
+  Refer this link for more information: 
   [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=killingbear999&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * Enhancement implementation:
@@ -50,9 +50,17 @@ financial situation and track their spending efficiently.
 
 * Review/mentoring contributions:
   1. Reviews PRs
+  
+     Refer this link for more information:
+     [PRs Reviewed](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akillingbear999)
+     
   2. Comments in the issue trackers
   3. Tests and reports bugs
 
 * Contributions beyond the project team:
   1. Bugs reported in PE dry run and actual PE
+  
+     Refer these links for more information:
+     [PE dry run](https://github.com/killingbear999/ped/issues)
+  
   2. DG reviews
