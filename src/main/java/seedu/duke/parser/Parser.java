@@ -16,6 +16,7 @@ import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.exceptions.InvalidIndexException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
@@ -160,8 +161,8 @@ public abstract class Parser {
             return null;
         }
         int index = Integer.parseInt(s);
-        if (index < 0) {
-            throw new IndexOutOfBoundsException();
+        if (index <= 0) {
+            throw new InvalidIndexException();
         }
         return index;
     }
