@@ -25,7 +25,7 @@ public class ConvertCommand extends Command {
     /** SGD to USD; USD to SGD; SGD to CNY; CNY to SGD. */
     private final String[][] exchangeRates = {
             {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
-            {"0.74", "1.36", "4.99", "0.20"},
+            {"0.74", "1.35135", "5.00", "0.20"},
     };
 
 

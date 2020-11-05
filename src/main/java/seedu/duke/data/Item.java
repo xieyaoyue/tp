@@ -70,6 +70,6 @@ public class Item {
     }
 
     public String toString() {
-        return date + " [" + category + "] " + description + " " + symbol + " " + String.format("%.2f", amount);
+        return date + " [" + category + "] " + description + " " + symbol + " " + String.format("%.4f", amount);
     }
 }
