@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
-import seedu.duke.exceptions.InvalidMonthException;
+import seedu.duke.exceptions.*;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -21,7 +21,8 @@ public class MultipleCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
-        InvalidMonthException {
+            InvalidMonthException, InvalidIndexException, InvalidClearRepaymentException, InvalidClearSpendingException,
+            InvalidClearBudgetException {
         for (Command c : commands) {
             c.execute(spendingList, repaymentList, ui);
         }
