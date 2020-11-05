@@ -4,6 +4,7 @@ import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DateTimeFormatter;
+import seedu.duke.utilities.DecimalFormatter;
 
 import java.io.IOException;
 
@@ -37,7 +38,8 @@ public class RepayCommand extends Command {
     
     private void repay(RepaymentList repaymentList, Ui ui) throws IOException {
         if (isValidName()) {
-            repayment = Math.round(repayment * 100.0) / 100.0;
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
+            repayment = decimalFormatter.convert(repayment);
             repaymentList.addItem(name, currency, repayment, deadline);
             ui.printAddRepay(repaymentList);
         } else {
