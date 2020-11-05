@@ -27,17 +27,9 @@ public class EditCommand extends Command {
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
             InvalidAmountException, InvalidNumberException, InvalidInputCurrencyException, InvalidNameException {
-    
-        if (amount != null && amount < 0.01) {
-            throw new InvalidAmountException();
-        }
        
         if (index >= spendingList.getListSize()) {
             throw new InvalidNumberException();
-        }
-    
-        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
-            throw new InvalidInputCurrencyException();
         }
         
         if (description != null) {
@@ -49,6 +41,12 @@ public class EditCommand extends Command {
         }
         
         if (amount != null) {
+            if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+                throw new InvalidInputCurrencyException();
+            }
+            if (amount < 0.01) {
+                throw new InvalidAmountException();
+            }
             String defaultCurrency = spendingList.getItem(0).getSymbol();
             if (currency.equals(defaultCurrency)) {
                 DecimalFormatter decimalFormatter = new DecimalFormatter();
