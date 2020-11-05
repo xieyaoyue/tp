@@ -41,11 +41,11 @@ public class ClearParser extends Parser {
 
         Integer index = clearList(line, "r");
         if (index != null) {
-            mc.addCommand(new ClearRepaymentListCommand(false, index));
+            mc.addCommand(new ClearRepaymentListCommand(index == -1, index));
         }
         index = clearList(line, "s");
         if (index != null) {
-            mc.addCommand(new ClearSpendingListCommand(false, index));
+            mc.addCommand(new ClearSpendingListCommand(index == -1, index));
         }
         if (line.hasOption("b")) {
             mc.addCommand(new ClearBudgetCommand());
@@ -57,11 +57,24 @@ public class ClearParser extends Parser {
         return mc;
     }
 
+    /**
+     * clearList parses line with flag for 0..1 argument given
+     * @param line to check flags with
+     * @param flag for command
+     * @return null for option not selected, -1 for clear all, >=0 for clear 1
+     * @throws InvalidCommandException if argument is given is invalid index
+     */
     private Integer clearList(CommandLine line, String flag) throws InvalidCommandException {
         if (!line.hasOption(flag)) {
             return null;
         }
+
         String indexString = line.getOptionValue(flag);
+        boolean isClearAll = indexString == null;
+        if (isClearAll) {
+            return -1;
+        }
+
         Integer index = getIndex(indexString);
         if (index == null) {
             throw new InvalidCommandException();

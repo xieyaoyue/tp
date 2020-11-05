@@ -41,7 +41,7 @@ public class Ui {
             {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
             {"clear", "clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]", "clear -s 1"},
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
-            {"draw", "draw [YEAR = current year] [MONTH = current month]", "draw 2020 Jun"},
+            {"draw", "draw [YEAR] [MONTH]", "draw 2020 Jun"},
             {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
             {"", "[-s NEW_SPENDING]", ""},
             {"export", "export PATH", "export F:\\MyFolder"},
@@ -50,10 +50,10 @@ public class Ui {
             {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
-            {"spending", "spending list [YEAR = current year]", "spending list"},
-            {"list", "[MONTH = current month] [-c CATEGORY] [-a]", "OR spending list 2020 -food"},
-            {"summary", "summary [YEAR = current year] [MONTH = current month]", "summary"},
-            {"", "[-a]", "OR summary 2020"},
+            {"spending", "spending list", "spending list"},
+            {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -food"},
+            {"summary", "summary", "summary"},
+            {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
             {"purge data", "purge data", ""}
     };
 
@@ -150,14 +150,6 @@ public class Ui {
             }
         }
         printTopBottomBorder();
-        out.println(" ");
-        out.println("Note: If you see an equal sign in any of the option within the 'FORMAT' section, "
-                + "this is the default parameter"
-                + "\nwhich would be used even if you did not enter the parameter corresponding to the "
-                + "option in your command. "
-                + "\nFor example, if you enter " + '"' + "spending list" + '"' + " as a command, you "
-                + "would be shown a list of spending entries of the"
-                + "\ncurrent month.");
     }
 
     //@@author Wu-Haitao
@@ -313,6 +305,13 @@ public class Ui {
         } else {
             out.println("Sorry, generation failed.");
         }
+        drawSeparateLine();
+    }
+
+    //@@author Wu-Haitao
+    public void printOpenFileFailedMessage() {
+        out.println("Sorry, the file couldn't be opened.");
+        out.println("Please try find the file in the application folder and open it manually.");
         drawSeparateLine();
     }
     
