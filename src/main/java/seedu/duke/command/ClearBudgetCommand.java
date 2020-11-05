@@ -13,8 +13,9 @@ public class ClearBudgetCommand extends Command {
     private static Logger logger = Logger.getLogger("ClearBudgetCommand");
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws InvalidClearBudgetException {
-        if(!Budget.hasBudget) {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws
+            InvalidClearBudgetException {
+        if (!Budget.hasBudget) {
             throw new InvalidClearBudgetException();
         }
         logger.log(Level.FINE, "going to clear budget");

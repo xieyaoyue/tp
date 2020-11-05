@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.data.Budget;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.InvalidClearBudgetException;
+import seedu.duke.exceptions.InvalidClearRepaymentException;
+import seedu.duke.exceptions.InvalidClearSpendingException;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -13,7 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class PurgeDataCommandTest {
     @Test
-    void execute() throws IOException {
+    void execute() throws IOException, InvalidClearRepaymentException, InvalidClearSpendingException,
+            InvalidClearBudgetException {
         SpendingList spendingList = new SpendingList();
         spendingList.addItem("buy chicken rice", "$", 3.0);
         spendingList.addItem("buy sushi", "$", 5.1);

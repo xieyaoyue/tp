@@ -16,7 +16,8 @@ public class PurgeDataCommand extends Command {
     private static Logger logger = Logger.getLogger("PurgeDataCommand");
 
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
-            InvalidIndexException, InvalidClearRepaymentException, InvalidClearBudgetException, InvalidClearSpendingException {
+            InvalidIndexException, InvalidClearRepaymentException, InvalidClearBudgetException,
+            InvalidClearSpendingException {
         logger.log(Level.FINE, "going to purge data");
         ClearSpendingListCommand clearSpendingListCommand = new ClearSpendingListCommand(true, 0);
         ClearRepaymentListCommand clearRepaymentListCommand = new ClearRepaymentListCommand(true, 0);
