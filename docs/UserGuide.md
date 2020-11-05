@@ -1,5 +1,49 @@
-* Table of Contents
-{:toc}
+#Cent wise Dollar wise
+![image]()
+
+## Table of Contents
+1. [Introduction](#1-introduction)
+2. [QuickStart](#2-quick-start)
+3. [CommandFeatures](#3-command-features)
+    
+    3.1 [AddingSpending: `add`](#31-adding-spending-add)
+    
+    3.2 [ClearingData: `clear`](#32-clearing-data-clear)
+
+    3.3 [ViewingHelp: `help`](#33-viewing-help-help)
+
+    3.4 [PurgingData: `purge`](#34-purging-data-purge-data)
+
+    3.5 [ViewingRepaymentListSummary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)
+
+    3.6 [ViewingSpendingListSummary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)
+
+    3.7 [ViewingBudgetLimit: `view`](#37-viewing-budget-limit-view)
+
+    3.8 [SettingBudgetLimit: `set`](#38-setting-budget-limit-set)
+
+    3.9 [InputtingRepaymentInformation: `repay`](#39-inputting-repayment-information-repay)
+
+    3.10 [ConvertingCurrency: `convert`](#310-converting-currency-convert)
+
+    3.11 [ViewingSummary: `summary`](#311-viewing-summary-summary)
+
+    3.12 [VisualizingData: `draw`](#312-visualizing-data-draw)
+
+    3.13 [ExportingData: `export`](#313-exporting-data-export)
+
+    3.14 [EditingSpending: `edit`](#314-editing-spending-edit)
+    
+    3.15 [ExitingProgram: `logout`](#315-exiting-program-logout)
+4. [Useful Hidden Features](#4-useful-hidden-features)
+
+    4.1 [Reminder](#41-reminder)
+    
+    4.2 [Warning](#42-warning)
+    
+    4.3 [Encouragement](#43-encouragement)
+5. [FAQ](#5-faq)
+6. [Command Summary](#6-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,8 +86,8 @@ letter is capitalised. Example: `Jul` for July or `Oct` for October.
     4. Health
     5. Transportation
     6. Utilities
-    
-If you categorise an item in a category that is not from these six, the item will be categorised as Others.
+
+Note: If you categorise an item in a category that is not from these six, the item will be categorised as Others.
     
 ### 3.1 Adding Spending: `add`
 This command allows you to add a spending record to the application.
@@ -221,7 +265,7 @@ This command generates graphs showing your spending records of a particular year
 
 Format: 
 
-`draw [YEAR = current year] [MONTH = current month]`
+`draw [YEAR] [MONTH]`
 
 Examples of usage: 
 
@@ -311,7 +355,7 @@ Figure below shows an example of encouragement message. <br>
 |add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
 |clear | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
 |convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
-|draw | `draw [YEAR = current year] [MONTH = current month]`|
+|draw | `draw [YEAR] [MONTH]`|
 |edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
 |export | `export PATH`|
 |help | `help`|
@@ -320,6 +364,6 @@ Figure below shows an example of encouragement message. <br>
 |repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
 |repayment list | `repayment list`|
 |set | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
-|spending list | `spending list [YEAR = current year] [MONTH = current month] [-c CATEGORY] [-a]` | spending list 2020 Jul|
-|summary | `summary [YEAR = current year] [MONTH = current month] [-a]` | summary 2020 Jul |
+|spending list | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|summary | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
 |view | `view`|
