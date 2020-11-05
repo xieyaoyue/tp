@@ -32,10 +32,10 @@ public class ClearRepaymentListCommand extends Command {
         }
         logger.log(Level.FINE, "going to clear repayment list");
         if (!isClearAll) {
-            int beforeClearSize = spendingList.getListSize();
+            int beforeClearSize = repaymentList.getListSize();
             ui.printClearIndex(repaymentList.getEntry(clearIndex - 1));
             repaymentList.deleteRepaymentEntry(clearIndex - 1);
-            int afterClearSize = spendingList.getListSize();
+            int afterClearSize = repaymentList.getListSize();
             assert beforeClearSize - afterClearSize == 1 : "One item should be cleared from repayment list";
         } else {
             repaymentList.clearAllEntries();
