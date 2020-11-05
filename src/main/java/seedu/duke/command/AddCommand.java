@@ -34,6 +34,7 @@ public class AddCommand extends Command {
             {"0.74", "1.36", "4.99", "0.20"},
     };
     
+    //@@author killingbear999
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
             InvalidInputCurrencyException, InvalidAmountException, InvalidNameException {
@@ -106,6 +107,6 @@ public class AddCommand extends Command {
     
     //@@author killingbear999
     private boolean isValidName() {
-        return ((description != null) && (!description.equals("")) && (description.matches("^[a-zA-Z]*$")));
+        return description.matches(".*[a-zA-Z]+.*");
     }
 }

@@ -49,6 +49,6 @@ public class RepayCommand extends Command {
     }
     
     private boolean isValidName() {
-        return ((name != null) && (!name.equals("")) && (name.matches("^[a-zA-Z]*$")));
+        return name.matches(".*[a-zA-Z]+.*");
     }
 }

@@ -68,6 +68,6 @@ public class EditCommand extends Command {
     }
     
     private boolean isValidName() {
-        return ((description != null) && (!description.equals("")) && (description.matches("^[a-zA-Z]*$")));
+        return description.matches(".*[a-zA-Z]+.*");
     }
 }
