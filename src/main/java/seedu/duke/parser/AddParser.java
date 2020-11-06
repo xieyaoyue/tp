@@ -4,7 +4,6 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.ParseException;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
-import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidFormatException;
 
 public class AddParser extends Parser {
