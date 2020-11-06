@@ -38,7 +38,7 @@ public class MultipleCommand extends Command {
             InvalidMonthException, InvalidIndexException, InvalidClearRepaymentException, InvalidClearSpendingException,
             InvalidClearBudgetException, InvalidAmountException, InvalidInputCurrencyException,
             InvalidOutputCurrencyException, InvalidCurrencyException, EmptyListException, InvalidDateException,
-            InvalidNameException, InvalidBudgetException, InvalidNumberException, EmptyCommandException{
+            InvalidNameException, InvalidBudgetException, InvalidNumberException, EmptyCommandException {
         for (Command c : commands) {
             c.execute(spendingList, repaymentList, ui);
         }
