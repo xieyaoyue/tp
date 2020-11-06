@@ -7,9 +7,9 @@
 3. [CommandFeatures](#3-command-features)
     
     3.1 [AddingSpending: `add`](#31-adding-spending-add)
-    
+     
     3.2 [ClearingData: `clear`](#32-clearing-data-clear)
-
+     
     3.3 [ViewingHelp: `help`](#33-viewing-help-help)
 
     3.4 [PurgingData: `purge`](#34-purging-data-purge-data)
