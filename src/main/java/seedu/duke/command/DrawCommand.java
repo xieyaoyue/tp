@@ -96,12 +96,12 @@ public class DrawCommand extends DateCommand {
             }
             Integer[] dates = dateMap.keySet().toArray(new Integer[0]);
             Double[] amountsForDates = dateMap.values().toArray(new Double[0]);
-            drawChart(sheet0, dates, amountsForDates, 0, 0, 10, 15);
+            drawChart(sheet0, dates, amountsForDates, 0, 0, 15, 10);
 
             TreeMap<String, Double> categoryMap = getCategoryMap(targetSpendingList);
             String[] categories = categoryMap.keySet().toArray(new String[0]);
             Double[] amountsForCategories = categoryMap.values().toArray(new Double[0]);
-            drawChart(sheet1, categories, amountsForCategories, 0, 0, 10, 12);
+            drawChart(sheet1, categories, amountsForCategories, 0, 0, 8, 12);
 
             try {
                 FileOutputStream fileOut = new FileOutputStream(filePath);
@@ -189,7 +189,7 @@ public class DrawCommand extends DateCommand {
     private TreeMap<Integer, Double> getDayMap(SpendingList spendingList) {
         TreeMap<Integer, Double> map = new TreeMap<>();
         final int minDay = 1;
-        final int maxDay = 12;
+        final int maxDay = 31;
         for (int i = 0; i < spendingList.getListSize(); i++) {
             Item item = spendingList.getItem(i);
             int day = Integer.parseInt(item.getDate().substring(8, 10));
