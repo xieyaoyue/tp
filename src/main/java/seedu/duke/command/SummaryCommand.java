@@ -13,13 +13,15 @@ import java.util.logging.Logger;
 //@@author pinfang
 public class SummaryCommand extends DateCommand {
     private String period;
+    private boolean isValidMonth = true;
     private static final Logger logger = Logger.getLogger("SummaryCommand");
     private final DateFormatter dateFormatter = new DateFormatter();
 
     //@@author pinfang
     public SummaryCommand(String year, String month) {
         String monthFormat = dateFormatter.changeMonthFormat(month);
-        if (monthFormat == null) {
+        if (monthFormat == null && month != null) {
+            isValidMonth = false;
             period = year;
         } else {
             period = year + "-" + monthFormat;
@@ -33,6 +35,9 @@ public class SummaryCommand extends DateCommand {
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws InvalidMonthException {
         logger.log(Level.FINE, "going to start processing");
+        if (!isValidMonth) {
+            throw new InvalidMonthException();
+        }
         double amountSpent = spendingList.getSpendingAmountTime(period);
         logger.log(Level.FINE, "end of processing");
         ui.printSummaryMessage(amountSpent);
