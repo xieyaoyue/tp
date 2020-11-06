@@ -36,7 +36,8 @@ public class SummaryCommand extends DateCommand {
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws InvalidMonthException, InvalidYearException {
+    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui)
+            throws InvalidMonthException, InvalidYearException {
         logger.log(Level.FINE, "going to start processing");
         if (!isValidMonth) {
             throw new InvalidMonthException();
