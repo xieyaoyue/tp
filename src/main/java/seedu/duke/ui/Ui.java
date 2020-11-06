@@ -17,7 +17,7 @@ public class Ui {
     private Scanner in;
     private PrintStream out;
     private static final String SEPARATE_LINE_CHAR = "-";
-    private static final int SEPARATE_LINE_LENGTH = 108;
+    private static final int SEPARATE_LINE_LENGTH = 115;
     private static final String LOGO = "  _____         __ _      ___              \n"
             + " / ___/__ ___  / /| | /| / (_)__ ___       \n"
             + "/ /__/ -_) _ \\/ __/ |/ |/ / (_-</ -_)      \n"
@@ -234,7 +234,7 @@ public class Ui {
     
     //@@author killingbear999
     public void printBudgetLimit(String currency, double budgetLimit) {
-        out.println("The budget limit has been set to " + currency + " " + budgetLimit);
+        out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit));
         drawSeparateLine();
     }
     
@@ -273,7 +273,8 @@ public class Ui {
     
     //@@author killingbear999
     public static void printCurrentBudgetLimit() {
-        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " "
+                                   + String.format("%.2f", Budget.getBudgetLimit()));
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
@@ -292,13 +293,6 @@ public class Ui {
         } else {
             out.println("Nothing in the list.");
         }
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printRepay(String currentString) {
-        out.println("You have added this record: ");
-        out.println(currentString);
         drawSeparateLine();
     }
 
