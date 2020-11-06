@@ -1,4 +1,11 @@
 # Developer Guide
+![cover page](images/CentWiseDollarWise.png)
+-----
+
+## Content Page
+
+
+------
 
 ## 1. Introduction
 Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
@@ -279,9 +286,9 @@ Below shows an example of usage:
 
 1. User starts the application.
 2. The `Reminder` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
-3. In the `Reminder#execute(spendinglist, ui)`, a check will be done to see if there is any budget being set by the user.
+3. In the `Reminder#execute(spendingList, repayingList, ui)`, a check will be done to see if there is any budget being set by the user.
     * If no budget is being set, the total expenditure of current week will be tallied up. 
-    * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
+    * If there is, `WarnCommand#execute(spendingList, repayingList, ui)` will be called first before tallying up the expenditure. 
 
 The following sequence diagram illustrates how this feature works. <br>
 
