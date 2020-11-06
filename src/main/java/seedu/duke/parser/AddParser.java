@@ -5,6 +5,7 @@ import org.apache.commons.cli.ParseException;
 import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
 import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.exceptions.InvalidFormatException;
 
 public class AddParser extends Parser {
     public AddParser() {
@@ -14,8 +15,13 @@ public class AddParser extends Parser {
         addSpendingOption(true);
     }
 
-    public Command parse(String[] args) throws ParseException, InvalidCommandException {
-        CommandLine line = parser.parse(options, args);
+    public Command parse(String[] args) throws InvalidCommandException, InvalidFormatException {
+        CommandLine line;
+        try {
+            line = parser.parse(options, args);
+        } catch(ParseException e) {
+            throw new InvalidFormatException();
+        }
 
         String description = parseDescriptionOption(line);
 
@@ -29,7 +35,12 @@ public class AddParser extends Parser {
             throw new InvalidCommandException();
         }
         String symbol = spending[0];
-        double amount = Double.parseDouble(spending[1]);
+        double amount;
+        try {
+            amount = Double.parseDouble(spending[1]);
+        } catch (NumberFormatException e) {
+            throw new InvalidFormatException();
+        }
 
         return new AddCommand(description, symbol, amount, category);
     }

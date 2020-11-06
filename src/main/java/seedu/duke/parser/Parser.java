@@ -17,6 +17,7 @@ import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidIndexException;
+import seedu.duke.exceptions.InvalidFormatException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
@@ -93,12 +94,12 @@ public abstract class Parser {
         options.addOption(spending);
     }
 
-    protected static Spending parseSpendingOption(CommandLine line) throws InvalidCommandException {
+    protected static Spending parseSpendingOption(CommandLine line) throws InvalidFormatException {
         Spending s = new Spending();
         if (line.hasOption("s")) {
             String[] spending = line.getOptionValues("s");
             if (spending.length != 2) {
-                throw new InvalidCommandException();
+                throw new InvalidFormatException();
             }
             s.symbol = spending[0];
             s.amount = Double.parseDouble(spending[1]);
@@ -140,23 +141,23 @@ public abstract class Parser {
     }
 
     public abstract Command parse(String[] args) throws ParseException, InvalidCommandException,
-        java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
-        InvocationTargetException;
+            java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
+            InvocationTargetException, InvalidFormatException, InvalidIndexException;
 
     public Parser() {
         parser = new DefaultParser();
         options = new Options();
     }
 
-    protected static int getIndex(CommandLine line) throws InvalidCommandException {
+    protected static int getIndex(CommandLine line) throws InvalidFormatException, InvalidIndexException {
         String[] indexString = line.getArgs();
         if (indexString.length != 1) {
-            throw new InvalidCommandException();
+            throw new InvalidFormatException();
         }
         return getIndex(indexString[0]);
     }
 
-    protected static Integer getIndex(String s) throws InvalidCommandException {
+    protected static Integer getIndex(String s) throws InvalidIndexException {
         if (s == null) {
             return null;
         }
@@ -168,8 +169,8 @@ public abstract class Parser {
     }
 
     public static Command parseCommand(String userInput) throws InvalidCommandException, ParseException,
-        InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
-        java.text.ParseException {
+            InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
+            java.text.ParseException, InvalidFormatException, InvalidIndexException {
         String[] args = userInput.strip().split(" ");
         if (args.length == 0) {
             throw new InvalidCommandException();

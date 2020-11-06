@@ -5,6 +5,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.ParseException;
 import seedu.duke.command.Command;
 import seedu.duke.command.ConvertCommand;
+import seedu.duke.exceptions.InvalidFormatException;
 
 public class ConvertParser extends Parser {
     public ConvertParser() {
@@ -27,8 +28,13 @@ public class ConvertParser extends Parser {
     }
 
     @Override
-    public Command parse(String[] args) throws ParseException {
-        CommandLine line = parser.parse(options, args);
+    public Command parse(String[] args) throws InvalidFormatException {
+        CommandLine line;
+        try {
+            line = parser.parse(options, args);
+        } catch(ParseException e) {
+            throw new InvalidFormatException();
+        }
         String source = line.getOptionValue("s");
         String target = line.getOptionValue("t");
         return new ConvertCommand(source, target);

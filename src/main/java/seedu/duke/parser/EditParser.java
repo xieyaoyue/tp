@@ -5,6 +5,8 @@ import org.apache.commons.cli.ParseException;
 import seedu.duke.command.Command;
 import seedu.duke.command.EditCommand;
 import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.exceptions.InvalidFormatException;
+import seedu.duke.exceptions.InvalidIndexException;
 
 public class EditParser extends Parser {
     public EditParser() {
@@ -15,8 +17,13 @@ public class EditParser extends Parser {
     }
 
     @Override
-    public Command parse(String[] args) throws ParseException, InvalidCommandException {
-        CommandLine line = parser.parse(options, args);
+    public Command parse(String[] args) throws InvalidFormatException, InvalidIndexException {
+        CommandLine line;
+        try {
+            line = parser.parse(options, args);
+        } catch(ParseException e) {
+            throw new InvalidFormatException();
+        }
 
         int index = getIndex(line);
         String description = parseDescriptionOption(line);
