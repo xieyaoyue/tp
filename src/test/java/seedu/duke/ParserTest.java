@@ -99,7 +99,7 @@ class ParserTest {
 
     @Test
     void editInvalidIndex() {
-        assertThrows(InvalidCommandException.class, () -> {
+        assertThrows(InvalidFormatException.class, () -> {
             EditCommand c = (EditCommand) Parser.parseCommand("edit not index -s SGD 1.23 -d Chicken Rice -c Food");
         });
     }
@@ -140,7 +140,7 @@ class ParserTest {
 
     @Test
     void convertMissingSource() {
-        assertThrows(MissingOptionException.class, () -> {
+        assertThrows(InvalidFormatException.class, () -> {
             ConvertCommand c = (ConvertCommand) Parser.parseCommand("convert --target USD");
         });
     }
