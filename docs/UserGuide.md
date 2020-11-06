@@ -38,6 +38,7 @@
     
     3.15 [Exiting Program: `logout`](#315-exiting-program-logout)
 4. [Useful Hidden Features](#4-useful-hidden-features)
+    
     4.1 [Reminder](#41-reminder)
     
     4.2 [Warning](#42-warning)
@@ -261,6 +262,10 @@ Examples of usage:
 
 `summary -a` → shows the summary of total expenditure
 
+Figure below shows an example for Summary feature: <br>
+
+![Output for Summary](images/summaryOutput.png)
+
 ### 3.12 Visualizing Data: `draw` 
 
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
@@ -354,18 +359,18 @@ Figure below shows an example of encouragement message. <br>
 
 | Action | Format | Examples |
 |:------:|--------|----------|
-|add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
-|clear | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
-|convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
-|draw | `draw [YEAR] [MONTH]`|
-|edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
-|export | `export PATH`|
-|help | `help`|
-|logout | `logout`|
-|purge data | `purge data`|
-|repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
-|repayment list | `repayment list`|
-|set | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
-|spending list | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
-|summary | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
-|view | `view`|
+|[add](#31-adding-spending-add) | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
+|[clear](#32-clearing-data-clear) | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
+|[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
+|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`|
+|[edit](#314-editing-spending-edit) | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
+|[export](#313-exporting-data-export) | `export PATH`|
+|[help](#33-viewing-help-help) | `help`|
+|[logout](#315-exiting-program-logout) | `logout`|
+|[purge data](#34-purging-data-purge-data) | `purge data`|
+|[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
+|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`|
+|[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
+|[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
+|[view](#37-viewing-budget-limit-view) | `view`|
