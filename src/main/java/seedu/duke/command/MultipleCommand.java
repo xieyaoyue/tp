@@ -16,6 +16,7 @@ import seedu.duke.exceptions.InvalidIndexException;
 import seedu.duke.exceptions.InvalidDateException;
 import seedu.duke.exceptions.InvalidCurrencyException;
 import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.EmptyCommandException;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class MultipleCommand extends Command {
             InvalidMonthException, InvalidIndexException, InvalidClearRepaymentException, InvalidClearSpendingException,
             InvalidClearBudgetException, InvalidAmountException, InvalidInputCurrencyException,
             InvalidOutputCurrencyException, InvalidCurrencyException, EmptyListException, InvalidDateException,
-            InvalidNameException, InvalidBudgetException, InvalidNumberException {
+            InvalidNameException, InvalidBudgetException, InvalidNumberException, EmptyCommandException {
         for (Command c : commands) {
             c.execute(spendingList, repaymentList, ui);
         }
