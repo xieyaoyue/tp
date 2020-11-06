@@ -18,7 +18,7 @@ public class RepayParser extends Parser {
         CommandLine line;
         try {
             line = parser.parse(options, args);
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             throw new InvalidFormatException();
         }
 

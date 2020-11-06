@@ -16,8 +16,8 @@ import seedu.duke.command.RepaymentListCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.exceptions.InvalidIndexException;
 import seedu.duke.exceptions.InvalidFormatException;
+import seedu.duke.exceptions.InvalidNumberException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
@@ -142,14 +142,14 @@ public abstract class Parser {
 
     public abstract Command parse(String[] args) throws ParseException, InvalidCommandException,
             java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
-            InvocationTargetException, InvalidFormatException, InvalidIndexException;
+            InvocationTargetException, InvalidFormatException, InvalidNumberException;
 
     public Parser() {
         parser = new DefaultParser();
         options = new Options();
     }
 
-    protected static int getIndex(CommandLine line) throws InvalidFormatException, InvalidIndexException {
+    protected static int getIndex(CommandLine line) throws InvalidFormatException, InvalidNumberException {
         String[] indexString = line.getArgs();
         if (indexString.length != 1) {
             throw new InvalidFormatException();
@@ -157,20 +157,20 @@ public abstract class Parser {
         return getIndex(indexString[0]);
     }
 
-    protected static Integer getIndex(String s) throws InvalidIndexException {
+    protected static Integer getIndex(String s) throws InvalidNumberException {
         if (s == null) {
             return null;
         }
         int index = Integer.parseInt(s);
         if (index <= 0) {
-            throw new InvalidIndexException();
+            throw new InvalidNumberException();
         }
         return index;
     }
 
     public static Command parseCommand(String userInput) throws InvalidCommandException, ParseException,
             InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
-            java.text.ParseException, InvalidFormatException, InvalidIndexException {
+            java.text.ParseException, InvalidFormatException, InvalidNumberException {
         String[] args = userInput.strip().split(" ");
         if (args.length == 0) {
             throw new InvalidCommandException();

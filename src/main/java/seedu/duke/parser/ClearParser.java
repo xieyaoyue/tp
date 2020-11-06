@@ -10,7 +10,7 @@ import seedu.duke.command.Command;
 import seedu.duke.command.MultipleCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidFormatException;
-import seedu.duke.exceptions.InvalidIndexException;
+import seedu.duke.exceptions.InvalidNumberException;
 
 public class ClearParser extends Parser {
     public ClearParser() {
@@ -38,11 +38,11 @@ public class ClearParser extends Parser {
     }
 
     public Command parse(String[] args) throws InvalidCommandException,
-            InvalidFormatException, InvalidIndexException {
+            InvalidFormatException, InvalidNumberException {
         CommandLine line;
         try {
             line = parser.parse(options, args);
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             throw new InvalidFormatException();
         }
         MultipleCommand mc = new MultipleCommand();
@@ -72,8 +72,7 @@ public class ClearParser extends Parser {
      * @return null for option not selected, -1 for clear all, >=0 for clear 1
      * @throws InvalidCommandException if argument is given is invalid index
      */
-    private Integer clearList(CommandLine line, String flag) throws InvalidCommandException,
-            InvalidIndexException {
+    private Integer clearList(CommandLine line, String flag) throws InvalidCommandException, InvalidNumberException {
         if (!line.hasOption(flag)) {
             return null;
         }

@@ -15,15 +15,13 @@ public class AddParser extends Parser {
         addSpendingOption(true);
     }
 
-    public Command parse(String[] args) throws InvalidCommandException, InvalidFormatException {
+    public Command parse(String[] args) throws InvalidFormatException {
         CommandLine line;
         try {
             line = parser.parse(options, args);
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             throw new InvalidFormatException();
         }
-
-        String description = parseDescriptionOption(line);
 
         String category = null;
         if (line.hasOption("c")) {
@@ -32,7 +30,7 @@ public class AddParser extends Parser {
 
         String[] spending = line.getOptionValues("s");
         if (spending.length != 2) {
-            throw new InvalidCommandException();
+            throw new InvalidFormatException();
         }
         String symbol = spending[0];
         double amount;
@@ -41,6 +39,8 @@ public class AddParser extends Parser {
         } catch (NumberFormatException e) {
             throw new InvalidFormatException();
         }
+
+        String description = parseDescriptionOption(line);
 
         return new AddCommand(description, symbol, amount, category);
     }

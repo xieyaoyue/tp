@@ -32,7 +32,7 @@ public class ConvertParser extends Parser {
         CommandLine line;
         try {
             line = parser.parse(options, args);
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             throw new InvalidFormatException();
         }
         String source = line.getOptionValue("s");
