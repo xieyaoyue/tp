@@ -39,6 +39,7 @@ public class DrawCommand extends DateCommand {
     private final String filePath = "Charts.xlsx";
     private final FileExplorer fileExplorer = new FileExplorer(filePath);
     private boolean isOpening;
+    private boolean parameterIsValid = true;
     private String timePeriod;
 
     public DrawCommand() {
@@ -54,6 +55,10 @@ public class DrawCommand extends DateCommand {
     public DrawCommand(String year, String month) {
         String convertedMonth = dateFormatter.changeMonthFormat(month);
         if (convertedMonth == null) {
+            if (!(month == null)) {
+                parameterIsValid = false;
+                return;
+            }
             timePeriod = year;
         } else {
             timePeriod = year + "-" + convertedMonth;
@@ -64,6 +69,10 @@ public class DrawCommand extends DateCommand {
     public DrawCommand(String year, String month, boolean isOpening) {
         String convertedMonth = dateFormatter.changeMonthFormat(month);
         if (convertedMonth == null) {
+            if (!(month == null)) {
+                parameterIsValid = false;
+                return;
+            }
             timePeriod = year;
         } else {
             timePeriod = year + "-" + convertedMonth;
@@ -73,6 +82,11 @@ public class DrawCommand extends DateCommand {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
+        if (!parameterIsValid) {
+            ui.printDrawMessage(false);
+            return;
+        }
+
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet0 = workbook.createSheet("Sheet 0");
         XSSFSheet sheet1 = workbook.createSheet("Sheet 1");
@@ -80,6 +94,7 @@ public class DrawCommand extends DateCommand {
         sheet1.setDefaultColumnWidth(5);
         ArrayList<Item> items = new ArrayList<>();
         SpendingList targetSpendingList = new SpendingList(items);
+
         for (int i = 0; i < spendingList.getListSize(); i++) {
             if (spendingList.getItem(i).getDate().startsWith(timePeriod)) {
                 targetSpendingList.getSpendingList().add(spendingList.getItem(i));
