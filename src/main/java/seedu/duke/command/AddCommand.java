@@ -6,6 +6,7 @@ import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidAmountException;
 import seedu.duke.exceptions.InvalidInputCurrencyException;
 import seedu.duke.exceptions.InvalidNameException;
+import seedu.duke.utilities.AmountConverter;
 import seedu.duke.utilities.DecimalFormatter;
 import seedu.duke.utilities.SpendingListCategoriser;
 import seedu.duke.ui.Ui;
@@ -29,11 +30,6 @@ public class AddCommand extends Command {
         this.category = category;
     }
     
-    private final String[][] exchangeRates = {
-            {"SGDUSD", "USDSGD", "SGDCNY", "CNYSGD"},
-            {"0.74", "1.36", "4.99", "0.20"},
-    };
-    
     //@@author killingbear999
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
@@ -44,8 +40,9 @@ public class AddCommand extends Command {
             defaultCurrency = spendingList.getItem(0).getSymbol();
         }
         if (!currency.equals(defaultCurrency)) {
-            updateAmount();
-            updateCurrency();
+            AmountConverter amountConverter = new AmountConverter(currency, amount, defaultCurrency);
+            amount = amountConverter.updateAmount();
+            currency = amountConverter.updateCurrency();
         }
         if (!isValidName()) {
             throw new InvalidNameException();
@@ -77,32 +74,6 @@ public class AddCommand extends Command {
             WarnCommand warnCommand = new WarnCommand();
             warnCommand.execute(spendingList, null, ui);
         }
-    }
-    
-    //@@author killingbear999
-    private void updateAmount() {
-        if (currency.equals("USD") && defaultCurrency.equals("SGD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][1]);
-            DecimalFormatter decimalFormatter = new DecimalFormatter();
-            amount = decimalFormatter.convert(amount);
-        } else if (currency.equals("CNY") && defaultCurrency.equals("SGD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][3]);
-            DecimalFormatter decimalFormatter = new DecimalFormatter();
-            amount = decimalFormatter.convert(amount);
-        } else if (currency.equals("SGD") && defaultCurrency.equals("USD")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][0]);
-            DecimalFormatter decimalFormatter = new DecimalFormatter();
-            amount = decimalFormatter.convert(amount);
-        } else if (currency.equals("SGD") && defaultCurrency.equals("CNY")) {
-            amount = amount * Double.parseDouble(exchangeRates[1][2]);
-            DecimalFormatter decimalFormatter = new DecimalFormatter();
-            amount = decimalFormatter.convert(amount);
-        }
-    }
-    
-    //@@author killingbear999
-    private void updateCurrency() {
-        currency = defaultCurrency;
     }
     
     //@@author killingbear999
