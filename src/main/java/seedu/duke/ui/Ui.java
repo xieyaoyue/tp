@@ -17,7 +17,7 @@ public class Ui {
     private Scanner in;
     private PrintStream out;
     private static final String SEPARATE_LINE_CHAR = "-";
-    private static final int SEPARATE_LINE_LENGTH = 108;
+    private static final int SEPARATE_LINE_LENGTH = 115;
     private static final String LOGO = "  _____         __ _      ___              \n"
             + " / ___/__ ___  / /| | /| / (_)__ ___       \n"
             + "/ /__/ -_) _ \\/ __/ |/ |/ / (_-</ -_)      \n"
@@ -234,7 +234,7 @@ public class Ui {
     
     //@@author killingbear999
     public void printBudgetLimit(String currency, double budgetLimit) {
-        out.println("The budget limit has been set to " + currency + " " + budgetLimit);
+        out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit));
         drawSeparateLine();
     }
     
@@ -273,7 +273,8 @@ public class Ui {
     
     //@@author killingbear999
     public static void printCurrentBudgetLimit() {
-        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " " + Budget.getBudgetLimit());
+        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " "
+                                   + String.format("%.2f", Budget.getBudgetLimit()));
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
@@ -292,13 +293,6 @@ public class Ui {
         } else {
             out.println("Nothing in the list.");
         }
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printRepay(String currentString) {
-        out.println("You have added this record: ");
-        out.println(currentString);
         drawSeparateLine();
     }
 
@@ -322,61 +316,9 @@ public class Ui {
     }
     
     //@@author killingbear999
-    public void printInvalidOutputCurrency() {
-        out.println("Sorry, the output currency you entered is invalid. Please try again.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printInvalidInputCurrency() {
-        out.println("Sorry, the input currency you entered is invalid. Please try again.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printInvalidBudget() {
-        out.println("Sorry, the budget amount you entered is invalid. Please try again.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printInvalidAmount() {
-        out.println("Sorry, the amount input is invalid. Please try again.");
-        out.println("The amount input should be larger than 0.01. Negative number and extremely small amount will"
-                            + "be considered as invalid input.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printInvalidDate() {
-        out.println("Sorry, the date you input is invalid. Please try again.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printEmptyList() {
-        out.println("Sorry, the spending list is empty.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
     public void printInvalidConversion(String defaultCurrency) {
         out.println("Sorry, the input currency does not match with the current currency in the spending list.");
         out.println("The current currency in the spending list is " + defaultCurrency + ".");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printInvalidName() {
-        out.println("Sorry, the name you input is invalid.");
-        out.println("Name containing only alphabets will be considered valid.");
-        drawSeparateLine();
-    }
-    
-    //@@author killingbear999
-    public void printInvalidCurrency() {
-        out.println("Sorry, the system  only supports currency conversion for SGD to USD, or USD to SGD, "
-                            + "or SGD to CNY, or CNY to SGD.");
         drawSeparateLine();
     }
 }
