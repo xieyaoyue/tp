@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class SummaryCommand extends DateCommand {
     private String period;
     private boolean isValidMonth = true;
-    private boolean isValidYear;
+    private boolean isValidYear = true;
     private static final Logger logger = Logger.getLogger("SummaryCommand");
     private final DateFormatter dateFormatter = new DateFormatter();
 
