@@ -6,6 +6,7 @@ import seedu.duke.data.Item;
 import seedu.duke.utilities.FileExplorer;
 import seedu.duke.ui.Ui;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -22,14 +23,23 @@ public class ExportCommand extends Command {
     private String filePath;
     private final FileExplorer fileExplorer;
     private boolean isOpening;
+    private boolean isValidPath = true;
 
     public ExportCommand(String filePath) {
+        File folder = new File(filePath);
+        if (!folder.isDirectory()) {
+            isValidPath = false;
+        }
         this.filePath = filePath + "Records.xlsx";
         fileExplorer = new FileExplorer(this.filePath);
         this.isOpening = true;
     }
 
     public ExportCommand(String filePath, boolean isOpening) {
+        File folder = new File(filePath);
+        if (!folder.isDirectory()) {
+            isValidPath = false;
+        }
         this.filePath = filePath + "Records.xlsx";
         fileExplorer = new FileExplorer(this.filePath);
         this.isOpening = isOpening;
@@ -37,6 +47,10 @@ public class ExportCommand extends Command {
 
     @Override
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
+        if (!isValidPath) {
+            ui.printExportMessage(false);
+            return;
+        }
         exportToExcel(spendingList);
         if (isOpening) {
             try {
@@ -45,7 +59,7 @@ public class ExportCommand extends Command {
                 ui.printOpenFileFailedMessage();
             }
         }
-        ui.printExportMessage();
+        ui.printExportMessage(true);
     }
 
     private void exportToExcel(SpendingList list) {

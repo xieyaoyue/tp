@@ -266,8 +266,12 @@ public class Ui {
     }
 
     //@@author Wu-Haitao
-    public void printExportMessage() {
-        out.println("The records have been exported to an Excel file successfully.");
+    public void printExportMessage(boolean isSuccessful) {
+        if (isSuccessful) {
+            out.println("The records have been exported to an Excel file successfully.");
+        } else {
+            out.println("Exporting failed. Please check if you entered an invalid path.");
+        }
         drawSeparateLine();
     }
     
