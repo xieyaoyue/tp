@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
+//@@author killingbear999
 public class DateTimeFormatter {
     private String dateFormat;
     
