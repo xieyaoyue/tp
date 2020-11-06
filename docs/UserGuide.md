@@ -1,5 +1,6 @@
 # Cent wise Dollar wise
-![image]()
+![image](images/CentWiseDollarWise.png)
+--------
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
