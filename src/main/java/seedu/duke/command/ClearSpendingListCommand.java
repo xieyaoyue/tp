@@ -3,7 +3,7 @@ package seedu.duke.command;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidClearSpendingException;
-import seedu.duke.exceptions.InvalidIndexException;
+import seedu.duke.exceptions.InvalidNumberException;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
@@ -21,14 +21,14 @@ public class ClearSpendingListCommand extends Command {
     }
 
     public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
-            InvalidIndexException, InvalidClearSpendingException {
+            InvalidClearSpendingException, InvalidNumberException {
         int size = spendingList.getListSize();
         if (size == 0) {
             throw new InvalidClearSpendingException();
         }
         if (clearIndex > size) {
             logger.log(Level.FINE, "clearIndex is invalid");
-            throw new InvalidIndexException();
+            throw new InvalidNumberException();
         }
         logger.log(Level.FINE, "going to clear spending list");
         if (!isClearAll) {

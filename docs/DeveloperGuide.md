@@ -1,8 +1,15 @@
 # Developer Guide
+![cover page](images/CentWiseDollarWise.png)
+-----
+
+## Content Page
+
+
+------
 
 ## 1. Introduction
 Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
-This developer guide provides information on the architecture and design of the application. It will not only help you get started as a Cent Wise Dollar Wise contributer, but that you will find useful to refer to even if you are already a contributer of this project. 
+This developer guide provides information on the architecture and design of the application. It will not only help you get started as a Cent Wise Dollar Wise contributor, but that you will find useful to refer to even if you are already a contributor of this project. 
 
 ## 2. Setting Up
 ### 2.1 Prerequisites
@@ -46,6 +53,8 @@ The architecture diagram above explains the high-level design of the application
 `command`: Executes the user command or system-issued command
 
 `parser`: Analyzes the user command
+
+`utilities`: Contains classes that are used by multiple components
 
 **How the Architecture Components Interact with Each Other** <br>
 
@@ -91,23 +100,27 @@ The following class diagram describes the hidden commands within the program. <b
 ![image](https://user-images.githubusercontent.com/45732128/97780364-28137780-1bbf-11eb-9442-caa76f3db339.png)
 
 ### 3.5 Data Component
-This component holds the data of the application, including the SpendingList class, Budget class and RepaymentList 
-class, in the memory.
+This component holds the data of the application, including the SpendingList class and RepaymentList class, 
+in the memory.
 
 #### 3.5.1 SpendingList
-The SpendingList class also stores a list of Item objects that the user has spent. The `SpendingList` does not depend on 
+The SpendingList class stores a list of `Item` objects that the user has spent. The `SpendingList` does not depend on 
 Ui, Parser and Storage components. 
 
 Below shows a class diagram how `SpendingList` interacts with other classes. <br>
 
-![image](images/classDiagram.png)
-Figure X: 
+![image](images/spendingListClass.png)
 
 #### 3.5.2 RepaymentList
+The RepaymentList class stores a list of `Repay` objects. Similar to SpendingList class, RepaymentList class does not 
+depend on other components. 
+
+Below shows a class diagram how `RepaymentList` interacts with other classes. <br>
+
+![image](images/repaymentListClass.png)
 
 ### 3.6 Storage Component
 
-### 3.7 Common Classes
 
 ## 4. Implementation
 ### 4.1 Add Feature
@@ -267,7 +280,7 @@ stored in the memory.
 
 The following sequence diagram illustrates how this feature works.<br>
 
-![image](https://user-images.githubusercontent.com/45732128/97781639-c7d50380-1bc7-11eb-8fe8-ce1f1e80dc35.png) <br>
+![image](images/SummaryCommand.png) <br>
 
 ### 4.9 Reminder Feature
 `SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
@@ -279,13 +292,13 @@ Below shows an example of usage:
 
 1. User starts the application.
 2. The `Reminder` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
-3. In the `Reminder#execute(spendinglist, ui)`, a check will be done to see if there is any budget being set by the user.
+3. In the `Reminder#execute(spendingList, repayingList, ui)`, a check will be done to see if there is any budget being set by the user.
     * If no budget is being set, the total expenditure of current week will be tallied up. 
-    * If there is, `WarnCommand#execute(spendingList, ui)` will be called first before tallying up the expenditure. 
+    * If there is, `WarnCommand#execute(spendingList, repayingList, ui)` will be called first before tallying up the expenditure. 
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97781544-2e0d5680-1bc7-11eb-938e-110342ff8842.png) <br>
+![image](images/reminder.png) <br>
 
 ### 4.10 Encouragement Feature
 The Ui facilitate this feature. The Encouragement feature regularly encourages the user to keep up his effort in using the application. It implements the following operation:
