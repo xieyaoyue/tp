@@ -274,7 +274,7 @@ stored in the memory.
 
 The following sequence diagram illustrates how this feature works.<br>
 
-![image](https://user-images.githubusercontent.com/45732128/97781639-c7d50380-1bc7-11eb-8fe8-ce1f1e80dc35.png) <br>
+![image](images/SummaryCommand.png) <br>
 
 ### 4.9 Reminder Feature
 `SpendingList` and `WarnCommand` facilitate this feature. The Reminder feature is able to provide the user about the 
@@ -292,7 +292,7 @@ Below shows an example of usage:
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97781544-2e0d5680-1bc7-11eb-938e-110342ff8842.png) <br>
+![image](images/reminder.png) <br>
 
 ### 4.10 Encouragement Feature
 The Ui facilitate this feature. The Encouragement feature regularly encourages the user to keep up his effort in using the application. It implements the following operation:

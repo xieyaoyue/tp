@@ -32,7 +32,7 @@ activate ":Ui"
 ":Ui" --> ":SummaryCommand"
 deactivate ":Ui"
 
-loop every category item
+loop each category item
 ":SummaryCommand" -> ":SpendingList": getSpendingAmountCategory(period, category)
 activate ":SpendingList"
 
@@ -47,14 +47,14 @@ activate ":Item"
 ":Item" --> ":SpendingList": category
 deactivate ":Item"
 
-opt period == date && c == category
+opt period == date && c.toString() == category
 ":SpendingList" -> ":Item": getAmount()
 activate ":Item"
 ":Item" --> ":SpendingList": amount
 deactivate ":Item"
 end
 end
-end
+
 
 ":SpendingList" --> ":SummaryCommand": amountSpent
 deactivate ":SpendingList"
@@ -63,6 +63,7 @@ deactivate ":SpendingList"
 activate ":Ui"
 ":Ui" --> ":SummaryCommand"
 deactivate ":Ui"
+end
 
 <-- ":SummaryCommand"
 deactivate ":SummaryCommand"
