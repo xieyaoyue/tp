@@ -12,7 +12,6 @@ import seedu.duke.exceptions.InvalidClearBudgetException;
 import seedu.duke.exceptions.InvalidOutputCurrencyException;
 import seedu.duke.exceptions.InvalidClearRepaymentException;
 import seedu.duke.exceptions.InvalidClearSpendingException;
-import seedu.duke.exceptions.InvalidIndexException;
 import seedu.duke.exceptions.InvalidDateException;
 import seedu.duke.exceptions.InvalidCurrencyException;
 import seedu.duke.exceptions.InvalidAmountException;
@@ -25,7 +24,7 @@ import java.io.IOException;
 
 public abstract class Command {
     public abstract void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException,
-            InvalidMonthException, InvalidIndexException, InvalidClearRepaymentException, InvalidClearSpendingException,
+            InvalidMonthException, InvalidClearRepaymentException, InvalidClearSpendingException,
             InvalidClearBudgetException, InvalidAmountException, InvalidInputCurrencyException,
             InvalidOutputCurrencyException, InvalidCurrencyException, EmptyListException, InvalidDateException,
             InvalidNameException, InvalidBudgetException, InvalidNumberException, EmptyCommandException,

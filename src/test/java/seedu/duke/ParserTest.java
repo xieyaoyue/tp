@@ -20,6 +20,8 @@ import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.command.SpendingListCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.exceptions.InvalidFormatException;
+import seedu.duke.exceptions.InvalidNumberException;
 import seedu.duke.parser.Parser;
 
 import java.lang.reflect.InvocationTargetException;
@@ -67,7 +69,8 @@ class ParserTest {
 
     @Test
     void allParserReturnClass() throws ParseException, InvalidCommandException, NoSuchMethodException,
-        InstantiationException, IllegalAccessException, InvocationTargetException, java.text.ParseException {
+            InstantiationException, IllegalAccessException, InvocationTargetException,
+            java.text.ParseException, InvalidFormatException, InvalidNumberException {
         for (Rule r : rules) {
             Command c = Parser.parseCommand(r.commandString);
             assertTrue(r.subclass.isInstance(c), String.format("Expected %s, got %s", r.subclass, c.getClass()));
@@ -76,7 +79,8 @@ class ParserTest {
 
     @Test
     void addWithoutCategory() throws ParseException, InvalidCommandException, NoSuchMethodException,
-        InstantiationException, IllegalAccessException, InvocationTargetException, java.text.ParseException {
+            InstantiationException, IllegalAccessException, InvocationTargetException,
+            java.text.ParseException, InvalidFormatException, InvalidNumberException {
         AddCommand c = (AddCommand) Parser.parseCommand("add -d Item 0 -s SGD 114.514 ");
         assertEquals(c.amount, 114.514);
         assertEquals(c.description, "Item 0");
@@ -85,7 +89,8 @@ class ParserTest {
 
     @Test
     void addShuffledArg() throws ParseException, InvalidCommandException, NoSuchMethodException,
-        InstantiationException, IllegalAccessException, InvocationTargetException, java.text.ParseException {
+            InstantiationException, IllegalAccessException, InvocationTargetException,
+            java.text.ParseException, InvalidFormatException, InvalidNumberException {
         AddCommand c = (AddCommand) Parser.parseCommand("add -d Item 0 -s SGD 114.514 -c Food ");
         assertEquals(c.amount, 114.514);
         assertEquals(c.description, "Item 0");
@@ -94,14 +99,15 @@ class ParserTest {
 
     @Test
     void editInvalidIndex() {
-        assertThrows(InvalidCommandException.class, () -> {
+        assertThrows(InvalidFormatException.class, () -> {
             EditCommand c = (EditCommand) Parser.parseCommand("edit not index -s SGD 1.23 -d Chicken Rice -c Food");
         });
     }
 
     @Test
     void editOneParam() throws ParseException, InvalidCommandException, NoSuchMethodException, InstantiationException,
-        IllegalAccessException, InvocationTargetException, java.text.ParseException {
+            IllegalAccessException, InvocationTargetException, java.text.ParseException, InvalidFormatException,
+            InvalidNumberException {
         EditCommand c = (EditCommand) Parser.parseCommand("edit 987 --description fried rice");
         assertEquals(c.index, 986);
         assertEquals(c.description, "fried rice");
@@ -111,8 +117,9 @@ class ParserTest {
     }
 
     @Test
-    void clearIndex() throws ParseException, InvalidCommandException, NoSuchMethodException, InstantiationException,
-        IllegalAccessException, java.text.ParseException, InvocationTargetException {
+    void clearIndex() throws ParseException, InvalidCommandException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException, java.text.ParseException,
+            InvocationTargetException, InvalidFormatException, InvalidNumberException {
         MultipleCommand c = (MultipleCommand) Parser.parseCommand("clear --repayment 23");
         ClearRepaymentListCommand cl = (ClearRepaymentListCommand) c.commands.get(0);
         assertFalse(cl.isClearAll);
@@ -121,7 +128,8 @@ class ParserTest {
 
     @Test
     void clearMultipleLists() throws NoSuchMethodException, ParseException, InvalidCommandException,
-        InstantiationException, java.text.ParseException, IllegalAccessException, InvocationTargetException {
+            InstantiationException, java.text.ParseException, IllegalAccessException,
+            InvocationTargetException, InvalidFormatException, InvalidNumberException {
         MultipleCommand c = (MultipleCommand) Parser.parseCommand("clear --spending 234");
         assertEquals(1, c.commands.size());
         c = (MultipleCommand) Parser.parseCommand("clear -r 1 --spending 234");
@@ -132,7 +140,7 @@ class ParserTest {
 
     @Test
     void convertMissingSource() {
-        assertThrows(MissingOptionException.class, () -> {
+        assertThrows(InvalidFormatException.class, () -> {
             ConvertCommand c = (ConvertCommand) Parser.parseCommand("convert --target USD");
         });
     }
