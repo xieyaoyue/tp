@@ -54,6 +54,8 @@ The architecture diagram above explains the high-level design of the application
 
 `parser`: Analyzes the user command
 
+`utilities`: Contains classes that are used by multiple components
+
 **How the Architecture Components Interact with Each Other** <br>
 
 The sequence diagram below shows how the components interact with each other when the user issues a general command. <br>
@@ -107,7 +109,7 @@ Ui, Parser and Storage components.
 
 Below shows a class diagram how `SpendingList` interacts with other classes. <br>
 
-![image](images/classDiagram.png)
+![image](images/spendingListClass.png)
 
 #### 3.5.2 RepaymentList
 The RepaymentList class stores a list of `Repay` objects. Similar to SpendingList class, RepaymentList class does not 
@@ -119,7 +121,6 @@ Below shows a class diagram how `RepaymentList` interacts with other classes. <b
 
 ### 3.6 Storage Component
 
-### 3.7 Common Classes
 
 ## 4. Implementation
 ### 4.1 Add Feature
