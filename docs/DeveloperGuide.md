@@ -9,7 +9,7 @@
 
 ## 1. Introduction
 Cent Wise Dollar Wise is a desktop application for money management, optimised for use via a Command Line Interface (CLI). This application aims to help NUS hostel students manage their financial situation and track their spending efficiently. 
-This developer guide provides information on the architecture and design of the application. It will not only help you get started as a Cent Wise Dollar Wise contributer, but that you will find useful to refer to even if you are already a contributer of this project. 
+This developer guide provides information on the architecture and design of the application. It will not only help you get started as a Cent Wise Dollar Wise contributor, but that you will find useful to refer to even if you are already a contributor of this project. 
 
 ## 2. Setting Up
 ### 2.1 Prerequisites
