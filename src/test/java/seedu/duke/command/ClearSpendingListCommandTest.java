@@ -3,6 +3,7 @@ package seedu.duke.command;
 import org.junit.jupiter.api.Test;
 import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidClearSpendingException;
+import seedu.duke.exceptions.InvalidNumberException;
 import seedu.duke.ui.Ui;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
@@ -15,7 +16,7 @@ class ClearSpendingListCommandTest {
 
     @Test
     void execute_clearIndex() throws InvalidStorageFileExtensionException,
-            InvalidStorageFilePathException, IOException, InvalidClearSpendingException {
+            InvalidStorageFilePathException, IOException, InvalidClearSpendingException, InvalidNumberException {
         ClearSpendingListCommand c = new ClearSpendingListCommand(false, 1);
         SpendingList spendingList = new SpendingList();
         Ui ui = new Ui();
@@ -27,7 +28,7 @@ class ClearSpendingListCommandTest {
 
     @Test
     void execute_clearAll() throws InvalidStorageFileExtensionException, InvalidStorageFilePathException,
-            IOException, InvalidClearSpendingException {
+            IOException, InvalidClearSpendingException, InvalidNumberException {
         ClearSpendingListCommand c = new ClearSpendingListCommand(true, 0);
         SpendingList spendingList = new SpendingList();
         Ui ui = new Ui();

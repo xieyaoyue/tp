@@ -65,7 +65,7 @@ public class AddCommand extends Command {
             spendingListCategoriser.execute(spendingList);
         }
         
-        if (size % 4 == 0) {
+        if (size > 0 && size % 4 == 0) {
             EncouragementCommand encouragementCommand = new EncouragementCommand();
             encouragementCommand.execute(spendingList, null, ui);
         }
