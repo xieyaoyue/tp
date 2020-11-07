@@ -3,6 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.duke.data.Budget;
 import seedu.duke.data.SpendingList;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
@@ -52,6 +53,16 @@ class StorageTest {
         SpendingListTest.assertEqualList(expectedList, actualList);
     }
 
+    @Test
+    public void saveAndLoadBudget() throws IOException {
+        Budget expectedBudget = new Budget(storage);
+        expectedBudget.addBudget("SGD", 1.23);
+
+        Budget actualBudget = storage.loadBudget();
+        assertEquals("SGD", actualBudget.getCurrency());
+        assertEquals(1.23, actualBudget.getBudgetLimit());
+    }
+
     @BeforeEach
     public void initStorage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException,
         FileNotFoundException {
@@ -67,5 +78,3 @@ class StorageTest {
         f.deleteOnExit();
     }
 }
-
-
