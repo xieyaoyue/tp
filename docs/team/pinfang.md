@@ -13,7 +13,7 @@ financial situation and track their spending efficiently.
     * `Summary` class
     * `Reminder` class
     * `DateFormatter` class
-    * `Ui` class (parts related to points iv and v)
+    * `Ui` class (some parts)
     
     Refer these links for more information: 
     [`functional code`](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=pinfang&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)

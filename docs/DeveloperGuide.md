@@ -3,7 +3,88 @@
 -----
 
 ## Content Page
+1. [Introduction](#1-introduction)
+2. [Setting Up](#2-setting-up)
 
+    2.1 [Prerequisites](#21-prerequisites)
+
+    2.2 [Setting Up the Project in your Computer](#22-setting-up-the-project-in-your-computer)
+
+    2.3 [Verifying the Setup](#23-verifying-the-setup)
+
+3. [Design](#3-design)
+
+    3.1 [Architecture](#31-architecture)
+
+    3.2 [UI Component](#32-ui-component)
+
+    3.3 [Parser Component](#33-parser-component)
+
+    3.4 [Command Component](#34-command-component)
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.1 [CLI `Command`s related to Spending List](#341-cli-commands-related-to-spending-list)
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.2 [CLI `Command`s related to Repayment List](#342-cli-commands-related-to-repayment-list)
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.3 [CLI `Command`s related to Budget](#343-cli-commands-related-to-budget)
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.4 [General CLI `Command`s](#344-general-cli-commands)
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4.5 [Hidden `Command`s](#345-hidden-commands)
+
+    3.5 [Data Component](#35-data-component)
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.1 [Spending List](#351-spending-list)
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.2 [Repayment List](#352-repayment-list)
+
+    3.6 [Storage Component](#36-storage-component)
+
+4. [Implementation](#4-implementation)
+
+    4.1 [Add Feature](#41-add-feature)
+    
+    4.2 [Clear Feature](#42-clear-feature)
+    
+    4.3 [Edit Feature](#43-edit-feature)
+    
+    4.4 [Convert Feature](#44-convert-feature)
+    
+    4.5 [Set Budget Feature](#45-set-budget-feature)
+    
+    4.6 [Warn Feature](#46-warn-feature)
+    
+    4.7 [Repay Feature](#47-repay-feature)
+    
+    4.8 [Summary Feature](#48-summary-feature)
+    
+    4.9 [Reminder Feature](#49-reminder-feature)
+    
+    4.10 [Encouragement Feature](#410-encouragement-feature)
+    
+    4.11 [Export Feature](#411-export-feature)
+    
+    4.12 [Draw Feature](#412-draw-feature)
+    
+5. [Dev Ops](#5-dev-ops)
+
+    5.1 [Build Automation](#51-build-automation)
+    
+    5.2 [Continuous Integration](#52-continuous-integration-ci)
+    
+    5.3 [Making a Release](#53-making-a-release)
+    
+    5.4 [Coverage Reporting](#54-coverage-reporting)
+    
+Appendix A: [About the Product](#appendix-a-about-the-product)
+
+Appendix B: [User Stories](#appendix-b-user-stories)
+
+Appendix C: [Non-Functional Requirements](#appendix-c-non-functional-requirements)
+
+Appendix D: [Glossary](#appendix-d-glossary)
+
+Appendix E: [Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 ------
 
@@ -104,7 +185,7 @@ The following class diagram describes the hidden commands within the program. <b
 This component holds the data of the application, including the SpendingList class and RepaymentList class, 
 in the memory.
 
-#### 3.5.1 SpendingList
+#### 3.5.1 Spending List
 The SpendingList class stores a list of `Item` objects that the user has spent. The `SpendingList` does not depend on 
 Ui, Parser and Storage components. 
 
@@ -112,7 +193,7 @@ Below shows a class diagram how `SpendingList` interacts with other classes. <br
 
 ![image](images/spendingListClass.png)
 
-#### 3.5.2 RepaymentList
+#### 3.5.2 Repayment List
 The RepaymentList class stores a list of `Repay` objects. Similar to SpendingList class, RepaymentList class does not 
 depend on other components. 
 
