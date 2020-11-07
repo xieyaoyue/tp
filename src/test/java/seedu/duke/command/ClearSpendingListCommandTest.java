@@ -1,12 +1,12 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.SpendingList;
+import seedu.duke.data.Data;
 import seedu.duke.exceptions.InvalidClearSpendingException;
 import seedu.duke.exceptions.InvalidNumberException;
-import seedu.duke.ui.Ui;
 import seedu.duke.exceptions.InvalidStorageFileExtensionException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
@@ -18,24 +18,24 @@ class ClearSpendingListCommandTest {
     void execute_clearIndex() throws InvalidStorageFileExtensionException,
             InvalidStorageFilePathException, IOException, InvalidClearSpendingException, InvalidNumberException {
         ClearSpendingListCommand c = new ClearSpendingListCommand(false, 1);
-        SpendingList spendingList = new SpendingList();
+        Data data = new Data(null, null, null);
         Ui ui = new Ui();
-        spendingList.addItem("buy chicken rice", "$", 3.0);
-        spendingList.addItem("buy sushi", "$", 5.1);
-        c.execute(spendingList, null, ui);
-        assertEquals(1, spendingList.getListSize());
+        data.spendingList.addItem("buy chicken rice", "$", 3.0);
+        data.spendingList.addItem("buy sushi", "$", 5.1);
+        c.execute(data, ui);
+        assertEquals(1, data.spendingList.getListSize());
     }
 
     @Test
     void execute_clearAll() throws InvalidStorageFileExtensionException, InvalidStorageFilePathException,
             IOException, InvalidClearSpendingException, InvalidNumberException {
         ClearSpendingListCommand c = new ClearSpendingListCommand(true, 0);
-        SpendingList spendingList = new SpendingList();
+        Data data = new Data(null, null, null);
         Ui ui = new Ui();
-        spendingList.addItem("buy chicken rice", "$", 3.0);
-        spendingList.addItem("buy sushi", "$", 5.1);
-        c.execute(spendingList, null, ui);
-        assertEquals(0, spendingList.getListSize());
+        data.spendingList.addItem("buy chicken rice", "$", 3.0);
+        data.spendingList.addItem("buy sushi", "$", 5.1);
+        c.execute(data, ui);
+        assertEquals(0, data.spendingList.getListSize());
     }
 
 }

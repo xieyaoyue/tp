@@ -1,15 +1,5 @@
 package seedu.duke.command;
 
-import seedu.duke.data.RepaymentList;
-import seedu.duke.data.SpendingList;
-import seedu.duke.data.Item;
-import seedu.duke.utilities.FileExplorer;
-import seedu.duke.ui.Ui;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -17,12 +7,21 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import seedu.duke.data.Data;
+import seedu.duke.data.Item;
+import seedu.duke.data.SpendingList;
+import seedu.duke.ui.Ui;
+import seedu.duke.utilities.FileExplorer;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 //@@author Wu-Haitao
 public class ExportCommand extends Command {
-    private String filePath;
+    private final String filePath;
     private final FileExplorer fileExplorer;
-    private boolean isOpening;
+    private final boolean isOpening;
     private boolean isValidPath = true;
 
     public ExportCommand(String filePath) {
@@ -46,12 +45,12 @@ public class ExportCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
+    public void execute(Data data, Ui ui) {
         if (!isValidPath) {
             ui.printExportMessage(false);
             return;
         }
-        exportToExcel(spendingList);
+        exportToExcel(data.spendingList);
         if (isOpening) {
             try {
                 fileExplorer.openFile();

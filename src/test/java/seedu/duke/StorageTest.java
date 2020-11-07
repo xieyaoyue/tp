@@ -9,6 +9,7 @@ import seedu.duke.exceptions.InvalidStorageFilePathException;
 import seedu.duke.storage.Storage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -52,7 +53,8 @@ class StorageTest {
     }
 
     @BeforeEach
-    public void initStorage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException {
+    public void initStorage() throws InvalidStorageFilePathException, InvalidStorageFileExtensionException,
+        FileNotFoundException {
         String randomPath = String.format("data/%s.json", UUID.randomUUID().toString());
         storage = new Storage(randomPath);
     }
