@@ -98,19 +98,24 @@ The following class diagram describes the hidden commands within the program. <b
 ![image](https://user-images.githubusercontent.com/45732128/97780364-28137780-1bbf-11eb-9442-caa76f3db339.png)
 
 ### 3.5 Data Component
-This component holds the data of the application, including the SpendingList class, Budget class and RepaymentList 
-class, in the memory.
+This component holds the data of the application, including the SpendingList class and RepaymentList class, 
+in the memory.
 
 #### 3.5.1 SpendingList
-The SpendingList class also stores a list of Item objects that the user has spent. The `SpendingList` does not depend on 
+The SpendingList class stores a list of `Item` objects that the user has spent. The `SpendingList` does not depend on 
 Ui, Parser and Storage components. 
 
 Below shows a class diagram how `SpendingList` interacts with other classes. <br>
 
 ![image](images/classDiagram.png)
-Figure X: 
 
 #### 3.5.2 RepaymentList
+The RepaymentList class stores a list of `Repay` objects. Similar to SpendingList class, RepaymentList class does not 
+depend on other components. 
+
+Below shows a class diagram how `RepaymentList` interacts with other classes. <br>
+
+![image](images/repaymentListClass.png)
 
 ### 3.6 Storage Component
 
