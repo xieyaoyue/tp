@@ -156,12 +156,14 @@ public abstract class Parser {
 
     /**
      * getOptionalIndex parses line with flag for 0..1 argument given
+     *
      * @param line to check flags with
      * @param flag for command
      * @return null for option not selected, -1 for clear all, >=0 for clear 1
      * @throws InvalidCommandException if argument is given is invalid index
      */
-    static Integer parseOptionalIndex(CommandLine line, String flag) throws InvalidCommandException, InvalidNumberException {
+    static Integer parseOptionalIndex(CommandLine line, String flag) throws InvalidCommandException,
+        InvalidNumberException {
         if (!line.hasOption(flag)) {
             return null;
         }
@@ -180,17 +182,19 @@ public abstract class Parser {
     }
 
     /**
-     * Parse arguments into command line with no extra values outside of arguments
+     * Parse arguments into command line with no extra values outside of arguments.
+     *
      * @param args space-separated arguments to parse
      * @return command line with options
-     * @throws ParseException for errors parsing
+     * @throws ParseException          for errors parsing
      * @throws InvalidCommandException if values found outside of arguments
      */
     protected static CommandLine getCommandLine(String[] args) throws ParseException, InvalidCommandException {
         return getCommandLine(args, false);
     }
 
-    protected static CommandLine getCommandLine(String[] args, boolean hasArgs) throws ParseException, InvalidCommandException {
+    protected static CommandLine getCommandLine(String[] args, boolean hasArgs) throws ParseException,
+        InvalidCommandException {
         CommandLine line = parser.parse(options, args);
         if (!hasArgs) {
             parseNoArgs(line);
@@ -199,8 +203,8 @@ public abstract class Parser {
     }
 
     public abstract Command parse(String[] args) throws ParseException, InvalidCommandException,
-            java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
-            InvocationTargetException, InvalidFormatException, InvalidNumberException;
+        java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
+        InvocationTargetException, InvalidFormatException, InvalidNumberException;
 
     public Parser() {
         parser = new DefaultParser();
@@ -227,8 +231,8 @@ public abstract class Parser {
     }
 
     public static Command parseCommand(String userInput) throws InvalidCommandException, ParseException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
-            java.text.ParseException, InvalidFormatException, InvalidNumberException {
+        InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
+        java.text.ParseException, InvalidFormatException, InvalidNumberException {
         String[] args = userInput.strip().split(" ");
         if (args.length == 0) {
             throw new InvalidCommandException();
