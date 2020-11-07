@@ -1,42 +1,44 @@
-#Cent wise Dollar wise
-![image]()
+# Cent wise Dollar wise
+![image](images/CentWiseDollarWise.png)
+--------
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [QuickStart](#2-quick-start)
+2. [Quick Start](#2-quick-start)
 
-3. [CommandFeatures](#3-command-features)
+3. [Command Features](#3-command-features)
     
-    3.1 [AddingSpending: `add`](#31-adding-spending-add)
+    3.1 [Adding Spending: `add`](#31-adding-spending-add)
      
-    3.2 [ClearingData: `clear`](#32-clearing-data-clear)
+    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)
      
-    3.3 [ViewingHelp: `help`](#33-viewing-help-help)
+    3.3 [Viewing Help: `help`](#33-viewing-help-help)
     
-    3.4 [PurgingData: `purge`](#34-purging-data-purge-data)
+    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)
     
-    3.5 [ViewingRepaymentListSummary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)
+    3.5 [Viewing Repayment List Summary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)
     
-    3.6 [ViewingSpendingListSummary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)
+    3.6 [Viewing Spending List Summary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)
     
-    3.7 [ViewingBudgetLimit: `view`](#37-viewing-budget-limit-view)
+    3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)
     
-    3.8 [SettingBudgetLimit: `set`](#38-setting-budget-limit-set)
+    3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)
     
-    3.9 [InputtingRepaymentInformation: `repay`](#39-inputting-repayment-information-repay)
+    3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)
     
-    3.10 [ConvertingCurrency: `convert`](#310-converting-currency-convert)
+    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)
     
-    3.11 [ViewingSummary: `summary`](#311-viewing-summary-summary)
+    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)
     
-    3.12 [VisualizingData: `draw`](#312-visualizing-data-draw)
+    3.12 [Visualizing Data: `draw`](#312-visualizing-data-draw)
     
-    3.13 [ExportingData: `export`](#313-exporting-data-export)
+    3.13 [Exporting Data: `export`](#313-exporting-data-export)
     
-    3.14 [EditingSpending: `edit`](#314-editing-spending-edit) 
+    3.14 [Editing Spending: `edit`](#314-editing-spending-edit) 
     
-    3.15 [ExitingProgram: `logout`](#315-exiting-program-logout)
+    3.15 [Exiting Program: `logout`](#315-exiting-program-logout)
 4. [Useful Hidden Features](#4-useful-hidden-features)
+    
     4.1 [Reminder](#41-reminder)
     
     4.2 [Warning](#42-warning)
@@ -260,6 +262,10 @@ Examples of usage:
 
 `summary -a` → shows the summary of total expenditure
 
+Figure below shows an example for Summary feature: <br>
+
+![Output for Summary](images/summaryOutput.png)
+
 ### 3.12 Visualizing Data: `draw` 
 
 This command generates graphs showing your spending records of a particular year or month. The graphs will be in an Excel file at the same folder of this application.
@@ -353,18 +359,18 @@ Figure below shows an example of encouragement message. <br>
 
 | Action | Format | Examples |
 |:------:|--------|----------|
-|add | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
-|clear | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
-|convert | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
-|draw | `draw [YEAR] [MONTH]`|
-|edit | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
-|export | `export PATH`|
-|help | `help`|
-|logout | `logout`|
-|purge data | `purge data`|
-|repay | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
-|repayment list | `repayment list`|
-|set | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
-|spending list | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
-|summary | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
-|view | `view`|
+|[add](#31-adding-spending-add) | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
+|[clear](#32-clearing-data-clear) | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
+|[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
+|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`|
+|[edit](#314-editing-spending-edit) | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
+|[export](#313-exporting-data-export) | `export PATH`|
+|[help](#33-viewing-help-help) | `help`|
+|[logout](#315-exiting-program-logout) | `logout`|
+|[purge data](#34-purging-data-purge-data) | `purge data`|
+|[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
+|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`|
+|[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
+|[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
+|[view](#37-viewing-budget-limit-view) | `view`|
