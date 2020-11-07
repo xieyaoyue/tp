@@ -5,44 +5,25 @@
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
-
-3. [Command Features](#3-command-features)
-    
-    3.1 [Adding Spending: `add`](#31-adding-spending-add)
-     
-    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)
-     
-    3.3 [Viewing Help: `help`](#33-viewing-help-help)
-    
-    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)
-    
-    3.5 [Viewing Repayment List Summary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)
-    
-    3.6 [Viewing Spending List Summary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)
-    
-    3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)
-    
-    3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)
-    
-    3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)
-    
-    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)
-    
-    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)
-    
-    3.12 [Visualizing Data: `draw`](#312-visualizing-data-draw)
-    
-    3.13 [Exporting Data: `export`](#313-exporting-data-export)
-    
-    3.14 [Editing Spending: `edit`](#314-editing-spending-edit) 
-    
+3. [Command Features](#3-command-features)  
+    3.1 [Adding Spending: `add`](#31-adding-spending-add) 
+    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
+    3.3 [Viewing Help: `help`](#33-viewing-help-help)    
+    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)    
+    3.5 [Viewing Repayment List Summary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)    
+    3.6 [Viewing Spending List Summary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)    
+    3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)    
+    3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)    
+    3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)    
+    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)    
+    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)    
+    3.12 [Visualizing Data: `draw`](#312-visualizing-data-draw)    
+    3.13 [Exporting Data: `export`](#313-exporting-data-export)  
+    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)     
     3.15 [Exiting Program: `logout`](#315-exiting-program-logout)
-4. [Useful Hidden Features](#4-useful-hidden-features)
-    
-    4.1 [Reminder](#41-reminder)
-    
-    4.2 [Warning](#42-warning)
-    
+4. [Useful Hidden Features](#4-useful-hidden-features)    
+    4.1 [Reminder](#41-reminder)    
+    4.2 [Warning](#42-warning)   
     4.3 [Encouragement](#43-encouragement)
 5. [FAQ](#5-faq)
 6. [Command Summary](#6-command-summary)
@@ -102,9 +83,10 @@ Example of usage:
 
 `add -c Food -d chicken rice -s SGD 3.00` → adds chicken rice which costs SGD 3.00 into the food category of the spending list
 
-Figure below shows an example for Adding Spending Feature: <br>
+Figure below shows an example for Add Spending feature: <br>
 
-![image](https://user-images.githubusercontent.com/45732128/98068206-6302fd00-1e96-11eb-9f94-af0daeed3175.png)
+![image](https://user-images.githubusercontent.com/45732128/98068206-6302fd00-1e96-11eb-9f94-af0daeed3175.png) <br>
+
 🛈 The date shown in the UI output refers to the date when an entry is recorded.
 
 ### 3.2 Clearing Data: `clear`
@@ -128,7 +110,7 @@ Example of usage:
 
 `clear -r` → clears the entire repayment list
 
-Figure below shows an example for Clearing Data feature: <br>
+Figure below shows an example for Clear Data feature: <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/98068110-1b7c7100-1e96-11eb-9bc8-82e839885d6a.png)
 
@@ -141,7 +123,7 @@ Format:
 
 You shall expect to see the following help screen: <br>
 
-![image](https://user-images.githubusercontent.com/45732128/98068989-a8c0c500-1e98-11eb-9b1e-efbd6a1d7b7b.png)
+![image](https://user-images.githubusercontent.com/45732128/98445334-25ca9380-2152-11eb-9514-f54c297c5d93.png)
 
 ### 3.4. Purging Data: `purge data`
 This command is similar to the `clear` command, except that it allows you to clear all data, including your spending list, repayment list and budget, all at one go.
@@ -193,11 +175,11 @@ Example of usage:
 
 `view` → views the budget limit that was set previously
 
-Figure below shows an example for Viewing Budget Limit feature (i.e. budget limit has not been set yet): <br>
+Figure below shows an example for View Budget Limit feature (i.e. budget limit has not been set yet): <br>
 
 ![Example for Viewing Budget Limit](images/NoBudgetExample.png)
 
-Figure below shows an example for Viewing Budget Limit feature (i.e. budget limit has been set): <br>
+Figure below shows an example for View Budget Limit feature (i.e. budget limit has been set): <br>
 
 ![Example for Viewing Budget Limit](images/BudgetExample.png)
 
@@ -225,7 +207,7 @@ Example of usage:
 `repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
-Figure below shows an example for Inputting Repayment Information feature: <br>
+Figure below shows an example for Input Repayment Information feature: <br>
 
 ![Example for Inputting Repayment Information](images/RepayExample.png)
 
@@ -240,7 +222,7 @@ Example of usage:
 
 `convert -s SGD -t USD` → converts the currency from SGD to USD
 
-Figure below shows an example for Converting Currency feature: <br>
+Figure below shows an example for Convert Currency feature: <br>
 
 ![Example for Converting Currency](images/ConvertExample.png)
 
@@ -305,7 +287,7 @@ Example of usage:
 
 `edit 3 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
 
-Figure below shows an example for Editing Spending feature: <br>
+Figure below shows an example for Edit Spending feature: <br>
 
 ![Example for Editing Spending](images/EditExample.png)
 
@@ -363,7 +345,7 @@ Figure below shows an example of encouragement message. <br>
 |[clear](#32-clearing-data-clear) | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
 |[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
 |[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`|
-|[edit](#314-editing-spending-edit) | `edit INDEX [-c CATEGORY] [-d NEW_DESCRIPTION] [-s CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
+|[edit](#314-editing-spending-edit) | `edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
 |[export](#313-exporting-data-export) | `export PATH`|
 |[help](#33-viewing-help-help) | `help`|
 |[logout](#315-exiting-program-logout) | `logout`|
