@@ -497,5 +497,19 @@ The following statements describe the non-functional requirements for the applic
 ## Appendix D: Glossary
 * Mainstream OS: Windows, Linux, macOS
 
-## Appendix E: Instructions for manual testing
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+## Appendix E: Instructions for Manual Testing
+Given below are the instructions to test the application manually.
+
+### E.1 Launch
+1. Download the jar file and copy into an empty folder.
+2. Navigate to the folder in the command prompt.
+3. Enter `java -jar Duke.jar` and press `enter` to launch the application. 
+4. You should expect a new `data` folder created within the same folder as the jar file. This `data` folder will contain a file named `duke.json`.
+
+### E.2 Application Commands
+#### 1. `Draw` Command
+Test the command by using executing `draw 2020`. You should expect to see the following output in Microsoft Excel. <br>
+![image](https://user-images.githubusercontent.com/45732128/98440296-04a67a80-2133-11eb-8304-94714b91e38f.png)
+
+#### 2. Other Commands
+Please refer to [Cent Wise Dollar Wise User Guide] (https://ay2021s1-cs2113t-f14-2.github.io/tp/UserGuide.html).
