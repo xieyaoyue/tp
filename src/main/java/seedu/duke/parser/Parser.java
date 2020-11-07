@@ -29,6 +29,13 @@ public abstract class Parser {
     protected static CommandLineParser parser;
     protected static Options options;
 
+    protected static void parseNoArgs(CommandLine line) throws InvalidCommandException {
+        String[] args = line.getArgs();
+        if (args != null && args.length > 0) {
+            throw new InvalidCommandException();
+        }
+    }
+
     protected static void addAllOption() {
         Option all = Option.builder("a")
             .longOpt("all")
@@ -138,6 +145,50 @@ public abstract class Parser {
     protected static String parseDateOption(CommandLine line) {
         String[] date = line.getOptionValues("t");
         return String.join(" ", date);
+    }
+
+    /**
+     * getOptionalIndex parses line with flag for 0..1 argument given
+     * @param line to check flags with
+     * @param flag for command
+     * @return null for option not selected, -1 for clear all, >=0 for clear 1
+     * @throws InvalidCommandException if argument is given is invalid index
+     */
+    static Integer parseOptionalIndex(CommandLine line, String flag) throws InvalidCommandException, InvalidNumberException {
+        if (!line.hasOption(flag)) {
+            return null;
+        }
+
+        String indexString = line.getOptionValue(flag);
+        boolean isClearAll = indexString == null;
+        if (isClearAll) {
+            return -1;
+        }
+
+        Integer index = getIndex(indexString);
+        if (index == null) {
+            throw new InvalidCommandException();
+        }
+        return index;
+    }
+
+    /**
+     * Parse arguments into command line with no extra values outside of arguments
+     * @param args space-separated arguments to parse
+     * @return command line with options
+     * @throws ParseException for errors parsing
+     * @throws InvalidCommandException if values found outside of arguments
+     */
+    protected static CommandLine getCommandLine(String[] args) throws ParseException, InvalidCommandException {
+        return getCommandLine(args, false);
+    }
+
+    protected static CommandLine getCommandLine(String[] args, boolean hasArgs) throws ParseException, InvalidCommandException {
+        CommandLine line = parser.parse(options, args);
+        if (!hasArgs) {
+            parseNoArgs(line);
+        }
+        return line;
     }
 
     public abstract Command parse(String[] args) throws ParseException, InvalidCommandException,

@@ -13,14 +13,8 @@ public class SetParser extends Parser {
     }
 
     @Override
-    public Command parse(String[] args) throws InvalidFormatException {
-        CommandLine line;
-        try {
-            line = parser.parse(options, args);
-        } catch (ParseException e) {
-            throw new InvalidFormatException();
-        }
-
+    public Command parse(String[] args) throws InvalidFormatException, ParseException, InvalidCommandException {
+        CommandLine line = getCommandLine(args);
         Spending s = parseSpendingOption(line);
         return new SetBudgetCommand(s.symbol, s.amount);
     }
