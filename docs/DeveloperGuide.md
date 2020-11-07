@@ -64,6 +64,7 @@ The sequence diagram below shows how the components interact with each other whe
 
 
 ### 3.2 UI Component
+This component, consisting of the `Ui` class, is responsible for receiving user input and displaying appropriate output messages for the user. This includes error messages, warning messages, encouragement quotes, and messages that indicate if a command is successfully executed. 
 
 ### 3.3 Parser Component
 
