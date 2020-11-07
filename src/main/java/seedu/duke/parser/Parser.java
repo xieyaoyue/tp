@@ -72,6 +72,13 @@ public abstract class Parser {
         default:
             throw new InvalidCommandException();
         }
+
+        try {
+            Integer.parseInt(ym.year);
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException();
+        }
+
         return ym;
     }
 
@@ -101,12 +108,12 @@ public abstract class Parser {
         options.addOption(spending);
     }
 
-    protected static Spending parseSpendingOption(CommandLine line) throws InvalidFormatException {
+    protected static Spending parseSpendingOption(CommandLine line) throws InvalidCommandException {
         Spending s = new Spending();
         if (line.hasOption("s")) {
             String[] spending = line.getOptionValues("s");
             if (spending.length != 2) {
-                throw new InvalidFormatException();
+                throw new InvalidCommandException();
             }
             s.symbol = spending[0];
             s.amount = Double.parseDouble(spending[1]);
@@ -135,7 +142,7 @@ public abstract class Parser {
 
     static void addDateOption() {
         Option date = Option.builder("t")
-            .hasArgs()
+            .hasArg()
             .required()
             .build();
 
@@ -200,10 +207,10 @@ public abstract class Parser {
         options = new Options();
     }
 
-    protected static int getIndex(CommandLine line) throws InvalidFormatException, InvalidNumberException {
+    protected static int getIndex(CommandLine line) throws InvalidNumberException, InvalidCommandException {
         String[] indexString = line.getArgs();
         if (indexString.length != 1) {
-            throw new InvalidFormatException();
+            throw new InvalidCommandException();
         }
         return getIndex(indexString[0]);
     }
@@ -244,8 +251,10 @@ public abstract class Parser {
         case "export":
             return new ExportCommand(String.join(" ", opts));
         case "help":
+            checkRemainingCommand(opts, "");
             return new HelpCommand();
         case "logout":
+            checkRemainingCommand(opts, "");
             return new ExitCommand();
         case "repay":
             return new RepayParser().parse(opts);
@@ -269,8 +278,17 @@ public abstract class Parser {
     }
 
     private static void checkRemainingCommand(String[] args, String remainingCommand) throws InvalidCommandException {
+        boolean noCommands = (remainingCommand == null || remainingCommand.equals(""));
+        if (noCommands) {
+            if (args.length != 0) {
+                throw new InvalidCommandException();
+            }
+            return;
+        }
+
         String[] c = remainingCommand.strip().split(" ");
-        if (args.length != c.length || !Arrays.equals(c, args)) {
+        boolean unequalArgs = args.length != c.length || !Arrays.equals(c, args);
+        if (unequalArgs) {
             throw new InvalidCommandException();
         }
     }

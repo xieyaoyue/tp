@@ -24,6 +24,7 @@ public class DateParser<T extends DateCommand> extends Parser {
         CommandLine line = getCommandLine(args, true);
 
         if (parseAllOption(line)) {
+            parseNoArgs(line);
             return command.getDeclaredConstructor().newInstance();
         }
 

@@ -70,7 +70,6 @@ public class Storage {
                 throw new InvalidStorageFilePathException();
             }
         } catch (Exception e) {
-            System.out.println("error");
             sl = new SpendingList(this);
         }
         sl.storage = this;

@@ -5,7 +5,6 @@ import org.apache.commons.cli.ParseException;
 import seedu.duke.command.Command;
 import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.exceptions.InvalidFormatException;
 
 public class SetParser extends Parser {
     public SetParser() {
@@ -13,7 +12,7 @@ public class SetParser extends Parser {
     }
 
     @Override
-    public Command parse(String[] args) throws InvalidFormatException, ParseException, InvalidCommandException {
+    public Command parse(String[] args) throws ParseException, InvalidCommandException {
         CommandLine line = getCommandLine(args);
         Spending s = parseSpendingOption(line);
         return new SetBudgetCommand(s.symbol, s.amount);
