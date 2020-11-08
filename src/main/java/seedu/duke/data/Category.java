@@ -9,7 +9,7 @@ public enum Category {
     UTILITIES("Utilities"),
     OTHERS("Others");
 
-    private String category;
+    private final String category;
     Category(String category) {
         this.category = category;
     }
@@ -26,6 +26,7 @@ public enum Category {
         return OTHERS.toString();
     }
 
+    @Override
     public String toString() {
         return this.category;
     }
