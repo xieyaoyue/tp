@@ -13,11 +13,12 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SpendingListTest {
+//@author k-walter
+public class SpendingListTest {
     @Test
     public void addItem() throws IOException {
         SpendingList expectedList = initSpendingList(
-                new Item("buy book", "S$", 10, "")
+            new Item("buy book", "S$", 10, "")
         );
 
         SpendingList realList = new SpendingList((Storage) null);
@@ -27,10 +28,19 @@ class SpendingListTest {
         assertEqualList(expectedList, realList);
     }
 
-    public static void assertEqualList(SpendingList expectedList, SpendingList realList) {
-        String expectedString = Arrays.toString(expectedList.getSpendingList().toArray());
-        String realString = Arrays.toString(realList.getSpendingList().toArray());
+    /**
+     * Converts list to string format, because double comparison fails
+     * @param expectedList expected list of items
+     * @param actualList actual list of items
+     */
+    public static void assertEqualList(ArrayList<Item> expectedList, ArrayList<Item> actualList) {
+        String expectedString = Arrays.toString(expectedList.toArray());
+        String realString = Arrays.toString(actualList.toArray());
         assertEquals(expectedString, realString);
+    }
+
+    public static void assertEqualList(SpendingList expectedList, SpendingList actualList) {
+        assertEqualList(expectedList.getSpendingList(), actualList.getSpendingList());
     }
 
     public static ArrayList<Item> initList(Item... items) {
@@ -44,16 +54,16 @@ class SpendingListTest {
     @Test
     public void deleteItem() throws IOException {
         SpendingList expectedList = initSpendingList(
-                new Item("noodle", "S$", 1.5, ""),
-                new Item("fish", "S$", 10, ""),
-                new Item("books", "S$", 8.9, "")
+            new Item("noodle", "S$", 1.5, ""),
+            new Item("fish", "S$", 10, ""),
+            new Item("books", "S$", 8.9, "")
         );
 
         SpendingList realList = initSpendingList(
-                new Item("rice", "S$", 2, ""),
-                new Item("noodle", "S$", 1.5, ""),
-                new Item("fish", "S$", 10, ""),
-                new Item("books", "S$", 8.9, "")
+            new Item("rice", "S$", 2, ""),
+            new Item("noodle", "S$", 1.5, ""),
+            new Item("fish", "S$", 10, ""),
+            new Item("books", "S$", 8.9, "")
         );
         realList.deleteItem(0);
 
@@ -64,7 +74,7 @@ class SpendingListTest {
     @Test
     public void getItem() {
         SpendingList realList = initSpendingList(
-                new Item("buy book", "S$", 10)
+            new Item("buy book", "S$", 10)
         );
 
         Item firstItem = realList.getItem(0);
@@ -93,10 +103,10 @@ class SpendingListTest {
     @Test
     void getList() {
         ArrayList<Item> expectedList = initList(
-                new Item("rice", "S$", 2, ""),
-                new Item("noodle", "S$", 1.5, ""),
-                new Item("fish", "S$", 10, ""),
-                new Item("books", "S$", 8.9, "")
+            new Item("rice", "S$", 2, ""),
+            new Item("noodle", "S$", 1.5, ""),
+            new Item("fish", "S$", 10, ""),
+            new Item("books", "S$", 8.9, "")
         );
 
         SpendingList realSL = new SpendingList(expectedList);
@@ -110,8 +120,8 @@ class SpendingListTest {
         final SpendingList expectedList = new SpendingList((Storage) null);
 
         SpendingList realList = initSpendingList(
-                new Item("buy book", "S$", 10, ""),
-                new Item("buy stationary", "S$", 5, "")
+            new Item("buy book", "S$", 10, ""),
+            new Item("buy stationary", "S$", 5, "")
         );
         assertEquals(realList.getListSize(), 2, "List not instantiated with 2 items");
         realList.clearAllItems();
@@ -136,13 +146,36 @@ class SpendingListTest {
         String expectedYear = Integer.toString(LocalDate.now().getYear());
 
         SpendingList realList = initSpendingList(
-                new Item("rice", "S$", 2, ""),
-                new Item("noodle", "S$", 1.5, ""),
-                new Item("fish", "S$", 10, ""),
-                new Item("books", "S$", 8.9, "")
+            new Item("rice", "S$", 2, ""),
+            new Item("noodle", "S$", 1.5, ""),
+            new Item("fish", "S$", 10, ""),
+            new Item("books", "S$", 8.9, "")
         );
 
         assertEquals(realList.getSpendingAmountTime(expectedYear), expectedAmount);
+    }
+
+    //@author k-walter
+    @Test
+    public void filterByCategory() {
+        SpendingList sl = initSpendingList(
+            new Item("rice", "SGD", 2, "Food"),
+            new Item("pencil", "S$", 1.5)
+        );
+        ArrayList<Item> expectedSl = initList(
+            new Item("rice", "SGD", 2, "Food"),
+            new Item("pencil", "S$", 1.5, "Others")
+        );
+        assertEqualList(expectedSl, sl.getSpendingList());
+        ArrayList<Item> expectedFood = initList(new Item("rice", "SGD", 2, "Food"));
+        ArrayList<Item> food = sl.filterSpendingList("Food", null);
+        assertEqualList(expectedFood, food);
+        ArrayList<Item> expectedOther = initList(new Item("pencil", "S$", 1.5, "Others"));
+        ArrayList<Item> other = sl.filterSpendingList("Others", null);
+        assertEqualList(expectedOther, other);
+        ArrayList<Item> expectedEmpty = initList();
+        ArrayList<Item> empty = sl.filterSpendingList("School", null);
+        assertEqualList(expectedEmpty, empty);
     }
 
     //@@author killingbear999
@@ -151,9 +184,9 @@ class SpendingListTest {
         double expectedAmount = 20.0;
         Data data = new Data(null, null, null);
         SpendingList realList = initSpendingList(
-                new Item("sushi", "S$", 11.0, ""),
-                new Item("bubble tea", "S$", 4.0, ""),
-                new Item("medicine", "S$", 5.0, "")
+            new Item("sushi", "S$", 11.0, ""),
+            new Item("bubble tea", "S$", 4.0, ""),
+            new Item("medicine", "S$", 5.0, "")
         );
         assertEquals(realList.getCurrentAmount(data), expectedAmount);
     }

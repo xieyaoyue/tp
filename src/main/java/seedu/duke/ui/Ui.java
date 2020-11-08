@@ -106,19 +106,17 @@ public class Ui {
     private void drawSeparateLine() {
         out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
-    
-    //@@author killingbear999
-    public void printSpendingList(SpendingList spendingList) {
-        if (spendingList.getListSize() == 0) {
+
+    //@author k-walter
+    public void printSpendingList(ArrayList<Item> items) {
+        if (items.isEmpty()) {
             out.println("Nothing in the list.");
-        } else {
-            for (int i = 1; i < spendingList.getListSize() + 1; i++) {
-                out.println(i + ". " + spendingList.getItem(i - 1).getDate() + " ["
-                                    + spendingList.getItem(i - 1).getCategory() + "] "
-                                    + spendingList.getItem(i - 1).getDescription() + " "
-                                    + spendingList.getItem(i - 1).getSymbol() + " "
-                                    + String.format("%.2f", spendingList.getItem(i - 1).getAmount()));
-            }
+            return;
+        }
+        int i = 1;
+        for (Item item : items) {
+            out.printf("%d. %s%n", i, item);
+            i += 1;
         }
         drawSeparateLine();
     }

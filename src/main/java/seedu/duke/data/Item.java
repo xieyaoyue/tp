@@ -8,13 +8,12 @@ public class Item {
     private double amount;
     private String symbol;
     private String date;
-    private String category = "Other";
+    //@author k-walter
+    private String category;
 
+    //@author k-walter
     public Item(String description, String symbol, double amount) {
-        this.description = description;
-        this.symbol = symbol;
-        this.amount = amount;
-        this.date = currentDate();
+        this(description, symbol, amount, null);
     }
 
     public Item(String description, String symbol, double amount, String category) {
@@ -70,7 +69,9 @@ public class Item {
         this.date = specificDate;
     }
 
+    //@author k-walter
+    @Override
     public String toString() {
-        return date + " [" + category + "] " + description + " " + symbol + " " + String.format("%.4f", amount);
+        return String.format("%s [%s] %s %s %s", date, category, description, symbol, String.format("%.4f", amount));
     }
 }

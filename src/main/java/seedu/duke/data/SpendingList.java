@@ -87,14 +87,19 @@ public class SpendingList {
         return totalAmount;
     }
 
+    //@@author k-walter
+    public ArrayList<Item> filterSpendingList(String category, String period) {
+        return spendingList.stream()
+            .filter(i -> category == null || i.getCategory().contains(category))
+            .filter(i -> period == null || i.getDate().matches("^" + period))
+            .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    //@@author k-walter
     public double getSpendingAmountCategory(String category, String period) {
-        double totalAmount = 0;
-        for (Item i: spendingList) {
-            if (i.getCategory().contains(category) && i.getDate().contains(period)) {
-                totalAmount += i.getAmount();
-            }
-        }
-        return totalAmount;
+        return filterSpendingList(category, period).stream()
+            .mapToDouble(Item::getAmount)
+            .sum();
     }
     
     //@@author killingbear999
