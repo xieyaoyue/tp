@@ -119,7 +119,7 @@ The following are the steps to verify your setup:
 
 ## 3. Design
 ### 3.1 Architecture
-![image](https://user-images.githubusercontent.com/45732128/97735431-4886f780-1b15-11eb-920c-24e5bf7a76fe.png) <br>
+![image](images/architecture.png) <br>
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
 
@@ -373,10 +373,10 @@ total expenditure of the current week, starting on Monday. It implements the fol
 Below shows an example of usage:
 
 1. User starts the application.
-2. The `Reminder` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
-3. In the `Reminder#execute(spendingList, repayingList, ui)`, a check will be done to see if there is any budget being set by the user.
+2. The `ReminderCommand` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
+3. In the `ReminderCommand#execute(data, ui)`, a check will be done to see if there is any budget being set by the user.
     * If no budget is being set, the total expenditure of current week will be tallied up. 
-    * If there is, `WarnCommand#execute(spendingList, repayingList, ui)` will be called first before tallying up the expenditure. 
+    * If there is, `WarnCommand#execute(data, ui)` will be called first before tallying up the expenditure. 
 
 The following sequence diagram illustrates how this feature works. <br>
 
