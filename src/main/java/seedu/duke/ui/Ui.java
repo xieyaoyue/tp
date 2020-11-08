@@ -215,7 +215,7 @@ public class Ui {
 
     //@@author pinfang
     public void printSummaryMessage(double amount) {
-        out.printf("You've spent $%.2f.%n", amount);
+        out.printf("You've spent %.2f.%n", amount);
         drawSeparateLine();
     }
 
@@ -235,8 +235,9 @@ public class Ui {
     }
 
     //@@author killingbear999
-    public void printBudgetLimit(String currency, double budgetLimit) {
-        out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit));
+    public void printBudgetLimit(Data data, String currency, double budgetLimit) {
+        out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit)
+                + " on " + data.budget.getDate());
         drawSeparateLine();
     }
 
@@ -280,7 +281,7 @@ public class Ui {
     //@@author killingbear999
     public void printCurrentBudgetLimit(Data data) {
         System.out.println("The budget limit has been set to: " + data.budget.getCurrency() + " "
-                               + String.format("%.2f", data.budget.getBudgetLimit()));
+                               + String.format("%.2f", data.budget.getBudgetLimit()) + " on " + data.budget.getDate());
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
 
