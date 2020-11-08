@@ -33,7 +33,7 @@ public class Duke {
             } catch (ParseException e) {
                 ui.printErrorMessage(new InvalidCommandException().toString());
             } catch (Exception e) {
-                ui.printErrorMessage(e.toString());
+                ui.printErrorMessage(e.getMessage());
             }
         } while (!isExit);
         ui.printGoodbyeMessage();

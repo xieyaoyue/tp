@@ -15,7 +15,7 @@ class "ReminderCommand" {
     + execute(): void
     - startOfWeek(): LocalDate
     - saveDatesToList(): void
-    + findRemainingAmount(): double
+    - findRemainingAmount(): double
 }
 
 class "EncouragementCommand" {

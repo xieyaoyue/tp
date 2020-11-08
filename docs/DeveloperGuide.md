@@ -1,9 +1,11 @@
 # Developer Guide
 ![cover page](images/CentWiseDollarWise.png)
+
 -----
 
 ## Content Page
 1. [Introduction](#1-introduction)
+
 2. [Setting Up](#2-setting-up)
 
     2.1 [Prerequisites](#21-prerequisites)
@@ -179,7 +181,7 @@ The following class diagram describes general CLI `Command`s that apply to the w
 #### 3.4.5 Hidden `Command`s
 The following class diagram describes the hidden commands within the program. <br>
 
-![image](https://user-images.githubusercontent.com/60251547/98458937-9fa16200-21d0-11eb-91fe-968ca030149c.png)
+![image](https://user-images.githubusercontent.com/60251547/98463079-c58c2e00-21f3-11eb-9b27-addde1e2d081.png)
 
 
 ### 3.5 Data Component
@@ -363,9 +365,11 @@ given a date. It implements the following operations:
 Below shows an example of usage:
 
 1. User executes the `summary 2020` command to get the amount spent during year 2020.
-2. The `summary` command calls the `SpendinList#getSpendingAmount` which checks the spending date of every items
+2. The `summary` command calls the `SpendingList#getSpendingAmountTime` which checks the spending date of every items
 stored in the memory.
 3. If the item is spent during year 2020, the amount spent will be summed up.
+4. The `summary` command will also call the `SpendingList#getSpendingAmountCategory` to sum up the expenses in each
+categories during the year 2020.
 
 The following sequence diagram illustrates how this feature works.<br>
 

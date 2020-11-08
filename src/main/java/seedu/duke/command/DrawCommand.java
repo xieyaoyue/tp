@@ -22,7 +22,6 @@ import seedu.duke.data.Data;
 import seedu.duke.data.Item;
 import seedu.duke.data.SpendingList;
 import seedu.duke.ui.Ui;
-import seedu.duke.utilities.DateFormatter;
 import seedu.duke.utilities.FileExplorer;
 
 import java.io.FileOutputStream;
@@ -32,16 +31,14 @@ import java.util.TreeMap;
 
 //@@author Wu-Haitao
 public class DrawCommand extends DateCommand {
-    private final DateFormatter dateFormatter = new DateFormatter();
     private final String filePath = "Charts.xlsx";
     private final FileExplorer fileExplorer = new FileExplorer(filePath);
     private boolean isOpening;
-    private boolean parameterIsValid = true;
     private String timePeriod;
 
+    //@author k-walter
     public DrawCommand() {
-        timePeriod = "";
-        this.isOpening = true;
+        this(true);
     }
 
     public DrawCommand(boolean isOpening) {
@@ -49,41 +46,23 @@ public class DrawCommand extends DateCommand {
         this.isOpening = isOpening;
     }
 
+    //@author kk-walter
     public DrawCommand(String year, String month) {
-        String convertedMonth = dateFormatter.changeMonthFormat(month);
-        if (convertedMonth == null) {
-            if (!(month == null)) {
-                parameterIsValid = false;
-                return;
-            }
-            timePeriod = year;
-        } else {
-            timePeriod = year + "-" + convertedMonth;
-        }
-        this.isOpening = true;
+        this(year, month, true);
     }
 
+    //@author k-walter
     public DrawCommand(String year, String month, boolean isOpening) {
-        String convertedMonth = dateFormatter.changeMonthFormat(month);
-        if (convertedMonth == null) {
-            if (!(month == null)) {
-                parameterIsValid = false;
-                return;
-            }
+        if (month == null) {
             timePeriod = year;
         } else {
-            timePeriod = year + "-" + convertedMonth;
+            timePeriod = year + "-" + month;
         }
         this.isOpening = isOpening;
     }
 
     @Override
     public void execute(Data data, Ui ui) {
-        if (!parameterIsValid) {
-            ui.printDrawMessage(false);
-            return;
-        }
-
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet0 = workbook.createSheet("Sheet 0");
         XSSFSheet sheet1 = workbook.createSheet("Sheet 1");
