@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-->":WarnCommand":execute(spendingList, ui)
+->":WarnCommand":execute(data, ui)
 activate ":WarnCommand"
 ":WarnCommand"->":Budget":getCurrency()
 activate ":Budget"

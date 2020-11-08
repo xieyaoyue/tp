@@ -170,7 +170,7 @@ public class SpendingList {
     public void categoriseSpendingList() {
         int count = spendingList.size() - 1;
         for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < spendingList.size() - 1; j++) {
+            for (int j = 0; j < count + 1; j++) {
                 Item currentItem = getItem(j);
                 if (i == 0 && currentItem.getCategory().equals("Education")) {
                     Item lastItem = getItem(count);
