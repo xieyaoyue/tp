@@ -41,10 +41,11 @@ public class Ui {
             {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
             {"draw", "draw [YEAR] [MONTH]", "draw 2020 Jun"},
             {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
-            {"", "[-s NEW_SPENDING]", ""},
+            {"", "[-s NEW_CURRENCY NEW_SPENDING]", ""},
             {"export", "export PATH", "export F:\\MyFolder"},
             {"help", "help", ""},
             {"logout", "logout", ""},
+            {"purge data", "purge data", ""},
             {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
@@ -52,7 +53,7 @@ public class Ui {
             {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -c food"},
             {"summary", "summary", "summary"},
             {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
-            {"purge data", "purge data", ""}
+            {"view", "view", ""}
     };
 
     //@@author Wu-Haitao
@@ -136,11 +137,11 @@ public class Ui {
     public void printHelp() {
         out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 19; i++) {
             out.format("%1s%-15s%1s%-55s%1s%-41s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
                     BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
                     BORDER_VERTICAL);
-            if (i <= 4 || (i >= 6 && i <= 12) || i == 14 || i == 16) {
+            if (i <= 4 || (i >= 6 && i <= 12) || i == 13 || i == 15 || i == 17) {
                 printWithinTableBorder();
             }
         }
@@ -222,6 +223,7 @@ public class Ui {
 
     public void printSummaryCategory(String category, double amount) {
         out.printf("%-20s $%.2f\n", category, amount);
+        drawSeparateLine();
     }
 
     //@@author Wu-Haitao

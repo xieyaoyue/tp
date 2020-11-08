@@ -9,6 +9,7 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ClearRepaymentListCommandTest {
     @Test
@@ -16,9 +17,11 @@ class ClearRepaymentListCommandTest {
         Data data = new Data(null, null, null);
         data.repaymentList.addItem("Ben", "USD", 20.00, "10 Nov 2020");
         Ui ui = new Ui();
+        assertThrows(InvalidNumberException.class, () -> new ClearRepaymentListCommand(false, 3).execute(data, ui));
         ClearRepaymentListCommand c = new ClearRepaymentListCommand(false, 1);
         c.execute(data, ui);
         assertEquals(0, data.repaymentList.getListSize());
+        assertThrows(InvalidClearRepaymentException.class, () -> c.execute(data, ui));
     }
 
     @Test
@@ -29,5 +32,6 @@ class ClearRepaymentListCommandTest {
         ClearRepaymentListCommand c = new ClearRepaymentListCommand(true, 0);
         c.execute(data, ui);
         assertEquals(0, data.repaymentList.getListSize());
+        assertThrows(InvalidClearRepaymentException.class, () -> c.execute(data, ui));
     }
 }
