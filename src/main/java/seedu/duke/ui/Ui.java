@@ -137,7 +137,7 @@ public class Ui {
     public void printHelp() {
         out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 19; i++) {
             out.format("%1s%-15s%1s%-55s%1s%-41s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
                     BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
                     BORDER_VERTICAL);
