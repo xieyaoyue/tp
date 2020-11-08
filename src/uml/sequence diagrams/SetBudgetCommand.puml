@@ -1,11 +1,21 @@
 @startuml
 hide footbox
-->":SetBudgetCommand":execute(spendingList, ui)
+->":SetBudgetCommand":execute(data, ui)
 activate ":SetBudgetCommand"
-":SetBudgetCommand"->":SetBudgetCommand":identifyBudgetLimit(description)
-activate ":SetBudgetCommand"
-":SetBudgetCommand"-->":SetBudgetCommand":
-deactivate ":SetBudgetCommand"
+alt currency != defaultCurrency
+":SetBudgetCommand"->":AmountConverter":updateAmount()
+activate ":AmountConverter"
+":AmountConverter"-->":SetBudgetCommand":amount
+deactivate ":AmountConverter"
+":SetBudgetCommand"->":AmountConverter":updateCurrency()
+activate ":AmountConverter"
+":AmountConverter"-->":SetBudgetCommand":currency
+deactivate ":AmountConverter"
+end
+":SetBudgetCommand"->":DecimalFormatter":convert()
+activate ":DecimalFormatter"
+":DecimalFormatter"-->":SetBudgetCommand":budgetLimit
+deactivate ":DecimalFormatter"
 ":SetBudgetCommand"->":Budget":addBudget(currency, budgetLimit)
 activate ":Budget"
 ":Budget"-->":SetBudgetCommand":

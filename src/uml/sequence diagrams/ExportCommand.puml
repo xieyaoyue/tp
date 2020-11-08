@@ -2,7 +2,7 @@
 
 hide footbox
 
-->":ExportCommand":execute(spendingList, ui)
+->":ExportCommand":execute(data, ui)
 activate ":ExportCommand"
 ":ExportCommand" -> ":ExportCommand" : exportToExcel()
 activate ":ExportCommand"

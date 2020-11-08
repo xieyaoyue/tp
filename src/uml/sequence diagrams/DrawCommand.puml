@@ -2,7 +2,7 @@
 
 hide footbox
 
-->":DrawCommand":execute(spendingList, ui)
+->":DrawCommand":execute(data, ui)
 activate ":DrawCommand"
 ":DrawCommand" -> ":Workbook"
 activate ":Workbook"

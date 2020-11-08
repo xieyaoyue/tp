@@ -18,23 +18,24 @@ financial situation and track their spending efficiently.
   9. `Repay` class
   10. `DateTimeFormatter` class
   11. `DecimalFormatter` class
-  12. `Ui` class (some functions and methods)
-  13. `SpendingList` class (some functions and methods)
-  14. `AddCommand` class (some functions and methods)
+  12. `AmountConverter` class
+  13. `SpendingListCategoriser` class
+  14. `Ui` class (some functions and methods)
+  15. `SpendingList` class (some functions and methods)
+  16. `AddCommand` class (some functions and methods)
+  17. `exceptions` related to the above classes
   
   Refer this link for more information: 
   [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=killingbear999&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
-* Enhancement implementation:
-
 * UG documentation contributions:
   1. Section 3.0 Command Features
-  2. Section 3.4 Viewing Budget Limit
-  3. Section 3.5 Setting Budget Limit
-  4. Section 3.6 Inputting Repayment Information
-  5. Section 3.7 Converting Currency
-  6. Section 3.11 Editing Spending 
-  7. Section 3.12 Exiting Program
+  2. Section 3.7 Viewing Budget Limit
+  3. Section 3.8 Setting Budget Limit
+  4. Section 3.9 Inputting Repayment Information
+  5. Section 3.10 Converting Currency
+  6. Section 3.14 Editing Spending 
+  7. Section 3.15 Exiting Program
 
 * DG documentation contributions:
   1. Section 4.3 Edit Feature and its sequence diagram
@@ -58,9 +59,9 @@ financial situation and track their spending efficiently.
   3. Tests and reports bugs
 
 * Contributions beyond the project team:
-  1. Bugs reported in PE dry run and actual PE
+  1. Bugs reported in PE dry run
   
-     Refer these links for more information:
+     Refer this link for more information:
      [PE dry run](https://github.com/killingbear999/ped/issues)
   
   2. DG reviews

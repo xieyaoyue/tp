@@ -2,15 +2,15 @@
 hide footbox
 ->":RepayCommand":execute(spendingList, ui)
 activate ":RepayCommand"
-":RepayCommand"->":RepayCommand":identifyRepaymentInformation(description)
-activate ":RepayCommand"
-":RepayCommand"-->":RepayCommand":
-deactivate ":RepayCommand"
-":RepayCommand"->":RepaymentList":storeCurrentString()
+":RepayCommand"->":DecimalFormatter":convert()
+activate ":DecimalFormatter"
+":DecimalFormatter"-->":RepayCommand":repayment
+deactivate ":DecimalFormatter"
+":RepayCommand"->":RepaymentList":addItem(name, currency, repayment, deadline)
 activate ":RepaymentList"
 ":RepaymentList"-->":RepayCommand":
 deactivate ":RepaymentList"
-":RepayCommand"->":Ui":printRepay(repaymentList.returnCurrentString())
+":RepayCommand"->":Ui":printRepay(repaymentList)
 activate ":Ui"
 ":Ui"-->":RepayCommand":
 deactivate ":Ui"

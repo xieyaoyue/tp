@@ -29,6 +29,9 @@ public class SetBudgetCommand extends Command {
         if (size != 0) {
             defaultCurrency = data.spendingList.getItem(0).getSymbol();
         }
+        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+            throw new InvalidInputCurrencyException();
+        }
         if (!currency.equals(defaultCurrency)) {
             AmountConverter amountConverter = new AmountConverter(currency, budgetLimit, defaultCurrency);
             budgetLimit = amountConverter.updateAmount();
@@ -36,9 +39,6 @@ public class SetBudgetCommand extends Command {
         }
         if (budgetLimit < 0.01) {
             throw new InvalidBudgetException();
-        }
-        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
-            throw new InvalidInputCurrencyException();
         }
         DecimalFormatter decimalFormatter = new DecimalFormatter();
         budgetLimit = decimalFormatter.convert(budgetLimit);
