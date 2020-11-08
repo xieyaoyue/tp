@@ -83,6 +83,6 @@ public class Item {
     //@author k-walter
     @Override
     public String toString() {
-        return String.format("%s [%s] %s %s %s", date, category, description, symbol, String.format("%.4f", amount));
+        return String.format("%s [%s] %s %s %s", date, category, description, symbol, String.format("%.2f", amount));
     }
 }
