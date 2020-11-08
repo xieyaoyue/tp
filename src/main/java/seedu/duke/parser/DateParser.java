@@ -21,14 +21,10 @@ public class DateParser<T extends DateCommand> extends Parser {
     @Override
     public Command parse(String[] args) throws ParseException, InvalidCommandException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException, InvalidFormatException {
-        CommandLine line;
-        try {
-            line = parser.parse(options, args);
-        } catch (ParseException e) {
-            throw new InvalidFormatException();
-        }
+        CommandLine line = getCommandLine(args, true);
 
         if (parseAllOption(line)) {
+            parseNoArgs(line);
             return command.getDeclaredConstructor().newInstance();
         }
 
