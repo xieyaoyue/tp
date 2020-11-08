@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-->":EncouragementCommand": execute(spendingList, ui)
+->":EncouragementCommand": execute(data, ui)
 activate ":EncouragementCommand"
 ":EncouragementCommand" -> ":Ui": printEncouragementMessage()
 activate ":Ui"

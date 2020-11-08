@@ -1,6 +1,7 @@
 @startuml
 hide footbox
-->":ConvertCommand":execute(spendingList, ui)
+->":ConvertCommand":execute(data, ui)
+alt inputCurrency == defaultCurrency
 activate ":ConvertCommand"
 ":ConvertCommand"->":SpendingList":getSpendingList()
 activate ":SpendingList"
@@ -12,34 +13,27 @@ activate ":ConvertCommand"
 deactivate ":ConvertCommand"
 ":ConvertCommand"->":ConvertCommand":findExchangeRate()
 activate ":ConvertCommand"
-":ConvertCommand"-->":ConvertCommand":exchangeRate
-deactivate ":ConvertCommand"
-loop spendingList.size times
-":ConvertCommand"->":ConvertCommand":updateNewAmount(currentString)
-activate ":ConvertCommand"
-":ConvertCommand"->":Item":editAmount(amount)
-activate ":Item"
-":Item"-->":ConvertCommand":
-deactivate ":Item"
 ":ConvertCommand"-->":ConvertCommand":
 deactivate ":ConvertCommand"
-":ConvertCommand"->":ConvertCommand":updateCurrency(currentString)
+":ConvertCommand"->":ConvertCommand":updateList()
 activate ":ConvertCommand"
-":ConvertCommand"->":Item":editSymbol(currency)
-activate ":Item"
-":Item"-->":ConvertCommand":
-deactivate ":Item"
 ":ConvertCommand"-->":ConvertCommand":
 deactivate ":ConvertCommand"
-end
+alt isValid()
 ":ConvertCommand"->":Ui":printConvertCurrency(outputCurrency)
 activate ":Ui"
 ":Ui"-->":ConvertCommand":
 deactivate ":Ui"
+end
 ":ConvertCommand"->":SpendingList":updateSpendingList()
 activate ":SpendingList"
 ":SpendingList"-->":ConvertCommand":
 deactivate ":SpendingList"
+":ConvertCommand"->":ConvertCommand":updateBudgetList()
+activate ":ConvertCommand"
+":ConvertCommand"-->":ConvertCommand":
+deactivate ":ConvertCommand"
 <--":ConvertCommand"
 deactivate ":ConvertCommand"
+end
 @enduml

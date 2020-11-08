@@ -58,7 +58,7 @@ Example: `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION]` can be used as `edit 1 
 * The abbreviation of `MONTH` is case sensitive. The system only accepts the abbreviation of `MONTH` with the first three letters, and the first
 letter is capitalised. Example: `Jul` for July or `Oct` for October.
 
-* The system has the feature of a currency converter, but it only supports currency conversion for SGD to USD, or USD to SGD, or SGD to CNY, or CNY to SGD.
+* The system only supports three different currencies including SGD, USD and CNY.
 
 * The default currency of the system is SGD, but after calling `convert` feature, the default currency will be changed to the currency you have converted to.
 
@@ -156,11 +156,13 @@ Examples of usage:
 
 `spending list -c Food` → lists all food entries for the current month
 
-`spending list -a` → lists all entries
-
 Figure below shows an example for Spending List feature: <br>
 
 ![Example for viewing Spending list](images/spendinglistOutput.png)
+
+Figure below shows an example for Spending List feature with specific month/year/category: <br>
+
+![Example for viewing Spending list](images/SpendingList.jpg)
 
 ### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
@@ -179,11 +181,13 @@ Figure below shows an example for View Budget Limit feature (i.e. budget limit h
 
 Figure below shows an example for View Budget Limit feature (i.e. budget limit has been set): <br>
 
-![Example for Viewing Budget Limit](images/BudgetExample.png)
+![Example for Viewing Budget Limit](images/Budget.png)
 
 ### 3.8 Setting Budget Limit: `set`
 This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
 the limit or exceeds the limit.
+
+🛈 The system only supports three different currencies, including SGD, USD and CNY.
 
 Format:
 
@@ -191,26 +195,38 @@ Format:
 
 Example of usage:
 
-`set -s SGD 100.0` → sets the budget limit to SGD 100.0
+`set -s SGD 100.0` → sets the budget limit to SGD 100.00
+
+Figure below shows an example for Set Budget Limit feature: <br>
+
+![Example for Setting Budget Limit](images/SetBudget.png)
 
 ### 3.9 Inputting Repayment Information: `repay`
 This command adds a repayment record to your repayment list.
 
+🛈 The system only supports three different currencies, including SGD, USD and CNY.
+
+🛈 The format of deadline is yyyy-MM-dd, and the deadline should be after/including the current date.
+
 Format:
 
-`repay -n NAME -s CURRENCY AMOUNT -t DEADLINE`
+`repay -d NAME -s CURRENCY AMOUNT -t DEADLINE`
 
 Example of usage:
 
-`repay -n Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
+`repay -d Johnny -s SGD 5.0 -t 2020-12-02` → stores the information that you need to repay SGD 5.0 to Johnny before 
 2020-12-02
 
 Figure below shows an example for Input Repayment Information feature: <br>
 
-![Example for Inputting Repayment Information](images/RepayExample.png)
+![Example for Inputting Repayment Information](images/Repay.png)
 
 ### 3.10 Converting Currency: `convert`
 This command converts the currency in your spending list to another currency you prefer.
+
+🛈 The currency converter only supports currency conversion from SGD to USD, or USD to SGD, or SGD to CNY, or CNY to SGD.
+
+🛈 The input currency must match with the default currency in the spending list.
 
 Format: 
 
@@ -222,7 +238,7 @@ Example of usage:
 
 Figure below shows an example for Convert Currency feature: <br>
 
-![Example for Converting Currency](images/ConvertExample.png)
+![Example for Converting Currency](images/Convert.png)
 
 ### 3.11 Viewing Summary: `summary`
 This command generates a statement of your total expenditure during a specific period of time (a particular year or 
@@ -277,13 +293,15 @@ Example of usage:
 ### 3.14 Editing Spending: `edit`
 This command edits the existing records in the spending list.
 
+🛈 The system only supports three different currencies, including SGD, USD and CNY.
+
 Format:
 
 `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION] [-s CURRENCY NEW SPENDING]`
 
 Example of usage:
 
-`edit 3 -s SGD 4.0` → edits the amount in the first item in the spending list to SGD 4.0
+`edit 3 -s SGD 4.0` → edits the amount in the third item in the spending list to SGD 4.0
 
 Figure below shows an example for Edit Spending feature: <br>
 
@@ -300,9 +318,12 @@ Example of usage:
 
 `logout` → exits the program
 
+Figure below shows an example for Exiting Program feature: <br>
+
+![Example for Exiting Program](images/Exit.png)
+
 ## **4. Useful Hidden Features**
 This section shows you the hidden features which serve as notifications and interactions with the user.
-<<<<<<< HEAD
 
 ### 4.1 Reminder 
 Reminds you about your weekly expenditures, and the amount of budget left when you start the application.
@@ -341,18 +362,18 @@ Figure below shows an example of encouragement message. <br>
 
 | Action | Format | Examples |
 |:------:|--------|----------|
-|[add](#31-adding-spending-add) | `add  -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
+|[add](#31-adding-spending-add) | `add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
 |[clear](#32-clearing-data-clear) | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
 |[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
-|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`|
+|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`| draw 2020|
 |[edit](#314-editing-spending-edit) | `edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
-|[export](#313-exporting-data-export) | `export PATH`|
-|[help](#33-viewing-help-help) | `help`|
-|[logout](#315-exiting-program-logout) | `logout`|
-|[purge data](#34-purging-data-purge-data) | `purge data`|
+|[export](#313-exporting-data-export) | `export PATH`| export F:\MyFolder exports|
+|[help](#33-viewing-help-help) | `help`| help|
+|[logout](#315-exiting-program-logout) | `logout`| logout|
+|[purge data](#34-purging-data-purge-data) | `purge data`| purge data|
 |[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
-|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`|
+|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`| rapayment list|
 |[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
 |[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]`| spending list 2020 Jul|
 |[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
-|[view](#37-viewing-budget-limit-view) | `view`|
+|[view](#37-viewing-budget-limit-view) | `view`| view|

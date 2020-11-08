@@ -257,12 +257,15 @@ The following sequence diagram illustrates how clearing a spending list works. <
 ![image](https://user-images.githubusercontent.com/45732128/97770858-08099700-1b72-11eb-86e4-80e07c416ea6.png) <br>
 
 ### 4.3 Edit Feature
-`SpendingList` and `Ui` facilitate this feature. The Edit feature is able to edit the existing items in the spending list. 
+`SpendingList`, `AmountConverter`, `DecimalFormatter` and `Ui` facilitate this feature. The Edit feature is able to edit the existing items in the spending list. 
 It implements the following operations:
 * `EditCommand#execute` → edit the spending list accordingly and calls the ui to print message output
 * `SpendingList#editItemDescription` → updates the description of the item in the spending list
 * `SpendingList#editItemCategory` → updates the category of the item in the spending list
 * `SpendingList#editItemAmount` → updates the amount of the item in the spending list
+* `AmountConverter#updateAmount` → converts the amount based on the default currency
+* `AmountConverter#updateCurrency` → converts the currency to the default currency
+* `DecimalFormatter#convert` → converts the amount to 4 d.p.
 * `Ui#printEdit` → prints the message to show the successful completion of the edition process
 
 Below shows an example of the usage:
@@ -271,18 +274,18 @@ Below shows an example of the usage:
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97735682-97cd2800-1b15-11eb-9a72-dd0b0dee7b43.png) <br>
+![image](images/EditCommand.png) <br>
 
 ### 4.4 Convert Feature
-`SpendingList`, `Ui` and `Item` facilitate this feature. The Convert feature is able to convert the currency of the items 
+`SpendingList` and `Ui` facilitate this feature. The Convert feature is able to convert the currency of the items 
 stored in the spending list. It implements the following operations:
 * `ConvertCommand#execute` → converts currency and calls the ui to print message output
 * `SpendingList#getSpendingList` → retrieves the current spending list
 * `ConvertCommand#identifyCurrency` → identifies the currency after conversion
 * `ConvertCommand#findExchangeRate` → finds the corresponding exchange rate
-* `Item#editAmount` → updates the new amount after conversion
-* `Item#editSymbol` → updates the new currency after conversion
+* `ConvertCommand#updateList` → updates the new amount and the new currency after conversion
 * `SpendingList#updateSpendingList` → updates the spending list after conversion 
+* `ConvertCommand#updateBudgetList` → updates the budget limit after conversion 
 * `Ui#printConvertCurrency` → prints the message to show the successful completion of the conversion 
 process
 
@@ -292,12 +295,14 @@ Below shows an example of the usage:
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97736543-d2839000-1b16-11eb-8ecd-ced57fe20466.png) <br>
+![image](images/ConvertCommand.png) <br>
 
 ### 4.5 Set Budget Feature
-`Budget` and `Ui` facilitate this feature. The Set Budget feature is able to set the budget limit for the spending. 
+`Budget`, `AmountConverter` , `DecimalFormatter` and `Ui` facilitate this feature. The Set Budget feature is able to set the budget limit for the spending. 
 It implements the following operations:
-* `SetBudgetCommand#identifyBudgetLimit` → identifies the budget limit input by the user
+* `AmountConverter#updateAmount` → converts the budget limit based on the default currency
+* `AmountConverter#updateCurrency` → converts the currency to the default currency
+* `DecimalFormatter#convert` → converts the budget limit to 4 d.p.
 * `Budget#addBudget` → stores the budget limit with its corresponding currency
 * `Ui#printBudgetLimit` → prints the message to show the successful completion of the setting 
 budget process
@@ -308,7 +313,7 @@ Below shows an example of usage:
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97735896-ee3a6680-1b15-11eb-82a1-df893ea95675.png) <br>
+![image](images/SetBudgetCommand.png) <br>
 
 ### 4.6 Warn Feature
 `Budget`, `SpendingList` and `Ui` facilitate this feature. The Warn feature is able to warn the user when the total 
@@ -329,13 +334,14 @@ limit
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97735970-feeadc80-1b15-11eb-9a72-f37dc73ea7e9.png) <br>
+![image](images/WarnCommand.png) <br>
 
 ### 4.7 Repay Feature
-`RepaymentList` and `Ui` facilitate this feature. The Repay feature is able to store the repayment information as a 
+`RepaymentList`, `DecimalFomatter` and `Ui` facilitate this feature. The Repay feature is able to store the repayment information as a 
 remainder to the user. It implements the following operations:
-* `RepaymentList#storeCurrentString` → stores the repayment information to the repayment list
-* `Ui#printRepay(repaymentList.returnCurrentString` → prints the repayment information which has been successfully stored
+* `DecimalFormatter#convert` → converts the repayment amount to 4 d.p.
+* `RepaymentList#AddItem` → adds the repayment information to the repayment list
+* `Ui#printRepay` → prints the repayment information which has been successfully stored
 
 Below shows an example of usage:
 1. User executes `repay Johnny SGD 5.0 2020-12-20` command to add the repayment information that one has to repay 
@@ -344,7 +350,7 @@ SGD 5.0 to Johnny before 2020-12-20
 
 The following sequence diagram illustrates how this feature works. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97736043-14f89d00-1b16-11eb-85c4-73a3e52112c2.png) <br>
+![image](images/RepayCommand.png) <br>
 
 ### 4.8 Summary Feature
 `SpendingList` and `Item` facilitate this feature. The Summary feature is able to summarise the total amount spent 

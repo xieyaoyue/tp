@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-->":ClearSpendingListCommand":execute(spendingList, \nrepaymentList, ui)
+->":ClearSpendingListCommand":execute(data, ui)
 activate ":ClearSpendingListCommand"
 ":ClearSpendingListCommand" -> ":SpendingList": clearAllItems()
 activate ":SpendingList"
