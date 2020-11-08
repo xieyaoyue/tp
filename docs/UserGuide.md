@@ -167,7 +167,6 @@ Examples of usage:
 
 Figure below shows an example for Spending List feature: <br>
 
-![Example for viewing Spending list](images/spendinglistOutput.png)
 
 ### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
@@ -318,8 +317,8 @@ It will also warn you if you are reaching your budget limit. <br>
 Note: A new week starts on Monday.
 
 ### 4.2 Warning
-Warns you when you are about to overspend. The budget threshold is 90% of your budget set. After you add a spending 
-item and the total expenditure is more than the budget threshold, warning message will appear. <br>
+Warns you when you are about to overspend. After you add a spending item and the total expenditure is more than the 
+budget threshold, the below warning message will appear. <br>
 
 ![reminder message](images/warningMessage.png)
 
