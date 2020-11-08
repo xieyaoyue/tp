@@ -1,12 +1,13 @@
-# Cent wise Dollar wise
+# User Guide
 ![image](images/CentWiseDollarWise.png)
+
 --------
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Command Features](#3-command-features)  
-    3.1 [Adding Spending: `add`](#31-adding-spending-add) 
+    3.1 [Adding Spending: `add`](#31-adding-spending-add)<br>
     3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
     3.3 [Viewing Help: `help`](#33-viewing-help-help)    
     3.4 [Purging Data: `purge`](#34-purging-data-purge-data)    
@@ -166,7 +167,6 @@ Examples of usage:
 
 Figure below shows an example for Spending List feature: <br>
 
-![Example for viewing Spending list](images/spendinglistOutput.png)
 
 ### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
@@ -317,8 +317,8 @@ It will also warn you if you are reaching your budget limit. <br>
 Note: A new week starts on Monday.
 
 ### 4.2 Warning
-Warns you when you are about to overspend. The budget threshold is 90% of your budget set. After you add a spending 
-item and the total expenditure is more than the budget threshold, warning message will appear. <br>
+Warns you when you are about to overspend. After you add a spending item and the total expenditure is more than the 
+budget threshold, the below warning message will appear. <br>
 
 ![reminder message](images/warningMessage.png)
 
