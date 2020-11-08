@@ -55,13 +55,13 @@ public abstract class Parser {
     }
 
     /**
-     * Parses optional year month argument, with 3 possible combinations
+     * Parses optional year month argument, with 3 possible combinations.
      * case none given: year = current year, month = current month
      * cases year given: year = given year, month = null
      * case year month given: year = given year, month = given month
      *
      * @param line command line to be parsed for arguments
-     * @return year month wrapper
+     * @return year (eg 2020), month ("01".."12")
      * @throws InvalidCommandException if unable to get argument
      * @throws InvalidYearException    for invalid year
      * @throws InvalidMonthException   for invalid month
@@ -105,6 +105,7 @@ public abstract class Parser {
                 Date date = new SimpleDateFormat("MMMM").parse(ym.month);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
+                ym.month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
             } catch (java.text.ParseException e) {
                 throw new InvalidMonthException();
             }

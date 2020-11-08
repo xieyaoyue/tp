@@ -35,7 +35,7 @@ public class SpendingListTest {
     }
 
     /**
-     * Converts list to string format, because double comparison fails
+     * Converts list to string format, because double comparison fails.
      *
      * @param expectedList expected list of items
      * @param actualList   actual list of items

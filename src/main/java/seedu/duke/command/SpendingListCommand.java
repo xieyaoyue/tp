@@ -9,11 +9,11 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
 public class SpendingListCommand extends DateCommand {
-    protected String category = null;
+    protected String category;
 
-    public SpendingListCommand() {
-        // TODO : accept all time
+    public SpendingListCommand(String category) {
         super();
+        this.category = category;
     }
 
     public SpendingListCommand(String year, String month, String category) throws InvalidYearException,
