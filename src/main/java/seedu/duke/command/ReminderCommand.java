@@ -7,6 +7,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//@@author pinfang
 public class ReminderCommand extends Command {
     private LocalDate startWeek;
     private WarnCommand warn;
@@ -72,7 +73,7 @@ public class ReminderCommand extends Command {
         }
     }
 
-    public double findRemainingAmount(Data data) {
+    private double findRemainingAmount(Data data) {
         double budgetLimit = data.budget.getBudgetLimit();
         double currentAmount = data.spendingList.getCurrentAmount(data);
         return budgetLimit - currentAmount;

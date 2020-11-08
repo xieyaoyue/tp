@@ -22,7 +22,6 @@ public class SummaryCommand extends DateCommand {
     public SummaryCommand(String year, String month) {
         String monthFormat = dateFormatter.changeMonthFormat(month);
         isValidYear = hasValidYear(year);
-        System.out.println(year + month);
         if (monthFormat == null && month != null) {
             isValidMonth = false;
             period = year;
