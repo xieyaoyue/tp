@@ -29,6 +29,13 @@ public abstract class Parser {
     protected static CommandLineParser parser;
     protected static Options options;
 
+    protected static void parseNoArgs(CommandLine line) throws InvalidCommandException {
+        String[] args = line.getArgs();
+        if (args != null && args.length > 0) {
+            throw new InvalidCommandException();
+        }
+    }
+
     protected static void addAllOption() {
         Option all = Option.builder("a")
             .longOpt("all")
@@ -65,6 +72,13 @@ public abstract class Parser {
         default:
             throw new InvalidCommandException();
         }
+
+        try {
+            Integer.parseInt(ym.year);
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException();
+        }
+
         return ym;
     }
 
@@ -94,12 +108,12 @@ public abstract class Parser {
         options.addOption(spending);
     }
 
-    protected static Spending parseSpendingOption(CommandLine line) throws InvalidFormatException {
+    protected static Spending parseSpendingOption(CommandLine line) throws InvalidCommandException {
         Spending s = new Spending();
         if (line.hasOption("s")) {
             String[] spending = line.getOptionValues("s");
             if (spending.length != 2) {
-                throw new InvalidFormatException();
+                throw new InvalidCommandException();
             }
             s.symbol = spending[0];
             s.amount = Double.parseDouble(spending[1]);
@@ -128,7 +142,7 @@ public abstract class Parser {
 
     static void addDateOption() {
         Option date = Option.builder("t")
-            .hasArgs()
+            .hasArg()
             .required()
             .build();
 
@@ -140,19 +154,67 @@ public abstract class Parser {
         return String.join(" ", date);
     }
 
+    /**
+     * getOptionalIndex parses line with flag for 0..1 argument given
+     *
+     * @param line to check flags with
+     * @param flag for command
+     * @return null for option not selected, -1 for clear all, >=0 for clear 1
+     * @throws InvalidCommandException if argument is given is invalid index
+     */
+    static Integer parseOptionalIndex(CommandLine line, String flag) throws InvalidCommandException,
+        InvalidNumberException {
+        if (!line.hasOption(flag)) {
+            return null;
+        }
+
+        String indexString = line.getOptionValue(flag);
+        boolean isClearAll = indexString == null;
+        if (isClearAll) {
+            return -1;
+        }
+
+        Integer index = getIndex(indexString);
+        if (index == null) {
+            throw new InvalidCommandException();
+        }
+        return index;
+    }
+
+    /**
+     * Parse arguments into command line with no extra values outside of arguments.
+     *
+     * @param args space-separated arguments to parse
+     * @return command line with options
+     * @throws ParseException          for errors parsing
+     * @throws InvalidCommandException if values found outside of arguments
+     */
+    protected static CommandLine getCommandLine(String[] args) throws ParseException, InvalidCommandException {
+        return getCommandLine(args, false);
+    }
+
+    protected static CommandLine getCommandLine(String[] args, boolean hasArgs) throws ParseException,
+        InvalidCommandException {
+        CommandLine line = parser.parse(options, args);
+        if (!hasArgs) {
+            parseNoArgs(line);
+        }
+        return line;
+    }
+
     public abstract Command parse(String[] args) throws ParseException, InvalidCommandException,
-            java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
-            InvocationTargetException, InvalidFormatException, InvalidNumberException;
+        java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
+        InvocationTargetException, InvalidFormatException, InvalidNumberException;
 
     public Parser() {
         parser = new DefaultParser();
         options = new Options();
     }
 
-    protected static int getIndex(CommandLine line) throws InvalidFormatException, InvalidNumberException {
+    protected static int getIndex(CommandLine line) throws InvalidNumberException, InvalidCommandException {
         String[] indexString = line.getArgs();
         if (indexString.length != 1) {
-            throw new InvalidFormatException();
+            throw new InvalidCommandException();
         }
         return getIndex(indexString[0]);
     }
@@ -169,8 +231,8 @@ public abstract class Parser {
     }
 
     public static Command parseCommand(String userInput) throws InvalidCommandException, ParseException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
-            java.text.ParseException, InvalidFormatException, InvalidNumberException {
+        InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
+        java.text.ParseException, InvalidFormatException, InvalidNumberException {
         String[] args = userInput.strip().split(" ");
         if (args.length == 0) {
             throw new InvalidCommandException();
@@ -193,8 +255,10 @@ public abstract class Parser {
         case "export":
             return new ExportCommand(String.join(" ", opts));
         case "help":
+            checkRemainingCommand(opts, "");
             return new HelpCommand();
         case "logout":
+            checkRemainingCommand(opts, "");
             return new ExitCommand();
         case "repay":
             return new RepayParser().parse(opts);
@@ -218,8 +282,17 @@ public abstract class Parser {
     }
 
     private static void checkRemainingCommand(String[] args, String remainingCommand) throws InvalidCommandException {
+        boolean noCommands = (remainingCommand == null || remainingCommand.equals(""));
+        if (noCommands) {
+            if (args.length != 0) {
+                throw new InvalidCommandException();
+            }
+            return;
+        }
+
         String[] c = remainingCommand.strip().split(" ");
-        if (args.length != c.length || !Arrays.equals(c, args)) {
+        boolean unequalArgs = args.length != c.length || !Arrays.equals(c, args);
+        if (unequalArgs) {
             throw new InvalidCommandException();
         }
     }
