@@ -106,8 +106,8 @@ public class ConvertCommand extends Command {
     }
     
     private void updateList() {
-        for (int i = 0; i < newSpendingList.size(); i++) {
-            currentString = newSpendingList.get(i);
+        for (Item item : newSpendingList) {
+            currentString = item;
             if (!currentString.getSymbol().equals(outputCurrency)) {
                 updateNewAmount(currentString);
                 updateCurrency(currentString);
