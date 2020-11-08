@@ -223,6 +223,7 @@ public class Ui {
 
     public void printSummaryCategory(String category, double amount) {
         out.printf("%-20s $%.2f\n", category, amount);
+        drawSeparateLine();
     }
 
     //@@author Wu-Haitao
