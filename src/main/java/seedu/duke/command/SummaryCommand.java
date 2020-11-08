@@ -26,7 +26,7 @@ public class SummaryCommand extends DateCommand {
         if (monthFormat == null && month != null) {
             isValidMonth = false;
             period = year;
-        } else if (isValidYear && month == null){
+        } else if (isValidYear && month == null) {
             period = year;
         } else {
             period = year + "-" + monthFormat;
