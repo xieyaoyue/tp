@@ -93,7 +93,7 @@ public abstract class Parser {
 
         try {
             int yr = Integer.parseInt(ym.year);
-            if (yr < 0 || yr > now.getYear()) {
+            if (yr < 1970 || yr > now.getYear()) {
                 throw new Exception();
             }
         } catch (Exception e) {
