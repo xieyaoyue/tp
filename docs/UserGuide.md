@@ -1,12 +1,13 @@
-# Cent wise Dollar wise
+# User Guide
 ![image](images/CentWiseDollarWise.png)
+
 --------
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Command Features](#3-command-features)  
-    3.1 [Adding Spending: `add`](#31-adding-spending-add) 
+    3.1 [Adding Spending: `add`](#31-adding-spending-add)<br>
     3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
     3.3 [Viewing Help: `help`](#33-viewing-help-help)    
     3.4 [Purging Data: `purge`](#34-purging-data-purge-data)    

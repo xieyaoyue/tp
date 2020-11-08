@@ -1,9 +1,11 @@
 # Developer Guide
 ![cover page](images/CentWiseDollarWise.png)
+
 -----
 
 ## Content Page
 1. [Introduction](#1-introduction)
+
 2. [Setting Up](#2-setting-up)
 
     2.1 [Prerequisites](#21-prerequisites)
