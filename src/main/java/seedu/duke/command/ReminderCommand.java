@@ -7,6 +7,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//@@author pinfang
 public class ReminderCommand extends Command {
     private LocalDate startWeek;
     private WarnCommand warn;
