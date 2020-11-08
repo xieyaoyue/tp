@@ -17,43 +17,43 @@ public class Ui {
     private static final String SEPARATE_LINE_CHAR = "-";
     private static final int SEPARATE_LINE_LENGTH = 115;
     private static final String LOGO = "  _____         __ _      ___              \n"
-            + " / ___/__ ___  / /| | /| / (_)__ ___       \n"
-            + "/ /__/ -_) _ \\/ __/ |/ |/ / (_-</ -_)      \n"
-            + "\\___/\\__/_//_/\\__/|__/|__/_/___/\\__/       \n"
-            + "  / _ \\___  / / /__ ____| | /| / (_)__ ___ \n"
-            + " / // / _ \\/ / / _ `/ __/ |/ |/ / (_-</ -_)\n"
-            + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
+        + " / ___/__ ___  / /| | /| / (_)__ ___       \n"
+        + "/ /__/ -_) _ \\/ __/ |/ |/ / (_-</ -_)      \n"
+        + "\\___/\\__/_//_/\\__/|__/|__/_/___/\\__/       \n"
+        + "  / _ \\___  / / /__ ____| | /| / (_)__ ___ \n"
+        + " / // / _ \\/ / / _ `/ __/ |/ |/ / (_-</ -_)\n"
+        + "/____/\\___/_/_/\\_,_/_/  |__/|__/_/___/\\__/ \n";
     private static final String[][] BUDGET_QUOTES = {
-            {"It takes as much energy to wish as it does to plan.", "Eleanor Roosevelt"},
-            {"Just because you can afford it doesn't mean you should buy it.", "Suze Orman"},
-            {"Do not save what is left after spending; instead spend what is left after saving.", "Warren Buffett"},
-            {"Setting goals is the first step in turning the invisible into the visible.", "Tony Robbins"},
-            {"If there is no struggle, there is no progress.", "Frederick Douglass"}
+        {"It takes as much energy to wish as it does to plan.", "Eleanor Roosevelt"},
+        {"Just because you can afford it doesn't mean you should buy it.", "Suze Orman"},
+        {"Do not save what is left after spending; instead spend what is left after saving.", "Warren Buffett"},
+        {"Setting goals is the first step in turning the invisible into the visible.", "Tony Robbins"},
+        {"If there is no struggle, there is no progress.", "Frederick Douglass"}
     };
     private static final String BORDER_CORNER = "+";
     private static final String BORDER_HORIZONTAL = "-";
     private static final String BORDER_VERTICAL = "|";
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
-            {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-            {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
-            {"clear", "clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]", "clear -s 1"},
-            {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
-            {"draw", "draw [YEAR] [MONTH]", "draw 2020 Jun"},
-            {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
-            {"", "[-s NEW_CURRENCY NEW_SPENDING]", ""},
-            {"export", "export PATH", "export F:\\MyFolder"},
-            {"help", "help", ""},
-            {"logout", "logout", ""},
-            {"purge data", "purge data", ""},
-            {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
-            {"repayment list", "repayment list", ""},
-            {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
-            {"spending", "spending list", "spending list"},
-            {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -c food"},
-            {"summary", "summary", "summary"},
-            {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
-            {"view", "view", ""}
+        {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
+        {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
+        {"clear", "clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]", "clear -s 1"},
+        {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
+        {"draw", "draw [YEAR] [MONTH]", "draw 2020 Jun"},
+        {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
+        {"", "[-s NEW_CURRENCY NEW_SPENDING]", ""},
+        {"export", "export PATH", "export F:\\MyFolder"},
+        {"help", "help", ""},
+        {"logout", "logout", ""},
+        {"purge data", "purge data", ""},
+        {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
+        {"repayment list", "repayment list", ""},
+        {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
+        {"spending", "spending list", "spending list"},
+        {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -c food"},
+        {"summary", "summary", "summary"},
+        {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
+        {"view", "view", ""}
     };
 
     //@@author Wu-Haitao
@@ -111,12 +111,12 @@ public class Ui {
     public void printSpendingList(ArrayList<Item> items) {
         if (items.isEmpty()) {
             out.println("Nothing in the list.");
-            return;
-        }
-        int i = 1;
-        for (Item item : items) {
-            out.printf("%d. %s%n", i, item);
-            i += 1;
+        } else {
+            int i = 1;
+            for (Item item : items) {
+                out.printf("%d. %s%n", i, item);
+                i += 1;
+            }
         }
         drawSeparateLine();
     }
@@ -137,8 +137,8 @@ public class Ui {
         printTopBottomBorder();
         for (int i = 0; i < 19; i++) {
             out.format("%1s%-15s%1s%-55s%1s%-41s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
-                    BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
-                    BORDER_VERTICAL);
+                       BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
+                       BORDER_VERTICAL);
             if (i <= 4 || (i >= 6 && i <= 12) || i == 13 || i == 15 || i == 17) {
                 printWithinTableBorder();
             }
@@ -182,13 +182,13 @@ public class Ui {
         int size = spendingList.getListSize();
         out.println("You've added the record:");
         out.println(spendingList.getItem(size - 1).getDate() + " ["
-                            + spendingList.getItem(size - 1).getCategory() + "] "
-                            + spendingList.getItem(size - 1).getDescription() + " "
-                            + spendingList.getItem(size - 1).getSymbol() + " "
-                            + String.format("%.2f", spendingList.getItem(size - 1).getAmount()));
+                        + spendingList.getItem(size - 1).getCategory() + "] "
+                        + spendingList.getItem(size - 1).getDescription() + " "
+                        + spendingList.getItem(size - 1).getSymbol() + " "
+                        + String.format("%.2f", spendingList.getItem(size - 1).getAmount()));
         drawSeparateLine();
     }
-    
+
     //@@author killingbear999
     public void printAddRepay(RepaymentList repaymentList) {
         out.println("You've added this repayment record:");
@@ -206,10 +206,10 @@ public class Ui {
     public void printEdit(SpendingList spendingList, int index) {
         out.println("You've updated the record:");
         out.println(spendingList.getItem(index).getDate() + " ["
-                            + spendingList.getItem(index).getCategory() + "] "
-                            + spendingList.getItem(index).getDescription() + " "
-                            + spendingList.getItem(index).getSymbol() + " "
-                            + String.format("%.2f", spendingList.getItem(index).getAmount()));
+                        + spendingList.getItem(index).getCategory() + "] "
+                        + spendingList.getItem(index).getDescription() + " "
+                        + spendingList.getItem(index).getSymbol() + " "
+                        + String.format("%.2f", spendingList.getItem(index).getAmount()));
         drawSeparateLine();
     }
 
@@ -228,21 +228,21 @@ public class Ui {
         out.println(message);
         drawSeparateLine();
     }
-    
+
     //@@author killingbear999
     public void printBudgetLimit(String currency, double budgetLimit) {
         out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit));
         drawSeparateLine();
     }
-    
+
     //@@author killingbear999
     public void printApproachingWarningMessage(String outputCurrency, double amountRemaining) {
         out.println("Warning! Your spending is approaching your budget limit.");
         out.println("You still have " + outputCurrency + " " + String.format("%.2f", amountRemaining)
-                            + " remained for spending.");
+                        + " remained for spending.");
         drawSeparateLine();
     }
-    
+
     //@@author killingbear999
     public void printExceedingWarningMessage() {
         out.println("Warning! Your spending has exceeded your budget limit.");
@@ -271,20 +271,20 @@ public class Ui {
         }
         drawSeparateLine();
     }
-    
+
     //@@author killingbear999
     public void printCurrentBudgetLimit(Data data) {
         System.out.println("The budget limit has been set to: " + data.budget.getCurrency() + " "
-                                   + String.format("%.2f", data.budget.getBudgetLimit()));
+                               + String.format("%.2f", data.budget.getBudgetLimit()));
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
-    
+
     //@@author killingbear999
     public void printNoBudget() {
         System.out.println("No budget has been set yet.");
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
-    
+
     //@@author killingbear999
     public void printRepaymentList(ArrayList<Repay> repaymentList) {
         if (!repaymentList.isEmpty()) {
@@ -315,7 +315,7 @@ public class Ui {
         out.println("Please try find the file in the application folder and open it manually.");
         drawSeparateLine();
     }
-    
+
     //@@author killingbear999
     public void printInvalidConversion(String defaultCurrency) {
         out.println("Sorry, the input currency does not match with the current currency in the spending list.");
