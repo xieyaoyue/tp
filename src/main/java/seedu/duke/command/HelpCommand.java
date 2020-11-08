@@ -1,13 +1,17 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Data;
+import seedu.duke.ui.Ui;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HelpCommand extends Command {
+    private static Logger logger = Logger.getLogger("HelpCommand");
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
+    public void execute(Data data, Ui ui) {
+        logger.log(Level.FINE, "opening up help window");
         ui.printHelp();
     }
 }

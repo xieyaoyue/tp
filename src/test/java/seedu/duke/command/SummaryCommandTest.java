@@ -2,9 +2,11 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
-import seedu.duke.category.Item;
+import seedu.duke.data.Data;
+import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.InvalidYearException;
+import seedu.duke.ui.Ui;
+import seedu.duke.data.Item;
 import seedu.duke.exceptions.InvalidMonthException;
 
 import java.util.ArrayList;
@@ -33,20 +35,24 @@ public class SummaryCommandTest {
         Ui ui = new Ui();
         SummaryCommand invalidSummaryMonth = new SummaryCommand("2020", "fdj");
         try {
-            invalidSummaryMonth.execute(spendingList, null, ui);
+            Data data = new Data(null, null, null);
+            invalidSummaryMonth.execute(data, ui);
         } catch (InvalidMonthException e) {
-            assertEquals("Invalid month input.", e.toString());
+            assertEquals("Sorry, your month input is invalid. Please re-enter the month.", e.toString());
+        } catch (InvalidYearException e) {
+            assertEquals("Sorry, your year input is invalid. Please re-enter the year.", e.toString());
         }
     }
 
     @Test
-    public void goodSummary() throws InvalidMonthException {
+    public void goodSummary() throws InvalidMonthException, InvalidYearException {
         Ui ui = new Ui();
         SummaryCommand validSummaryMonth = new SummaryCommand("2020", "Jan");
         SummaryCommand summaryYear = new SummaryCommand("2020", null);
         SummaryCommand summary = new SummaryCommand();
-        validSummaryMonth.execute(spendingList, null, ui);
-        summaryYear.execute(spendingList, null, ui);
-        summary.execute(spendingList, null, ui);
+        Data data = new Data(null, null, null);
+        validSummaryMonth.execute(data, ui);
+        summaryYear.execute(data, ui);
+        summary.execute(data, ui);
     }
 }

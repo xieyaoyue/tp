@@ -1,13 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Data;
+import seedu.duke.ui.Ui;
 
 public class EncouragementCommand extends Command {
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
+    public void execute(Data data, Ui ui) {
         ui.printEncouragementMessage();
     }
 }

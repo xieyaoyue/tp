@@ -1,9 +1,7 @@
 package seedu.duke.command;
 
-import seedu.duke.Budget;
-import seedu.duke.RepaymentList;
-import seedu.duke.SpendingList;
-import seedu.duke.Ui;
+import seedu.duke.data.Data;
+import seedu.duke.ui.Ui;
 
 //@@author killingbear999
 public class WarnCommand extends Command {
@@ -15,11 +13,11 @@ public class WarnCommand extends Command {
     public WarnCommand() {
     }
     
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) {
-        outputCurrency = Budget.getCurrency();
-        budgetLimit = Budget.getBudgetLimit();
+    public void execute(Data data, Ui ui) {
+        outputCurrency = data.budget.getCurrency();
+        budgetLimit = data.budget.getBudgetLimit();
         budgetThreshold = budgetLimit * threshold;
-        double currentAmount = spendingList.getCurrentAmount();
+        double currentAmount = data.spendingList.getCurrentAmount(data);
         if (currentAmount >= budgetThreshold && currentAmount < budgetLimit) {
             double amountRemaining = budgetLimit - currentAmount;
             ui.printApproachingWarningMessage(outputCurrency, amountRemaining);
