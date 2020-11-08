@@ -93,7 +93,7 @@ public abstract class Parser {
 
         try {
             int yr = Integer.parseInt(ym.year);
-            if (yr < 0 || yr > now.getYear()) {
+            if (yr < 1970 || yr > now.getYear()) {
                 throw new Exception();
             }
         } catch (Exception e) {
@@ -102,7 +102,7 @@ public abstract class Parser {
 
         if (ym.month != null) {
             try {
-                Date date = new SimpleDateFormat("MMMM").parse(ym.month);
+                Date date = new SimpleDateFormat("MMM", Locale.ENGLISH).parse(ym.month);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
                 ym.month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
