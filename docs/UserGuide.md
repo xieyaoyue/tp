@@ -146,23 +146,15 @@ You can also choose to view your spending records which belong to a specific spe
 
 Format:
 
-`spending list [YEAR] [MONTH] [-c CATEGORY] [-a]`
+`spending list`
 
 Examples of usage:
 
-`spending list` → lists all entries for the current month
+`spending list` → lists all spending entries 
 
-`spending list 2020` → lists all entries for year 2020
+Figure below shows an example for Spending List feature: <br>
 
-`spending list 2020 Jul` → lists all entries for July 2020
-
-`spending list -c Food` → lists all food entries for the current month
-
-`spending list 2020 -c Food` → lists all food entries for the year 2020
-
-`spending list 2020 Jul -c Food` → lists all food entries for July 2020
-
-`spending list -a` → lists all entries
+![Example for viewing Spending list](images/spendinglistOutput.png)
 
 ### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
@@ -353,6 +345,6 @@ Figure below shows an example of encouragement message. <br>
 |[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
 |[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`|
 |[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
-|[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list` |
 |[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
 |[view](#37-viewing-budget-limit-view) | `view`|
