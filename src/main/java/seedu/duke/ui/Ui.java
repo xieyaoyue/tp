@@ -1,15 +1,15 @@
 package seedu.duke.ui;
 
+import seedu.duke.data.Data;
 import seedu.duke.data.Item;
-import seedu.duke.data.Budget;
 import seedu.duke.data.Repay;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
 
 import java.io.PrintStream;
-import java.util.Scanner;
-import java.util.Random;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Ui {
     private Scanner in;
@@ -276,14 +276,14 @@ public class Ui {
     }
     
     //@@author killingbear999
-    public static void printCurrentBudgetLimit() {
-        System.out.println("The budget limit has been set to: " + Budget.getCurrency() + " "
-                                   + String.format("%.2f", Budget.getBudgetLimit()));
+    public void printCurrentBudgetLimit(Data data) {
+        System.out.println("The budget limit has been set to: " + data.budget.getCurrency() + " "
+                                   + String.format("%.2f", data.budget.getBudgetLimit()));
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
     
     //@@author killingbear999
-    public static void printNoBudget() {
+    public void printNoBudget() {
         System.out.println("No budget has been set yet.");
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
