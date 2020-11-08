@@ -28,15 +28,20 @@ public class SpendingListTest {
         assertEqualList(expectedList, realList);
     }
 
-    /**
-     * Converts list to string format, because double comparison fails
-     * @param expectedList expected list of items
-     * @param actualList actual list of items
-     */
-    public static void assertEqualList(ArrayList<Item> expectedList, ArrayList<Item> actualList) {
+    public static void assertEqualList(ArrayList<Item> expectedList, ArrayList<Item> actualList, String message) {
         String expectedString = Arrays.toString(expectedList.toArray());
         String realString = Arrays.toString(actualList.toArray());
-        assertEquals(expectedString, realString);
+        assertEquals(expectedString, realString, message);
+    }
+
+    /**
+     * Converts list to string format, because double comparison fails
+     *
+     * @param expectedList expected list of items
+     * @param actualList   actual list of items
+     */
+    public static void assertEqualList(ArrayList<Item> expectedList, ArrayList<Item> actualList) {
+        assertEqualList(expectedList, actualList, null);
     }
 
     public static void assertEqualList(SpendingList expectedList, SpendingList actualList) {
@@ -176,6 +181,57 @@ public class SpendingListTest {
         ArrayList<Item> expectedEmpty = initList();
         ArrayList<Item> empty = sl.filterSpendingList("School", null);
         assertEqualList(expectedEmpty, empty);
+    }
+
+    //@author k-walter
+    @Test
+    public void filterByDate() {
+        SpendingList sl = initSpendingList(
+            new Item("rice", "SGD", 2, "Food", "2020-10-01"),
+            new Item("chicken", "SGD", 2, "Food", "2020-11-01"),
+            new Item("pencil", "S$", 1.5, null, "2020-10-29"),
+            new Item("fish", "S$", 10, null, "2019-10-29")
+        );
+        ArrayList<Item> filterAll = initList(
+            new Item("rice", "SGD", 2, "Food", "2020-10-01"),
+            new Item("chicken", "SGD", 2, "Food", "2020-11-01"),
+            new Item("pencil", "S$", 1.5, null, "2020-10-29"),
+            new Item("fish", "S$", 10, null, "2019-10-29")
+        );
+        assertEqualList(filterAll, sl.filterSpendingList(null, null), "No filter");
+        ArrayList<Item> filterYear = initList(
+            new Item("rice", "SGD", 2, "Food", "2020-10-01"),
+            new Item("chicken", "SGD", 2, "Food", "2020-11-01"),
+            new Item("pencil", "S$", 1.5, null, "2020-10-29")
+        );
+        assertEqualList(filterYear, sl.filterSpendingList(null, "2020"), "Filter 2020");
+        ArrayList<Item> filterMonth = initList(
+            new Item("rice", "SGD", 2, "Food", "2020-10-01"),
+            new Item("pencil", "S$", 1.5, null, "2020-10-29")
+        );
+        assertEqualList(filterMonth, sl.filterSpendingList(null, "2020-10"), "Filter 2020 Oct");
+    }
+
+    //@author k-walter
+    @Test
+    public void filterByDateAndCategory() {
+        SpendingList sl = initSpendingList(
+            new Item("rice", "SGD", 2, "Food", "2020-10-01"),
+            new Item("chicken", "SGD", 2, "Food", "2020-11-01"),
+            new Item("pencil", "S$", 1.5, null, "2020-10-29"),
+            new Item("fish", "S$", 10, null, "2019-10-29")
+        );
+        ArrayList<Item> filterFood2020 = initList(
+            new Item("rice", "SGD", 2, "Food", "2020-10-01"),
+            new Item("chicken", "SGD", 2, "Food", "2020-11-01")
+        );
+        assertEqualList(filterFood2020, sl.filterSpendingList("Food", "2020"), "Filter food 2020");
+        ArrayList<Item> filterFood2019 = initList();
+        assertEqualList(filterFood2019, sl.filterSpendingList("Food", "2019"), "Filter food 2019");
+        ArrayList<Item> filterOthers2019 = initList(
+            new Item("fish", "S$", 10, null, "2019-10-29")
+        );
+        assertEqualList(filterOthers2019, sl.filterSpendingList("Others", "2019"), "Filter others 2019");
     }
 
     //@@author killingbear999

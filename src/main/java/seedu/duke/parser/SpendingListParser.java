@@ -5,6 +5,8 @@ import seedu.duke.command.Command;
 import seedu.duke.command.SpendingListCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidFormatException;
+import seedu.duke.exceptions.InvalidMonthException;
+import seedu.duke.exceptions.InvalidYearException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -17,7 +19,8 @@ public class SpendingListParser extends DateParser<SpendingListCommand> {
 
     @Override
     public Command parse(String[] args) throws ParseException, InvalidCommandException, InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException, InvalidFormatException {
+        NoSuchMethodException, InstantiationException, IllegalAccessException, InvalidFormatException,
+        InvalidYearException, InvalidMonthException {
         if (args.length < 1 || !args[0].equals("list")) {
             throw new InvalidCommandException();
         }

@@ -16,12 +16,23 @@ public class Item {
         this(description, symbol, amount, null);
     }
 
+    //@author k-walter
     public Item(String description, String symbol, double amount, String category) {
+        init(description, symbol, amount, category, currentDate());
+    }
+
+    //@@author k-walter
+    public Item(String description, String symbol, double amount, String category, String date) {
+        init(description, symbol, amount, category, date);
+    }
+
+    //@author k-walter
+    protected void init(String description, String symbol, double amount, String category, String date) {
         this.description = description;
         this.symbol = symbol;
         this.amount = amount;
-        this.date = currentDate();
         this.category = Category.categoryName(category);
+        this.date = date;
     }
 
     protected String currentDate() {

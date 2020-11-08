@@ -17,12 +17,17 @@ import seedu.duke.command.SummaryCommand;
 import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidFormatException;
+import seedu.duke.exceptions.InvalidMonthException;
 import seedu.duke.exceptions.InvalidNumberException;
+import seedu.duke.exceptions.InvalidYearException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public abstract class Parser {
@@ -49,7 +54,20 @@ public abstract class Parser {
         return line.hasOption("a");
     }
 
-    protected static YearMonth parseDateArgs(CommandLine line) throws InvalidCommandException {
+    /**
+     * Parses optional year month argument, with 3 possible combinations
+     * case none given: year = current year, month = current month
+     * cases year given: year = given year, month = null
+     * case year month given: year = given year, month = given month
+     *
+     * @param line command line to be parsed for arguments
+     * @return year month wrapper
+     * @throws InvalidCommandException if unable to get argument
+     * @throws InvalidYearException    for invalid year
+     * @throws InvalidMonthException   for invalid month
+     */
+    protected static YearMonth parseDateArgs(CommandLine line) throws InvalidCommandException, InvalidYearException,
+        InvalidMonthException {
         String[] period = line.getArgs();
         if (period == null) {
             throw new InvalidCommandException();
@@ -74,9 +92,22 @@ public abstract class Parser {
         }
 
         try {
-            Integer.parseInt(ym.year);
-        } catch (NumberFormatException e) {
-            throw new InvalidCommandException();
+            int yr = Integer.parseInt(ym.year);
+            if (yr < 0 || yr > now.getYear()) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new InvalidYearException();
+        }
+
+        if (ym.month != null) {
+            try {
+                Date date = new SimpleDateFormat("MMMM").parse(ym.month);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+            } catch (java.text.ParseException e) {
+                throw new InvalidMonthException();
+            }
         }
 
         return ym;
@@ -204,7 +235,8 @@ public abstract class Parser {
 
     public abstract Command parse(String[] args) throws ParseException, InvalidCommandException,
         java.text.ParseException, IllegalAccessException, InstantiationException, NoSuchMethodException,
-        InvocationTargetException, InvalidFormatException, InvalidNumberException;
+        InvocationTargetException, InvalidFormatException, InvalidNumberException, InvalidYearException,
+        InvalidMonthException;
 
     public Parser() {
         parser = new DefaultParser();
@@ -232,7 +264,8 @@ public abstract class Parser {
 
     public static Command parseCommand(String userInput) throws InvalidCommandException, ParseException,
         InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException,
-        java.text.ParseException, InvalidFormatException, InvalidNumberException {
+        java.text.ParseException, InvalidFormatException, InvalidNumberException, InvalidYearException,
+        InvalidMonthException {
         String[] args = userInput.strip().split(" ");
         if (args.length == 0) {
             throw new InvalidCommandException();
