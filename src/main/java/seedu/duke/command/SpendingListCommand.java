@@ -1,20 +1,30 @@
 package seedu.duke.command;
 
 import seedu.duke.data.Data;
+import seedu.duke.data.Item;
+import seedu.duke.exceptions.InvalidMonthException;
+import seedu.duke.exceptions.InvalidYearException;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
+
 public class SpendingListCommand extends DateCommand {
-    public SpendingListCommand() {
-        // TODO : accept all time
+    protected String category;
+
+    public SpendingListCommand(String category) {
+        super();
+        this.category = category;
     }
 
-    public SpendingListCommand(String year, String month) {
-        // TODO : accept year and month (possibly null)
-        // TODO : accept category
+    public SpendingListCommand(String year, String month, String category) throws InvalidYearException,
+        InvalidMonthException {
+        super(year, month);
+        this.category = category;
     }
 
     @Override
     public void execute(Data data, Ui ui) {
-        ui.printSpendingList(data.spendingList);
+        ArrayList<Item> filteredList = data.spendingList.filterSpendingList(category, period);
+        ui.printSpendingList(filteredList);
     }
 }

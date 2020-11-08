@@ -37,6 +37,9 @@ public class AddCommand extends Command {
         if (size != 0) {
             defaultCurrency = data.spendingList.getItem(0).getSymbol();
         }
+        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+            throw new InvalidInputCurrencyException();
+        }
         if (!currency.equals(defaultCurrency)) {
             AmountConverter amountConverter = new AmountConverter(currency, amount, defaultCurrency);
             amount = amountConverter.updateAmount();
@@ -48,20 +51,16 @@ public class AddCommand extends Command {
         if (amount < 0.01) {
             throw new InvalidAmountException();
         }
-        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
-            throw new InvalidInputCurrencyException();
-        }
         
         DecimalFormatter decimalFormatter = new DecimalFormatter();
         amount = decimalFormatter.convert(amount);
         data.spendingList.addItem(description, currency, amount, category);
         ui.printAdd(data.spendingList);
-
         
-        if (size > 1) {
+        /*if (size > 1) {
             SpendingListCategoriser spendingListCategoriser = new SpendingListCategoriser();
             spendingListCategoriser.execute(data.spendingList);
-        }
+        }*/
         
         if (size > 0 && size % 4 == 0) {
             EncouragementCommand encouragementCommand = new EncouragementCommand();
