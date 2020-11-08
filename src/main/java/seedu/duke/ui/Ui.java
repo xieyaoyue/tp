@@ -220,7 +220,12 @@ public class Ui {
     }
 
     public void printSummaryCategory(String category, double amount) {
-        out.printf("%-20s $%.2f\n", category, amount);
+        if (category.equals("OTHERS")) {
+            out.printf("%-20s $%.2f\n", category, amount);
+            drawSeparateLine();
+        } else {
+            out.printf("%-20s $%.2f\n", category, amount);
+        }
     }
 
     //@@author Wu-Haitao
