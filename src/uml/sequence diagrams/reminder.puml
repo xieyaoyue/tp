@@ -1,50 +1,50 @@
 @startuml
 hide footbox
 
-":Duke" -> ":Reminder"
-create ":Reminder"
-":Duke" -> ":Reminder"
-activate ":Reminder"
+":Duke" -> ":ReminderCommand"
+create ":ReminderCommand"
+":Duke" -> ":ReminderCommand"
+activate ":ReminderCommand"
 
-":Reminder" -> ":Reminder" : saveDatesToList()
-activate ":Reminder"
-":Reminder" --> ":Reminder"
-deactivate ":Reminder"
-":Reminder" --> ":Duke"
-deactivate ":Reminder"
+":ReminderCommand" -> ":ReminderCommand" : saveDatesToList()
+activate ":ReminderCommand"
+":ReminderCommand" --> ":ReminderCommand"
+deactivate ":ReminderCommand"
+":ReminderCommand" --> ":Duke"
+deactivate ":ReminderCommand"
 
 
-->":Reminder" : execute(spendingList, ui)
+->":ReminderCommand" : execute(data, ui)
 
-activate ":Reminder"
+activate ":ReminderCommand"
 
-opt Budget.hasBudget
-":Reminder" -> ":WarnCommand" : execute(spendingList, ui)
+opt data.budget.hasBudget
+":ReminderCommand" -> ":WarnCommand" : execute(data, ui)
 activate ":WarnCommand"
-":WarnCommand" --> ":Reminder"
+":WarnCommand" --> ":ReminderCommand"
 deactivate ":WarnCommand"
 end
 
 loop week.size() times
 
-":Reminder" -> ":SpendingList" : getSpendingAmountTime(period)
+":ReminderCommand" -> ":SpendingList" : getSpendingAmountTime(period)
 activate ":SpendingList"
-":SpendingList" --> ":Reminder" : amountSpent
+":SpendingList" --> ":ReminderCommand" : amountSpent
 deactivate ":SpendingList"
 
 end
 
-":Reminder" -> ":Reminder" : findRemainingAmount(spendingList)
-activate ":Reminder"
-":Reminder" --> ":Reminder" : amountRemained
-deactivate ":Reminder"
+":ReminderCommand" -> ":ReminderCommand" : findRemainingAmount(data)
+activate ":ReminderCommand"
+":ReminderCommand" --> ":ReminderCommand" : amountRemained
+deactivate ":ReminderCommand"
 
 
-":Reminder" -> ":Ui" : printReminderMessage(totalAmountSpent,amountRemained,startWeek.toString())
+":ReminderCommand" -> ":Ui" : printReminderMessage(totalAmountSpent,amountRemained,startWeek.toString())
 activate ":Ui"
-":Ui" --> ":Reminder"
+":Ui" --> ":ReminderCommand"
 deactivate ":Ui"
-<-- ":Reminder"
-deactivate ":Reminder"
+<-- ":ReminderCommand"
+deactivate ":ReminderCommand"
 
 @enduml

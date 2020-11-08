@@ -84,7 +84,7 @@ Appendix C: [Non-Functional Requirements](#appendix-c-non-functional-requirement
 
 Appendix D: [Glossary](#appendix-d-glossary)
 
-Appendix E: [Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
+Appendix E: [Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
 
 ------
 
@@ -119,7 +119,7 @@ The following are the steps to verify your setup:
 
 ## 3. Design
 ### 3.1 Architecture
-![image](https://user-images.githubusercontent.com/45732128/97735431-4886f780-1b15-11eb-920c-24e5bf7a76fe.png) <br>
+![image](images/architecture.png) <br>
 
 The architecture diagram above explains the high-level design of the application. Given below is a quick overview of each component:
 
@@ -179,7 +179,8 @@ The following class diagram describes general CLI `Command`s that apply to the w
 #### 3.4.5 Hidden `Command`s
 The following class diagram describes the hidden commands within the program. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97780364-28137780-1bbf-11eb-9442-caa76f3db339.png)
+![image](https://user-images.githubusercontent.com/60251547/98458937-9fa16200-21d0-11eb-91fe-968ca030149c.png)
+
 
 ### 3.5 Data Component
 This component holds the data of the application, including the SpendingList class and RepaymentList class, 
@@ -373,10 +374,10 @@ total expenditure of the current week, starting on Monday. It implements the fol
 Below shows an example of usage:
 
 1. User starts the application.
-2. The `Reminder` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
-3. In the `Reminder#execute(spendingList, repayingList, ui)`, a check will be done to see if there is any budget being set by the user.
+2. The `ReminderCommand` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
+3. In the `ReminderCommand#execute(data, ui)`, a check will be done to see if there is any budget being set by the user.
     * If no budget is being set, the total expenditure of current week will be tallied up. 
-    * If there is, `WarnCommand#execute(spendingList, repayingList, ui)` will be called first before tallying up the expenditure. 
+    * If there is, `WarnCommand#execute(data, ui)` will be called first before tallying up the expenditure. 
 
 The following sequence diagram illustrates how this feature works. <br>
 
@@ -508,8 +509,8 @@ Given below are the instructions to test the application manually.
 
 ### E.2 Application Commands
 #### 1. `Draw` Command
-Test the command by using executing `draw 2020`. You should expect to see the following output in Microsoft Excel. <br>
+Test the command by executing `draw 2020`. You should expect to see the following output in Microsoft Excel. <br>
 ![image](https://user-images.githubusercontent.com/45732128/98440296-04a67a80-2133-11eb-8304-94714b91e38f.png)
 
 #### 2. Other Commands
-Please refer to [Cent Wise Dollar Wise User Guide] (https://ay2021s1-cs2113t-f14-2.github.io/tp/UserGuide.html).
+Please refer to [Cent Wise Dollar Wise User Guide](https://ay2021s1-cs2113t-f14-2.github.io/tp/UserGuide.html).
