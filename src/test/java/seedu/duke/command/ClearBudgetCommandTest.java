@@ -1,28 +1,28 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.data.Budget;
-import seedu.duke.data.RepaymentList;
-import seedu.duke.data.SpendingList;
+import seedu.duke.data.Data;
 import seedu.duke.exceptions.InvalidClearBudgetException;
-import seedu.duke.ui.Ui;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 //@@author xieyaoyue
 class ClearBudgetCommandTest {
 
     @Test
-    void execute() throws InvalidClearBudgetException {
+    void execute() throws IOException {
+        Data data = new Data(null, null, null);
+        data.budget.addBudget("SGD", 100);
+        assertTrue(data.budget.hasBudget);
+        data.budget.clearBudget();
+        assertFalse(data.budget.hasBudget);
         ClearBudgetCommand c = new ClearBudgetCommand();
-        Budget.addBudget("SGD", 100);
-        SpendingList spendingList = new SpendingList();
-        RepaymentList repaymentList = new RepaymentList();
-        Ui ui = new Ui();
-        c.execute(spendingList, repaymentList, ui);
-        assertFalse(Budget.hasBudget);
-        assertThrows(InvalidClearBudgetException.class, () -> c.execute(spendingList, repaymentList, ui));
+        assertThrows(InvalidClearBudgetException.class, () -> c.execute(data, null));
+
     }
 }
