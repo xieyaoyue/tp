@@ -49,8 +49,7 @@ public class Ui {
             {"repay", "repay -d NAME -s CURRENCY AMOUNT -t DEADLINE", "repay -d Johnny -s SGD 5.00 -t 2020-12-02"},
             {"repayment list", "repayment list", ""},
             {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
-            {"spending", "spending list", "spending list"},
-            {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -c food"},
+            {"spending list", "spending list", ""},
             {"summary", "summary", "summary"},
             {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
             {"view", "view", ""}
@@ -137,11 +136,11 @@ public class Ui {
     public void printHelp() {
         out.println("Here is a summary of the commands you can use:");
         printTopBottomBorder();
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < 18; i++) {
             out.format("%1s%-15s%1s%-55s%1s%-41s%1s\n", BORDER_VERTICAL, TABLE_OF_COMMANDS[i][0],
                     BORDER_VERTICAL, TABLE_OF_COMMANDS[i][1], BORDER_VERTICAL, TABLE_OF_COMMANDS[i][2],
                     BORDER_VERTICAL);
-            if (i <= 4 || (i >= 6 && i <= 12) || i == 13 || i == 15 || i == 17) {
+            if (i <= 4 || (i >= 6 && i <= 12) || i == 13 || i == 14 || i == 16) {
                 printWithinTableBorder();
             }
         }
