@@ -72,7 +72,7 @@ public class ReminderCommand extends Command {
         }
     }
 
-    public double findRemainingAmount(Data data) {
+    private double findRemainingAmount(Data data) {
         double budgetLimit = data.budget.getBudgetLimit();
         double currentAmount = data.spendingList.getCurrentAmount(data);
         return budgetLimit - currentAmount;
