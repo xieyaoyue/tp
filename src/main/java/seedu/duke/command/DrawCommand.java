@@ -64,7 +64,7 @@ public class DrawCommand extends DateCommand {
     }
 
     public DrawCommand(String year, String month, boolean isOpening) {
-        String convertedMonth = dateFormatter.changeMonthFormat(month);
+        String convertedMonth = month;
         if (convertedMonth == null) {
             if (!(month == null)) {
                 parameterIsValid = false;
