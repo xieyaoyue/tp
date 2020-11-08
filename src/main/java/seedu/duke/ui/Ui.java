@@ -50,7 +50,7 @@ public class Ui {
             {"repayment list", "repayment list", ""},
             {"set", "set -s CURRENCY AMOUNT", "set -s SGD 100.00"},
             {"spending", "spending list", "spending list"},
-            {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -food"},
+            {"list", " [YEAR] [MONTH] [-c CATEGORY] [-a]", "OR spending list 2020 -c food"},
             {"summary", "summary", "summary"},
             {"", "[YEAR] [MONTH] [-a]", "OR summary 2020 Oct"},
             {"view", "view", ""}

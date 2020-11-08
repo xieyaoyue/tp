@@ -4,13 +4,12 @@ import seedu.duke.command.Command;
 import seedu.duke.command.Reminder;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.data.SpendingList;
-import seedu.duke.exceptions.DukeException;
-import seedu.duke.exceptions.InvalidClearRepaymentException;
+import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-import java.io.IOException;
+import java.text.ParseException;
 
 public class Duke {
     /**
@@ -34,6 +33,8 @@ public class Duke {
                 Command c = Parser.parseCommand(fullCommand);
                 c.execute(spendingList, repaymentList, ui);
                 isExit = c.isExit();
+            } catch (ParseException e) {
+                ui.printErrorMessage(new InvalidCommandException().toString());
             } catch (Exception e) {
                 ui.printErrorMessage(e.toString());
             }
