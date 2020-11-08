@@ -12,7 +12,6 @@ public class SummaryCommand extends DateCommand {
     private final String period;
     private static final Logger logger = Logger.getLogger("SummaryCommand");
 
-    //@@author pinfang, k-walter
     public SummaryCommand(String year, String month) {
         if (month == null) {
             period = year;
