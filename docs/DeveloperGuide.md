@@ -179,7 +179,8 @@ The following class diagram describes general CLI `Command`s that apply to the w
 #### 3.4.5 Hidden `Command`s
 The following class diagram describes the hidden commands within the program. <br>
 
-![image](https://user-images.githubusercontent.com/45732128/97780364-28137780-1bbf-11eb-9442-caa76f3db339.png)
+![image](https://user-images.githubusercontent.com/60251547/98458937-9fa16200-21d0-11eb-91fe-968ca030149c.png)
+
 
 ### 3.5 Data Component
 This component holds the data of the application, including the SpendingList class and RepaymentList class, 
