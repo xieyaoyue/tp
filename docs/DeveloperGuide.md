@@ -84,7 +84,7 @@ Appendix C: [Non-Functional Requirements](#appendix-c-non-functional-requirement
 
 Appendix D: [Glossary](#appendix-d-glossary)
 
-Appendix E: [Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
+Appendix E: [Instructions for Manual Testing](#appendix-e-instructions-for-manual-testing)
 
 ------
 
