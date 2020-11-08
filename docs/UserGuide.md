@@ -133,12 +133,20 @@ Format:
 
 `purge data`
 
+Figure below shows an example for Purge Data feature: <br>
+
+![Example for Purging Data](images/Purge.png)
+
 ### 3.5 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
 Format:
 
 `repayment list`
+
+Figure below shows an example for View Repayment List Summary feature: <br>
+
+![Example for Viewing Repayment List](images/RepaymentList.png)
 
 ### 3.6 Viewing Spending List Summary: `spending list`
 
