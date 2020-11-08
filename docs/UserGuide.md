@@ -164,6 +164,10 @@ Examples of usage:
 
 `spending list -a` → lists all entries
 
+Figure below shows an example for Spending List feature: <br>
+
+![Example for viewing Spending list](images/spendinglistOutput.png)
+
 ### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
 
@@ -353,6 +357,6 @@ Figure below shows an example of encouragement message. <br>
 |[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
 |[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`|
 |[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
-|[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]` | spending list 2020 Jul|
+|[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]`| spending list 2020 Jul|
 |[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
 |[view](#37-viewing-budget-limit-view) | `view`|
