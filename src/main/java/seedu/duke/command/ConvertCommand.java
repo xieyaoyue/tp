@@ -68,8 +68,7 @@ public class ConvertCommand extends Command {
      *
      * @throws InvalidInputCurrencyException If input currency is invalid
      * @throws InvalidOutputCurrencyException If output currency is invalid
-     * @throws InvalidCurrencyException If the exchange rate for the pair of input and output currencies are not
-     * stored in the system
+     * @throws InvalidCurrencyException If the exchange rate for the pair of input and output currencies are not stored in the system
      * @throws EmptyListException If the spending list is empty and the convert command is called
      */
     @Override
