@@ -11,8 +11,8 @@
     3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
     3.3 [Viewing Help: `help`](#33-viewing-help-help)    
     3.4 [Purging Data: `purge`](#34-purging-data-purge-data)    
-    3.5 [Viewing Repayment List Summary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)    
-    3.6 [Viewing Spending List Summary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)    
+    3.5 [Viewing Repayment List Summary: `repayment list`](#35-viewing-repayment-list-summary-repayment-list)    
+    3.6 [Viewing Spending List Summary: `spending list`](#36-viewing-spending-list-summary-spending-list)    
     3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)    
     3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)    
     3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)    
@@ -122,7 +122,7 @@ Format:
 
 `help`
 
-You shall expect to see the following help screen: <br>
+Figure below shows the corresponding example for Help feature: <br>
 
 ![image](https://user-images.githubusercontent.com/45732128/98445334-25ca9380-2152-11eb-9514-f54c297c5d93.png)
 
@@ -134,16 +134,18 @@ Format:
 `purge data`
 
 ### 3.5 Viewing Repayment List Summary: `repayment list`
-This command shows your repayment list.
+This command shows all creditors with their respective amount and deadline in chronological order of deadline.
 
 Format:
 
 `repayment list`
 
+![Example of view Repayment List](images/RepaymentList.png)
+
 ### 3.6 Viewing Spending List Summary: `spending list`
 
-This command shows your spending records during a specified period (a particular year or month, or both).
-You can also choose to view your spending records which belong to a specific spending category.
+This command shows your spending records during the specified period (a particular year or month, or both).
+You can also choose to view your spending records belonging to a specific category.
 
 Format:
 
@@ -151,18 +153,19 @@ Format:
 
 Examples of usage:
 
-`spending list` → lists all entries for the current month
+`spending list` → lists all entries for the current month (November 2020 at time of screenshot)
 
-`spending list 2020 Jul` → lists all entries for July 2020
+`spending list -a` → lists all entries
+
+`spending list 2020` → lists all entries for year 2020
+
+`spending list 2020 Sep` → lists all entries for September 2020
 
 `spending list -c Food` → lists all food entries for the current month
 
-Figure below shows an example for Spending List feature: <br>
+Figure below shows the corresponding example for Spending List feature: <br>
 
-
-Figure below shows an example for Spending List feature with specific month/year/category: <br>
-
-![Example for viewing Spending list](images/SpendingList.jpg)
+![Example for viewing Spending list](images/SpendingList.png)
 
 ### 3.7 Viewing Budget Limit: `view`
 This command shows the current budget limit you have set.
