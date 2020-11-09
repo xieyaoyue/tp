@@ -5,28 +5,33 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+
 2. [Quick Start](#2-quick-start)
+
 3. [Command Features](#3-command-features)  
     3.1 [Adding Spending: `add`](#31-adding-spending-add)<br>
-    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
-    3.3 [Viewing Help: `help`](#33-viewing-help-help)    
-    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)    
+    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)    
+    3.3 [Viewing Help: `help`](#33-viewing-help-help)   
+    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)  
     3.5 [Viewing Repayment List Summary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)    
     3.6 [Viewing Spending List Summary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)    
     3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)    
     3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)    
     3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)    
-    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)    
-    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)    
+    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)       
+    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)        
     3.12 [Visualizing Data: `draw`](#312-visualizing-data-draw)    
-    3.13 [Exporting Data: `export`](#313-exporting-data-export)  
-    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)     
+    3.13 [Exporting Data: `export`](#313-exporting-data-export)     
+    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)        
     3.15 [Exiting Program: `logout`](#315-exiting-program-logout)
+
 4. [Useful Hidden Features](#4-useful-hidden-features)    
     4.1 [Reminder](#41-reminder)    
     4.2 [Warning](#42-warning)   
     4.3 [Encouragement](#43-encouragement)
+
 5. [FAQ](#5-faq)
+
 6. [Command Summary](#6-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
