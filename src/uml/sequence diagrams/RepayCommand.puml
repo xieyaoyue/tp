@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-->":RepayCommand":execute(spendingList, ui)
+->":RepayCommand":execute(data, ui)
 activate ":RepayCommand"
 ":RepayCommand"->":DecimalFormatter":convert()
 activate ":DecimalFormatter"

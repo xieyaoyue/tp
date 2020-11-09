@@ -43,6 +43,6 @@ public class SetBudgetCommand extends Command {
         DecimalFormatter decimalFormatter = new DecimalFormatter();
         budgetLimit = decimalFormatter.convert(budgetLimit);
         data.budget.addBudget(currency, budgetLimit);
-        ui.printBudgetLimit(currency, budgetLimit);
+        ui.printBudgetLimit(data, currency, budgetLimit);
     }
 }

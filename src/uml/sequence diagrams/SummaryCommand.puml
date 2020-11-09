@@ -6,6 +6,11 @@ hide footbox
 -> ":SummaryCommand": execute(data, ui)
 activate ":SummaryCommand"
 
+":SummaryCommand" -> ":SummaryCommand" : updateCurrency(data)
+activate ":SummaryCommand"
+":SummaryCommand" --> ":SummaryCommand"
+deactivate ":SummaryCommand"
+
 ":SummaryCommand" -> ":SpendingList": getSpendingAmountTime(period)
 activate ":SpendingList"
 
@@ -31,7 +36,7 @@ end
 
 ":SpendingList" --> ":SummaryCommand": amountSpent
 deactivate ":SpendingList"
-":SummaryCommand" -> ":Ui" : printSummaryMessage(amountSpent)
+":SummaryCommand" -> ":Ui" : printSummaryMessage(currency, amountSpent)
 activate ":Ui"
 ":Ui" --> ":SummaryCommand"
 deactivate ":Ui"
@@ -64,7 +69,7 @@ end
 ":SpendingList" --> ":SummaryCommand": amountSpent
 deactivate ":SpendingList"
 
-":SummaryCommand" -> ":Ui" : printSummaryCategory(amountSpent)
+":SummaryCommand" -> ":Ui" : printSummaryCategory(currency, category, amountSpent)
 activate ":Ui"
 ":Ui" --> ":SummaryCommand"
 deactivate ":Ui"

@@ -5,28 +5,33 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+
 2. [Quick Start](#2-quick-start)
+
 3. [Command Features](#3-command-features)  
     3.1 [Adding Spending: `add`](#31-adding-spending-add)<br>
-    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
-    3.3 [Viewing Help: `help`](#33-viewing-help-help)    
-    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)    
+    3.2 [Clearing Data: `clear`](#32-clearing-data-clear)    
+    3.3 [Viewing Help: `help`](#33-viewing-help-help)   
+    3.4 [Purging Data: `purge`](#34-purging-data-purge-data)  
     3.5 [Viewing Repayment List Summary: `repaymentlist`](#35-viewing-repayment-list-summary-repayment-list)    
     3.6 [Viewing Spending List Summary: `spendinglist`](#36-viewing-spending-list-summary-spending-list)    
     3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)    
     3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)    
     3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)    
-    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)    
-    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)    
+    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)       
+    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)        
     3.12 [Visualizing Data: `draw`](#312-visualizing-data-draw)    
-    3.13 [Exporting Data: `export`](#313-exporting-data-export)  
-    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)     
+    3.13 [Exporting Data: `export`](#313-exporting-data-export)     
+    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)        
     3.15 [Exiting Program: `logout`](#315-exiting-program-logout)
+
 4. [Useful Hidden Features](#4-useful-hidden-features)    
     4.1 [Reminder](#41-reminder)    
     4.2 [Warning](#42-warning)   
     4.3 [Encouragement](#43-encouragement)
+
 5. [FAQ](#5-faq)
+
 6. [Command Summary](#6-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -133,12 +138,20 @@ Format:
 
 `purge data`
 
+Figure below shows an example for Purge Data feature: <br>
+
+![Example for Purging Data](images/Purge.png)
+
 ### 3.5 Viewing Repayment List Summary: `repayment list`
 This command shows your repayment list.
 
 Format:
 
 `repayment list`
+
+Figure below shows an example for View Repayment List Summary feature: <br>
+
+![Example for Viewing Repayment List](images/RepaymentList.png)
 
 ### 3.6 Viewing Spending List Summary: `spending list`
 
@@ -181,13 +194,15 @@ Figure below shows an example for View Budget Limit feature (i.e. budget limit h
 
 Figure below shows an example for View Budget Limit feature (i.e. budget limit has been set): <br>
 
-![Example for Viewing Budget Limit](images/Budget.png)
+![Example for Viewing Budget Limit](images/ViewBudget.png)
 
 ### 3.8 Setting Budget Limit: `set`
 This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
-the limit or exceeds the limit.
+the limit or exceeds the limit after setting the budget limit.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
+
+🛈 Only spending items that are added after/on the date of setting the budget limit will be taken into consideration
 
 Format:
 
@@ -206,7 +221,7 @@ This command adds a repayment record to your repayment list.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
 
-🛈 The format of deadline is yyyy-MM-dd, and the deadline should be after/including the current date.
+🛈 The format of deadline is yyyy-MM-dd, and the deadline should be after/including current date.
 
 Format:
 
@@ -295,13 +310,15 @@ This command edits the existing records in the spending list.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
 
+🛈 You may enter the command `spending list -a` before entering `edit` to get the acutual `INDEX` of items in the spending list
+
 Format:
 
 `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION] [-s CURRENCY NEW SPENDING]`
 
 Example of usage:
 
-`edit 3 -s SGD 4.0` → edits the amount in the third item in the spending list to SGD 4.0
+`edit 2 -c others` → edits the category of the second item in the spending list to others
 
 Figure below shows an example for Edit Spending feature: <br>
 
@@ -339,7 +356,7 @@ budget threshold, the below warning message will appear. <br>
 
 ![reminder message](images/warningMessage.png)
 
-Note: You need to set the budget in order to get the warning feature.
+Note: You would receive the warning message only after setting the budget limit.
 
 ### 4.3 Encouragement
 Being able to create your budget is a great start, but if you do not have the willpower to stick to the budget you have set, you will soon discover that using this application is a waste of your time. Hence, this feature is implemented to motivate you in keeping up your efforts in budgeting. An encouragement message will be shown every eight times you add an item to the spending list.
