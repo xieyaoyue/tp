@@ -14,6 +14,8 @@ financial situation and track their spending efficiently.
     * `ReminderCommand` class
     * `DateFormatter` class
     * `Ui` class (some parts)
+    * `InvalidMonthException` class
+    * `InvalidYearException` class
     
     Refer this link for more information: 
     [`functional code`](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=pinfang&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)

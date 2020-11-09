@@ -35,6 +35,7 @@ public class Item {
         this.date = date;
     }
 
+    //@@author pinfang
     protected String currentDate() {
         LocalDate date = LocalDate.now();
         return date.toString();
@@ -80,7 +81,7 @@ public class Item {
         this.date = specificDate;
     }
 
-    //@author k-walter
+    //@@author k-walter
     @Override
     public String toString() {
         return String.format("%s [%s] %s %s %s", date, category, description, symbol, String.format("%.2f", amount));

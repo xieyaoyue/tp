@@ -1,5 +1,6 @@
 package seedu.duke.data;
 
+//@@author pinfang
 public enum Category {
     FOOD("Food"),
     EDUCATION("Education"),

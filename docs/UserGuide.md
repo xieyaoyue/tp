@@ -5,7 +5,9 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
+
 2. [Quick Start](#2-quick-start)
+
 3. [Command Features](#3-command-features)  
     3.1 [Adding Spending: `add`](#31-adding-spending-add)<br>
     3.2 [Clearing Data: `clear`](#32-clearing-data-clear)     
@@ -16,17 +18,20 @@
     3.7 [Viewing Budget Limit: `view`](#37-viewing-budget-limit-view)    
     3.8 [Setting Budget Limit: `set`](#38-setting-budget-limit-set)    
     3.9 [Inputting Repayment Information: `repay`](#39-inputting-repayment-information-repay)    
-    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)    
-    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)    
+    3.10 [Converting Currency: `convert`](#310-converting-currency-convert)       
+    3.11 [Viewing Summary: `summary`](#311-viewing-summary-summary)        
     3.12 [Visualizing Data: `draw`](#312-visualizing-data-draw)    
-    3.13 [Exporting Data: `export`](#313-exporting-data-export)  
-    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)     
+    3.13 [Exporting Data: `export`](#313-exporting-data-export)     
+    3.14 [Editing Spending: `edit`](#314-editing-spending-edit)        
     3.15 [Exiting Program: `logout`](#315-exiting-program-logout)
+
 4. [Useful Hidden Features](#4-useful-hidden-features)    
     4.1 [Reminder](#41-reminder)    
     4.2 [Warning](#42-warning)   
     4.3 [Encouragement](#43-encouragement)
+
 5. [FAQ](#5-faq)
+
 6. [Command Summary](#6-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -99,7 +104,7 @@ This command allows you to add a spending record to the application.
 
 Format:
 
-`add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING`
+`add -c CATEGORY -d DESCRIPTION -s CURRENCY AMOUNT`
 
 Example of usage: 
 
@@ -145,7 +150,7 @@ Format:
 
 Figure below shows the corresponding example for Help feature: <br>
 
-![image](https://user-images.githubusercontent.com/45732128/98445334-25ca9380-2152-11eb-9514-f54c297c5d93.png)
+![image](images/help.png)
 
 ### 3.4. Purging Data: `purge data`
 This command is similar to the `clear` command, except that it allows you to clear all data, including your spending list, repayment list and budget, all at one go.
@@ -154,6 +159,10 @@ Format:
 
 `purge data`
 
+Figure below shows an example for Purge Data feature: <br>
+
+![Example for Purging Data](images/Purge.png)
+
 ### 3.5 Viewing Repayment List Summary: `repayment list`
 This command shows all creditors with their respective amount and deadline in chronological order of deadline.
 
@@ -161,7 +170,9 @@ Format:
 
 `repayment list`
 
-![Example of view Repayment List](images/RepaymentList.png)
+Figure below shows an example for View Repayment List Summary feature: <br>
+
+![Example for Viewing Repayment List](images/RepaymentList.png)
 
 ### 3.6 Viewing Spending List Summary: `spending list`
 
@@ -205,13 +216,15 @@ Figure below shows an example for View Budget Limit feature (i.e. budget limit h
 
 Figure below shows an example for View Budget Limit feature (i.e. budget limit has been set): <br>
 
-![Example for Viewing Budget Limit](images/Budget.png)
+![Example for Viewing Budget Limit](images/ViewBudget.png)
 
 ### 3.8 Setting Budget Limit: `set`
 This command allows you to set a budget limit. You will receive a Ui warning message when your spending approaches 
-the limit or exceeds the limit.
+the limit or exceeds the limit after setting the budget limit.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
+
+🛈 Only spending items that are added after/on the date of setting the budget limit will be taken into consideration
 
 Format:
 
@@ -230,7 +243,7 @@ This command adds a repayment record to your repayment list.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
 
-🛈 The format of deadline is yyyy-MM-dd, and the deadline should be after/including the current date.
+🛈 The format of deadline is yyyy-MM-dd, and the deadline should be after/including current date.
 
 Format:
 
@@ -292,7 +305,7 @@ This command generates graphs showing your spending records of a particular year
 
 Format: 
 
-`draw [YEAR] [MONTH]`
+`draw [YEAR] [MONTH] [-a]`
 
 Examples of usage: 
 
@@ -301,6 +314,8 @@ Examples of usage:
 `draw 2012` → shows the graph of year 2012
 
 `draw 2020 Jun` → shows the graph of Jun 2020
+
+`draw -a` → shows graph of all expenses
 
 ### 3.13 Exporting Data: `export` 
 
@@ -312,12 +327,14 @@ Format:
 
 Example of usage: 
 
-`export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
+`export F:\MyFolder` → exports the records to an Excel file located at F:\MyFolder
 
 ### 3.14 Editing Spending: `edit`
 This command edits the existing records in the spending list.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
+
+🛈 You shall enter the command `spending list -a` before entering `edit` to get the actual `INDEX` of items in the spending list
 
 Format:
 
@@ -325,7 +342,7 @@ Format:
 
 Example of usage:
 
-`edit 3 -s SGD 4.0` → edits the amount in the third item in the spending list to SGD 4.0
+`edit 2 -c others` → edits the category of the second item in the spending list to others
 
 Figure below shows an example for Edit Spending feature: <br>
 
@@ -363,7 +380,7 @@ budget threshold, the below warning message will appear. <br>
 
 ![reminder message](images/warningMessage.png)
 
-Note: You need to set the budget in order to get the warning feature.
+Note: You would receive the warning message only after setting the budget limit.
 
 ### 4.3 Encouragement
 Being able to create your budget is a great start, but if you do not have the willpower to stick to the budget you have set, you will soon discover that using this application is a waste of your time. Hence, this feature is implemented to motivate you in keeping up your efforts in budgeting. An encouragement message will be shown every eight times you add an item to the spending list.
@@ -389,14 +406,14 @@ Figure below shows an example of encouragement message. <br>
 |[add](#31-adding-spending-add) | `add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
 |[clear](#32-clearing-data-clear) | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
 |[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
-|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`| draw 2020|
+|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH] [-a]`| draw 2020|
 |[edit](#314-editing-spending-edit) | `edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
-|[export](#313-exporting-data-export) | `export PATH`| export F:\MyFolder exports|
+|[export](#313-exporting-data-export) | `export PATH`| export F:\MyFolder|
 |[help](#33-viewing-help-help) | `help`| help|
 |[logout](#315-exiting-program-logout) | `logout`| logout|
 |[purge data](#34-purging-data-purge-data) | `purge data`| purge data|
 |[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
-|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`| rapayment list|
+|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`| repayment list|
 |[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
 |[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]`| spending list 2020 Jul|
 |[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |

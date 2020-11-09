@@ -36,10 +36,10 @@ public class Ui {
     private static final int TABLE_SIZE = 115;
     private static final String[][] TABLE_OF_COMMANDS = {
         {"ACTION", "FORMAT", "EXAMPLES (IF ANY)"},
-        {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING", "add -c Food -d chicken rice -s SGD 3.00"},
+        {"add", "add -c CATEGORY -d DESCRIPTION -s CURRENCY AMOUNT", "add -c Food -d chicken rice -s SGD 3.00"},
         {"clear", "clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]", "clear -s 1"},
         {"convert", "convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY", "convert -s SGD -t USD"},
-        {"draw", "draw [YEAR] [MONTH]", "draw 2020 Jun"},
+        {"draw", "draw [YEAR] [MONTH] [-a]", "draw 2020 Jun"},
         {"edit", "edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION]", "edit 1 -s SGD 4.00"},
         {"", "[-s NEW_CURRENCY NEW_SPENDING]", ""},
         {"export", "export PATH", "export F:\\MyFolder"},
@@ -214,17 +214,17 @@ public class Ui {
     }
 
     //@@author pinfang
-    public void printSummaryMessage(double amount) {
-        out.printf("You've spent $%.2f.%n", amount);
+    public void printSummaryMessage(String currency, double amount) {
+        out.printf("You've spent %s %.2f.%n", currency, amount);
         drawSeparateLine();
     }
 
-    public void printSummaryCategory(String category, double amount) {
+    public void printSummaryCategory(String currency, String category, double amount) {
         if (category.equals("OTHERS")) {
-            out.printf("%-20s $%.2f\n", category, amount);
+            out.printf("%-20s %s %.2f\n", category, currency, amount);
             drawSeparateLine();
         } else {
-            out.printf("%-20s $%.2f\n", category, amount);
+            out.printf("%-20s %s %.2f\n", category, currency, amount);
         }
     }
 
@@ -235,8 +235,9 @@ public class Ui {
     }
 
     //@@author killingbear999
-    public void printBudgetLimit(String currency, double budgetLimit) {
-        out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit));
+    public void printBudgetLimit(Data data, String currency, double budgetLimit) {
+        out.println("The budget limit has been set to " + currency + " " + String.format("%.2f", budgetLimit)
+                + " on " + data.budget.getDate());
         drawSeparateLine();
     }
 
@@ -261,9 +262,9 @@ public class Ui {
     }
 
     //@@author pinfang
-    public void printReminderMessage(double amountSpent, double amountRemained, String startWeek) {
-        out.printf("You have spent $%.2f since this Mon (%s).\n", amountSpent, startWeek);
-        out.printf("You have $%.2f left in your budget.\n", amountRemained);
+    public void printReminderMessage(String currency, double amountSpent, double amountRemained, String startWeek) {
+        out.printf("You have spent %s %.2f since this Mon (%s).\n", currency, amountSpent, startWeek);
+        out.printf("You have %s %.2f left in your budget.\n", currency, amountRemained);
         drawSeparateLine();
     }
 
@@ -280,7 +281,7 @@ public class Ui {
     //@@author killingbear999
     public void printCurrentBudgetLimit(Data data) {
         System.out.println("The budget limit has been set to: " + data.budget.getCurrency() + " "
-                               + String.format("%.2f", data.budget.getBudgetLimit()));
+                               + String.format("%.2f", data.budget.getBudgetLimit()) + " on " + data.budget.getDate());
         System.out.println(SEPARATE_LINE_CHAR.repeat(SEPARATE_LINE_LENGTH));
     }
 
