@@ -83,7 +83,7 @@ This command allows you to add a spending record to the application.
 
 Format:
 
-`add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING`
+`add -c CATEGORY -d DESCRIPTION -s CURRENCY AMOUNT`
 
 Example of usage: 
 
