@@ -214,17 +214,17 @@ public class Ui {
     }
 
     //@@author pinfang
-    public void printSummaryMessage(double amount) {
-        out.printf("You've spent %.2f.%n", amount);
+    public void printSummaryMessage(String currency, double amount) {
+        out.printf("You've spent %s %.2f.%n", currency, amount);
         drawSeparateLine();
     }
 
-    public void printSummaryCategory(String category, double amount) {
+    public void printSummaryCategory(String currency, String category, double amount) {
         if (category.equals("OTHERS")) {
-            out.printf("%-20s $%.2f\n", category, amount);
+            out.printf("%-20s %s %.2f\n", category, currency, amount);
             drawSeparateLine();
         } else {
-            out.printf("%-20s $%.2f\n", category, amount);
+            out.printf("%-20s %s %.2f\n", category, currency, amount);
         }
     }
 
