@@ -129,7 +129,7 @@ Format:
 
 You shall expect to see the following help screen: <br>
 
-![image](https://user-images.githubusercontent.com/45732128/98445334-25ca9380-2152-11eb-9514-f54c297c5d93.png)
+![image](images/help.jpg)
 
 ### 3.4. Purging Data: `purge data`
 This command is similar to the `clear` command, except that it allows you to clear all data, including your spending list, repayment list and budget, all at one go.
@@ -303,7 +303,7 @@ Format:
 
 Example of usage: 
 
-`export F:\MyFolder exports` → the records to an Excel file located at F:\MyFolder
+`export F:\MyFolder` → exports the records to an Excel file located at F:\MyFolder
 
 ### 3.14 Editing Spending: `edit`
 This command edits the existing records in the spending list.
@@ -384,12 +384,12 @@ Figure below shows an example of encouragement message. <br>
 |[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
 |[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`| draw 2020|
 |[edit](#314-editing-spending-edit) | `edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
-|[export](#313-exporting-data-export) | `export PATH`| export F:\MyFolder exports|
+|[export](#313-exporting-data-export) | `export PATH`| export F:\MyFolder|
 |[help](#33-viewing-help-help) | `help`| help|
 |[logout](#315-exiting-program-logout) | `logout`| logout|
 |[purge data](#34-purging-data-purge-data) | `purge data`| purge data|
 |[repay](#39-inputting-repayment-information-repay) | `repay -d NAME -s CURRENCY AMOUNT -t DEADLINE` | repay -d Johnny -s SGD 5.00 -t 2020-12-02|
-|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`| rapayment list|
+|[repayment list](#35-viewing-repayment-list-summary-repayment-list) | `repayment list`| repayment list|
 |[set](#38-setting-budget-limit-set) | `set -s CURRENCY AMOUNT` | set -s SGD 100.00|
 |[spending list](#36-viewing-spending-list-summary-spending-list) | `spending list [YEAR] [MONTH] [-c CATEGORY] [-a]`| spending list 2020 Jul|
 |[summary](#311-viewing-summary-summary) | `summary [YEAR] [MONTH] [-a]` | summary 2020 Jul |
