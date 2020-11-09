@@ -21,13 +21,12 @@ public class ReminderCommand extends Command {
 
     @Override
     public void execute(Data data, Ui ui) {
+        updateCurrency(data);
         double amountRemained = 0;
+
         if (data.budget.hasBudget) {
             warn.execute(data, ui);
             amountRemained = findRemainingAmount(data);
-        }
-        if (data.spendingList.getListSize() > 0) {
-            currency = data.spendingList.getItem(0).getSymbol();
         }
 
         double totalAmountSpent = 0;
@@ -81,5 +80,11 @@ public class ReminderCommand extends Command {
         double budgetLimit = data.budget.getBudgetLimit();
         double currentAmount = data.spendingList.getCurrentAmount(data);
         return budgetLimit - currentAmount;
+    }
+
+    private void updateCurrency(Data data) {
+        if (data.spendingList.getListSize() > 0) {
+            currency = data.spendingList.getItem(0).getSymbol();
+        }
     }
 }

@@ -29,16 +29,19 @@ public class SummaryCommand extends DateCommand {
     @Override
     public void execute(Data data, Ui ui) {
         logger.log(Level.FINE, "going to start processing");
-        if (data.spendingList.getListSize() > 0) {
-            currency = data.spendingList.getItem(0).getSymbol();
-        }
-
+        updateCurrency(data);
         double amountSpent = data.spendingList.getSpendingAmountTime(period);
         logger.log(Level.FINE, "end of processing");
         ui.printSummaryMessage(currency, amountSpent);
         for (Category c : Category.values()) {
             double categoryAmountSpent = data.spendingList.getSpendingAmountCategory(c.toString(), period);
             ui.printSummaryCategory(currency, c.name(), categoryAmountSpent);
+        }
+    }
+
+    private void updateCurrency(Data data) {
+        if (data.spendingList.getListSize() > 0) {
+            currency = data.spendingList.getItem(0).getSymbol();
         }
     }
 }
