@@ -43,6 +43,7 @@ public class Budget {
     public void updateBudget(String outputCurrency, double newBudgetLimit) throws IOException {
         currency = outputCurrency;
         budgetLimit = newBudgetLimit;
+        date = currentDate();
         save();
     }
 

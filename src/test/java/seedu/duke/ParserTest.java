@@ -20,7 +20,6 @@ import seedu.duke.command.SetBudgetCommand;
 import seedu.duke.command.SpendingListCommand;
 import seedu.duke.command.SummaryCommand;
 import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.exceptions.InvalidFormatException;
 import seedu.duke.exceptions.InvalidMonthException;
 import seedu.duke.exceptions.InvalidNumberException;
 import seedu.duke.exceptions.InvalidYearException;
@@ -121,7 +120,7 @@ class ParserTest {
     @Test
     void addWithoutCategory() throws ParseException, InvalidCommandException, NoSuchMethodException,
         InstantiationException, IllegalAccessException, InvocationTargetException,
-        java.text.ParseException, InvalidFormatException, InvalidNumberException, InvalidYearException,
+        java.text.ParseException, InvalidNumberException, InvalidYearException,
         InvalidMonthException {
         AddCommand c = (AddCommand) Parser.parseCommand("add -d Item 0 -s SGD 114.514 ");
         assertEquals(c.amount, 114.514);
@@ -132,7 +131,7 @@ class ParserTest {
     @Test
     void addShuffledArg() throws ParseException, InvalidCommandException, NoSuchMethodException,
         InstantiationException, IllegalAccessException, InvocationTargetException,
-        java.text.ParseException, InvalidFormatException, InvalidNumberException, InvalidYearException,
+        java.text.ParseException, InvalidNumberException, InvalidYearException,
         InvalidMonthException {
         AddCommand c = (AddCommand) Parser.parseCommand("add -d Item 0 -s SGD 114.514 -c Food ");
         assertEquals(c.amount, 114.514);
@@ -142,7 +141,7 @@ class ParserTest {
 
     @Test
     void editOneParam() throws ParseException, InvalidCommandException, NoSuchMethodException, InstantiationException,
-        IllegalAccessException, InvocationTargetException, java.text.ParseException, InvalidFormatException,
+        IllegalAccessException, InvocationTargetException, java.text.ParseException,
         InvalidNumberException, InvalidYearException, InvalidMonthException {
         EditCommand c = (EditCommand) Parser.parseCommand("edit 987 --description fried rice");
         assertEquals(c.index, 986);
@@ -155,7 +154,7 @@ class ParserTest {
     @Test
     void clearIndex() throws ParseException, InvalidCommandException, NoSuchMethodException,
         InstantiationException, IllegalAccessException, java.text.ParseException,
-        InvocationTargetException, InvalidFormatException, InvalidNumberException, InvalidYearException,
+        InvocationTargetException, InvalidNumberException, InvalidYearException,
         InvalidMonthException {
         MultipleCommand c = (MultipleCommand) Parser.parseCommand("clear --repayment 23");
         ClearRepaymentListCommand cl = (ClearRepaymentListCommand) c.commands.get(0);
@@ -166,7 +165,7 @@ class ParserTest {
     @Test
     void clearMultipleLists() throws NoSuchMethodException, ParseException, InvalidCommandException,
         InstantiationException, java.text.ParseException, IllegalAccessException,
-        InvocationTargetException, InvalidFormatException, InvalidNumberException, InvalidYearException,
+        InvocationTargetException, InvalidNumberException, InvalidYearException,
         InvalidMonthException {
         MultipleCommand c = (MultipleCommand) Parser.parseCommand("clear --spending 234");
         assertEquals(1, c.commands.size());
