@@ -29,14 +29,12 @@ financial situation and track their spending efficiently.
   [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=killingbear999&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * UG documentation contributions:
-  1. Section 3.0 Command Features
-  2. Section 3.5 Viewing Repayment List Summary
-  3. Section 3.7 Viewing Budget Limit
-  4. Section 3.8 Setting Budget Limit
-  5. Section 3.9 Inputting Repayment Information
-  6. Section 3.10 Converting Currency
-  7. Section 3.14 Editing Spending 
-  8. Section 3.15 Exiting Program
+  1. Section 3.7 Viewing Budget Limit
+  2. Section 3.8 Setting Budget Limit
+  3. Section 3.9 Inputting Repayment Information
+  4. Section 3.10 Converting Currency
+  5. Section 3.14 Editing Spending 
+  6. Section 3.15 Exiting Program
   
 * DG documentation contributions:
   1. Section 4.3 Edit Feature and its sequence diagram
@@ -51,16 +49,10 @@ financial situation and track their spending efficiently.
   3. Updating user/developer docs that are not specific to a feature
 
 * Review/mentoring contributions:
-  1. Reviews PRs
-  
-     Refer this link for more information:
-     [PRs Reviewed](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akillingbear999)
+  1. Reviews PRs: [Link to PRs Reviewed](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akillingbear999)
   2. Comments in the issue trackers
   3. Tests and reports bugs
 
 * Contributions beyond the project team:
-  1. Bugs reported in PE dry run
-  
-     Refer this link for more information:
-     [PE dry run](https://github.com/killingbear999/ped/issues) 
+  1. Bugs reported in PE dry run: [Link to PE dry run](https://github.com/killingbear999/ped/issues) 
   2. DG reviews
