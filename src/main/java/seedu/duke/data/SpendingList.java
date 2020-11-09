@@ -1,10 +1,11 @@
 package seedu.duke.data;
 
-import seedu.duke.storage.Storage;
 import seedu.duke.command.ConvertCommand;
+import seedu.duke.storage.Storage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class SpendingList {
     private String description;
@@ -87,14 +88,19 @@ public class SpendingList {
         return totalAmount;
     }
 
+    //@@author k-walter
+    public ArrayList<Item> filterSpendingList(String category, String period) {
+        return spendingList.stream()
+            .filter(i -> category == null || i.getCategory().matches("(?i).*" + category + ".*"))
+            .filter(i -> period == null || i.getDate().matches("^" + period + ".*"))
+            .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    //@@author k-walter
     public double getSpendingAmountCategory(String category, String period) {
-        double totalAmount = 0;
-        for (Item i: spendingList) {
-            if (i.getCategory().contains(category) && i.getDate().contains(period)) {
-                totalAmount += i.getAmount();
-            }
-        }
-        return totalAmount;
+        return filterSpendingList(category, period).stream()
+            .mapToDouble(Item::getAmount)
+            .sum();
     }
     
     //@@author killingbear999
@@ -164,7 +170,7 @@ public class SpendingList {
     public void categoriseSpendingList() {
         int count = spendingList.size() - 1;
         for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < spendingList.size() - 1; j++) {
+            for (int j = 0; j < count + 1; j++) {
                 Item currentItem = getItem(j);
                 if (i == 0 && currentItem.getCategory().equals("Education")) {
                     Item lastItem = getItem(count);

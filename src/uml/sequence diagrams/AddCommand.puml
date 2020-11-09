@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-->":AddCommand":execute(spendingList, \nrepaymentList, ui)
+->":AddCommand":execute(data, ui)
 activate ":AddCommand"
 ":AddCommand" -> ":AddCommand": updateAmount()
 activate ":AddCommand"

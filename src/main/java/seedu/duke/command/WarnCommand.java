@@ -2,6 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.data.Data;
 import seedu.duke.ui.Ui;
+import seedu.duke.utilities.DecimalFormatter;
 
 //@@author killingbear999
 public class WarnCommand extends Command {
@@ -19,7 +20,9 @@ public class WarnCommand extends Command {
         budgetThreshold = budgetLimit * threshold;
         double currentAmount = data.spendingList.getCurrentAmount(data);
         if (currentAmount >= budgetThreshold && currentAmount < budgetLimit) {
+            DecimalFormatter decimalFormatter = new DecimalFormatter();
             double amountRemaining = budgetLimit - currentAmount;
+            amountRemaining = decimalFormatter.convert(amountRemaining);
             ui.printApproachingWarningMessage(outputCurrency, amountRemaining);
         } else if (currentAmount >= budgetLimit) {
             ui.printExceedingWarningMessage();

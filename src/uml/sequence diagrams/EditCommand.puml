@@ -1,22 +1,38 @@
 @startuml
 hide footbox
-->":EditCommand":execute(spendingList, ui)
+->":EditCommand":execute(data, ui)
 activate ":EditCommand"
-alt isDescription
+alt discription != null
 ":EditCommand"->":SpendingList":editItemDescription(index, description)
 activate ":SpendingList"
 ":SpendingList"-->":EditCommand":
 deactivate ":SpendingList"
-else isCategory
+else category != null
 ":EditCommand"->":SpendingList":editItemCategory(index, description)
 activate ":SpendingList"
 ":SpendingList"-->":EditCommand":
 deactivate ":SpendingList"
 else isAmount
+alt currency != defaultCurrency
+":EditCommand"->":AmountConverter":updateAmount()
+activate ":AmountConverter"
+":AmountConverter"-->":EditCommand":amount
+deactivate ":AmountConverter"
+":EditCommand"->":AmountConverter":updateCurrency()
+activate ":AmountConverter"
+":AmountConverter"-->":EditCommand":currency
+deactivate ":AmountConverter"
+end
+alt currency == defaultCurrency
+":EditCommand"->":DecimalFormatter":convert()
+activate ":DecimalFormatter"
+":DecimalFormatter"-->":EditCommand":amount
+deactivate ":DecimalFormatter"
 ":EditCommand"->":SpendingList":editItemAmount(index, amount)
 activate ":SpendingList"
 ":SpendingList"-->":EditCommand":
 deactivate ":SpendingList"
+end
 end
 ":EditCommand"->":Ui":printEdit(spendingList, index)
 activate ":Ui"

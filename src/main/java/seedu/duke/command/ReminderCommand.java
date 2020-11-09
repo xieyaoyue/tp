@@ -7,10 +7,12 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//@@author pinfang
 public class ReminderCommand extends Command {
     private LocalDate startWeek;
     private WarnCommand warn;
     private ArrayList<String> week = new ArrayList<>();
+    private String currency = "SGD";
 
     public ReminderCommand() {
         saveDatesToList();
@@ -19,7 +21,9 @@ public class ReminderCommand extends Command {
 
     @Override
     public void execute(Data data, Ui ui) {
+        updateCurrency(data);
         double amountRemained = 0;
+
         if (data.budget.hasBudget) {
             warn.execute(data, ui);
             amountRemained = findRemainingAmount(data);
@@ -30,7 +34,7 @@ public class ReminderCommand extends Command {
             totalAmountSpent += data.spendingList.getSpendingAmountTime(i);
         }
 
-        ui.printReminderMessage(totalAmountSpent, amountRemained, startWeek.toString());
+        ui.printReminderMessage(currency, totalAmountSpent, amountRemained, startWeek.toString());
     }
 
     private LocalDate startOfWeek() {
@@ -72,9 +76,15 @@ public class ReminderCommand extends Command {
         }
     }
 
-    public double findRemainingAmount(Data data) {
+    private double findRemainingAmount(Data data) {
         double budgetLimit = data.budget.getBudgetLimit();
         double currentAmount = data.spendingList.getCurrentAmount(data);
         return budgetLimit - currentAmount;
+    }
+
+    private void updateCurrency(Data data) {
+        if (data.spendingList.getListSize() > 0) {
+            currency = data.spendingList.getItem(0).getSymbol();
+        }
     }
 }
