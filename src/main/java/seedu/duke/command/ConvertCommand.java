@@ -135,7 +135,7 @@ public class ConvertCommand extends Command {
     }
     
     public void updateBudgetList(Data data) throws IOException {
-        if (data.budget.getCurrency().equals(outputCurrency)) {
+        if (!data.budget.getCurrency().equals(outputCurrency)) {
             double budgetLimit = data.budget.getBudgetLimit();
             double newBudgetLimit = budgetLimit * exchangeRate;
             data.budget.updateBudget(outputCurrency, newBudgetLimit);
