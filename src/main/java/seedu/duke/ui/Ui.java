@@ -214,17 +214,17 @@ public class Ui {
     }
 
     //@@author pinfang
-    public void printSummaryMessage(double amount) {
-        out.printf("You've spent %.2f.%n", amount);
+    public void printSummaryMessage(String currency, double amount) {
+        out.printf("You've spent %s %.2f.%n", currency, amount);
         drawSeparateLine();
     }
 
-    public void printSummaryCategory(String category, double amount) {
+    public void printSummaryCategory(String currency, String category, double amount) {
         if (category.equals("OTHERS")) {
-            out.printf("%-20s $%.2f\n", category, amount);
+            out.printf("%-20s %s %.2f\n", category, currency, amount);
             drawSeparateLine();
         } else {
-            out.printf("%-20s $%.2f\n", category, amount);
+            out.printf("%-20s %s %.2f\n", category, currency, amount);
         }
     }
 
@@ -262,9 +262,9 @@ public class Ui {
     }
 
     //@@author pinfang
-    public void printReminderMessage(double amountSpent, double amountRemained, String startWeek) {
-        out.printf("You have spent $%.2f since this Mon (%s).\n", amountSpent, startWeek);
-        out.printf("You have $%.2f left in your budget.\n", amountRemained);
+    public void printReminderMessage(String currency, double amountSpent, double amountRemained, String startWeek) {
+        out.printf("You have spent %s %.2f since this Mon (%s).\n", currency, amountSpent, startWeek);
+        out.printf("You have %s %.2f left in your budget.\n", currency, amountRemained);
         drawSeparateLine();
     }
 
