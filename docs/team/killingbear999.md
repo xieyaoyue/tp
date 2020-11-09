@@ -26,14 +26,14 @@ financial situation and track their spending efficiently.
   17. `exceptions` related to the above classes
   
   Refer this link for more information: 
-  [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=killingbear999&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+  [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=killingbear999)
 
 * UG documentation contributions:
   1. Section 3.7 Viewing Budget Limit
   2. Section 3.8 Setting Budget Limit
   3. Section 3.9 Inputting Repayment Information
   4. Section 3.10 Converting Currency
-  5. Section 3.14 Editing Spending 
+  5. Section 3.14 Editing Spending
   6. Section 3.15 Exiting Program
   
 * DG documentation contributions:
