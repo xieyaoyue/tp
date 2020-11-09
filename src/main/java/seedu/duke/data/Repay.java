@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-//@@author killingbear999
 public class Repay {
     private String name;
     private double amount;
@@ -12,7 +11,8 @@ public class Repay {
     private String deadline;
     //@author k-walter
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-
+    
+    //@@author killingbear999
     public Repay(String name, String symbol, double amount, String deadline) {
         this.name = name;
         this.symbol = symbol;
@@ -25,6 +25,7 @@ public class Repay {
         return LocalDate.parse(deadline, format);
     }
     
+    //@@author killingbear999
     public String toString() {
         return name + " " + symbol + " " + String.format("%.2f", amount) + " " + deadline;
     }
