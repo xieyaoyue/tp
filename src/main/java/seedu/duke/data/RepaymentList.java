@@ -4,22 +4,27 @@ import seedu.duke.storage.Storage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
+//@author k-walter
 public class RepaymentList {
     public Storage storage;
     public ArrayList<Repay> repaymentList = new ArrayList<>();
 
     public RepaymentList() {
     }
-    
+
     public RepaymentList(Storage storage) {
         this.storage = storage;
     }
-    
+
     public ArrayList<Repay> getRepaymentList() {
-        return repaymentList;
+        return repaymentList.stream()
+            .sorted(Comparator.comparing(Repay::getDeadline))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
-    
+
     public void addItem(String name, String symbol, double amount, String deadline) throws IOException {
         Repay repay = new Repay(name, symbol, amount, deadline);
         repaymentList.add(repay);
@@ -47,7 +52,7 @@ public class RepaymentList {
     public int getListSize() {
         return repaymentList.size();
     }
-    
+
     public Repay getEntry(int index) {
         return repaymentList.get(index);
     }
