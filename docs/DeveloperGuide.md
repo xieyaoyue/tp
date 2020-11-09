@@ -162,8 +162,8 @@ Each command can take either or no argument or some arguments. Commands taking n
 
 ### 3.4 Command Component
 Every command that a user can input into the application is represented by an object that extends the abstract class `Command`. In addition, hidden commands that do not require user inputs also extends from the same abstract class `Command`. `Command` contains some basic methods that are shared by all types of commands, including:
-* execute(), which is called after setting up the object appropriately, to perform the action requested by the user; and
-* isExit(), which returns a boolean that indicates whether the program should terminate after the command is executed.
+* `execute()`, which is called after setting up the object appropriately, to perform the action requested by the user; and
+* `isExit()`, which returns a boolean that indicates whether the program should terminate after the command is executed.
 
 The following sections classify the `Command`s into different types based on their functionality within the application.
 
@@ -192,22 +192,18 @@ The following class diagram describes the hidden commands within the program. <b
 
 <img src="images/HiddenCommandsClass.png" width="600" align="center"> <br>
 
-
 ### 3.5 Data Component
-This component holds the data of the application, including the SpendingList class and RepaymentList class, 
-in the memory.
+This component holds the data of the application, including the `SpendingList`, `RepaymentList` and `Budget` class in the memory.
 
 #### 3.5.1 Spending List
-The SpendingList class stores a list of `Item` objects that the user has spent. The `SpendingList` does not depend on 
-Ui, Parser and Storage components. 
+The SpendingList class stores a list of `Item` objects that the user has spent. The `SpendingList` does not depend on Ui, Parser and Storage components. 
 
 Below shows a class diagram how `SpendingList` interacts with other classes. <br>
 
 <img src="images/spendingListClass.png" width="400" align="center">
 
 #### 3.5.2 Repayment List
-The RepaymentList class stores a list of `Repay` objects. Similar to SpendingList class, RepaymentList class does not 
-depend on other components. 
+The RepaymentList class stores a list of `Repay` objects. Similar to SpendingList class, RepaymentList class does not depend on other components. 
 
 Below shows a class diagram how `RepaymentList` interacts with other classes. <br>
 
