@@ -283,7 +283,7 @@ This command generates graphs showing your spending records of a particular year
 
 Format: 
 
-`draw [YEAR] [MONTH]`
+`draw [YEAR] [MONTH] [-a]`
 
 Examples of usage: 
 
@@ -292,6 +292,8 @@ Examples of usage:
 `draw 2012` → shows the graph of year 2012
 
 `draw 2020 Jun` → shows the graph of Jun 2020
+
+`draw -a` → shows graph of all expenses
 
 ### 3.13 Exporting Data: `export` 
 
@@ -382,7 +384,7 @@ Figure below shows an example of encouragement message. <br>
 |[add](#31-adding-spending-add) | `add -c CATEGORY -d DESCRIPTION -s CURRENCY SPENDING` | add -c Food -d chicken rice -s SGD 5.0|
 |[clear](#32-clearing-data-clear) | `clear [-b] [-s SPENDING_INDEX] [-r REPAYMENT_INDEX]` | clear -s 1|
 |[convert](#310-converting-currency-convert) | `convert -s INPUT_CURRENCY -t OUTPUT_CURRENCY` | convert -s SGD -t USD|
-|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH]`| draw 2020|
+|[draw](#312-visualizing-data-draw) | `draw [YEAR] [MONTH] [-a]`| draw 2020|
 |[edit](#314-editing-spending-edit) | `edit INDEX [-c NEW_CATEGORY] [-d NEW_DESCRIPTION] [-s NEW_CURRENCY NEW_SPENDING]` | edit 1 -d bubble tea|
 |[export](#313-exporting-data-export) | `export PATH`| export F:\MyFolder|
 |[help](#33-viewing-help-help) | `help`| help|
