@@ -262,9 +262,9 @@ public class Ui {
     }
 
     //@@author pinfang
-    public void printReminderMessage(double amountSpent, double amountRemained, String startWeek) {
-        out.printf("You have spent $%.2f since this Mon (%s).\n", amountSpent, startWeek);
-        out.printf("You have $%.2f left in your budget.\n", amountRemained);
+    public void printReminderMessage(String currency, double amountSpent, double amountRemained, String startWeek) {
+        out.printf("You have spent %s %.2f since this Mon (%s).\n", currency, amountSpent, startWeek);
+        out.printf("You have %s %.2f left in your budget.\n", currency, amountRemained);
         drawSeparateLine();
     }
 

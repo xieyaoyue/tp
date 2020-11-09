@@ -12,6 +12,7 @@ public class ReminderCommand extends Command {
     private LocalDate startWeek;
     private WarnCommand warn;
     private ArrayList<String> week = new ArrayList<>();
+    private String currency = "SGD";
 
     public ReminderCommand() {
         saveDatesToList();
@@ -25,13 +26,16 @@ public class ReminderCommand extends Command {
             warn.execute(data, ui);
             amountRemained = findRemainingAmount(data);
         }
+        if (data.spendingList.getListSize() > 0) {
+            currency = data.spendingList.getItem(0).getSymbol();
+        }
 
         double totalAmountSpent = 0;
         for (String i: week) {
             totalAmountSpent += data.spendingList.getSpendingAmountTime(i);
         }
 
-        ui.printReminderMessage(totalAmountSpent, amountRemained, startWeek.toString());
+        ui.printReminderMessage(currency, totalAmountSpent, amountRemained, startWeek.toString());
     }
 
     private LocalDate startOfWeek() {

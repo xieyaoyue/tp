@@ -32,7 +32,7 @@ public class SummaryCommand extends DateCommand {
         if (data.spendingList.getListSize() > 0) {
             currency = data.spendingList.getItem(0).getSymbol();
         }
-        System.out.println(currency);
+
         double amountSpent = data.spendingList.getSpendingAmountTime(period);
         logger.log(Level.FINE, "end of processing");
         ui.printSummaryMessage(currency, amountSpent);
