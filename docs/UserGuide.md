@@ -317,7 +317,7 @@ Example of usage:
 
 Figure below shows an example for Edit Spending feature: <br>
 
-![Example for Editing Spending](images/Edit.png)
+![Example for Editing Spending](images/EditExample.png)
 
 ### 3.15 Exiting Program: `logout`
 This command exists the application.
