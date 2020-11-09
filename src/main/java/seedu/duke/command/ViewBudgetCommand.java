@@ -6,7 +6,7 @@ import seedu.duke.ui.Ui;
 
 //@@author killingbear999
 
-/** It is to view the budget limit that has been input previously */
+/** It is to view the budget limit that has been input previously. */
 public class ViewBudgetCommand extends Command {
 
     @Override

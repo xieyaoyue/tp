@@ -9,7 +9,7 @@ import seedu.duke.utilities.DecimalFormatter;
 import java.io.IOException;
 
 //@@author killingbear999
-/** It is to add the repay information into the repayment list */
+/** It is to add the repay information into the repayment list. */
 public class RepayCommand extends Command {
     private String name;
     private String currency;
@@ -23,7 +23,7 @@ public class RepayCommand extends Command {
         this.deadline = deadline;
     }
     
-    /** It is to add the repay information into the repayment list
+    /** It is to add the repay information into the repayment list.
      *
      * @throws InvalidInputCurrencyException If input currency is invalid
      * @throws InvalidAmountException If the amount input is less than 0.01 or negative
@@ -52,7 +52,7 @@ public class RepayCommand extends Command {
         ui.printAddRepay(data.repaymentList);
     }
     
-    /** It is to check if the name input is valid or matches with the specific format */
+    /** It is to check if the name input is valid or matches with the specific format. */
     private boolean isValidName() {
         return name.matches(".*[a-zA-Z]+.*");
     }

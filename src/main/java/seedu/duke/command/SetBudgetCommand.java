@@ -9,7 +9,7 @@ import seedu.duke.utilities.DecimalFormatter;
 import java.io.IOException;
 
 //@@author killingbear999
-/** It is to set the budget limit for the spending */
+/** It is to set the budget limit for the spending. */
 public class SetBudgetCommand extends Command {
 
     private double budgetLimit;
@@ -22,7 +22,7 @@ public class SetBudgetCommand extends Command {
         this.budgetLimit = budgetLimit;
     }
     
-    /** It is to convert the currency for the whole spending list
+    /** It is to convert the currency for the whole spending list.
      *
      * @throws InvalidInputCurrencyException If input currency is invalid
      * @throws InvalidBudgetException If the budget input is less than 0.01 or negative

@@ -9,7 +9,7 @@ import seedu.duke.utilities.DecimalFormatter;
 import java.io.IOException;
 
 //@@author killingbear999
-/** This class is to edit the item in the spending list */
+/** This class is to edit the item in the spending list. */
 public class EditCommand extends Command {
     public String description;
     public Double amount;
@@ -26,7 +26,7 @@ public class EditCommand extends Command {
         this.category = category;
     }
     
-    /** It is to convert the currency for the whole spending list
+    /** It is to convert the currency for the whole spending list.
      *
      * @throws InvalidInputCurrencyException If input currency is invalid
      * @throws EmptyListException If the spending list is empty and the convert command is called
@@ -91,7 +91,7 @@ public class EditCommand extends Command {
         }
     }
     
-    /** It is to check if the name input is valid */
+    /** It is to check if the name input is valid. */
     private boolean isValidName() {
         return description.matches(".*[a-zA-Z]+.*");
     }
