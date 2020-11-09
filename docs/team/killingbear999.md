@@ -51,16 +51,10 @@ financial situation and track their spending efficiently.
   3. Updating user/developer docs that are not specific to a feature
 
 * Review/mentoring contributions:
-  1. Reviews PRs
-  
-     Refer this link for more information:
-     [PRs Reviewed](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akillingbear999)
+  1. Reviews PRs: [Link to PRs Reviewed](https://github.com/AY2021S1-CS2113T-F14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akillingbear999)
   2. Comments in the issue trackers
   3. Tests and reports bugs
 
 * Contributions beyond the project team:
-  1. Bugs reported in PE dry run
-  
-     Refer this link for more information:
-     [PE dry run](https://github.com/killingbear999/ped/issues) 
+  1. Bugs reported in PE dry run: [Link to PE dry run](https://github.com/killingbear999/ped/issues) 
   2. DG reviews
