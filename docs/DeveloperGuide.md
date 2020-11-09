@@ -365,10 +365,11 @@ given a date. It implements the following operations:
 Below shows an example of usage:
 
 1. User executes the `summary 2020` command to get the amount spent during year 2020.
-2. The `summary` command calls the `SpendingList#getSpendingAmountTime` which checks the spending date of every items
+2. The `summary` command will first update the current currency symbol.
+3. The `summary` command calls the `SpendingList#getSpendingAmountTime` which checks the spending date of every items
 stored in the memory.
-3. If the item is spent during year 2020, the amount spent will be summed up.
-4. The `summary` command will also call the `SpendingList#getSpendingAmountCategory` to sum up the expenses in each
+4. If the item is spent during year 2020, the amount spent will be summed up.
+5. The `summary` command will also call the `SpendingList#getSpendingAmountCategory` to sum up the expenses in each
 categories during the year 2020.
 
 The following sequence diagram illustrates how this feature works.<br>
@@ -385,7 +386,8 @@ Below shows an example of usage:
 
 1. User starts the application.
 2. The `ReminderCommand` will be instantiated. The dates of the current week (starting from Monday) will be saved to a list.
-3. In the `ReminderCommand#execute(data, ui)`, a check will be done to see if there is any budget being set by the user.
+3. The `reminder` command will first update the current currency symbol.
+4. In the `ReminderCommand#execute(data, ui)`, a check will be done to see if there is any budget being set by the user.
     * If no budget is being set, the total expenditure of current week will be tallied up. 
     * If there is, `WarnCommand#execute(data, ui)` will be called first before tallying up the expenditure. 
 
