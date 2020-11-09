@@ -9,6 +9,7 @@ import seedu.duke.command.ClearSpendingListCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.MultipleCommand;
 import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.exceptions.InvalidNumberException;
 
 public class ClearParser extends Parser {
     public ClearParser() {
@@ -35,17 +36,18 @@ public class ClearParser extends Parser {
         options.addOption(budget);
     }
 
-    public Command parse(String[] args) throws ParseException, InvalidCommandException {
-        CommandLine line = parser.parse(options, args);
+    public Command parse(String[] args) throws InvalidCommandException,
+        InvalidNumberException, ParseException {
+        CommandLine line = getCommandLine(args);
         MultipleCommand mc = new MultipleCommand();
 
-        Integer index = clearList(line, "r");
+        Integer index = parseOptionalIndex(line, "r");
         if (index != null) {
-            mc.addCommand(new ClearRepaymentListCommand(false, index));
+            mc.addCommand(new ClearRepaymentListCommand(index == -1, index));
         }
-        index = clearList(line, "s");
+        index = parseOptionalIndex(line, "s");
         if (index != null) {
-            mc.addCommand(new ClearSpendingListCommand(false, index));
+            mc.addCommand(new ClearSpendingListCommand(index == -1, index));
         }
         if (line.hasOption("b")) {
             mc.addCommand(new ClearBudgetCommand());
@@ -57,15 +59,4 @@ public class ClearParser extends Parser {
         return mc;
     }
 
-    private Integer clearList(CommandLine line, String flag) throws InvalidCommandException {
-        if (!line.hasOption(flag)) {
-            return null;
-        }
-        String indexString = line.getOptionValue(flag);
-        Integer index = getIndex(indexString);
-        if (index == null) {
-            throw new InvalidCommandException();
-        }
-        return index;
-    }
 }

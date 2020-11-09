@@ -18,13 +18,11 @@ import org.openxmlformats.schemas.drawingml.x2006.chart.CTBoolean;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTLineChart;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTLineSer;
 import org.openxmlformats.schemas.drawingml.x2006.chart.CTPlotArea;
-
-import seedu.duke.data.RepaymentList;
+import seedu.duke.data.Data;
+import seedu.duke.data.Item;
 import seedu.duke.data.SpendingList;
 import seedu.duke.ui.Ui;
-import seedu.duke.data.Item;
-import seedu.duke.exceptions.InvalidCommandException;
-import seedu.duke.utilities.DateFormatter;
+import seedu.duke.utilities.FileExplorer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,24 +31,38 @@ import java.util.TreeMap;
 
 //@@author Wu-Haitao
 public class DrawCommand extends DateCommand {
-    private final DateFormatter dateFormatter = new DateFormatter();
+    private final String filePath = "Charts.xlsx";
+    private final FileExplorer fileExplorer = new FileExplorer(filePath);
+    private boolean isOpening;
     private String timePeriod;
 
-    public DrawCommand() throws InvalidCommandException {
-        timePeriod = "";
+    //@author k-walter
+    public DrawCommand() {
+        this(true);
     }
 
+    public DrawCommand(boolean isOpening) {
+        timePeriod = "";
+        this.isOpening = isOpening;
+    }
+
+    //@author kk-walter
     public DrawCommand(String year, String month) {
-        String convertedMonth = dateFormatter.changeMonthFormat(month);
-        if (convertedMonth == null) {
+        this(year, month, true);
+    }
+
+    //@author k-walter
+    public DrawCommand(String year, String month, boolean isOpening) {
+        if (month == null) {
             timePeriod = year;
         } else {
-            timePeriod = year + "-" + convertedMonth;
+            timePeriod = year + "-" + month;
         }
+        this.isOpening = isOpening;
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(Data data, Ui ui) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet0 = workbook.createSheet("Sheet 0");
         XSSFSheet sheet1 = workbook.createSheet("Sheet 1");
@@ -58,9 +70,10 @@ public class DrawCommand extends DateCommand {
         sheet1.setDefaultColumnWidth(5);
         ArrayList<Item> items = new ArrayList<>();
         SpendingList targetSpendingList = new SpendingList(items);
-        for (int i = 0; i < spendingList.getListSize(); i++) {
-            if (spendingList.getItem(i).getDate().startsWith(timePeriod)) {
-                targetSpendingList.getSpendingList().add(spendingList.getItem(i));
+
+        for (int i = 0; i < data.spendingList.getListSize(); i++) {
+            if (data.spendingList.getItem(i).getDate().startsWith(timePeriod)) {
+                targetSpendingList.getSpendingList().add(data.spendingList.getItem(i));
             }
         }
         if (targetSpendingList.getListSize() != 0) {
@@ -74,18 +87,31 @@ public class DrawCommand extends DateCommand {
             }
             Integer[] dates = dateMap.keySet().toArray(new Integer[0]);
             Double[] amountsForDates = dateMap.values().toArray(new Double[0]);
-            drawChart(sheet0, dates, amountsForDates, 0, 0, 10, 15);
+            drawChart(sheet0, dates, amountsForDates, 0, 0, 15, 10);
 
             TreeMap<String, Double> categoryMap = getCategoryMap(targetSpendingList);
             String[] categories = categoryMap.keySet().toArray(new String[0]);
             Double[] amountsForCategories = categoryMap.values().toArray(new Double[0]);
-            drawChart(sheet1, categories, amountsForCategories, 0, 0, 10, 12);
+            drawChart(sheet1, categories, amountsForCategories, 0, 0, 8, 12);
 
-            FileOutputStream fileOut = new FileOutputStream("Charts.xlsx");
-            workbook.write(fileOut);
-            fileOut.flush();
-            fileOut.close();
+            try {
+                FileOutputStream fileOut = new FileOutputStream(filePath);
+                workbook.write(fileOut);
+                fileOut.flush();
+                fileOut.close();
+            } catch (Exception e) {
+                assert false : "Failed to create Excel file";
+            }
+
             ui.printDrawMessage(true);
+
+            if (isOpening) {
+                try {
+                    fileExplorer.openFile();
+                } catch (IOException e) {
+                    ui.printOpenFileFailedMessage();
+                }
+            }
         } else {
             ui.printDrawMessage(false);
         }
@@ -154,7 +180,7 @@ public class DrawCommand extends DateCommand {
     private TreeMap<Integer, Double> getDayMap(SpendingList spendingList) {
         TreeMap<Integer, Double> map = new TreeMap<>();
         final int minDay = 1;
-        final int maxDay = 12;
+        final int maxDay = 31;
         for (int i = 0; i < spendingList.getListSize(); i++) {
             Item item = spendingList.getItem(i);
             int day = Integer.parseInt(item.getDate().substring(8, 10));
@@ -206,4 +232,5 @@ public class DrawCommand extends DateCommand {
             }
         }
     }
+
 }

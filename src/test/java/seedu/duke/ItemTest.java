@@ -15,20 +15,20 @@ public class ItemTest {
 
     @Test
     public void testStringConversion() {
-        String expectedString = date.toString() + " [Other] rice SGD 2.00";
+        String expectedString = date.toString() + " [Others] rice SGD 2.00";
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editAmount() {
-        String expectedString = date.toString() + " [Other] rice SGD 5.00";
+        String expectedString = date.toString() + " [Others] rice SGD 5.00";
         rice.editAmount(5);
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void editDescription() {
-        String expectedString = date.toString() + " [Other] chicken rice SGD 2.00";
+        String expectedString = date.toString() + " [Others] chicken rice SGD 2.00";
         rice.editDescription("chicken rice");
         assertEquals(expectedString, rice.toString());
     }
@@ -42,14 +42,14 @@ public class ItemTest {
 
     @Test
     public void editSymbol() {
-        String expectedString = date.toString() + " [Other] rice USD 2.00";
+        String expectedString = date.toString() + " [Others] rice USD 2.00";
         rice.editSymbol("USD");
         assertEquals(expectedString, rice.toString());
     }
 
     @Test
     public void getAmount() {
-        Double expectedAmount = 2.00;
+        Double expectedAmount = 2.0000;
         assertEquals(expectedAmount, rice.getAmount());
     }
 

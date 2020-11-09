@@ -1,7 +1,12 @@
 package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.data.Data;
 import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.EmptyListException;
+import seedu.duke.exceptions.InvalidCurrencyException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
+import seedu.duke.exceptions.InvalidOutputCurrencyException;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.Item;
 
@@ -26,9 +31,11 @@ public class ConvertCommandTest {
     );
     
     @Test
-    public void execute() throws IOException {
+    public void execute() throws IOException, InvalidInputCurrencyException, InvalidOutputCurrencyException,
+                                             InvalidCurrencyException, EmptyListException {
         Ui ui = new Ui();
         ConvertCommand convertCommand = new ConvertCommand("SGD", "USD");
-        convertCommand.execute(realList, null, ui);
+        Data data = new Data(realList, null, null);
+        convertCommand.execute(data, ui);
     }
 }

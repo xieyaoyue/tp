@@ -1,7 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.data.Data;
 import seedu.duke.data.RepaymentList;
-import seedu.duke.data.SpendingList;
+import seedu.duke.exceptions.InvalidAmountException;
+import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
+import seedu.duke.exceptions.InvalidNameException;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DateTimeFormatter;
 import seedu.duke.utilities.DecimalFormatter;
@@ -23,31 +27,28 @@ public class RepayCommand extends Command {
     }
 
     @Override
-    public void execute(SpendingList spendingList, RepaymentList repaymentList, Ui ui) throws IOException {
+    public void execute(Data data, Ui ui) throws IOException,
+            InvalidDateException, InvalidAmountException, InvalidNameException, InvalidInputCurrencyException {
         DateTimeFormatter dateTimeFormatter = new DateTimeFormatter("yyyy-MM-dd");
-        if (repayment >= 0.01) {
-            if (dateTimeFormatter.isValid(deadline)) {
-                repay(repaymentList, ui);
-            } else {
-                ui.printInvalidDate();
-            }
-        } else {
-            ui.printInvalidAmount();
+        if (repayment < 0.01) {
+            throw new InvalidAmountException();
         }
-    }
-    
-    private void repay(RepaymentList repaymentList, Ui ui) throws IOException {
-        if (isValidName()) {
-            DecimalFormatter decimalFormatter = new DecimalFormatter();
-            repayment = decimalFormatter.convert(repayment);
-            repaymentList.addItem(name, currency, repayment, deadline);
-            ui.printAddRepay(repaymentList);
-        } else {
-            ui.printInvalidName();
+        if (!dateTimeFormatter.isValid(deadline)) {
+            throw new InvalidDateException();
         }
+        if (!isValidName()) {
+            throw new InvalidNameException();
+        }
+        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+            throw new InvalidInputCurrencyException();
+        }
+        DecimalFormatter decimalFormatter = new DecimalFormatter();
+        repayment = decimalFormatter.convert(repayment);
+        data.repaymentList.addItem(name, currency, repayment, deadline);
+        ui.printAddRepay(data.repaymentList);
     }
     
     private boolean isValidName() {
-        return ((name != null) && (!name.equals("")) && (name.matches("^[a-zA-Z]*$")));
+        return name.matches(".*[a-zA-Z]+.*");
     }
 }

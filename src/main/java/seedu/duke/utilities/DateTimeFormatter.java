@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
+//@@author killingbear999
 public class DateTimeFormatter {
     private String dateFormat;
     
@@ -13,6 +14,9 @@ public class DateTimeFormatter {
     }
     
     public boolean isValid(String dateStr) {
+        if (dateStr.length() < 10) {
+            return false;
+        }
         Date date = new Date();
         DateFormat sdf = new SimpleDateFormat(this.dateFormat);
         sdf.setLenient(false);

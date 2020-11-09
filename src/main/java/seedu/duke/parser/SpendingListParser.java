@@ -1,28 +1,37 @@
 package seedu.duke.parser;
 
+import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.ParseException;
 import seedu.duke.command.Command;
 import seedu.duke.command.SpendingListCommand;
 import seedu.duke.exceptions.InvalidCommandException;
+import seedu.duke.exceptions.InvalidMonthException;
+import seedu.duke.exceptions.InvalidYearException;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
-public class SpendingListParser extends DateParser<SpendingListCommand> {
+public class SpendingListParser extends Parser {
     public SpendingListParser() {
-        super(SpendingListCommand.class);
+        super();
+        addAllOption();
         addCategoryOption(false);
     }
 
     @Override
-    public Command parse(String[] args) throws ParseException, InvalidCommandException, InvocationTargetException,
-        NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public Command parse(String[] args) throws ParseException, InvalidCommandException, InvalidYearException,
+        InvalidMonthException {
         if (args.length < 1 || !args[0].equals("list")) {
             throw new InvalidCommandException();
         }
 
         String[] opts = Arrays.copyOfRange(args, 1, args.length);
-        return super.parse(opts);
-        // TODO : list by category
+        CommandLine line = getCommandLine(opts, true);
+        String category = parseCategoryOption(line);
+        if (parseAllOption(line)) {
+            parseNoArgs(line);
+            return new SpendingListCommand(category);
+        }
+        YearMonth ym = parseDateArgs(line);
+        return new SpendingListCommand(ym.year, ym.month, category);
     }
 }

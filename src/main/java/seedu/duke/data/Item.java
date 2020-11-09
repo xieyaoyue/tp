@@ -2,26 +2,37 @@ package seedu.duke.data;
 
 import java.time.LocalDate;
 
+//@@author pinfang
 public class Item {
     private String description;
     private double amount;
     private String symbol;
     private String date;
-    private String category = "Other";
+    //@author k-walter
+    private String category;
 
+    //@author k-walter
     public Item(String description, String symbol, double amount) {
-        this.description = description;
-        this.symbol = symbol;
-        this.amount = amount;
-        this.date = currentDate();
+        this(description, symbol, amount, null);
     }
 
+    //@author k-walter
     public Item(String description, String symbol, double amount, String category) {
+        init(description, symbol, amount, category, currentDate());
+    }
+
+    //@@author k-walter
+    public Item(String description, String symbol, double amount, String category, String date) {
+        init(description, symbol, amount, category, date);
+    }
+
+    //@author k-walter
+    protected void init(String description, String symbol, double amount, String category, String date) {
         this.description = description;
         this.symbol = symbol;
         this.amount = amount;
-        this.date = currentDate();
         this.category = Category.categoryName(category);
+        this.date = date;
     }
 
     protected String currentDate() {
@@ -69,7 +80,9 @@ public class Item {
         this.date = specificDate;
     }
 
+    //@author k-walter
+    @Override
     public String toString() {
-        return date + " [" + category + "] " + description + " " + symbol + " " + String.format("%.2f", amount);
+        return String.format("%s [%s] %s %s %s", date, category, description, symbol, String.format("%.2f", amount));
     }
 }
