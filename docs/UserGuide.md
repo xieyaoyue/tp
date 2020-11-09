@@ -47,32 +47,53 @@ Refer to the [Command Features](#3-command-features) below for details of each c
 ## **3. Command Features**
 In this section, specific information about each command will be explained. This includes the purpose of each command, and how it is formatted.
 
-Before we begin, do take note of the following information which applies to all commands:
-* This application only takes in currencies of SGD, USD and CNY.
+The format of a command line is as follows: `command DESCRIPTION [-f DESCRIPTION] -f DESCRIPTION1 DESCRIPTION2`
 
-* Words in UPPER_CASE are parameters that you should provide.
-Example: In `-c CATEGORY`, `CATEGORY` is a parameter. `-c Food` would mean that the item belongs to the 'food' category.
+* `command` in lowercase can be any command in this section, such as `add` or `spending list`. You must specify it first in the command line.
 
-* Parameters in square brackets (i.e. []) are options provided for you to choose to enter (no need to enter [] when entering the command). You may choose one out of all.
-Example: `edit INDEX [-c CATEGORY] [-d NEW DESCRIPTION]` can be used as `edit 1 [-c Food]` or `edit 1 [-c NEW DESCRIPTION]`
+* `DESCRIPTION` in uppercase is a description of the argument you should provide. Each word in the description corresponds to the expected argument. 
 
-* The abbreviation of `MONTH` is case sensitive. The system only accepts the abbreviation of `MONTH` with the first three letters, and the first
-letter is capitalised. Example: `Jul` for July or `Oct` for October.
-
-* The system only supports three different currencies including SGD, USD and CNY.
-
-* The default currency of the system is SGD, but after calling `convert` feature, the default currency will be changed to the currency you have converted to.
-
-* There are 6 main categories of spending items:
-    1. Education
-    2. Entertainment
-    3. Food
-    4. Health
-    5. Transportation
-    6. Utilities
-
-Note: If you categorise an item in a category that is not from these six, the item will be categorised as Others.
+    * **Example**: `export PATH` asks for the file path to export your data to.
     
+    * **Example**: `add -s CURRENCY AMOUNT` asks for the added currency and amount, to be separated by spaces. One valid command line is `add -s SGD 1.00`.
+    
+* `-f` is a flag. Arguments are either flagged or unflagged. You must specify unflagged arguments after the command and flagged arguments after unflagged arguments.
+
+    * **Example**: One valid command line for `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` is `edit 1 -c Food -d Rice`, which edits the category and description of item at index 1.
+    
+    * `INDEX` in `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` is an unflagged argument and must be specified in the given order (after `edit`).
+    
+    * `CATEGORY` and `NEW_DESCRIPTION` in `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` are flagged arguments and can be specified in any order after `INDEX`.
+   
+* Arguments are either optional or required. Optional arguments are enclosed in square brackets (i.e. `[]`), while required arguments are not.
+
+    * Do not enter `[]` within your command line. It is used only in documentations.
+
+    * You must specify required arguments to run the command.
+    
+    * You can specify any combination of optional arguments, including none of them unless otherwise stated.
+    
+Before we begin, do take note of the following information which applies to all commands:
+
+* The abbreviation of `MONTH` is case-insensitive. The system accepts the English abbreviation of `MONTH` with at least 3 characters. 
+
+    * Example: `Jul` or `july` for July, but not `Ju` or `007`.
+
+* If you specify `-a` all flag, do not specify the optional arguments `YEAR` and `MONTH`.
+
+* The system only supports three different currencies including SGD, USD and CNY as of `v2.1`.
+
+* The default currency of the system is SGD. Only after calling `convert` feature will the default currency will be changed to the currency you have converted to.
+
+* There are 7 categories of spending items. If you did not specify a category or categorise an item in a category not within the first 6, the item will default to Others:
+    1. Education
+    1. Entertainment
+    1. Food
+    1. Health
+    1. Transportation
+    1. Utilities
+    1. Others (default)
+
 ### 3.1 Adding Spending: `add`
 This command allows you to add a spending record to the application. 
 
