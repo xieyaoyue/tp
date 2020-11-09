@@ -18,6 +18,11 @@ deactivate ":ReminderCommand"
 
 activate ":ReminderCommand"
 
+":ReminderCommand" -> ":ReminderCommand" : updateCurrency(data)
+activate ":ReminderCommand"
+":ReminderCommand" --> ":ReminderCommand"
+deactivate ":ReminderCommand"
+
 opt data.budget.hasBudget
 ":ReminderCommand" -> ":WarnCommand" : execute(data, ui)
 activate ":WarnCommand"
@@ -40,7 +45,7 @@ activate ":ReminderCommand"
 deactivate ":ReminderCommand"
 
 
-":ReminderCommand" -> ":Ui" : printReminderMessage(totalAmountSpent,amountRemained,startWeek.toString())
+":ReminderCommand" -> ":Ui" : printReminderMessage(currency, totalAmountSpent,amountRemained,startWeek.toString())
 activate ":Ui"
 ":Ui" --> ":ReminderCommand"
 deactivate ":Ui"
