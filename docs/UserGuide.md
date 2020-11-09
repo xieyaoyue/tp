@@ -312,7 +312,7 @@ This command edits the existing records in the spending list.
 
 🛈 The system only supports three different currencies, including SGD, USD and CNY.
 
-🛈 You may enter the command `spending list -a` before entering `edit` to get the acutual `INDEX` of items in the spending list
+🛈 You shall enter the command `spending list -a` before entering `edit` to get the actual `INDEX` of items in the spending list
 
 Format:
 
