@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.data.Data;
-import seedu.duke.exceptions.*;
 import seedu.duke.ui.Ui;
 
 //@@author killingbear999
