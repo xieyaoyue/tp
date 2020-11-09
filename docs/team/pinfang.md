@@ -25,6 +25,8 @@ financial situation and track their spending efficiently.
     * [Section 4.1 Reminder](https://github.com/pinfang/tp/blob/update_UG/docs/UserGuide.md#41-reminder)
     * [Section 4.2 Warning](https://github.com/pinfang/tp/blob/update_UG/docs/UserGuide.md#42-warning)
 
+<div style="page-break-after: always;"></div>
+
 * DG documentation contributions: 
     * [Section 3.5 Data Component](https://github.com/pinfang/tp/blob/update_UG/docs/DeveloperGuide.md#35-data-component)
     * [Section 4.8 Summary Feature](https://github.com/pinfang/tp/blob/update_UG/docs/DeveloperGuide.md#48-summary-feature)
