@@ -52,34 +52,34 @@ Refer to the [Command Features](#3-command-features) below for details of each c
 ## **3. Command Features**
 In this section, specific information about each command will be explained. This includes the purpose of each command, and how it is formatted.
 
-The format of a command line is as follows: `command DESCRIPTION [-f DESCRIPTION] -f DESCRIPTION1 DESCRIPTION2`
-
-* `command` in lowercase can be any command in this section, such as `add` or `spending list`. You must specify it first in the command line.
-
-* `DESCRIPTION` in uppercase is a description of the argument you should provide. Each word in the description corresponds to the expected argument. 
-
-    * **Example**: `export PATH` asks for the file path to export your data to.
-    
-    * **Example**: `add -s CURRENCY AMOUNT` asks for the added currency and amount, to be separated by spaces. One valid command line is `add -s SGD 1.00`.
-    
-* `-f` is a flag. Arguments are either flagged or unflagged. You must specify unflagged arguments after the command and flagged arguments after unflagged arguments.
-
-    * **Example**: One valid command line for `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` is `edit 1 -c Food -d Rice`, which edits the category and description of item at index 1.
-    
-    * `INDEX` in `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` is an unflagged argument and must be specified in the given order (after `edit`).
-    
-    * `CATEGORY` and `NEW_DESCRIPTION` in `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` are flagged arguments and can be specified in any order after `INDEX`.
-   
-* Arguments are either optional or required. Optional arguments are enclosed in square brackets (i.e. `[]`), while required arguments are not.
-
-    * Do not enter `[]` within your command line. It is used only in documentations.
-
-    * You must specify required arguments to run the command.
-    
-    * You can specify any combination of optional arguments, including none of them unless otherwise stated.
-    
 Before we begin, do take note of the following information which applies to all commands:
 
+* The format of a command line is as follows: `command DESCRIPTION [-f DESCRIPTION] -f DESCRIPTION1 DESCRIPTION2`
+
+    * `command` in lowercase can be any command in this section, such as `add` or `spending list`. You must specify it first in the command line.
+
+    * `DESCRIPTION` in uppercase is a description of the argument you should provide. Each word in the description corresponds to the expected argument. 
+
+        * **Example**: `export PATH` asks for the file path to export your data to.
+
+        * **Example**: `add -s CURRENCY AMOUNT` asks for the added currency and amount, to be separated by spaces. One valid command line is `add -s SGD 1.00`.
+
+    * `-f` is a flag. Arguments are either flagged or unflagged. You must specify unflagged arguments after the command and flagged arguments after unflagged arguments.
+
+        * **Example**: One valid command line for `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` is `edit 1 -c Food -d Rice`, which edits the category and description of item at index 1.
+
+        * `INDEX` in `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` is an unflagged argument and must be specified in the given order (after `edit`).
+
+        * `CATEGORY` and `NEW_DESCRIPTION` in `edit INDEX [-d NEW_DESCRIPTION] [-c CATEGORY]` are flagged arguments and can be specified in any order after `INDEX`.
+
+    * Arguments are either optional or required. Optional arguments are enclosed in square brackets (i.e. `[]`), while required arguments are not.
+
+        * Do not enter `[]` within your command line. It is used only in documentations.
+
+        * You must specify required arguments to run the command.
+
+        * You can specify any combination of optional arguments, including none of them unless otherwise stated.
+    
 * The abbreviation of `MONTH` is case-insensitive. The system accepts the English abbreviation of `MONTH` with at least 3 characters. 
 
     * Example: `Jul` or `july` for July, but not `Ju` or `007`.
