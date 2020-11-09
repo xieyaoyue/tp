@@ -117,7 +117,7 @@ public class Item {
     }
 
     /**
-     * Edits the date of the spending item
+     * Edits the date of the spending item.
      * @param specificDate This is the new date to be saved.
      */
     public void editDate(String specificDate) {
