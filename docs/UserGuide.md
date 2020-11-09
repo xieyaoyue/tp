@@ -129,7 +129,7 @@ Format:
 
 You shall expect to see the following help screen: <br>
 
-![image](images/help.jpg)
+![image](images/help.png)
 
 ### 3.4. Purging Data: `purge data`
 This command is similar to the `clear` command, except that it allows you to clear all data, including your spending list, repayment list and budget, all at one go.
