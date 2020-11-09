@@ -91,7 +91,7 @@ public class SpendingList {
     //@@author k-walter
     public ArrayList<Item> filterSpendingList(String category, String period) {
         return spendingList.stream()
-            .filter(i -> category == null || i.getCategory().contains(category))
+            .filter(i -> category == null || i.getCategory().matches("(?i).*" + category + ".*"))
             .filter(i -> period == null || i.getDate().matches("^" + period + ".*"))
             .collect(Collectors.toCollection(ArrayList::new));
     }
