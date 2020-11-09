@@ -26,7 +26,7 @@ financial situation and track their spending efficiently.
   17. `exceptions` related to the above classes
   
   Refer this link for more information: 
-  [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=killingbear999&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
+  [functional code](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=killingbear999&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=killingbear999&tabRepo=AY2021S1-CS2113T-F14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * UG documentation contributions:
   1. [Section 3.7 Viewing Budget Limit](https://github.com/AY2021S1-CS2113T-F14-2/tp/blob/master/docs/UserGuide.md#37-viewing-budget-limit-view)
