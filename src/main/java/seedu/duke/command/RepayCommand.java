@@ -4,6 +4,7 @@ import seedu.duke.data.Data;
 import seedu.duke.data.RepaymentList;
 import seedu.duke.exceptions.InvalidAmountException;
 import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.InvalidInputCurrencyException;
 import seedu.duke.exceptions.InvalidNameException;
 import seedu.duke.ui.Ui;
 import seedu.duke.utilities.DateTimeFormatter;
@@ -27,7 +28,7 @@ public class RepayCommand extends Command {
 
     @Override
     public void execute(Data data, Ui ui) throws IOException,
-            InvalidDateException, InvalidAmountException, InvalidNameException {
+            InvalidDateException, InvalidAmountException, InvalidNameException, InvalidInputCurrencyException {
         DateTimeFormatter dateTimeFormatter = new DateTimeFormatter("yyyy-MM-dd");
         if (repayment < 0.01) {
             throw new InvalidAmountException();
@@ -35,17 +36,16 @@ public class RepayCommand extends Command {
         if (!dateTimeFormatter.isValid(deadline)) {
             throw new InvalidDateException();
         }
-        repay(data.repaymentList, ui);
-    }
-    
-    private void repay(RepaymentList repaymentList, Ui ui) throws IOException, InvalidNameException {
         if (!isValidName()) {
             throw new InvalidNameException();
         }
+        if (!(currency.equals("SGD") || currency.equals("USD") || currency.equals("CNY"))) {
+            throw new InvalidInputCurrencyException();
+        }
         DecimalFormatter decimalFormatter = new DecimalFormatter();
         repayment = decimalFormatter.convert(repayment);
-        repaymentList.addItem(name, currency, repayment, deadline);
-        ui.printAddRepay(repaymentList);
+        data.repaymentList.addItem(name, currency, repayment, deadline);
+        ui.printAddRepay(data.repaymentList);
     }
     
     private boolean isValidName() {
